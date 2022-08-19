@@ -1,0 +1,25 @@
+-- TCC ENTRA21 BANCO DE DADOS
+use TCC;
+create table entrega_trecho (
+id_entrega bigint not null,
+id_trecho bigint not null,
+completo bit(1),
+data_inicio datetime,
+data_fim datetime,
+foreign key (id_entrega) references entrega(id),
+foreign key (id_trecho) references trecho(id),
+primary key (id_entrega, id_trecho)
+);
+drop table entrega_trecho;
+alter table entrega_trecho add constraint  foreign key  (id_entrega) references entrega(id);
+
+create table trecho (
+id bigint not null primary key auto_increment,
+local_inicio varchar(250),
+local_fim varchar(250)
+);
+
+create table entrega (
+id bigint not null primary key auto_increment,
+id_entregador bigint
+);
