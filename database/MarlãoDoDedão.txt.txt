@@ -1,0 +1,22 @@
+create database entra21;
+use entra21;
+
+
+create table pessoa(
+	id bigint not null primary key auto_increment,
+	nome varchar(50) not null,
+	sobrenome varchar(50) not null,
+	telefone varchar(50) not null,
+	cpf char(11) not null,
+	login varchar(100) not null,
+	senha varchar(50) not null,
+	unique(login)
+);
+
+create table cliente(
+	id bigint not null auto_increment,
+	id_pessoa bigint not null,
+	foreign key (id_pessoa) references pessoa(id)
+);
+
+-Marlon
