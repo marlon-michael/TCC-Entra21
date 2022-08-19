@@ -18,3 +18,5 @@ create table cliente(
 	id_pessoa bigint not null,
 	foreign key (id_pessoa) references pessoa(id)
 );
+
+-Marlon
