@@ -23,3 +23,79 @@ create table entrega (
 id bigint not null primary key auto_increment,
 id_entregador bigint
 );
+
+
+
+
+
+-------------------------------tudo
+-- TCC ENTRA21 BANCO DE DADOS
+create database TCC;
+use TCC;
+drop database TCC;
+create table entrega_trecho (
+id_entrega bigint not null,
+id_trecho bigint not null,
+completo bit(1),
+data_inicio datetime,
+data_fim datetime,
+foreign key (id_entrega) references entrega(id),
+foreign key (id_trecho) references trecho(id),
+primary key (id_entrega, id_trecho)
+);
+
+alter table entrega_trecho add constraint  foreign key  (id_entrega) references entrega(id);
+
+create table trecho (
+id bigint not null primary key auto_increment,
+local_inicio varchar(250),
+local_fim varchar(250)
+);
+
+create table entrega (
+id bigint not null primary key auto_increment,
+id_entregador bigint,
+foreign key (id_entregador) references funcionario(id)
+);
+
+
+create table item(
+id bigint not null auto_increment primary key,
+id_cliente bigint not null,
+localizador varchar(100) not null,
+status varchar(50),
+unique(localizador)
+);
+create table entrega_item(
+id_entrega bigint not null,
+id_item bigint not null,
+primary key(id_entrega, id_item),
+ foreign key (id_entrega) references entrega(id),
+  foreign key (id_item)references item(id)
+);
+
+create table pessoa(
+	id bigint not null primary key auto_increment,
+	nome varchar(50) not null,
+	sobrenome varchar(50) not null,
+	telefone varchar(50) not null,
+	cpf char(11) not null,
+	login varchar(100) not null,
+	senha varchar(50) not null,
+	unique(login)
+);
+
+create table cliente(
+	id bigint not null primary key auto_increment,
+	id_pessoa bigint not null,
+ 	foreign key (id_pessoa) references pessoa(id)
+);
+
+create table funcionario(
+	id bigint not null primary key auto_increment,
+	id_pessoa bigint not null,
+	id_supervisor bigint,
+	entregador bit(1) default(0),
+	foreign key (id_pessoa) references pessoa(id),
+	foreign key (id_supervisor) references pessoa(id)
+);
