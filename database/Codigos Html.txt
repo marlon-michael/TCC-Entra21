@@ -1,0 +1,63 @@
+Código do Status HTTP
+(Status-code)	Significado do código HTTP
+(Reason-Phrase)	Significado do código HTTP
+100	Continue	                Continuar
+101	Switching Protocols     	Mudando Protocolos
+102	Processing	                Processando
+200	Ok	                        Ok
+201	Created	Criado
+202	Accepted	                Aceito
+203	Non-Authoritative Information	Não autorizado
+204	No Content	                Nenhum Conteúdo
+205	Reset Content	                Resetar Conteúdo
+206	Partial Content          	Conteúdo Parcial
+226     IM Used (HTTP Delta encoding)   O servidor cumpriu uma solicitação GET para o recurso e a resposta é uma representação do resultado de uma ou mais manipulações de instância aplicadas à instância atual.
+300	Multiple Choices	        Múltipla Escolha
+301	Moved Permanently	        Movido Permanentemente
+302	Found	                        Encontrado
+303	See Other	                Veja outro
+304	Not Modified	                Não modificado
+305	Use Proxy	                Use Proxy
+306	Proxy Switch	                Proxy Trocado
+307     Temporary Redirect              O servidor mandou essa resposta direcionando o cliente a buscar o recurso requisitado em outra URI com o mesmo método que foi utilizado na requisição original. Tem a mesma semântica do código 302 Found, com a exceção de que o user-agent não deve mudar o método HTTP utilizado: se um POST foi utilizado na primeira requisição, um POST deve ser utilizado na segunda.
+308     Permanent Redirect              Esse código significa que o recurso agora está permanentemente localizado em outra URI, especificada pelo cabeçalho de resposta Location. Tem a mesma semântica do código de resposta HTTP 301 Moved Permanently com a exceção de que o user-agent não deve mudar o método HTTP utilizado: se um POST foi utilizado na primeira requisição, um POST deve ser utilizado na segunda.
+400	Bad Request	                Solicitação Inválida
+401	Unauthorized	                Não autorizado
+402	Payment Required	        Pagamento necessário
+403	Forbidden	                Proibido
+404	Not Found	                Não encontrado
+405	Method Not Allowed	        Método não permitido
+406	Not Acceptable	                Não aceito
+407	Proxy Authentication Required	Autenticação de Proxy Necessária
+408	Request Time-out	        Tempo de solicitação esgotado
+409	Conflict	                Conflito
+410	Gone	                        Perdido
+411	Length Required          	Duração necessária
+412	Precondition Failed	        Falha de pré-condição
+413	Request Entity Too Large	Solicitação da entidade muito extensa
+414	Request-URL Too Large	        Solicitação de URL muito Longa
+415	Unsupported Media Type	        Tipo de mídia não suportado
+416	Request Range Not Satisfiable	Solicitação de faixa não satisfatória
+417	Expectation Failed	        Falha na expectativa
+418     I'm a teapot                    O servidor recusa a tentativa de coar café num bule de chá.
+421     Misdirected Request             A requisição foi direcionada a um servidor inapto a produzir a resposta. Pode ser enviado por um servidor que não está configurado para produzir respostas para a combinação de esquema ("scheme") e autoridade inclusas na URI da requisição.
+422     Unprocessable Entity            A requisição está bem formada mas inabilitada para ser seguida devido a erros semânticos.
+423     Locked                          O recurso sendo acessado está travado.
+424     Failed Dependency               A requisição falhou devido a falha em requisição prévia.
+425     Too Early                       Indica que o servidor não está disposto a arriscar processar uma requisição que pode ser refeita.
+426     Upgrade Required                O servidor se recusa a executar a requisição usando o protocolo corrente mas estará pronto a fazê-lo após o cliente atualizar para um protocolo diferente. O servidor envia um cabeçalho Upgrade (en-US) numa resposta 426 para indicar o(s) protocolo(s) requeridos.
+428     Precondition Required           O servidor de origem requer que a resposta seja condicional. Feito para prevenir o problema da 'atualização perdida', onde um cliente pega o estado de um recurso (GET) , modifica-o, e o põe de volta no servidor (PUT), enquanto um terceiro modificou o estado no servidor, levando a um conflito.
+429     Too Many Requests               O usuário enviou muitas requisições num dado tempo ("limitação de frequência").
+431     Request Header Fields Too Large O servidor não quer processar a requisição porque os campos de cabeçalho são muito grandes. A requisição PODE ser submetida novemente depois de reduzir o tamanho dos campos de cabeçalho.
+451     Unavailable For Legal Reasons   O usuário requisitou um recurso ilegal, tal como uma página censurada por um governo.
+500	Internal Server Error	        Erro do Servidor Interno
+501	Not Implemented	                Não implementado
+502	Bad Gateway	                Porta de entrada ruim
+503	Service Unavailable	        Serviço Indisponível
+504	Gateway Time-out        	Tempo limite da Porta de Entrada
+505	HTTP Version Not Supported	Versão HTTP não suportada
+506     Variant Also Negotiates         O servidor tem um erro de configuração interno: a negociação transparente de conteúdo para a requisição resulta em uma referência circular.
+507     Insufficient Storage 		O servidor tem um erro interno de configuração: o recurso variante escolhido está configurado para entrar em negociação transparente de conteúdo com ele mesmo, e portanto não é uma ponta válida no processo de negociação.
+508     Loop Detected                   O servidor detectou um looping infinito ao processar a requisição.
+510     Not Extended                    Exigem-se extensões posteriores à requisição para o servidor atendê-la.
+511     Network Authentication Required O código de status 511 indica que o cliente precisa se autenticar para ganhar acesso à rede.
