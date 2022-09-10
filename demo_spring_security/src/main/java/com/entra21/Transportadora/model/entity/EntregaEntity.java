@@ -12,7 +12,7 @@ public class EntregaEntity {
     @Column(name = "id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idEntrega;
 
     @Column(name = "id_pessoa")
     private Integer idPessoa;

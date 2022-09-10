@@ -1,7 +1,5 @@
 package com.entra21.Transportadora.model.entity;
-
 import lombok.Data;
-
 import javax.persistence.*;
 
 @Data
@@ -12,7 +10,7 @@ public class PessoaEntity {
     @Column(name = "id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idPessoa;
 
     @Column(name = "nome")
     private String nome;
