@@ -22,7 +22,6 @@ insert into empresa (razao_social, id_gerente)
 values
 	('viver', 1),
 	('viver tambem', 3);
-	
 insert into funcionario (id_pessoa, id_supervisor, id_empresa)
 values 
 	(1, 3, 1),
