@@ -4,4 +4,6 @@ import lombok.Data;
 
 @Data
 public class CarroDTO {
+    private String tipoCarro;
+    private String placa;
 }
