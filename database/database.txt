@@ -152,7 +152,6 @@ primary key(id_entrega, id_item)
 );
 
 
-
 -- disable table
 -- create table carro_emrpesa(
 -- id_carro bigint not null,
