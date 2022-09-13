@@ -22,6 +22,7 @@ insert into empresa (razao_social, id_gerente)
 values
 	('viver', 1),
 	('viver tambem', 3);
+	
 insert into funcionario (id_pessoa, id_supervisor, id_empresa)
 values 
 	(1, 3, 1),
@@ -107,8 +108,8 @@ foreign key (id_empresa) references empresa(id)
 
 create table trecho (
 id bigint not null primary key auto_increment,
-local_inicio varchar(250),
-local_fim varchar(250)
+local_inicio varchar(250) not null,
+local_fim varchar(250) not null
 );
 
 create table entrega (
@@ -123,7 +124,7 @@ id bigint not null primary key auto_increment,
 id_entrega bigint not null,
 id_trecho bigint not null,
 id_carro bigint not null,
-completo bit(1),
+completo bit(1) default(0),
 data_inicio datetime,
 data_fim datetime,
 foreign key (id_carro) references carro(id),
@@ -134,7 +135,7 @@ foreign key (id_trecho) references trecho(id)
 create table item(
 id bigint not null auto_increment primary key,
 localizador varchar(100) not null,
-status varchar(50),
+status varchar(50) default('Em espera'),
 local_entrega varchar(300) not null,
 nome_recebedor varchar(50) not null,
 id_pessoa bigint,
