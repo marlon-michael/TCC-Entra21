@@ -14,13 +14,12 @@ public class EntregaEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEntrega;
 
-    @Column(name = "id_pessoa")
-    private Integer idPessoa;
+    @Column(name = "id_entregador")
+    private Integer idEntregador;
 
-    @Column(name = "id_supervisor")
-    private Integer idSupervisor;
+    @Column(name = "tipo_entrega")
+    private Integer tipoEntrega;
 
-    @Column(name = "id_empresa")
-    private Integer idEmpresa;
+//    @ArrombaHotmail
 
 }

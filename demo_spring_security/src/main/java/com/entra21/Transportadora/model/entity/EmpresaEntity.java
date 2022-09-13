@@ -14,12 +14,9 @@ public class EmpresaEntity{
     private Long idEmpresa;
 
     @Column(name = "razao_social")
-    private  String razSocial;
+    private  String razaoSocial;
 
     @Column(name = "id_gerente")
     private Integer idGerente;
-
-    @OneToMany
-    private Set<CarroEntity> carros;
 
 }

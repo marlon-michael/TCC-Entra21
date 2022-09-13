@@ -14,12 +14,4 @@ public class TransportadoraApplication {
 		SpringApplication.run(TransportadoraApplication.class, args);
 	}
 
-	@Configuration
-	public static class SecurityConfig {
-		@Bean
-		public static PasswordEncoder passwordEncoder() {
-			return NoOpPasswordEncoder.getInstance();
-		}
-	}
-
 }

@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 @Data
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "carro")
 public class CarroEntity {
 
@@ -13,12 +14,13 @@ public class CarroEntity {
     private Long idCarro;
 
     @Column(name = "tipo")
-    private  String tipoCarro;
+    private String tipoCarro;
 
     @Column(name = "placa")
     private String placa;
 
-    @Column(name = "id_empresa")
-    private Long idEmpresa;
+    @ManyToOne
+    @JoinColumn(name = "id_empresa", referencedColumnName = "id")
+    private EmpresaEntity empresa;
 
 }

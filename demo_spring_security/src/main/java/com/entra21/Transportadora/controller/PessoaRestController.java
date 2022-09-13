@@ -1,6 +1,11 @@
 package com.entra21.Transportadora.controller;
 
+import com.entra21.Transportadora.model.entity.PessoaEntity;
+import com.entra21.Transportadora.view.repository.PessoaRepository;
+import com.entra21.Transportadora.view.service.PessoaService;
+import org.hibernate.annotations.GeneratorType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,8 +14,28 @@ import java.util.List;
 @RequestMapping("/pessoa")
 public class PessoaRestController {
 
-//    @Autowired
-//    private GeneroService generoService;
+    @Autowired
+    private PessoaService pessoaService;
+    @Autowired
+    private PessoaRepository pessoaRepository;
+
+    @PostMapping
+    public void addPessoa(@RequestBody PessoaEntity pessoa) {
+        pessoaRepository.save(pessoa);
+    }
+
+    @GetMapping("/all")
+    public List<PessoaEntity> getPessoas(){
+        return pessoaRepository.findAll();
+    }
+
+    @GetMapping
+    public String getPessoa() {
+        return pessoaService.buscarUsuarioLogado().getNome();
+    }
+
+}
+//
 //
 //    @GetMapping
 //    public List<GeneroDTO> getFranquias() {
@@ -37,4 +62,3 @@ public class PessoaRestController {
 //                                  @RequestBody String novoNome) {
 //        return generoService.update1(id, novoNome);
 //    }
-}
