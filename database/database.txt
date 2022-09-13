@@ -1,78 +1,8 @@
+
 -- TCC ENTRA21 BANCO DE DADOS
-use TCC;
-create table entrega_trecho (
-id_entrega bigint not null,
-id_trecho bigint not null,
-completo bit(1),
-data_inicio datetime,
-data_fim datetime,
-foreign key (id_entrega) references entrega(id),
-foreign key (id_trecho) references trecho(id),
-primary key (id_entrega, id_trecho)
-);
-drop table entrega_trecho;
-alter table entrega_trecho add constraint  foreign key  (id_entrega) references entrega(id);
-
-create table trecho (
-id bigint not null primary key auto_increment,
-local_inicio varchar(250),
-local_fim varchar(250)
-);
-
-create table entrega (
-id bigint not null primary key auto_increment,
-id_entregador bigint
-);
-
-
-
-
-
--------------------------------tudo
--- TCC ENTRA21 BANCO DE DADOS
+drop database TCC;
 create database TCC;
 use TCC;
-drop database TCC;
-create table entrega_trecho (
-id_entrega bigint not null,
-id_trecho bigint not null,
-completo bit(1),
-data_inicio datetime,
-data_fim datetime,
-foreign key (id_entrega) references entrega(id),
-foreign key (id_trecho) references trecho(id),
-primary key (id_entrega, id_trecho)
-);
-
-alter table entrega_trecho add constraint  foreign key  (id_entrega) references entrega(id);
-
-create table trecho (
-id bigint not null primary key auto_increment,
-local_inicio varchar(250),
-local_fim varchar(250)
-);
-
-create table entrega (
-id bigint not null primary key auto_increment,
-id_entregador bigint,
-foreign key (id_entregador) references funcionario(id)
-);
-
-
-create table item(
-id bigint not null auto_increment primary key,
-id_cliente bigint not null,
-localizador varchar(100) not null,
-status varchar(50),
-unique(localizador)
-);
-create table entrega_item(
-id_entrega bigint not null,
-id_item bigint not null,
-primary key(id_entrega, id_item),
- foreign key (id_entrega) references entrega(id),
-  foreign key (id_item)references item(id)
-);
 
 create table pessoa(
 	id bigint not null primary key auto_increment,
@@ -82,101 +12,14 @@ create table pessoa(
 	cpf char(11) not null,
 	login varchar(100) not null,
 	senha varchar(50) not null,
-	unique(login)
-);
-
-create table cliente(
-	id bigint not null primary key auto_increment,
-	id_pessoa bigint not null,
- 	foreign key (id_pessoa) references pessoa(id)
-);
-
-create table funcionario(
-	id bigint not null primary key auto_increment,
-	id_pessoa bigint not null,
-	id_supervisor bigint,
-	entregador bit(1) default(0),
-	foreign key (id_pessoa) references pessoa(id),
-	foreign key (id_supervisor) references pessoa(id)
-);
-
-
-_--------------------------------------------------------------------------
--- TCC ENTRA21 BANCO DE DADOS
-create database TCC;
-use TCC;
-drop database TCC;
-
-create table entrega_trecho (
-id_entrega bigint not null,
-id_trecho bigint not null,
-completo bit(1),
-data_inicio datetime,
-data_fim datetime,
-id_carro bigint not null
-foreign key (id_entrega) references entrega(id),
-foreign key (id_trecho) references trecho(id),
-foreign key (id_carro) references carro(id),
-primary key (id_entrega, id_trecho)
-);
-
-alter table entrega_trecho add constraint  foreign key  (id_entrega) references entrega(id);
-
-create table trecho (
-id bigint not null primary key auto_increment,
-local_inicio varchar(250),
-local_fim varchar(250)
-);
-
-create table entrega (
-id bigint not null primary key auto_increment,
-id_entregador bigint,
-tipo_entrega varchar(45)not null,
-foreign key (id_entregador) references funcionario(id)
-);
--- alter table entrega add column id_veiculo references frota;
-
-
-create table item(
-id bigint not null auto_increment primary key,
-localizador varchar(100) not null,
-status varchar(50),
-local_entrega varchar(300) not null,
-nome_recebedor varchar(50) not null,
-unique(localizador)
-);
-alter table cliente add foreign key (id_pessoa) references pessoa(id);
-create table entrega_item(
-id_entrega bigint not null,
-id_item bigint not null,
-primary key(id_entrega, id_item),
- foreign key (id_entrega) references entrega(id),
-  foreign key (id_item)references item(id)
-);
-
-create table pessoa(
-	id bigint not null primary key auto_increment,
-	nome varchar(50) not null,
-	sobrenome varchar(50) not null,
-	telefone varchar(50) not null,
-	cpf char(11) not null,
-	login varchar(100) not null,
-	senha varchar(50) not null,
-	unique(login)
-);
-
-create table carro_empresa(
-	id_carro bigint not null,
-	id_empresa bigint not null,
-	primary key (id_carro, id_empresa),
- 	foreign key (id_carro) references carro(id)
- 	foreign key (id_empresa) references empresa(id)
+	unique(cpf, login)
 );
 
 create table empresa(
 id bigint not null primary key auto_increment,
 razao_social varchar(250),
-id_gerente bigint not null
+id_gerente bigint not null,
+foreign key (id_gerente) references pessoa(id),
 );
 
 create table funcionario(
@@ -188,115 +31,64 @@ create table funcionario(
 	foreign key (id_supervisor) references pessoa(id),
 	foreign key (id_empresa) references empresa(id)
 );
-alter table funcionario add foreign key (id_supervisor) references funcionario(id);
-
--- create table veiculo(
--- id_veiculo bigint not null primary key auto_increment,
--- tipo_entrega bigint not null, 
--- tipo_veiculo varchar(50) not null,
--- foreign key (id_em) references tipo_entrega(id)
--- );
--- create table empresa(
--- 
--- );
-
-
-
-
-
-OFICIAL-------------------------------------------------------------------------------------------------------------------
--- TCC ENTRA21 BANCO DE DADOS
-create database TCC;
-use TCC;
-drop database TCC;
-
-create table entrega_trecho (
-id_entrega bigint not null,
-id_trecho bigint not null,
-completo bit(1),
-data_inicio datetime,
-data_fim datetime,
-id_carro bigint not null,
-foreign key (id_entrega) references entrega(id),
-foreign key (id_trecho) references trecho(id),
-foreign key (id_carro) references carro(id),
-primary key (id_entrega, id_trecho)
-);
-
-alter table entrega_trecho add constraint  foreign key  (id_entrega) references entrega(id);
-
-create table trecho (
-id bigint not null primary key auto_increment,
-local_inicio varchar(250),
-local_fim varchar(250)
-);
-
-create table entrega (
-id bigint not null primary key auto_increment,
-id_entregador bigint,
-tipo_entrega varchar(45)not null,
-foreign key (id_entregador) references funcionario(id)
-);
--- alter table entrega add column id_veiculo references frota;
-
-
-create table item(
-id bigint not null auto_increment primary key,
-localizador varchar(100) not null,
-status varchar(50),
-local_entrega varchar(300) not null,
-nome_recebedor varchar(50) not null,
-unique(localizador)
-);
-alter table cliente add foreign key (id_pessoa) references pessoa(id);
-create table entrega_item(
-id_entrega bigint not null,
-id_item bigint not null,
-primary key(id_entrega, id_item),
- foreign key (id_entrega) references entrega(id),
-  foreign key (id_item)references item(id)
-);
-
-create table pessoa(
-	id bigint not null primary key auto_increment,
-	nome varchar(50) not null,
-	sobrenome varchar(50) not null,
-	telefone varchar(50) not null,
-	cpf char(11) not null,
-	login varchar(100) not null,
-	senha varchar(50) not null,
-	unique(login)
-);
-
-create table carro_empresa(
-	id_carro bigint not null,
-	id_empresa bigint not null,
-	primary key (id_carro, id_empresa),
- 	foreign key (id_carro) references carro(id),
- 	foreign key (id_empresa) references empresa(id)
-);
-
-create table empresa(
-id bigint not null primary key auto_increment,
-razao_social varchar(250),
-id_gerente bigint not null
-);
-alter table pessoa add constraint foreign key (id) references empresa(id_gerente);
-
-create table funcionario(
-	id bigint not null primary key auto_increment,
-	id_pessoa bigint not null,
-	id_supervisor bigint,
-	id_empresa bigint not null,
-	foreign key (id_pessoa) references pessoa(id),
-	foreign key (id_supervisor) references pessoa(id),
-	foreign key (id_empresa) references empresa(id)
-);
-alter table funcionario add foreign key (id_supervisor) references funcionario(id);
-alter table funcionario add foreign key (id_supervisor) references funcionario(id);
 
 create table carro(
-id bigint not null primary key auto_increment,
-tipo varchar(45) not null, 
-placa varchar(15)
+	id bigint not null primary key auto_increment,
+	tipo varchar(45) not null,
+	id_empresa bigint not null,
+ 	foreign key (id_empresa) references empresa(id)
 );
+
+create table trecho (
+id bigint not null primary key auto_increment,
+local_inicio varchar(250),
+local_fim varchar(250)
+);
+
+create table entrega (
+id bigint not null primary key auto_increment,
+id_entregador bigint not null,
+tipo_entrega varchar(45) not null,
+foreign key (id_entregador) references funcionario(id)
+);
+
+create table entrega_trecho (
+id bigint not null primary key auto_increment,
+id_entrega bigint not null,
+id_trecho bigint not null,
+id_carro bigint not null,
+completo bit(1),
+data_inicio datetime,
+data_fim datetime,
+foreign key (id_carro) references carro(id),
+foreign key (id_entrega) references entrega(id),
+foreign key (id_trecho) references trecho(id)
+);
+
+create table item(
+id bigint not null auto_increment primary key,
+localizador varchar(100) not null,
+status varchar(50),
+local_entrega varchar(300) not null,
+nome_recebedor varchar(50) not null,
+id_pessoa bigint,
+foreign key (id_pessoa) references pessoa(id);
+unique(localizador)
+);
+
+create table entrega(
+id_entrega bigint not null,
+id_item bigint not null,
+foreign key (id_entrega) references entrega(id),
+foreign key (id_item) references item(id),
+primary key(id_entrega, id_item)
+)
+
+-- disable table
+-- create table carro_emrpesa(
+-- id_carro bigint not null,
+-- id_empresa bigint not null,
+-- foreign key (id_carro) references carro(id),
+-- foreign key (id_empresa) references emrpesa(id),
+-- primary key(id_carro, id_emrpesa)
+-- )
