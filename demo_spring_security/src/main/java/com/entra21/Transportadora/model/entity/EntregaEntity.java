@@ -3,6 +3,7 @@ package com.entra21.Transportadora.model.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -14,12 +15,20 @@ public class EntregaEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEntrega;
 
-    @Column(name = "id_entregador")
-    private Integer idEntregador;
+
+    @ManyToOne
+    @JoinColumn(name="id_entregador", referencedColumnName = "id")
+    private FuncionarioEntity idEntregador;
 
     @Column(name = "tipo_entrega")
-    private Integer tipoEntrega;
+    private String tipoEntrega;
+//
+    @OneToMany
+//    @JoinColumn(name = "id_entrega", referencedColumnName = "id")
+    private List<EntregaTrechoEntity> entregaTrecho;
 
-//    @ArrombaHotmail
+
+    //lista entrega_trecho
+
 
 }

@@ -1,4 +1,4 @@
 package com.entra21.Transportadora.controller;
 
-public class EntregaRrechoRestController {
+public class EntregaTrechoRestController {
 }

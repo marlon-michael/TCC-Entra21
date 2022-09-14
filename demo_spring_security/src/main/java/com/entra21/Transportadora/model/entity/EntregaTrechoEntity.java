@@ -1,4 +1,5 @@
 package com.entra21.Transportadora.model.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -15,12 +16,6 @@ public class EntregaTrechoEntity {
         @Column(name = "id")
         private Long id;
 
-        @Column(name = "id_entrega")
-        private Long idEntregaTrecho;
-
-        @Column(name = "id_trecho")
-        private Long idTrecho;
-
         @Column(name = "completo")
         private  Integer Completo;
 
@@ -30,7 +25,9 @@ public class EntregaTrechoEntity {
         @Column(name = "data_fim")
         private LocalDateTime dataFim;
 
-        @Column(name = "id_carro")
-        private Integer idCarro;
+//        @ManyToOne
+//        @JoinColumn(name = "id_entrega", referencedColumnName = "id")
+//        @JsonIgnore
+//        private EntregaEntity entrega;
 
 }

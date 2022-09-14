@@ -1,6 +1,7 @@
 package com.entra21.Transportadora.model.entity;
 import lombok.Data;
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -18,5 +19,8 @@ public class EmpresaEntity{
 
     @Column(name = "id_gerente")
     private Integer idGerente;
+
+//    @OneToMany(mappedBy = "empresa")
+//    private List<FuncionarioEntity> funcionarios;
 
 }
