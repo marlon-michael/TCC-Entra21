@@ -14,7 +14,7 @@ select * from entrega_item ei;
 -- TEST INSERT
 insert into pessoa (nome, sobrenome, telefone, cpf, login, senha)
 values
-	('Adimininastro', 'doZap', 'XXXXXXXXX','XXXXXXXXX', 'userADM', 'theHardestPasswordInTheWordl2ç'),
+	('Adimininastro', 'doZap', 'XXXXXXXXX','XXXXXXXXX', 'userADM', 'theHardestPasswordInTheWorld'),
 	('userName', 'lastName', '4799999999X','9999999999X', 'userLogin', 'userHardestPassword'),
 	('userName2', 'lastName2', '4799999999Y','9999999999Y', 'userLogin2', 'userHardestPassword2'),
 	('userName3', 'lastName3', '4799999999Z','9999999999Z', 'userLogin3', 'userHardestPassword3');
