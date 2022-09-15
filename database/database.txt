@@ -15,9 +15,9 @@ select * from entrega_item ei;
 insert into pessoa (nome, sobrenome, telefone, cpf, login, senha)
 values
 	('Adimininastro', 'doZap', 'XXXXXXXXX','XXXXXXXXX', 'userADM', 'theHardestPasswordInTheWordl2ç'),
-	('userName', 'lastName', '4799999999X','9999999999X', 'userLogin', 'userhardestPassword'),
-	('userName2', 'lastName2', '4799999999Y','9999999999Y', 'userLogin2', 'userhardestPassword2'),
-	('userName3', 'lastName3', '4799999999Z','9999999999Z', 'userLogin3', 'userhardestPassword3');
+	('userName', 'lastName', '4799999999X','9999999999X', 'userLogin', 'userHardestPassword'),
+	('userName2', 'lastName2', '4799999999Y','9999999999Y', 'userLogin2', 'userHardestPassword2'),
+	('userName3', 'lastName3', '4799999999Z','9999999999Z', 'userLogin3', 'userHardestPassword3');
 
 insert into empresa (razao_social, id_gerente)
 values
@@ -30,11 +30,11 @@ values
 	(3, 2, 1),
 	(4, 3, 2);
 
-insert into carro (tipo, id_empresa)
+insert into carro (tipo, placa, id_empresa)
 values
-	('CAMINHAO', 1),
-	('VAN', 1),
-	('CAMINHAO', 2);
+	('CAMINHAO', 'ABCD1234Z', 1),
+	('VAN','ABCD1235Y', 1),
+	('CAMINHAO','ABCD1236X', 2);
 
 insert into trecho (local_inicio, local_fim)
 values
@@ -103,6 +103,7 @@ foreign key (id_empresa) references empresa(id)
 create table carro(
 id bigint not null primary key auto_increment,
 tipo varchar(45) not null,
+placa varchar(15) not null,
 id_empresa bigint not null,
 foreign key (id_empresa) references empresa(id)
 );
