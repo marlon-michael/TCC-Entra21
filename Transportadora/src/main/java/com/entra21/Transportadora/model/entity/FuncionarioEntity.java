@@ -14,13 +14,13 @@ public class FuncionarioEntity extends PessoaEntity{
     @JoinColumn(name = "id_supervisor",referencedColumnName = "id_pessoa")
     private FuncionarioEntity supervisor;
 
-//    @Column(name = "id_empresa")
-//    @JoinColumn(name = "id_pessoa",referencedColumnName = "id_suervisor")
-//    private EmpresaEntity empresa;
+    @ManyToOne
+    @JoinColumn(name = "id_empresa",referencedColumnName = "id")
+    private EmpresaEntity empresa;
 
-//    @OneToMany
-//    @JoinColumn(name = "id_entregador", referencedColumnName = "id_pessoa")
-//    @JsonIgnore
-//    private List<EntregaEntity> entrega;
+    @OneToMany
+    @JoinColumn(name = "id_entregador", referencedColumnName = "id_pessoa")
+    @JsonIgnore
+    private List<EntregaEntity> entrega;
 
 }
