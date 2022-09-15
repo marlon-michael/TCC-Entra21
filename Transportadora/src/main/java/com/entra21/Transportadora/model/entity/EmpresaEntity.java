@@ -20,7 +20,4 @@ public class EmpresaEntity{
     @Column(name = "id_gerente")
     private Integer idGerente;
 
-//    @OneToMany(mappedBy = "empresa")
-//    private List<FuncionarioEntity> funcionarios;
-
 }

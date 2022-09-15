@@ -23,7 +23,7 @@ public class EntregaEntity {
     @Column(name = "tipo_entrega")
     private String tipoEntrega;
 
-    @OneToMany
-    private List<EntregaTrechoEntity> entregaTrecho;
+//    @OneToMany
+//    private List<EntregaTrechoEntity> entregaTrecho;
 
 }
