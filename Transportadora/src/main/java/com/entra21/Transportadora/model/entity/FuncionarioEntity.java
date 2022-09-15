@@ -7,31 +7,18 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "funcionario")
-public class FuncionarioEntity {
-
-    @Column(name = "id")
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idFuncionario;
-
-//
-//    @Column(name = "id_pessoa")
-//    private Long idPessoa;
+@PrimaryKeyJoinColumn(name = "id_pessoa")
+public class FuncionarioEntity extends PessoaEntity{
 
     @Column(name = "id_supervisor")
-    private Long idSupervisor;
+    private FuncionarioEntity supervisor;
 
     @Column(name = "id_empresa")
-    private Long idEmpresa;
-
-    @ManyToOne
-    @JoinColumn(name = "id_pessoa", referencedColumnName = "id")
-    private PessoaEntity pessoa;
+    private EmpresaEntity empresa;
 
     @OneToMany
     @JoinColumn(name = "id_entregador", referencedColumnName = "id")
     @JsonIgnore
     private List<EntregaEntity> entrega;
-
 
 }

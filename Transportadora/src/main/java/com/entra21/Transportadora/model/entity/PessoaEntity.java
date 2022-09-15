@@ -11,6 +11,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "pessoa")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class PessoaEntity implements UserDetails {
 
     @Column(name = "id")
