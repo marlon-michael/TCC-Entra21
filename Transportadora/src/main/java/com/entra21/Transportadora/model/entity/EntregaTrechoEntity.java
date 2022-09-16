@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Entity
@@ -25,9 +26,13 @@ public class EntregaTrechoEntity {
         @Column(name = "data_fim")
         private LocalDateTime dataFim;
 
-//        @ManyToOne
-//        @JoinColumn(name = "id_entrega", referencedColumnName = "id")
-//        @JsonIgnore
-//        private EntregaEntity entrega;
+        @OneToMany
+        @JoinColumn(name = "id", referencedColumnName = "id_trecho")
+        private List<TrechoEntity> trechos;
+
+        @ManyToOne
+        @JoinColumn(name = "id_entrega", referencedColumnName = "id")
+        @JsonIgnore
+        private EntregaEntity entrega;
 
 }

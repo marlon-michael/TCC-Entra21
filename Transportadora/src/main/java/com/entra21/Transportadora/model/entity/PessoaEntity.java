@@ -37,9 +37,6 @@ public class PessoaEntity implements UserDetails {
     @Column(name = "senha")
     private String senha;
 
-    @OneToMany(mappedBy = "pessoa")
-    private List<ItemEntity> itens;
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority("USER"));

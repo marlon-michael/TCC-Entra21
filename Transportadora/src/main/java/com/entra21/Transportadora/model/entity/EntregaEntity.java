@@ -17,13 +17,14 @@ public class EntregaEntity {
     private Long idEntrega;
 
     @ManyToOne
-    @JoinColumn(name="id_entregador", referencedColumnName = "id")
+    @JoinColumn(name="id_entregador", referencedColumnName = "id_pessoa")
     private FuncionarioEntity idEntregador;
 
     @Column(name = "tipo_entrega")
     private String tipoEntrega;
 
-//    @OneToMany
-//    private List<EntregaTrechoEntity> entregaTrecho;
+    @OneToMany
+    @JoinColumn(name = "id_entrega", referencedColumnName = "id")
+    private List<EntregaTrechoEntity> entregaTrecho;
 
 }
