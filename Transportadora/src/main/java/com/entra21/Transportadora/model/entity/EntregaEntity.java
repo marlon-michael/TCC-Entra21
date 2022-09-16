@@ -11,9 +11,9 @@ import java.util.List;
 @Table(name = "entrega")
 public class EntregaEntity {
 
-    @Column(name = "id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long idEntrega;
 
     @ManyToOne

@@ -9,9 +9,9 @@ import java.util.List;
 @Table(name = "trecho")
 public class TrechoEntity {
 
-    @Column(name = "id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long idTrecho;
 
     @Column(name = "local_inicio")
@@ -19,9 +19,5 @@ public class TrechoEntity {
 
     @Column(name = "local_fim")
     private String localFim;
-
-    @ManyToOne
-    @JoinColumn(name = "id_entrega", referencedColumnName = "id")
-    private EntregaTrechoEntity entregaTrecho;
 
 }
