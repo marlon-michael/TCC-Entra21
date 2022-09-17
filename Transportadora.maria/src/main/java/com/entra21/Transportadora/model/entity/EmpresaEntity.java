@@ -1,4 +1,5 @@
 package com.entra21.Transportadora.model.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import javax.persistence.*;
 import java.util.List;
@@ -20,4 +21,7 @@ public class EmpresaEntity{
     @Column(name = "id_gerente")
     private Integer idGerente;
 
+    @OneToMany
+    @JoinColumn(name = "id_empresa", referencedColumnName = "id")
+    private List<CarroEntity> carroEntities;
 }

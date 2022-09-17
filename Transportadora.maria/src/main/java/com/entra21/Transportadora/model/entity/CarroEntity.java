@@ -1,4 +1,5 @@
 package com.entra21.Transportadora.model.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import javax.persistence.*;
 
@@ -21,6 +22,7 @@ public class CarroEntity {
 
     @ManyToOne
     @JoinColumn(name = "id_empresa", referencedColumnName = "id")
+    @JsonIgnore
     private EmpresaEntity empresa;
 
 }

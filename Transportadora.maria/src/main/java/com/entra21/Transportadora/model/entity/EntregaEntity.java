@@ -16,15 +16,18 @@ public class EntregaEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEntrega;
 
-    @ManyToOne
-    @JoinColumn(name="id_entregador", referencedColumnName = "id_pessoa")
-    private FuncionarioEntity idEntregador;
 
     @Column(name = "tipo_entrega")
     private String tipoEntrega;
 
-    @OneToMany
-    @JoinColumn(name = "id_entrega", referencedColumnName = "id")
-    private List<EntregaTrechoEntity> entregaTrecho;
+
+    @ManyToOne
+    @JoinColumn(name="id_entregador", referencedColumnName = "id_pessoa")
+    @JsonIgnore
+    private FuncionarioEntity idEntregador;
+
+//    @OneToMany
+//    @JoinColumn(name = "id_entrega", referencedColumnName = "id")
+//    private List<EntregaTrechoEntity> entregaTrecho;
 
 }

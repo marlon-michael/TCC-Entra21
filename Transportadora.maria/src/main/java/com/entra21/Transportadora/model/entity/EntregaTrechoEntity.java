@@ -26,9 +26,9 @@ public class EntregaTrechoEntity {
         @Column(name = "data_fim")
         private LocalDateTime dataFim;
 
-        @OneToMany
-        @JoinColumn(name = "id", referencedColumnName = "id_trecho")
-        private List<TrechoEntity> trechos;
+//        @OneToMany
+//        @JoinColumn(name = "id", referencedColumnName = "id_trecho")
+//        private List<TrechoEntity> trechos;
 
         @ManyToOne
         @JoinColumn(name = "id_entrega", referencedColumnName = "id")

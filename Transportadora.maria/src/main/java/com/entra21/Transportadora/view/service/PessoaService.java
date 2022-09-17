@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class PessoaService implements UserDetailsService {
+public class PessoaService implements UserDetailsService{
 
     @Autowired
     private PessoaRepository pessoaRepository;
@@ -37,6 +37,8 @@ public class PessoaService implements UserDetailsService {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN);
         }
     }
+
+
 
 
     public List<PessoaDTO> getAll() {
@@ -65,6 +67,10 @@ public class PessoaService implements UserDetailsService {
         pessoaRepository.save(newEntity);
     }
 
+//    public void desabilitar(PessoaDTO desable) {
+//
+//    }
+
 //
 //    private String cpf;
 //    private String login;
@@ -74,24 +80,25 @@ public class PessoaService implements UserDetailsService {
 //        pessoaRepository.deleteById(id);
 //    }
 
-    public PessoaDTO updatePessoa(Long id,String novoNome, String novoSobrenome, String novoTelefone,  String novoCPF,  String novoLogin,  String novoSenha) {
+    public PessoaDTO updatePessoa(Long id, PessoaDTO pessoaDTO) {
         PessoaEntity e = pessoaRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Pessoa não encontrada!"));
-        e.setNome(novoNome);
-        e.setSobrenome(novoSobrenome);
-        e.setTelefone(novoTelefone);
-        e.setCpf(novoCPF);
-        e.setLogin(novoLogin);
-        e.setSenha(novoSenha);
+//       e.setIdPessoa(id);
+        e.setNome(pessoaDTO.getNome());
+        e.setSobrenome(pessoaDTO.getSobrenome());
+        e.setTelefone(pessoaDTO.getTelefone());
+        e.setCpf(pessoaDTO.getCpf());
+        e.setLogin(pessoaDTO.getLogin());
+        e.setSenha(pessoaDTO.getSenha());
         e = pessoaRepository.save(e);
-        PessoaDTO dto = new PessoaDTO();
-        dto.setNome(e.getNome());
-        dto.setSobrenome(e.getSobrenome());
-        dto.setTelefone(e.getTelefone());
-       dto.setIdPessoa(e.getIdPessoa());
-        e.setCpf(novoCPF);
-        e.setLogin(novoLogin);
-        e.setSenha(novoSenha);
-        return dto;
+//        PessoaDTO dto = new PessoaDTO();
+////        dto.setIdPessoa(e.getIdPessoa());
+//        dto.setNome(e.getNome());
+//        dto.setSobrenome(e.getSobrenome());
+//        dto.setTelefone(e.getTelefone());
+//        dto.setCpf(novoCPF);
+//        dto.setLogin(novoLogin);
+//        dto.setSenha(novoSenha);
+        return pessoaDTO;
     }
 
 //

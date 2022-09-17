@@ -18,9 +18,11 @@ public class FuncionarioEntity extends PessoaEntity{
     @JoinColumn(name = "id_empresa",referencedColumnName = "id")
     private EmpresaEntity empresa;
 
-    @OneToMany
-    @JoinColumn(name = "id_entregador", referencedColumnName = "id_pessoa")
-    @JsonIgnore
-    private List<EntregaEntity> entrega;
-
+//    @OneToMany
+//    @JoinColumn(name = "id_entregador", referencedColumnName = "id_pessoa")
+//    @JsonIgnore
+//    private List<EntregaEntity> entrega;
+@OneToMany
+@JoinColumn(name="id_entregador", referencedColumnName = "id_pessoa")
+private List<EntregaEntity> entrega;
 }
