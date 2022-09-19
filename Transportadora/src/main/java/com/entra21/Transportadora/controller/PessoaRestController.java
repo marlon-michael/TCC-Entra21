@@ -36,7 +36,7 @@ public class PessoaRestController {
 
     @PutMapping("/{id}")
     public PessoaDTO updatePessoa(@PathVariable(name = "id") Long id,
-                                      @RequestBody String novoNome, String novoSobrenome, String novoTelefone, String novoCPF,  String novoLogin,  String novoSenha) {
+                                  @RequestBody String novoNome, String novoSobrenome, String novoTelefone, String novoCPF,  String novoLogin,  String novoSenha) {
         return pessoaService.updatePessoa(id, novoNome, novoSobrenome, novoTelefone, novoCPF, novoLogin, novoSenha);
     }
 
@@ -57,7 +57,7 @@ public class PessoaRestController {
 //        return pessoaService.buscarUsuarioLogado().getTelefone();
 //        return pessoaService.buscarUsuarioLogado().getUsername();
 
-   // }
+    // }
 //
 //
 //
