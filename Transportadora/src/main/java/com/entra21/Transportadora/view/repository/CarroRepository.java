@@ -9,4 +9,3 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CarroRepository extends JpaRepository<CarroEntity, Long> {
 }
-

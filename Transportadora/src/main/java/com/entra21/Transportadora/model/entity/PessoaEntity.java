@@ -37,8 +37,8 @@ public class PessoaEntity implements UserDetails {
     @Column(name = "senha")
     private String senha;
 
-    @OneToMany(mappedBy = "pessoa")
-    private List<ItemEntity> itens;
+    @Column(name = "desabilitado")
+    private Boolean desabilitado;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

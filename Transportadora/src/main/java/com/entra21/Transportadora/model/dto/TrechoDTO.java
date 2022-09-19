@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class TrechoDTO {
+    private Long idTrecho;
     private String localInicio;
     private String localFim;
 }

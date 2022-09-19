@@ -1,15 +1,17 @@
 package com.entra21.Transportadora.model.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
 @Table(name = "trecho")
 public class TrechoEntity {
 
-    @Column(name = "id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long idTrecho;
 
     @Column(name = "local_inicio")
@@ -17,4 +19,5 @@ public class TrechoEntity {
 
     @Column(name = "local_fim")
     private String localFim;
+
 }
