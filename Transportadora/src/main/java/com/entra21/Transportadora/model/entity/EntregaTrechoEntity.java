@@ -15,7 +15,7 @@ public class EntregaTrechoEntity {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "id")
-        private Long id;
+        private Long idEntregaTrecho;
 
         @Column(name = "completo")
         private  Integer Completo;
@@ -26,9 +26,13 @@ public class EntregaTrechoEntity {
         @Column(name = "data_fim")
         private LocalDateTime dataFim;
 
-//        @OneToMany
-//        @JoinColumn(name = "id", referencedColumnName = "id_trecho")
-//        private List<TrechoEntity> trechos;
+        @OneToOne
+        @JoinColumn(name = "id_trecho", referencedColumnName = "id")
+        private TrechoEntity trecho;
+
+        @ManyToOne
+        @JoinColumn(name = "id_carro", referencedColumnName = "id")
+        private CarroEntity carro;
 
         @ManyToOne
         @JoinColumn(name = "id_entrega", referencedColumnName = "id")
