@@ -34,7 +34,6 @@ public class EntregaTrechoEntity {
         @JoinColumn(name = "id_carro", referencedColumnName = "id")
         private CarroEntity carro;
 
-
         @ManyToOne
         @JoinColumn(name = "id_entrega", referencedColumnName = "id")
         @JsonIgnore

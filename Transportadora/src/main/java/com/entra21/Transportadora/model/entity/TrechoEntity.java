@@ -19,10 +19,5 @@ public class TrechoEntity {
 
     @Column(name = "local_fim")
     private String localFim;
-//
-//<<<<<<<< HEAD:Transportadora.maria/src/main/java/com/entra21/Transportadora/model/entity/TrechoEntity.java
-//    @ManyToOne
-//    @JoinColumn(name = "id_trecho", referencedColumnName = "id")
-//    private EntregaTrechoEntity entregaTrecho;
 
 }

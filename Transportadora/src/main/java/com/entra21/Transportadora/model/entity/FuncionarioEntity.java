@@ -11,8 +11,8 @@ import java.util.List;
 public class FuncionarioEntity extends PessoaEntity{
 
     @ManyToOne
-    @JoinColumn(name = "id_supervisor",referencedColumnName = "id_pessoa")
-    private FuncionarioEntity supervisor;
+    @JoinColumn(name = "id_supervisor",referencedColumnName = "id")
+    private PessoaEntity supervisor;
 
     @ManyToOne
     @JoinColumn(name = "id_empresa",referencedColumnName = "id")
