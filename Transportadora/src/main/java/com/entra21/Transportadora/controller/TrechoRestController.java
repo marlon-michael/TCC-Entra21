@@ -18,16 +18,17 @@ public class TrechoRestController {
     }
     @PostMapping
     public void addTrecho(@RequestBody TrechoDTO carroDTO){
-        trechoService.save(carroDTO);
+        trechoService.saveTrecho(carroDTO);
     }
 
     @DeleteMapping("/{id}")
     public void deleteTrecho(@PathVariable(name = "id") Long id) {
-        trechoService.delete(id);
+        trechoService.deleteTrecho(id);
     }
 
-    @PutMapping
-    public void updateTrecho(@PathVariable(name = "id")Long id, TrechoDTO trechoDTO) {
-        trechoService.updateTrecho(id,trechoDTO);
+    @PutMapping("/{id}")
+    public TrechoDTO upTrecho(@PathVariable(name = "id")Long id,
+                             @RequestBody TrechoDTO trechoDTO) {
+      return trechoService.updateTrecho(id,trechoDTO);
     }
 }

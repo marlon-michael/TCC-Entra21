@@ -25,7 +25,8 @@ public class TrechoService {
             return dto;
         }).collect(Collectors.toList());
     }
-    public void save(TrechoDTO input) {
+
+    public void saveTrecho(TrechoDTO input) {
         TrechoEntity newEntity = new TrechoEntity();
         newEntity.setIdTrecho(input.getIdTrecho());
         newEntity.setLocalInicio(input.getLocalInicio());
@@ -33,23 +34,20 @@ public class TrechoService {
         trechoRepository.save(newEntity);
     }
 
-    public void delete(Long id) {
+    public void deleteTrecho(Long id) {
         trechoRepository.deleteById(id);
     }
 
-    public TrechoDTO updateTrecho(Long id,
-            TrechoDTO trechoDTO){
+    public TrechoDTO updateTrecho(Long id, TrechoDTO trechoDTO) {
+        TrechoEntity e = trechoRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Franquia não encontrada!"));
+      e.setLocalInicio(trechoDTO.getLocalInicio());
+      e.setLocalFim(trechoDTO.getLocalFim());
+        e = trechoRepository.save(e);
+        trechoDTO.setIdTrecho(e.getIdTrecho());
+       return trechoDTO;
 
-    if (id == trechoDTO.getIdTrecho()){
 
-    }else {
-         e = franquiaRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Franquia não encontrada!"));
 
-    new ResponseStatusException(HttpStatus.NOT_FOUND,"Franquia Não encontrada");
+
     }
-
-
-
-
-
 }
