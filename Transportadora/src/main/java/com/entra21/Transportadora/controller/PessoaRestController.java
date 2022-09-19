@@ -28,17 +28,21 @@ public class PessoaRestController {
         pessoaService.save(newPessoa);
     }
 
-//    @DeleteMapping("/{id}")
+    @PutMapping("/{id}")
+    public PessoaDTO updatePessoa(@PathVariable(name = "id") Long id,
+                                      @RequestBody PessoaDTO pessoaDTO) {
+        return pessoaService.updatePessoa(id, pessoaDTO);
+    }
+
+//    @GetMapping("/{cpf}")
+//    public String getPessoacpf() {
+//        return pessoaService.buscarUsuarioLogado().getNome();
+//    }
+
+    //    @DeleteMapping("/{id}")
 //    public void deletePessoa(@PathVariable(name = "id") Long id) {
 //        pessoaService.delete(id);
 //    }
-
-
-    @PutMapping("/{id}")
-    public PessoaDTO updatePessoa(@PathVariable(name = "id") Long id,
-                                      @RequestBody String novoNome, String novoSobrenome, String novoTelefone, String novoCPF,  String novoLogin,  String novoSenha) {
-        return pessoaService.updatePessoa(id, novoNome, novoSobrenome, novoTelefone, novoCPF, novoLogin, novoSenha);
-    }
 
 
 //    @GetMapping
@@ -49,15 +53,13 @@ public class PessoaRestController {
 
 
 
-//    @GetMapping("/user")
-//    public String getPessoa() {
-//        return pessoaService.buscarUsuarioLogado().getNome() ;
+//
 //        return pessoaService.buscarUsuarioLogado().getSobrenome();
 //        return pessoaService.buscarUsuarioLogado().getCpf();
 //        return pessoaService.buscarUsuarioLogado().getTelefone();
 //        return pessoaService.buscarUsuarioLogado().getUsername();
 
-   // }
+    // }
 //
 //
 //
