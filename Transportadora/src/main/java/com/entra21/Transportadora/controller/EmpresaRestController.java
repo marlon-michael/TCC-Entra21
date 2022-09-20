@@ -1,5 +1,6 @@
 package com.entra21.Transportadora.controller;
 
+import com.entra21.Transportadora.model.entity.EmpresaEntity;
 import com.entra21.Transportadora.view.repository.EmpresaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
