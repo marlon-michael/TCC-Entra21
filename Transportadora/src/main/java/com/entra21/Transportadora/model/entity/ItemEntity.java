@@ -27,7 +27,7 @@ public class ItemEntity {
     @Column(name = "nome_recebedor")
     private String nomeRecebedor;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_pessoa", referencedColumnName = "id")
     @JsonIgnore
     private PessoaEntity pessoa;

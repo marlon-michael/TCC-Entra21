@@ -9,5 +9,7 @@ import java.util.List;
 public class EmpresaDTO {
     private Long idEmpresa;
     private String razaoSocial;
-    private PessoaEntity gerente;
+    private String gerente;
+
+
 }

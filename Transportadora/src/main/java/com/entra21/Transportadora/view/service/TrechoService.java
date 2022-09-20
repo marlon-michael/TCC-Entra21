@@ -1,20 +1,16 @@
 package com.entra21.Transportadora.view.service;
 
+
 import com.entra21.Transportadora.model.dto.TrechoDTO;
-import com.entra21.Transportadora.model.entity.TrechoEntity;
 import com.entra21.Transportadora.view.repository.TrechoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class TrechoService {
     @Autowired
     private TrechoRepository trechoRepository;
+
 
     public List<TrechoDTO> getAllTrecho() {
         return trechoRepository.findAll().stream().map(fr -> {
@@ -55,3 +51,4 @@ public class TrechoService {
 
     }
 }
+

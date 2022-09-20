@@ -2,6 +2,7 @@ package com.entra21.Transportadora.model.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -21,20 +22,23 @@ public class EntregaTrechoEntity {
         private  Integer Completo;
 
         @Column(name = "data_inicio")
+        @Convert(converter = Jsr310JpaConverters.LocalDateTimeConverter.class)
         private LocalDateTime dataInicio;
 
         @Column(name = "data_fim")
+        @Convert(converter = Jsr310JpaConverters.LocalDateTimeConverter.class)
         private LocalDateTime dataFim;
 
-        @OneToOne
+        @OneToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "id_trecho", referencedColumnName = "id")
         private TrechoEntity trecho;
 
-        @ManyToOne
+        @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "id_carro", referencedColumnName = "id")
         private CarroEntity carro;
 
-        @ManyToOne
+
+        @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "id_entrega", referencedColumnName = "id")
         @JsonIgnore
         private EntregaEntity entrega;

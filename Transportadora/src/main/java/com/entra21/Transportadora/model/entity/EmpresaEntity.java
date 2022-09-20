@@ -1,8 +1,9 @@
 package com.entra21.Transportadora.model.entity;
+
 import lombok.Data;
+
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @Entity
@@ -18,6 +19,9 @@ public class EmpresaEntity{
     private  String razaoSocial;
 
     @Column(name = "id_gerente")
-    private Integer idGerente;
+    private String idGerente;
 
+//    @OneToMany(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "id_empresa", referencedColumnName = "id")
+//    private List<CarroEntity> carroEntities;
 }
