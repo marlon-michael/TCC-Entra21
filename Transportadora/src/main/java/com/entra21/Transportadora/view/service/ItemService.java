@@ -29,12 +29,17 @@ public class ItemService {
             dto.setLocalEntrega(fr.getLocalEntrega());
             dto.setNomeRecebedor(fr.getNomeRecebedor());
             dto.setStatus(fr.getStatus());
-            dto.setPessoaItem(fr.getPessoa().getIdPessoa());
-            return dto;
+            if (fr.getPessoa() == null){
+                return dto;
+            }else{
+                dto.setPessoaItem(fr.getPessoa().getIdPessoa());
+                return dto;
+            }
+
         }).collect(Collectors.toList());
     }
 
-    public void save(ItemDTO input) {
+    public void saveItem(ItemDTO input) {
         ItemEntity newEntity = new ItemEntity();
         newEntity.setIdItem(input.getIdItem());
         newEntity.setLocalizador(input.getLocalizador());
@@ -45,11 +50,11 @@ public class ItemService {
         itemRepository.save(newEntity);
     }
 
-    public void delete(Long id) {
+    public void deleteItem(Long id) {
         itemRepository.deleteById(id);
     }
 
-    public ItemDTO updateStatus(Long id, String novoStatus) {
+    public ItemDTO updateStatusItem(Long id, String novoStatus) {
         ItemEntity e = itemRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Item não encontrado!"));
         e.setStatus(novoStatus);
@@ -60,7 +65,7 @@ public class ItemService {
         return dto;
     }
 
-    public ItemDTO updateAll(Long id, ItemDTO itemDTO) {
+    public ItemDTO updateAllItem(Long id, ItemDTO itemDTO) {
         ItemEntity e = itemRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Item não encontrado!"));
 

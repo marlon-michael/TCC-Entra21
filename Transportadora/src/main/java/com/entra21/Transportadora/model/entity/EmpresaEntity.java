@@ -19,7 +19,7 @@ public class EmpresaEntity{
     private  String razaoSocial;
 
     @Column(name = "id_gerente")
-    private Integer idGerente;
+    private String idGerente;
 
     @OneToMany
     @JoinColumn(name = "id_empresa", referencedColumnName = "id")
