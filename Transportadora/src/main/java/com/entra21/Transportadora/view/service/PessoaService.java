@@ -90,6 +90,7 @@ public class PessoaService implements UserDetailsService{
         e.setLogin(pessoaDTO.getLogin());
         e.setSenha(pessoaDTO.getSenha());
         e = pessoaRepository.save(e);
+        pessoaDTO.setIdPessoa(e.getIdPessoa());
 //        PessoaDTO dto = new PessoaDTO();
 ////        dto.setIdPessoa(e.getIdPessoa());
 //        dto.setNome(e.getNome());
