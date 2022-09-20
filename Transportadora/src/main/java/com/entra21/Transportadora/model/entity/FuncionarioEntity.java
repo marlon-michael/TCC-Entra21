@@ -10,11 +10,11 @@ import java.util.List;
 @PrimaryKeyJoinColumn(name = "id_pessoa")
 public class FuncionarioEntity extends PessoaEntity{
 
-    @ManyToOne
-    @JoinColumn(name = "id_supervisor",referencedColumnName = "id")
-    private PessoaEntity supervisor;
+//    @ManyToOne
+//    @JoinColumn(name = "id_supervisor",referencedColumnName = "id_pessoa")
+//    private FuncionarioEntity supervisor;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_empresa",referencedColumnName = "id")
     private EmpresaEntity empresa;
 
@@ -22,7 +22,7 @@ public class FuncionarioEntity extends PessoaEntity{
 //    @JoinColumn(name = "id_entregador", referencedColumnName = "id_pessoa")
 //    @JsonIgnore
 //    private List<EntregaEntity> entrega;
-@OneToMany
+@OneToMany(fetch = FetchType.LAZY)
 @JoinColumn(name="id_entregador", referencedColumnName = "id_pessoa")
 private List<EntregaEntity> entrega;
 }

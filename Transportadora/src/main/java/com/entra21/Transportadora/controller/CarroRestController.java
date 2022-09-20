@@ -31,16 +31,22 @@ public class CarroRestController {
     public void addCarro(@RequestBody CarroDTO Newcarro){
         carroService.saveCarros(Newcarro);
     }
-    
+
+
+
     @DeleteMapping("/{id}")
     public void deleteCarros(@PathVariable(name = "id") Long id) {
         carroService.deleteCarros(id);
     }
 
+
     @PutMapping("/{id}")
     public CarroDTO updateCarro(@PathVariable(name = "id") Long idcarronv,
-                                @RequestBody String novoTipoCarro, String novoPlaca) {
-        return carroService.updateCarro(idcarronv, novoTipoCarro, novoPlaca
-                );
+                                @RequestBody CarroDTO carroDTO) {
+        return carroService.updateCarro(idcarronv,carroDTO);
     }
+
 }
+
+
+

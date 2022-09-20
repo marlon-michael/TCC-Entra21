@@ -21,7 +21,7 @@ public class EntregaEntity {
     private String tipoEntrega;
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="id_entregador", referencedColumnName = "id_pessoa")
     @JsonIgnore
     private FuncionarioEntity idEntregador;
