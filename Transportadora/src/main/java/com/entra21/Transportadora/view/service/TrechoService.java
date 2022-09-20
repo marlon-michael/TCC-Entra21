@@ -2,9 +2,15 @@ package com.entra21.Transportadora.view.service;
 
 
 import com.entra21.Transportadora.model.dto.TrechoDTO;
+import com.entra21.Transportadora.model.entity.TrechoEntity;
 import com.entra21.Transportadora.view.repository.TrechoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TrechoService {
@@ -36,18 +42,15 @@ public class TrechoService {
 
     public TrechoDTO updateTrecho(Long id, TrechoDTO trechoDTO) {
         TrechoEntity e = trechoRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Franquia não encontrada!"));
-      e.setLocalInicio(trechoDTO.getLocalInicio());
-      e.setLocalFim(trechoDTO.getLocalFim());
+        e.setLocalInicio(trechoDTO.getLocalInicio());
+        e.setLocalFim(trechoDTO.getLocalFim());
         trechoDTO.setIdTrecho(e.getIdTrecho());
         e = trechoRepository.save(e);
         TrechoDTO dto = new TrechoDTO();
         dto.setIdTrecho(e.getIdTrecho());
         dto.setLocalFim(e.getLocalFim());
         dto.setLocalInicio(e.getLocalInicio());
-       return dto;
-
-
-
+        return dto;
 
     }
 }

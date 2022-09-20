@@ -14,7 +14,7 @@ public class FuncionarioEntity extends PessoaEntity{
 //    @JoinColumn(name = "id_supervisor",referencedColumnName = "id_pessoa")
 //    private FuncionarioEntity supervisor;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_empresa",referencedColumnName = "id")
     private EmpresaEntity empresa;
 
