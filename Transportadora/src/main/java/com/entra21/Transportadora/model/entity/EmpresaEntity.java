@@ -1,5 +1,7 @@
 package com.entra21.Transportadora.model.entity;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -10,8 +12,8 @@ import java.util.List;
 @Table(name = "empresa")
 public class EmpresaEntity{
 
-    @Column(name = "id")
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEmpresa;
 
@@ -19,9 +21,10 @@ public class EmpresaEntity{
     private  String razaoSocial;
 
     @Column(name = "id_gerente")
-    private PessoaEntity gerente;
 
-//    @OneToMany(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "id_empresa", referencedColumnName = "id")
-//    private List<CarroEntity> carroEntities;
+    private String idGerente;
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_empresa", referencedColumnName = "id")
+    @JsonIgnore
+    private List<CarroEntity> carroEntities;
 }

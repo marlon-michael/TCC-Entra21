@@ -9,4 +9,5 @@ import java.util.List;
 public class EmpresaDTO {
     private String razaoSocial;
     private String nomeGerente;
+
 }

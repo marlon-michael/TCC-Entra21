@@ -19,7 +19,7 @@ public class EntregaTrechoEntity {
         private Long idEntregaTrecho;
 
         @Column(name = "completo")
-        private  Integer Completo;
+        private Integer Completo;
 
         @Column(name = "data_inicio")
         @Convert(converter = Jsr310JpaConverters.LocalDateTimeConverter.class)

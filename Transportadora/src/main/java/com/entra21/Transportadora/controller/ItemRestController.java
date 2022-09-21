@@ -70,7 +70,9 @@ public class ItemRestController {
 
     @PutMapping("/status/{id}")
     public ItemDTO updateItem(@PathVariable(name = "id") Long id,
+
                               @RequestBody String novoStatus) {
+
         return itemService.updateStatusItem(id, novoStatus);
     }
 
@@ -80,3 +82,4 @@ public class ItemRestController {
         return itemService.updateAllItem(id, itemDTO);
     }
 }
+

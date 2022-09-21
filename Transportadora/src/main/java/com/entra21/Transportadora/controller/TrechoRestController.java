@@ -9,7 +9,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/trecho")
 public class TrechoRestController {
-
     @Autowired
     TrechoService trechoService;
 

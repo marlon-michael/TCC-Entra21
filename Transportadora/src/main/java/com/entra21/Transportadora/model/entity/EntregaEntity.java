@@ -18,19 +18,16 @@ public class EntregaEntity {
     @Column(name = "id")
     private Long idEntrega;
 
-
     @Column(name = "tipo_entrega")
     private String tipoEntrega;
 
+    @ManyToOne
+    @JoinColumn(name="id_entregador", referencedColumnName = "id_pessoa")
+    private FuncionarioEntity entregador;
 
     @OneToMany
     @JoinColumn(name = "id_entrega", referencedColumnName = "id")
     private List<EntregaTrechoEntity> entregaTrecho;
 
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="id_entregador", referencedColumnName = "id_pessoa")
-    @JsonIgnore
-    private FuncionarioEntity entregador;
 
 }
