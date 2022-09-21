@@ -35,26 +35,13 @@ public class EmpresaService {
         public List<EmpresaDTO> getAllEmpresas() {
             return empresaRepository.findAll().stream().map(er -> {
                 EmpresaDTO dtoempresa = new EmpresaDTO();
-                PessoaDTO pessoaDTO = new PessoaDTO();
                 dtoempresa.setIdEmpresa(er.getIdEmpresa());
                 dtoempresa.setRazaoSocial(er.getRazaoSocial());
                 dtoempresa.setGerente(er.getIdGerente());
-//                pessoaDTO.setNome(pessoaDTO.getNome());
                 return dtoempresa;
             }).collect(Collectors.toList());
         }
 
-    public List<EmpresaDTO> getAllEmpresasgerente() {
-        return empresaRepository.findAll().stream().map(er -> {
-            EmpresaDTO dtoempresa = new EmpresaDTO();
-            PessoaDTO pessoaDTO = new PessoaDTO();
-            dtoempresa.setIdEmpresa(er.getIdEmpresa());
-            dtoempresa.setRazaoSocial(er.getRazaoSocial());
-            dtoempresa.setGerente(er.getIdGerente());
-//                pessoaDTO.setNome(pessoaDTO.getNome());
-            return dtoempresa;
-        }).collect(Collectors.toList());
-    }
 
         public EmpresaDTO updateEmpresa(Long idEmpresanv, EmpresaDTO empresaDTO) {
             EmpresaEntity e = empresaRepository.findById(idEmpresanv).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa não encontrada!"));

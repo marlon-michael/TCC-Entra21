@@ -67,9 +67,7 @@ public class PessoaService implements UserDetailsService{
         pessoaRepository.save(newEntity);
     }
 
-//    public void desabilitar(PessoaDTO desable) {
-//
-//    }
+
 
 //
 //    private String cpf;
