@@ -1,6 +1,9 @@
 package com.entra21.Transportadora.model.entity;
+import com.entra21.Transportadora.model.dto.CarroDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -10,8 +13,8 @@ import java.util.List;
 @Table(name = "carro")
 public class CarroEntity {
 
-    @Column(name = "id")
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCarro;
 
@@ -21,14 +24,19 @@ public class CarroEntity {
     @Column(name = "placa")
     private String placa;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_empresa", referencedColumnName = "id")
-    @JsonIgnore
     private EmpresaEntity empresa;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_carro", referencedColumnName = "id")
     @JsonIgnore
     private List<EntregaTrechoEntity> entregaTrechos;
+
+
+//
+//    public CarroDTO toDto() {
+//        return
+//    }
 
 }

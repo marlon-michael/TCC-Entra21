@@ -40,14 +40,14 @@ public class TrechoService {
 
     public TrechoDTO updateTrecho(Long id, TrechoDTO trechoDTO) {
         TrechoEntity e = trechoRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Franquia não encontrada!"));
-      e.setLocalInicio(trechoDTO.getLocalInicio());
-      e.setLocalFim(trechoDTO.getLocalFim());
-        e = trechoRepository.save(e);
+        e.setLocalInicio(trechoDTO.getLocalInicio());
+        e.setLocalFim(trechoDTO.getLocalFim());
         trechoDTO.setIdTrecho(e.getIdTrecho());
-       return trechoDTO;
-
-
-
-
+        e = trechoRepository.save(e);
+        TrechoDTO dto = new TrechoDTO();
+        dto.setIdTrecho(e.getIdTrecho());
+        dto.setLocalFim(e.getLocalFim());
+        dto.setLocalInicio(e.getLocalInicio());
+        return dto;
     }
 }

@@ -9,6 +9,6 @@ public class ItemDTO {
     private String localizador;
     private String status;
     private String localEntrega;
-    private String nomeDestinatário;
-    private PessoaEntity pessoaItem;
+    private String nomeRecebedor;
+    private Long pessoaItem;
 }

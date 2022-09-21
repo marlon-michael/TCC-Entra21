@@ -22,9 +22,9 @@ public class CarroService {
 
     public void saveCarros(CarroDTO input) {
         CarroEntity newEntity = new CarroEntity();
+        newEntity.setIdCarro(input.getIdCarro());
         newEntity.setTipoCarro(input.getTipoCarro());
         newEntity.setPlaca(input.getPlaca());
-        newEntity.setIdCarro(input.getIdCarro());
 //        newEntity.setEmpresa(input.getEmpresaCarro());
         carroRepository.save(newEntity);
     }
@@ -46,18 +46,19 @@ public class CarroService {
 // private String tipoCarro;
 //    private String placa;
 //    private EmpresaEntity empresaCarro;
-    public CarroDTO updateCarro(Long idcarronv,String novoTipoCarro, String novoPlaca) {
+    public CarroDTO updateCarro(Long idcarronv, CarroDTO carroDTO) {
         CarroEntity e = carroRepository.findById(idcarronv).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Carro não encontrada!"));
-        e.setIdCarro(idcarronv);
-        e.setTipoCarro(novoTipoCarro);
-        e.setPlaca(novoPlaca);
-//        e.setEmpresa(empresaEntity);
+//        e.setIdCarro(idcarronv);
+        e.setTipoCarro(carroDTO.getTipoCarro());
+        e.setPlaca(carroDTO.getPlaca());
+//        e.setEmpresa(carroDTO.getEmpresaCarro());
         e = carroRepository.save(e);
-        CarroDTO dto = new CarroDTO();
-        dto.setIdCarro(e.getIdCarro());
-        dto.setTipoCarro(e.getTipoCarro());
-        dto.setPlaca(e.getPlaca());
+        carroDTO.setIdCarro(e.getIdCarro());
+//        CarroDTO dto = new CarroDTO();
+//        dto.setIdCarro(e.getIdCarro());
+//        dto.setTipoCarro(e.getTipoCarro());
+//        dto.setPlaca(e.getPlaca());
 //        dto.setEmpresaCarro(e.getEmpresa());
-        return dto;
+        return carroDTO;
     }
 }

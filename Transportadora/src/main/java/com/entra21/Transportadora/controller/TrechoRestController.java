@@ -9,7 +9,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/trecho")
 public class TrechoRestController {
-
     @Autowired
     TrechoService trechoService;
 
@@ -29,7 +28,7 @@ public class TrechoRestController {
 
     @PutMapping("/{id}")
     public TrechoDTO upTrecho(@PathVariable(name = "id")Long id,
-                             @RequestBody TrechoDTO trechoDTO) {
-      return trechoService.updateTrecho(id,trechoDTO);
+                              @RequestBody TrechoDTO trechoDTO) {
+        return trechoService.updateTrecho(id,trechoDTO);
     }
 }
