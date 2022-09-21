@@ -19,7 +19,7 @@ public class EmpresaEntity{
     private  String razaoSocial;
 
     @Column(name = "id_gerente")
-    private String idGerente;
+    private PessoaEntity gerente;
 
 //    @OneToMany(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "id_empresa", referencedColumnName = "id")

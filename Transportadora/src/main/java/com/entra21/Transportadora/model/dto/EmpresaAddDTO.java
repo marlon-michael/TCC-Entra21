@@ -6,7 +6,8 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class EmpresaDTO {
+public class EmpresaAddDTO {
+    private Long idEmpresa;
     private String razaoSocial;
-    private String nomeGerente;
+    private Long idGerente;
 }
