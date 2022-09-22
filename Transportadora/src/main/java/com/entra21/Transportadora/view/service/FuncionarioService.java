@@ -20,7 +20,7 @@ public class FuncionarioService {
        return funcionarioRepository.findAll().stream().map(fr -> {
            FuncionarioDTO dto = new FuncionarioDTO();
            dto.setIdFuncionario(fr.getIdPessoa());
-           dto.setEmpresaFuncionario(fr.getEmpresa().getIdEmpresa());
+           dto.setEmpresaFuncionario(fr.getEmpresa());
            if (fr.getSupervisor().getIdPessoa() == null){
                return dto;
            }else{
