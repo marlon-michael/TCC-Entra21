@@ -14,12 +14,10 @@ public class FuncionarioEntity extends PessoaEntity{
     @JoinColumn(name = "id_supervisor",referencedColumnName = "id_pessoa")
     private FuncionarioEntity supervisor;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
     @ManyToOne
     @JoinColumn(name = "id_empresa",referencedColumnName = "id")
     private EmpresaEntity empresa;
 
-//    @OneToMany(fetch = FetchType.LAZY)
     @OneToMany
     @JoinColumn(name="id_entregador", referencedColumnName = "id_pessoa")
     @JsonIgnore
