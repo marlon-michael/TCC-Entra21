@@ -5,20 +5,11 @@ import com.entra21.Transportadora.model.dto.*;
 import com.entra21.Transportadora.model.entity.EmpresaEntity;
 import com.entra21.Transportadora.view.repository.EmpresaRepository;
 import com.entra21.Transportadora.view.repository.PessoaRepository;
-
-import com.entra21.Transportadora.model.dto.CarroDTO;
 import com.entra21.Transportadora.model.dto.EmpresaDTO;
-import com.entra21.Transportadora.model.dto.PessoaDTO;
-import com.entra21.Transportadora.model.entity.EmpresaEntity;
-import com.entra21.Transportadora.view.repository.EmpresaRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 @Service
@@ -49,7 +40,15 @@ public class EmpresaService {
                 GetAllEmpresasDTO dtoempresa = new GetAllEmpresasDTO();
                 dtoempresa.setIdEmpresa(er.getIdEmpresa());
                 dtoempresa.setRazaoSocial(er.getRazaoSocial());
-                dtoempresa.setNomeGerente(er.getGerente().getNome());
+                PessoaDTO pessoaDTO = new PessoaDTO();
+//                dtoempresa.setNomeGerente(er.getGerente().getNome());
+                dtoempresa.setNomeGerente(pessoaDTO.getNome());
+//                if (er.getRazaoSocial() == null){
+//                    return dtoempresa;
+//                }else{
+//                    dtoempresa.setRazaoSocial(er.getRazaoSocial());
+//                    return dtoempresa;
+//                }
                 return dtoempresa;
             }).collect(Collectors.toList());
         }

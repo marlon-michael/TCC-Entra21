@@ -13,7 +13,7 @@ public class EntregaTrechoDTO {
     private  Integer Completo;
     private LocalDateTime dataInicio;
     private LocalDateTime dataFim;
-    private TrechoEntity trecho;
-    private CarroEntity carro;
-    private EntregaEntity entrega;
+//    private TrechoEntity trecho;
+//    private CarroEntity carro;
+//    private EntregaEntity entrega;
 }

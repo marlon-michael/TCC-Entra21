@@ -10,18 +10,20 @@ import java.util.List;
 @PrimaryKeyJoinColumn(name = "id_pessoa")
 public class FuncionarioEntity extends PessoaEntity{
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_supervisor",referencedColumnName = "id_pessoa")
+    @JsonIgnore
     private FuncionarioEntity supervisor;
 
 //    @ManyToOne(fetch = FetchType.LAZY)
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_empresa",referencedColumnName = "id")
+    @JsonIgnore
     private EmpresaEntity empresa;
 
 
 //    @OneToMany(fetch = FetchType.LAZY)
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name="id_entregador", referencedColumnName = "id_pessoa")
     @JsonIgnore
     private List<EntregaEntity> entrega;

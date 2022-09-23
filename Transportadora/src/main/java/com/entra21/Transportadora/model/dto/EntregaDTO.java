@@ -7,5 +7,5 @@ import lombok.Data;
 public class EntregaDTO {
     private Long idEntrega;
     private String tipoEntrega;
-    private FuncionarioEntity entregador;
+    private PessoaDTO NomeEntregador;
 }

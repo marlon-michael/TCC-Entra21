@@ -10,5 +10,5 @@ import java.util.List;
 public class FuncionarioDTO {
     private Long idFuncionario;
     private Long supervisorFuncionario;
-    private EmpresaEntity empresaFuncionario;
+    private EmpresaDTO empresaFuncionario;
 }

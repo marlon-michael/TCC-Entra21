@@ -20,6 +20,9 @@ public class EntregaEntity {
 
     @Column(name = "tipo_entrega")
     private String tipoEntrega;
+//
+//    @Column(name = "id_entregador")
+//    private PessoaEntity entregador1;
 
     @ManyToOne
     @JoinColumn(name="id_entregador", referencedColumnName = "id_pessoa")
