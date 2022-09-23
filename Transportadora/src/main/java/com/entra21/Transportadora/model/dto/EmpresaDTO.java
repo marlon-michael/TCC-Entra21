@@ -9,7 +9,7 @@ import java.util.List;
 public class EmpresaDTO {
     private Long idEmpresa;
     private String razaoSocial;
-    private String gerente;
+    private PessoaDTO gerente;
 
 
 }

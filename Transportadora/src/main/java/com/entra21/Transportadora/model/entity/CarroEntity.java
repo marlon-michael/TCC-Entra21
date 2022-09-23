@@ -24,11 +24,11 @@ public class CarroEntity {
     @Column(name = "placa")
     private String placa;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_empresa", referencedColumnName = "id")
     private EmpresaEntity empresa;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany
     @JoinColumn(name = "id_carro", referencedColumnName = "id")
     @JsonIgnore
     private List<EntregaTrechoEntity> entregaTrechos;
