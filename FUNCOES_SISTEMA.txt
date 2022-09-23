@@ -38,7 +38,6 @@ Entrega:
     atr:
         -itens da entrega
         -entrega-trechos / trechos da entrega
-        -carro para entrega
     FIND: pelo entregador, supervisor e empresa
         -by entregador, by tipo-entrega?
     POST: pela empresa? supervisor?
@@ -46,6 +45,8 @@ Entrega:
         -definir quais trechos(entrega-trecho) ira tomar para entrega dos itens
 
 Trecho/Entrega-Trecho:
+    atr:
+        -carro para entrega
     ADD: por quem? motorista? supervisor? empresa
 
 Item:
