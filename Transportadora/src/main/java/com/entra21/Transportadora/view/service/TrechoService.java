@@ -1,5 +1,6 @@
 package com.entra21.Transportadora.view.service;
 
+
 import com.entra21.Transportadora.model.dto.TrechoDTO;
 import com.entra21.Transportadora.model.entity.TrechoEntity;
 import com.entra21.Transportadora.view.repository.TrechoRepository;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
 public class TrechoService {
     @Autowired
     private TrechoRepository trechoRepository;
+
 
     public List<TrechoDTO> getAllTrecho() {
         return trechoRepository.findAll().stream().map(fr -> {
@@ -42,12 +44,14 @@ public class TrechoService {
         TrechoEntity e = trechoRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Franquia não encontrada!"));
         e.setLocalInicio(trechoDTO.getLocalInicio());
         e.setLocalFim(trechoDTO.getLocalFim());
-        trechoDTO.setIdTrecho(e.getIdTrecho());
+//        trechoDTO.setIdTrecho(e.getIdTrecho());
         e = trechoRepository.save(e);
         TrechoDTO dto = new TrechoDTO();
         dto.setIdTrecho(e.getIdTrecho());
         dto.setLocalFim(e.getLocalFim());
         dto.setLocalInicio(e.getLocalInicio());
         return dto;
+
     }
 }
+

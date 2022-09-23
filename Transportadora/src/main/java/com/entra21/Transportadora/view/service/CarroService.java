@@ -47,10 +47,10 @@ public class CarroService {
             cr1.setRazaoSocial(cr.getEmpresa().getRazaoSocial());
 
             PessoaDTO cr2 = new PessoaDTO();
-            cr2.setNome(cr.getEmpresa().getIdGerente().getNome());
-            cr2.setCpf(cr.getEmpresa().getIdGerente().getCpf());
-            cr2.setTelefone(cr.getEmpresa().getIdGerente().getTelefone());
-            cr2.setSobrenome(cr.getEmpresa().getIdGerente().getSobrenome());
+            cr2.setNome(cr.getEmpresa().getGerente().getNome());
+            cr2.setCpf(cr.getEmpresa().getGerente().getCpf());
+            cr2.setTelefone(cr.getEmpresa().getGerente().getTelefone());
+            cr2.setSobrenome(cr.getEmpresa().getGerente().getSobrenome());
 
             cr1.setGerente(cr2);
             dtocarro.setEmpresaCarro(cr1);

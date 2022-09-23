@@ -20,13 +20,14 @@ public class FuncionarioService {
        return funcionarioRepository.findAll().stream().map(fr -> {
            FuncionarioDTO dto = new FuncionarioDTO();
            dto.setIdFuncionario(fr.getIdPessoa());
-           dto.setEmpresaFuncionario(fr.getEmpresa());
-           if (fr.getSupervisor().getIdPessoa() == null){
-               return dto;
-           }else{
-               dto.setSupervisorFuncionario(fr.getSupervisor().getIdPessoa());
-               return dto;
-           }
+//           dto.setEmpresaFuncionario(fr.getEmpresa().getIdEmpresa());
+//           if (fr.getSupervisor().getIdPessoa() == null){
+//               return dto;
+//           }else{
+//               dto.setSupervisorFuncionario(fr.getSupervisor().getIdPessoa());
+//               return dto;
+//           }
+           return dto;
        }).collect(Collectors.toList());
    }
 }
