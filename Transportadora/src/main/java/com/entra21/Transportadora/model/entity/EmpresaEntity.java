@@ -19,11 +19,15 @@ public class EmpresaEntity{
     @Column(name = "razao_social")
     private  String razaoSocial;
 
-    @Column(name = "id_gerente")
-    private String idGerente;
+    @ManyToOne
+    @JoinColumn(name = "id_gerente", referencedColumnName = "id")
+    private PessoaEntity idGerente;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_empresa", referencedColumnName = "id")
+    @OneToMany(mappedBy = "empresa")
     @JsonIgnore
     private List<CarroEntity> carroEntities;
+
+    @OneToMany(mappedBy = "empresa")
+    @JsonIgnore
+    private List<FuncionarioEntity> funcionarios;
 }
