@@ -8,7 +8,13 @@ import java.util.List;
 
 @Data
 public class FuncionarioDTO {
-    private Long idFuncionario;
+
+    private String nome;
+    private String sobrenome;
+    private String cpf;
+    private String telefone;
     private Long supervisorFuncionario;
-    private EmpresaEntity empresaFuncionario;
+    private Long empresaFuncionario;
+    private String login;
+    private  String senha;
 }
