@@ -35,6 +35,10 @@ Carro:
     ADD, UPDT, DELETE pela empresa
 
 Entrega:
+    atr:
+        -itens da entrega
+        -entrega-trechos / trechos da entrega
+        -carro para entrega
     FIND: pelo entregador, supervisor e empresa
         -by entregador, by tipo-entrega?
     POST: pela empresa? supervisor?
