@@ -1,5 +1,6 @@
 package com.entra21.Transportadora.view.service;
 
+import com.entra21.Transportadora.model.dto.EmpresaDTO;
 import com.entra21.Transportadora.model.dto.FuncionarioDTO;
 import com.entra21.Transportadora.model.dto.ItemDTO;
 import com.entra21.Transportadora.model.dto.PessoaDTO;
@@ -32,34 +33,38 @@ public class FuncionarioService {
     public List<FuncionarioDTO> getAllFuncionario() {
        return funcionarioRepository.findAll().stream().map(fr -> {
            FuncionarioDTO dto = new FuncionarioDTO();
+           EmpresaDTO dtoEmp = new EmpresaDTO();
+           PessoaDTO dtoPes = new PessoaDTO();
            dto.setNome(fr.getNome());
            dto.setSobrenome(fr.getSobrenome());
            dto.setCpf(fr.getCpf());
            dto.setTelefone(fr.getTelefone());
            dto.setLogin(fr.getLogin());
            dto.setSenha(fr.getSenha());
-           dto.setEmpresaFuncionario(fr.getEmpresa().getIdEmpresa());
+           dtoEmp.setIdEmpresa(fr.getEmpresa().getIdEmpresa());
+           dtoPes.setIdPessoa(fr.getIdPessoa());
+           dto.setEmpresaFuncionario(dtoEmp);
            if (fr.getSupervisor() == null){
                return dto;
            }else{
-               dto.setSupervisorFuncionario(fr.getSupervisor().getIdPessoa());
+               dto.setSupervisorFuncionario(dtoPes);
                return dto;
            }
        }).collect(Collectors.toList());
    }
 
-    public void saveFuncionario(FuncionarioDTO input) {
-        FuncionarioEntity newEntity = new FuncionarioEntity();
-        newEntity.setNome(input.getNome());
-        newEntity.setSobrenome(input.getSobrenome());
-        newEntity.setCpf(input.getCpf());
-        newEntity.setTelefone(input.getTelefone());
-        newEntity.setDesabilitado(false);
-        newEntity.setLogin(input.getLogin());
-        newEntity.setSenha(input.getSenha());
-
-    newEntity.setEmpresa(empresaRepository.findById(input.getEmpresaFuncionario()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST)));
-    newEntity.setSupervisor(funcionarioRepository.findById(input.getSupervisorFuncionario()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST)));
-        funcionarioRepository.save(newEntity);
-    }
+//    public void saveFuncionario(FuncionarioDTO input) {
+//        FuncionarioEntity newEntity = new FuncionarioEntity();
+//        newEntity.setNome(input.getNome());
+//        newEntity.setSobrenome(input.getSobrenome());
+//        newEntity.setCpf(input.getCpf());
+//        newEntity.setTelefone(input.getTelefone());
+//        newEntity.setDesabilitado(false);
+//        newEntity.setLogin(input.getLogin());
+//        newEntity.setSenha(input.getSenha());
+//
+//    newEntity.setEmpresa(empresaRepository.findById(input.getEmpresaFuncionario()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST)));
+//    newEntity.setSupervisor(funcionarioRepository.findById(input.getSupervisorFuncionario()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST)));
+//        funcionarioRepository.save(newEntity);
+//    }
 }

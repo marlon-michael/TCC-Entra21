@@ -12,11 +12,8 @@ public class FuncionarioDTO {
     private String sobrenome;
     private String cpf;
     private String telefone;
-    private Long supervisorFuncionario;
-    private Long empresaFuncionario;
     private String login;
     private  String senha;
-    private Long idFuncionario;
     private PessoaDTO supervisorFuncionario;
     private EmpresaDTO empresaFuncionario;
 }

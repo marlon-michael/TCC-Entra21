@@ -21,11 +21,11 @@ public class FuncionarioRestController {
        return funcionarioService.getAllFuncionario();
    }
 //
-   @PostMapping
-   public void addFuncionario(
-           @RequestBody FuncionarioDTO funcionarioDTO){
-      funcionarioService.saveFuncionario( funcionarioDTO);
-   }
+//   @PostMapping
+//   public void addFuncionario(
+//           @RequestBody FuncionarioDTO funcionarioDTO){
+//      funcionarioService.saveFuncionario( funcionarioDTO);
+//   }
 
 //    @Autowired
 //    private FuncionarioRepository funcionarioRepository;
