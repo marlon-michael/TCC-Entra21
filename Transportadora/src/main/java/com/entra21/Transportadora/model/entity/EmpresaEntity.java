@@ -27,4 +27,8 @@ public class EmpresaEntity{
     @OneToMany(mappedBy = "empresa")
     @JsonIgnore
     private List<CarroEntity> carroEntities;
+
+    @OneToMany(mappedBy = "empresa")
+    @JsonIgnore
+    private List<FuncionarioEntity> funcionarios;
 }

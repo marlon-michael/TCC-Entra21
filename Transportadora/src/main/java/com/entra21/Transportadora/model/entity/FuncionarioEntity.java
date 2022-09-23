@@ -15,15 +15,13 @@ public class FuncionarioEntity extends PessoaEntity{
     @JsonIgnore
     private FuncionarioEntity supervisor;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_empresa",referencedColumnName = "id")
     @JsonIgnore
     private EmpresaEntity empresa;
 
 
-//    @OneToMany(fetch = FetchType.LAZY)
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany
     @JoinColumn(name="id_entregador", referencedColumnName = "id_pessoa")
     @JsonIgnore
     private List<EntregaEntity> entrega;

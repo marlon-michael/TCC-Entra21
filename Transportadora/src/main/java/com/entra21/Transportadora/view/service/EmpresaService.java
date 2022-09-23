@@ -3,6 +3,7 @@ package com.entra21.Transportadora.view.service;
 
 import com.entra21.Transportadora.model.dto.*;
 import com.entra21.Transportadora.model.entity.EmpresaEntity;
+import com.entra21.Transportadora.model.entity.PessoaEntity;
 import com.entra21.Transportadora.view.repository.EmpresaRepository;
 import com.entra21.Transportadora.view.repository.PessoaRepository;
 import com.entra21.Transportadora.model.dto.EmpresaDTO;
@@ -28,7 +29,9 @@ public class EmpresaService {
                 newEntity.setRazaoSocial(inputEmpresa.getRazaoSocial());
                 newEntity.setGerente(pE);
                 empresaRepository.save(newEntity);
-            }, () -> {throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Gerente não foi encontrado!");});
+            }, () -> {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Gerente não foi encontrado!");
+            });
         }
 
         public void deleteEmpresa(Long idEmpresa) {
@@ -40,19 +43,10 @@ public class EmpresaService {
                 GetAllEmpresasDTO dtoempresa = new GetAllEmpresasDTO();
                 dtoempresa.setIdEmpresa(er.getIdEmpresa());
                 dtoempresa.setRazaoSocial(er.getRazaoSocial());
-                PessoaDTO pessoaDTO = new PessoaDTO();
-//                dtoempresa.setNomeGerente(er.getGerente().getNome());
-                dtoempresa.setNomeGerente(pessoaDTO.getNome());
-//                if (er.getRazaoSocial() == null){
-//                    return dtoempresa;
-//                }else{
-//                    dtoempresa.setRazaoSocial(er.getRazaoSocial());
-//                    return dtoempresa;
-//                }
+                dtoempresa.setNomeGerente(er.getGerente().getNome());
                 return dtoempresa;
             }).collect(Collectors.toList());
         }
-
 
         public EmpresaDTO updateEmpresa(Long idEmpresanv, EmpresaAddDTO empresaAddDTO) {
             EmpresaDTO empresaDTO = new EmpresaDTO();
@@ -61,7 +55,6 @@ public class EmpresaService {
                     eE.setRazaoSocial(empresaAddDTO.getRazaoSocial());
                     eE.setGerente(pE);
                     empresaDTO.setRazaoSocial(eE.getRazaoSocial());
-                    empresaDTO.setNomeGerente(eE.getGerente().getNome());
                     empresaRepository.save(eE);
                 }, () -> {throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Gerente não foi encontrado!");});
             }, () -> {throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Empresa não foi encontrado!");});

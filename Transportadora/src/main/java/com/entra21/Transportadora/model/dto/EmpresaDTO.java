@@ -8,6 +8,6 @@ import java.util.List;
 @Data
 public class EmpresaDTO {
     private String razaoSocial;
-    private String nomeGerente;
+    private PessoaDTO gerente;
 
 }
