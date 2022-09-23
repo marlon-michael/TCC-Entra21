@@ -7,8 +7,7 @@ import java.util.List;
 
 @Data
 public class CarroDTO {
-    private Long idCarro;
     private String tipoCarro;
     private String placa;
-    private EmpresaEntity empresaCarro;
+    private EmpresaDTO empresaCarro;
 }

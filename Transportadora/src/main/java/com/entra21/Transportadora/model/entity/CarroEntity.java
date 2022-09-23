@@ -13,8 +13,8 @@ import java.util.List;
 @Table(name = "carro")
 public class CarroEntity {
 
-    @Column(name = "id")
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCarro;
 
@@ -26,7 +26,6 @@ public class CarroEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_empresa", referencedColumnName = "id")
-    @JsonIgnore
     private EmpresaEntity empresa;
 
     @OneToMany(fetch = FetchType.LAZY)

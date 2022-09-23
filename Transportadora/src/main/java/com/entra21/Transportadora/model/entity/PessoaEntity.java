@@ -14,8 +14,8 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class PessoaEntity implements UserDetails {
 
-    @Column(name = "id")
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPessoa;
 
