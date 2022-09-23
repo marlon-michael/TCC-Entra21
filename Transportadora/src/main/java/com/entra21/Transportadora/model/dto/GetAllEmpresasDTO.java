@@ -6,5 +6,5 @@ import lombok.Data;
 public class GetAllEmpresasDTO {
     private Long idEmpresa;
     private String razaoSocial;
-    private String nomeGerente;
+    private PessoaDTO nomeGerente;
 }

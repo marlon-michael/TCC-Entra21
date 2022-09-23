@@ -57,6 +57,21 @@ public class PessoaService implements UserDetailsService{
         }).collect(Collectors.toList());
     }
 
+    public List<PessoaPayLoadDTO> getAllByFuncionario() {
+        return pessoaRepository.findAll().stream().map(pr -> {
+            PessoaPayLoadDTO dtoN = new PessoaPayLoadDTO();
+            dtoN.setIdPessoa(pr.getIdPessoa());
+            dtoN.setNome(pr.getNome());
+            dtoN.setSobrenome(pr.getSobrenome());
+            dtoN.setCpf(pr.getCpf());
+            dtoN.setTelefone(pr.getTelefone());
+            dtoN.setLogin(pr.getLogin());
+            dtoN.setSenha(pr.getSenha());
+            dtoN.setDesabilitado(pr.getDesabilitado());
+            return dtoN;
+        }).collect(Collectors.toList());
+    }
+
     public void save(PessoaPayLoadDTO input) {
         PessoaEntity newEntity = new PessoaEntity();
         newEntity.setIdPessoa(input.getIdPessoa());

@@ -24,6 +24,8 @@ public class EmpresaEntity{
     @JoinColumn(name = "id_gerente", referencedColumnName = "id")
     private PessoaEntity gerente;
 
+
+
     @OneToMany(mappedBy = "empresa")
     @JsonIgnore
     private List<CarroEntity> carroEntities;

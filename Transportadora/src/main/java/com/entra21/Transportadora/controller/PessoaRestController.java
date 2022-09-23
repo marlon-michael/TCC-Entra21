@@ -24,6 +24,11 @@ public class PessoaRestController {
         return pessoaService.getAll();
     }
 
+    @GetMapping("/{byfuncionario}")
+    public List<PessoaPayLoadDTO> getAllByFuncionario() {
+        return pessoaService.getAllByFuncionario();
+    }
+
     @PostMapping
     public void addPessoa(@RequestBody PessoaPayLoadDTO newPessoa) {
         pessoaService.save(newPessoa);
