@@ -36,7 +36,6 @@ Carro:
 
 Entrega:
     atr:
-    
         -itens da entrega
         -entrega-trechos / trechos da entrega
     FIND: pelo entregador, supervisor e empresa
