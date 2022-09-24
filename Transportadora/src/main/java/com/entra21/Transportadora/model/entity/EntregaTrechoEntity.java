@@ -29,14 +29,13 @@ public class EntregaTrechoEntity {
         @Convert(converter = Jsr310JpaConverters.LocalDateTimeConverter.class)
         private LocalDateTime dataFim;
 
-        @OneToOne(fetch = FetchType.LAZY)
+        @OneToOne
         @JoinColumn(name = "id_trecho", referencedColumnName = "id")
         private TrechoEntity trecho;
 
-        @ManyToOne(fetch = FetchType.LAZY)
+        @ManyToOne
         @JoinColumn(name = "id_carro", referencedColumnName = "id")
         private CarroEntity carro;
-
 
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "id_entrega", referencedColumnName = "id")
