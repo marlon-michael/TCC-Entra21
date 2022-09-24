@@ -2,6 +2,7 @@ package com.entra21.Transportadora.view.service;
 
 import com.entra21.Transportadora.model.dto.CarroDTO;
 import com.entra21.Transportadora.model.dto.ItemDTO;
+import com.entra21.Transportadora.model.dto.PessoaDTO;
 import com.entra21.Transportadora.model.entity.ItemEntity;
 import com.entra21.Transportadora.view.repository.ItemRepository;
 import com.entra21.Transportadora.view.repository.PessoaRepository;
@@ -30,15 +31,26 @@ public class ItemService {
             dto.setLocalEntrega(fr.getLocalEntrega());
             dto.setNomeRecebedor(fr.getNomeRecebedor());
             dto.setStatus(fr.getStatus());
+
+          PessoaDTO cr2 = new PessoaDTO();
+            cr2.setNome(fr.getPessoa().getNome());
+            cr2.setCpf(fr.getPessoa().getCpf());
+            cr2.setTelefone(fr.getPessoa().getTelefone());
+            cr2.setSobrenome(fr.getPessoa().getSobrenome());
+
+
             if (fr.getPessoa() == null){
                 return dto;
             }else{
-                dto.setPessoaItem(fr.getPessoa().getIdPessoa());
+                dto.setPessoaItem(cr2);
                 return dto;
             }
 
+
         }).collect(Collectors.toList());
     }
+
+
 
     public void saveItem(ItemDTO input) {
         ItemEntity newEntity = new ItemEntity();
@@ -47,7 +59,19 @@ public class ItemService {
         newEntity.setLocalEntrega(input.getLocalEntrega());
         newEntity.setNomeRecebedor(input.getNomeRecebedor());
         newEntity.setStatus(input.getStatus());
-        newEntity.setPessoa(pessoaRepository.findById(input.getPessoaItem()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST)));
+//        newEntity.setPessoa(pessoaRepository.findById(input.getPessoaItem().getIdPessoa()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST)));
+//        PessoaDTO cr2 = new PessoaDTO();
+//        cr2.setNome(newEntity.getPessoa().getNome());
+//        cr2.setCpf(newEntity.getPessoa().getCpf());
+//        cr2.setTelefone(newEntity.getPessoa().getTelefone());
+//        cr2.setSobrenome(newEntity.getPessoa().getSobrenome());
+//
+//        if (input.getPessoaItem() == null){
+//            return ;
+//        }else{
+//            newEntity.setPessoa(cr2.);
+//            return dto;
+//        }
         itemRepository.save(newEntity);
     }
 
@@ -62,7 +86,7 @@ public class ItemService {
         e = itemRepository.save(e);
         ItemDTO dto = new ItemDTO();
         dto.setStatus(e.getStatus());
-        dto.setIdItem(e.getIdItem());
+//        dto.setIdItem(e.getIdItem());
         return dto;
     }
 
@@ -73,10 +97,13 @@ public class ItemService {
         e.setNomeRecebedor(itemDTO.getNomeRecebedor());
         e.setLocalizador(itemDTO.getLocalizador());
         e.setLocalEntrega(itemDTO.getLocalEntrega());
-        e.setPessoa(pessoaRepository.findById(itemDTO.getPessoaItem()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST)));
+        e.setPessoa(pessoaRepository.findById(itemDTO.getPessoaItem().getIdPessoa()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST)));
         e = itemRepository.save(e);
-        itemDTO.setIdItem(e.getIdItem());
+//        itemDTO.setIdItem(e.getIdItem());
         return itemDTO;
     }
+
+
+
 
 }

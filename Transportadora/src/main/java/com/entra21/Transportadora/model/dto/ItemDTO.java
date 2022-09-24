@@ -10,5 +10,5 @@ public class ItemDTO {
     private String status;
     private String localEntrega;
     private String nomeRecebedor;
-    private Long pessoaItem;
+    private PessoaDTO pessoaItem;
 }
