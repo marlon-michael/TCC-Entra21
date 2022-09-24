@@ -9,5 +9,5 @@ import java.util.List;
 public class CarroDTO {
     private String tipoCarro;
     private String placa;
-    private EmpresaDTO empresaCarro;
+    private EmpresaAddDTO empresaCarro;
 }

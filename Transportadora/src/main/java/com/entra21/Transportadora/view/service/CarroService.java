@@ -1,6 +1,7 @@
 package com.entra21.Transportadora.view.service;
 
 import com.entra21.Transportadora.model.dto.CarroDTO;
+import com.entra21.Transportadora.model.dto.EmpresaAddDTO;
 import com.entra21.Transportadora.model.dto.EmpresaDTO;
 import com.entra21.Transportadora.model.dto.PessoaDTO;
 import com.entra21.Transportadora.model.entity.CarroEntity;
@@ -45,7 +46,7 @@ public class CarroService {
             dtocarro.setTipoCarro(cr.getTipoCarro());
             dtocarro.setPlaca(cr.getPlaca());
 
-            EmpresaDTO cr1 = new EmpresaDTO();
+            EmpresaAddDTO cr1 = new EmpresaAddDTO();
             cr1.setRazaoSocial(cr.getEmpresa().getRazaoSocial());
 
             PessoaDTO cr2 = new PessoaDTO();

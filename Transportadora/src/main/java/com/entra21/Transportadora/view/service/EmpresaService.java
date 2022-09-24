@@ -1,4 +1,5 @@
 package com.entra21.Transportadora.view.service;
+import com.entra21.Transportadora.model.dto.EmpresaAddDTO;
 import com.entra21.Transportadora.model.dto.EmpresaDTO;
 import com.entra21.Transportadora.model.dto.PessoaDTO;
 import com.entra21.Transportadora.model.entity.EmpresaEntity;
@@ -21,7 +22,7 @@ public class EmpresaService {
             @Autowired
             private PessoaRepository pessoaRepository;
 
-            public void saveEmpresas (EmpresaDTO inputEmpresa){
+            public void saveEmpresas (EmpresaAddDTO inputEmpresa){
                 EmpresaEntity newEntity = new EmpresaEntity();
                 PessoaEntity pessoaDTO = new PessoaEntity();
                 newEntity.setIdEmpresa(inputEmpresa.getIdEmpresa());
@@ -39,7 +40,6 @@ public class EmpresaService {
                 return empresaRepository.findAll().stream().map(er -> {
                     EmpresaDTO dtoempresa = new EmpresaDTO();
                     PessoaDTO pessoaDTO = new PessoaDTO();
-                    dtoempresa.setIdEmpresa(er.getIdEmpresa());
                     dtoempresa.setRazaoSocial(er.getRazaoSocial());
                     pessoaDTO.setNome(er.getIdGerente().getNome());
                     dtoempresa.setGerente(pessoaDTO);
@@ -51,7 +51,6 @@ public class EmpresaService {
                 return empresaRepository.findAll().stream().map(er -> {
                     EmpresaDTO dtoempresa = new EmpresaDTO();
                     PessoaDTO pessoaDTO = new PessoaDTO();
-                    dtoempresa.setIdEmpresa(er.getIdEmpresa());
                     dtoempresa.setRazaoSocial(er.getRazaoSocial());
                     pessoaDTO.setNome(er.getIdGerente().getNome());
                     dtoempresa.setGerente(pessoaDTO);
@@ -60,7 +59,7 @@ public class EmpresaService {
                 }).collect(Collectors.toList());
             }
 
-            public EmpresaDTO updateEmpresa (Long idEmpresanv, EmpresaDTO empresaDTO){
+            public EmpresaAddDTO updateEmpresa (Long idEmpresanv, EmpresaAddDTO empresaDTO){
                 EmpresaEntity e = empresaRepository.findById(idEmpresanv).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa não encontrada!"));
                 PessoaDTO pessoaDTO = new PessoaDTO();
                 e.setIdEmpresa(empresaDTO.getIdEmpresa());
