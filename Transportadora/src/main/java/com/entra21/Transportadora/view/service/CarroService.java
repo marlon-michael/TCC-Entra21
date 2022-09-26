@@ -42,9 +42,11 @@ public class CarroService {
             CarroDTO dtocarro = new CarroDTO();
             dtocarro.setTipoCarro(cr.getTipoCarro());
             dtocarro.setPlaca(cr.getPlaca());
+            dtocarro.setIdCarro(cr.getIdCarro());
 
             EmpresaDTO cr1 = new EmpresaDTO();
             cr1.setRazaoSocial(cr.getEmpresa().getRazaoSocial());
+
 
             PessoaDTO cr2 = new PessoaDTO();
             cr2.setNome(cr.getEmpresa().getGerente().getNome());
@@ -67,6 +69,7 @@ public class CarroService {
 //        e.setIdCarro(idcarronv);
         e.setTipoCarro(carroDTO.getTipoCarro());
         e.setPlaca(carroDTO.getPlaca());
+
 //        e.setEmpresa(carroDTO.getEmpresaCarro());
         e = carroRepository.save(e);
         carroDTO.setIdCarro(e.getIdCarro());
