@@ -1,5 +1,6 @@
 package com.entra21.Transportadora.view.service;
 
+import com.entra21.Transportadora.model.dto.CarroDTO;
 import com.entra21.Transportadora.model.dto.ItemDTO;
 import com.entra21.Transportadora.model.entity.ItemEntity;
 import com.entra21.Transportadora.view.repository.ItemRepository;
@@ -68,7 +69,6 @@ public class ItemService {
     public ItemDTO updateAllItem(Long id, ItemDTO itemDTO) {
         ItemEntity e = itemRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Item não encontrado!"));
-
         e.setStatus(itemDTO.getStatus());
         e.setNomeRecebedor(itemDTO.getNomeRecebedor());
         e.setLocalizador(itemDTO.getLocalizador());

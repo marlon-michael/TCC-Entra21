@@ -2,6 +2,7 @@ package com.entra21.Transportadora.view.service;
 
 
 import com.entra21.Transportadora.model.dto.PessoaDTO;
+import com.entra21.Transportadora.model.dto.PessoaPayLoadDTO;
 import com.entra21.Transportadora.model.entity.PessoaEntity;
 import com.entra21.Transportadora.view.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,18 +45,34 @@ public class PessoaService implements UserDetailsService{
     public List<PessoaDTO> getAll() {
         return pessoaRepository.findAll().stream().map(pr -> {
             PessoaDTO dto = new PessoaDTO();
-            dto.setIdPessoa(pr.getIdPessoa());
-            dto.setTelefone(pr.getTelefone());
-            dto.setSobrenome(pr.getSobrenome());
+//            dto.setIdPessoa(pr.getIdPessoa())
             dto.setNome(pr.getNome());
+            dto.setSobrenome(pr.getSobrenome());
             dto.setCpf(pr.getCpf());
-            dto.setLogin(pr.getLogin());
-            dto.setSenha(pr.getSenha());
+            dto.setTelefone(pr.getTelefone());
+//            dto.setLogin(pr.getLogin());
+//            dto.setSenha(pr.getSenha());
+//            dto.setDesabilitado(pr.getDesabilitado());
             return dto;
         }).collect(Collectors.toList());
     }
 
-    public void save(PessoaDTO input) {
+    public List<PessoaPayLoadDTO> getAllByFuncionario() {
+        return pessoaRepository.findAll().stream().map(pr -> {
+            PessoaPayLoadDTO dtoN = new PessoaPayLoadDTO();
+            dtoN.setIdPessoa(pr.getIdPessoa());
+            dtoN.setNome(pr.getNome());
+            dtoN.setSobrenome(pr.getSobrenome());
+            dtoN.setCpf(pr.getCpf());
+            dtoN.setTelefone(pr.getTelefone());
+            dtoN.setLogin(pr.getLogin());
+            dtoN.setSenha(pr.getSenha());
+            dtoN.setDesabilitado(pr.getDesabilitado());
+            return dtoN;
+        }).collect(Collectors.toList());
+    }
+
+    public void save(PessoaPayLoadDTO input) {
         PessoaEntity newEntity = new PessoaEntity();
         newEntity.setIdPessoa(input.getIdPessoa());
         newEntity.setNome(input.getNome());
@@ -67,9 +84,7 @@ public class PessoaService implements UserDetailsService{
         pessoaRepository.save(newEntity);
     }
 
-//    public void desabilitar(PessoaDTO desable) {
-//
-//    }
+
 
 //
 //    private String cpf;
@@ -80,26 +95,26 @@ public class PessoaService implements UserDetailsService{
 //        pessoaRepository.deleteById(id);
 //    }
 
-    public PessoaDTO updatePessoa(Long id, PessoaDTO pessoaDTO) {
+    public PessoaPayLoadDTO updatePessoa(Long id, PessoaPayLoadDTO pessoaPayLoadDTO) {
         PessoaEntity e = pessoaRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Pessoa não encontrada!"));
 //       e.setIdPessoa(id);
-        e.setNome(pessoaDTO.getNome());
-        e.setSobrenome(pessoaDTO.getSobrenome());
-        e.setTelefone(pessoaDTO.getTelefone());
-        e.setCpf(pessoaDTO.getCpf());
-        e.setLogin(pessoaDTO.getLogin());
-        e.setSenha(pessoaDTO.getSenha());
+        e.setNome(pessoaPayLoadDTO.getNome());
+        e.setSobrenome(pessoaPayLoadDTO.getSobrenome());
+        e.setTelefone(pessoaPayLoadDTO.getTelefone());
+        e.setCpf(pessoaPayLoadDTO.getCpf());
+        e.setLogin(pessoaPayLoadDTO.getLogin());
+        e.setSenha(pessoaPayLoadDTO.getSenha());
         e = pessoaRepository.save(e);
-        pessoaDTO.setIdPessoa(e.getIdPessoa());
-//        PessoaDTO dto = new PessoaDTO();
-////        dto.setIdPessoa(e.getIdPessoa());
-//        dto.setNome(e.getNome());
-//        dto.setSobrenome(e.getSobrenome());
-//        dto.setTelefone(e.getTelefone());
-//        dto.setCpf(novoCPF);
-//        dto.setLogin(novoLogin);
-//        dto.setSenha(novoSenha);
-        return pessoaDTO;
+//        pessoaDTO.setIdPessoa(e.getIdPessoa());
+        PessoaPayLoadDTO dto = new PessoaPayLoadDTO();
+//        dto.setIdPessoa(e.getIdPessoa());
+        dto.setNome(e.getNome());
+        dto.setSobrenome(e.getSobrenome());
+        dto.setTelefone(e.getTelefone());
+        dto.setCpf(e.getCpf());
+        dto.setLogin(e.getLogin());
+        dto.setSenha(e.getSenha());
+        return pessoaPayLoadDTO;
     }
 
 //

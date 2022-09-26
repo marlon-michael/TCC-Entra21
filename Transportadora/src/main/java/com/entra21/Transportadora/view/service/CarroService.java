@@ -37,29 +37,31 @@ public class CarroService {
 
     public List<CarroDTO> getAllCarros() {
 
-      return   carroRepository.findAll().stream().map(cr -> {
+        return   carroRepository.findAll().stream().map(cr -> {
 
             CarroDTO dtocarro = new CarroDTO();
             dtocarro.setTipoCarro(cr.getTipoCarro());
             dtocarro.setPlaca(cr.getPlaca());
+            dtocarro.setIdCarro(cr.getIdCarro());
 
             EmpresaDTO cr1 = new EmpresaDTO();
             cr1.setRazaoSocial(cr.getEmpresa().getRazaoSocial());
 
+
             PessoaDTO cr2 = new PessoaDTO();
-            cr2.setNome(cr.getEmpresa().getIdGerente().getNome());
-            cr2.setCpf(cr.getEmpresa().getIdGerente().getCpf());
-            cr2.setTelefone(cr.getEmpresa().getIdGerente().getTelefone());
-            cr2.setSobrenome(cr.getEmpresa().getIdGerente().getSobrenome());
+            cr2.setNome(cr.getEmpresa().getGerente().getNome());
+            cr2.setCpf(cr.getEmpresa().getGerente().getCpf());
+            cr2.setTelefone(cr.getEmpresa().getGerente().getTelefone());
+            cr2.setSobrenome(cr.getEmpresa().getGerente().getSobrenome());
 
             cr1.setGerente(cr2);
             dtocarro.setEmpresaCarro(cr1);
 
-          return dtocarro;
+            return dtocarro;
         }).collect(Collectors.toList());
 
     }
-// private String tipoCarro;
+    // private String tipoCarro;
 //    private String placa;
 //    private EmpresaEntity empresaCarro;
     public CarroDTO updateCarro(Long idcarronv, CarroDTO carroDTO) {
@@ -67,6 +69,7 @@ public class CarroService {
 //        e.setIdCarro(idcarronv);
         e.setTipoCarro(carroDTO.getTipoCarro());
         e.setPlaca(carroDTO.getPlaca());
+
 //        e.setEmpresa(carroDTO.getEmpresaCarro());
         e = carroRepository.save(e);
         carroDTO.setIdCarro(e.getIdCarro());

@@ -1,6 +1,7 @@
 package com.entra21.Transportadora.controller;
 
 import com.entra21.Transportadora.model.dto.PessoaDTO;
+import com.entra21.Transportadora.model.dto.PessoaPayLoadDTO;
 import com.entra21.Transportadora.model.entity.PessoaEntity;
 import com.entra21.Transportadora.view.repository.PessoaRepository;
 import com.entra21.Transportadora.view.service.PessoaService;
@@ -23,15 +24,20 @@ public class PessoaRestController {
         return pessoaService.getAll();
     }
 
+    @GetMapping("/{byfuncionario}")
+    public List<PessoaPayLoadDTO> getAllByFuncionario() {
+        return pessoaService.getAllByFuncionario();
+    }
+
     @PostMapping
-    public void addPessoa(@RequestBody PessoaDTO newPessoa) {
+    public void addPessoa(@RequestBody PessoaPayLoadDTO newPessoa) {
         pessoaService.save(newPessoa);
     }
 
     @PutMapping("/{id}")
-    public PessoaDTO updatePessoa(@PathVariable(name = "id") Long id,
-                                      @RequestBody PessoaDTO pessoaDTO) {
-        return pessoaService.updatePessoa(id, pessoaDTO);
+    public PessoaPayLoadDTO updatePessoa(@PathVariable(name = "id") Long id,
+                                  @RequestBody PessoaPayLoadDTO pessoaPayLoadDTO) {
+        return pessoaService.updatePessoa(id, pessoaPayLoadDTO);
     }
 
 //    @GetMapping("/{cpf}")

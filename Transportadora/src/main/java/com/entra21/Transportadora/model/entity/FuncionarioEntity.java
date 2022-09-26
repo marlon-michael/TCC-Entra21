@@ -10,13 +10,16 @@ import java.util.List;
 @PrimaryKeyJoinColumn(name = "id_pessoa")
 public class FuncionarioEntity extends PessoaEntity{
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_supervisor",referencedColumnName = "id_pessoa")
+    @JsonIgnore
     private FuncionarioEntity supervisor;
 
     @ManyToOne
     @JoinColumn(name = "id_empresa",referencedColumnName = "id")
+    @JsonIgnore
     private EmpresaEntity empresa;
+
 
     @OneToMany
     @JoinColumn(name="id_entregador", referencedColumnName = "id_pessoa")

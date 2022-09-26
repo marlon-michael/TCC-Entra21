@@ -11,5 +11,4 @@ public class EmpresaDTO {
     private String razaoSocial;
     private PessoaDTO gerente;
 
-
 }
