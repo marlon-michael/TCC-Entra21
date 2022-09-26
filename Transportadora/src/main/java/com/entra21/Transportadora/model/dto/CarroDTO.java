@@ -10,5 +10,5 @@ public class CarroDTO {
     private Long idCarro;
     private String tipoCarro;
     private String placa;
-    private EmpresaDTO empresaCarro;
+    private GetAllEmpresasDTO empresaCarro;
 }

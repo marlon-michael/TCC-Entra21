@@ -39,13 +39,13 @@ public class ItemService {
             cr2.setSobrenome(fr.getPessoa().getSobrenome());
 
 
-            if (fr.getPessoa() == null){
-                return dto;
-            }else{
-                dto.setPessoaItem(cr2);
-                return dto;
-            }
-
+//            if (fr.getPessoa() == null){
+//                return dto;
+//            }else{
+//                dto.setPessoaItem(cr2);
+//                return dto;
+//            }
+            return dto;
 
         }).collect(Collectors.toList());
     }
@@ -54,7 +54,7 @@ public class ItemService {
 
     public void saveItem(ItemDTO input) {
         ItemEntity newEntity = new ItemEntity();
-        newEntity.setIdItem(input.getIdItem());
+//        newEntity.setIdItem(input.getIdItem());
         newEntity.setLocalizador(input.getLocalizador());
         newEntity.setLocalEntrega(input.getLocalEntrega());
         newEntity.setNomeRecebedor(input.getNomeRecebedor());
@@ -80,8 +80,7 @@ public class ItemService {
     }
 
     public ItemDTO updateStatusItem(Long id, String novoStatus) {
-        ItemEntity e = itemRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Item não encontrado!"));
+        ItemEntity e = itemRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Item não encontrado!"));
         e.setStatus(novoStatus);
         e = itemRepository.save(e);
         ItemDTO dto = new ItemDTO();
@@ -91,8 +90,7 @@ public class ItemService {
     }
 
     public ItemDTO updateAllItem(Long id, ItemDTO itemDTO) {
-        ItemEntity e = itemRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Item não encontrado!"));
+        ItemEntity e = itemRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Item não encontrado!"));
         e.setStatus(itemDTO.getStatus());
         e.setNomeRecebedor(itemDTO.getNomeRecebedor());
         e.setLocalizador(itemDTO.getLocalizador());

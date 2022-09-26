@@ -50,6 +50,7 @@ public class EmpresaService {
         cr2.setCpf(er.getGerente().getCpf());
         cr2.setTelefone(er.getGerente().getTelefone());
         cr2.setSobrenome(er.getGerente().getSobrenome());
+        cr2.setIdPessoa(er.getGerente().getIdPessoa());
 dtoempresa.setNomeGerente(cr2);
                 return dtoempresa;
             }).collect(Collectors.toList());

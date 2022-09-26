@@ -35,8 +35,8 @@ public class CarroRestController {
 
 
     @DeleteMapping("/{id}")
-    public void deleteCarros(@PathVariable(name = "id") Long id) {
-        carroService.deleteCarros(id);
+    public void deleteCarros(@PathVariable(name = "id") Long idEmpresa) {
+        carroService.deleteCarros(idEmpresa);
     }
 
 

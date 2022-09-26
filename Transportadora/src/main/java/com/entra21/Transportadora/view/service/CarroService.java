@@ -2,6 +2,7 @@ package com.entra21.Transportadora.view.service;
 
 import com.entra21.Transportadora.model.dto.CarroDTO;
 import com.entra21.Transportadora.model.dto.EmpresaDTO;
+import com.entra21.Transportadora.model.dto.GetAllEmpresasDTO;
 import com.entra21.Transportadora.model.dto.PessoaDTO;
 import com.entra21.Transportadora.model.entity.CarroEntity;
 import com.entra21.Transportadora.model.entity.EmpresaEntity;
@@ -31,8 +32,8 @@ public class CarroService {
         carroRepository.save(newEntity);
     }
 
-    public void deleteCarros(Long id) {
-        carroRepository.deleteById(id);
+    public void deleteCarros(Long idEmpresa) {
+        carroRepository.deleteById(idEmpresa);
     }
 
     public List<CarroDTO> getAllCarros() {
@@ -44,7 +45,7 @@ public class CarroService {
             dtocarro.setPlaca(cr.getPlaca());
             dtocarro.setIdCarro(cr.getIdCarro());
 
-            EmpresaDTO cr1 = new EmpresaDTO();
+            GetAllEmpresasDTO cr1 = new GetAllEmpresasDTO();
             cr1.setRazaoSocial(cr.getEmpresa().getRazaoSocial());
 
 
@@ -54,7 +55,7 @@ public class CarroService {
             cr2.setTelefone(cr.getEmpresa().getGerente().getTelefone());
             cr2.setSobrenome(cr.getEmpresa().getGerente().getSobrenome());
 
-            cr1.setGerente(cr2);
+            cr1.setNomeGerente(cr2);
             dtocarro.setEmpresaCarro(cr1);
 
           return dtocarro;
@@ -67,12 +68,17 @@ public class CarroService {
     public CarroDTO updateCarro(Long idcarronv, CarroDTO carroDTO) {
         CarroEntity e = carroRepository.findById(idcarronv).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Carro não encontrada!"));
 //        e.setIdCarro(idcarronv);
+
         e.setTipoCarro(carroDTO.getTipoCarro());
         e.setPlaca(carroDTO.getPlaca());
+        EmpresaEntity ent = new EmpresaEntity();
+        ent.setIdEmpresa(carroDTO.getEmpresaCarro().getIdEmpresa());
+        e.setEmpresa(ent);
+        e = carroRepository.save(e);
 
 //        e.setEmpresa(carroDTO.getEmpresaCarro());
-        e = carroRepository.save(e);
-        carroDTO.setIdCarro(e.getIdCarro());
+//        e = carroRepository.save(e);
+//        carroDTO.setIdCarro(e.getIdCarro());
 //        CarroDTO dto = new CarroDTO();
 //        dto.setIdCarro(e.getIdCarro());
 //        dto.setTipoCarro(e.getTipoCarro());
