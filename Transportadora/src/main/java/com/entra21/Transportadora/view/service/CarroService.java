@@ -1,8 +1,6 @@
 package com.entra21.Transportadora.view.service;
 
-import com.entra21.Transportadora.model.dto.CarroDTO;
-import com.entra21.Transportadora.model.dto.EmpresaDTO;
-import com.entra21.Transportadora.model.dto.PessoaDTO;
+import com.entra21.Transportadora.model.dto.*;
 import com.entra21.Transportadora.model.entity.CarroEntity;
 import com.entra21.Transportadora.model.entity.EmpresaEntity;
 import com.entra21.Transportadora.model.entity.PessoaEntity;
@@ -23,12 +21,13 @@ public class CarroService {
     private CarroRepository carroRepository;
 
     public void saveCarros(CarroDTO input) {
-        CarroEntity newEntity = new CarroEntity();
-        newEntity.setIdCarro(input.getIdCarro());
-        newEntity.setTipoCarro(input.getTipoCarro());
-        newEntity.setPlaca(input.getPlaca());
-//       newEntity.setEmpresa(input.getEmpresaCarro());
-        carroRepository.save(newEntity);
+        CarroEntity newCarro = new CarroEntity();
+        newCarro.setTipoCarro(input.getTipoCarro());
+        newCarro.setPlaca(input.getPlaca());
+        EmpresaEntity newEmpresa = new EmpresaEntity();
+        newEmpresa.setIdEmpresa(input.getEmpresaCarro().getIdEmpresa());
+        newCarro.setEmpresa(newEmpresa);
+        carroRepository.save(newCarro);
     }
 
     public void deleteCarros(Long id) {
@@ -43,10 +42,11 @@ public class CarroService {
             dtocarro.setTipoCarro(cr.getTipoCarro());
             dtocarro.setPlaca(cr.getPlaca());
 
-            EmpresaDTO cr1 = new EmpresaDTO();
+            EmpresaAddDTO cr1 = new EmpresaAddDTO();
+            cr1.setIdEmpresa(cr.getEmpresa().getIdEmpresa());
             cr1.setRazaoSocial(cr.getEmpresa().getRazaoSocial());
 
-            PessoaDTO cr2 = new PessoaDTO();
+            PessoaPayLoadDTO cr2 = new PessoaPayLoadDTO();
             cr2.setNome(cr.getEmpresa().getGerente().getNome());
             cr2.setCpf(cr.getEmpresa().getGerente().getCpf());
             cr2.setTelefone(cr.getEmpresa().getGerente().getTelefone());
@@ -59,22 +59,16 @@ public class CarroService {
         }).collect(Collectors.toList());
 
     }
-// private String tipoCarro;
-//    private String placa;
-//    private EmpresaEntity empresaCarro;
+
     public CarroDTO updateCarro(Long idcarronv, CarroDTO carroDTO) {
         CarroEntity e = carroRepository.findById(idcarronv).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Carro não encontrada!"));
-//        e.setIdCarro(idcarronv);
+
         e.setTipoCarro(carroDTO.getTipoCarro());
         e.setPlaca(carroDTO.getPlaca());
-//        e.setEmpresa(carroDTO.getEmpresaCarro());
+        EmpresaEntity ent = new EmpresaEntity();
+        ent.setIdEmpresa(carroDTO.getEmpresaCarro().getIdEmpresa());
+        e.setEmpresa(ent);
         e = carroRepository.save(e);
-        carroDTO.setIdCarro(e.getIdCarro());
-//        CarroDTO dto = new CarroDTO();
-//        dto.setIdCarro(e.getIdCarro());
-//        dto.setTipoCarro(e.getTipoCarro());
-//        dto.setPlaca(e.getPlaca());
-//        dto.setEmpresaCarro(e.getEmpresa());
         return carroDTO;
     }
 }

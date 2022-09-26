@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @RestController
 @RequestMapping("/trecho")
 public class TrechoRestController {
+
     @Autowired
     TrechoService trechoService;
 
@@ -31,4 +33,6 @@ public class TrechoRestController {
                               @RequestBody TrechoDTO trechoDTO) {
         return trechoService.updateTrecho(id,trechoDTO);
     }
+
 }
+

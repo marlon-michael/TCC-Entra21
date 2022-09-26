@@ -21,14 +21,13 @@ public class EmpresaRestController {
     private EmpresaService empresaService;
 
     @GetMapping
-    public List<GetAllEmpresasDTO> getEmpresa(){
+    public List<EmpresaDTO> getEmpresa(){
         return empresaService.getAllEmpresas();
     }
 
-
     @PostMapping
-    public void addEmpresa(@RequestBody EmpresaAddDTO empresaAddDTO){
-        empresaService.saveEmpresas(empresaAddDTO);
+    public void addEmpresa(@RequestBody EmpresaAddDTO empresaDTO){
+        empresaService.saveEmpresas(empresaDTO);
     }
 
     @DeleteMapping("/{id}")
@@ -36,10 +35,9 @@ public class EmpresaRestController {
         empresaService.deleteEmpresa(idEmpresa);
     }
 
-
     @PutMapping("/{id}")
-    public EmpresaDTO updateEmpresa(@PathVariable(name = "id") Long idEmpresanv,
+    public EmpresaAddDTO updateEmpresa(@PathVariable(name = "id") Long idEmpresanv,
                                 @RequestBody EmpresaAddDTO empresaDTO) {
-        return empresaService.updateEmpresa(idEmpresanv,  empresaDTO);
+        return empresaService.updateEmpresa(idEmpresanv, empresaDTO);
     }
 }

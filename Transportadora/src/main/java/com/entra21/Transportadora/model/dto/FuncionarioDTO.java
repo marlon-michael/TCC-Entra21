@@ -9,6 +9,6 @@ import java.util.List;
 @Data
 public class FuncionarioDTO {
     private Long idFuncionario;
-    private PessoaDTO supervisorFuncionario;
+    private FuncionarioDTO supervisorFuncionario;
     private EmpresaDTO empresaFuncionario;
 }
