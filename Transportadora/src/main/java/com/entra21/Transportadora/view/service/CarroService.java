@@ -1,11 +1,11 @@
 package com.entra21.Transportadora.view.service;
 
 import com.entra21.Transportadora.model.dto.*;
+import com.entra21.Transportadora.model.dto.CarroDTO;
+import com.entra21.Transportadora.model.dto.PessoaDTO;
 import com.entra21.Transportadora.model.entity.CarroEntity;
 import com.entra21.Transportadora.model.entity.EmpresaEntity;
-import com.entra21.Transportadora.model.entity.PessoaEntity;
 import com.entra21.Transportadora.view.repository.CarroRepository;
-import com.entra21.Transportadora.view.repository.EmpresaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -30,20 +30,16 @@ public class CarroService {
         carroRepository.save(newCarro);
     }
 
-    public void deleteCarros(Long id) {
-        carroRepository.deleteById(id);
+    public void deleteCarros(Long idEmpresa) {
+        carroRepository.deleteById(idEmpresa);
     }
 
     public List<CarroDTO> getAllCarros() {
-
       return   carroRepository.findAll().stream().map(cr -> {
-
             CarroDTO dtocarro = new CarroDTO();
             dtocarro.setTipoCarro(cr.getTipoCarro());
             dtocarro.setPlaca(cr.getPlaca());
-
             EmpresaAddDTO cr1 = new EmpresaAddDTO();
-            cr1.setIdEmpresa(cr.getEmpresa().getIdEmpresa());
             cr1.setRazaoSocial(cr.getEmpresa().getRazaoSocial());
 
             PessoaPayLoadDTO cr2 = new PessoaPayLoadDTO();
@@ -55,14 +51,12 @@ public class CarroService {
             cr1.setGerente(cr2);
             dtocarro.setEmpresaCarro(cr1);
 
-          return dtocarro;
+            return dtocarro;
         }).collect(Collectors.toList());
-
     }
 
     public CarroDTO updateCarro(Long idcarronv, CarroDTO carroDTO) {
         CarroEntity e = carroRepository.findById(idcarronv).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Carro não encontrada!"));
-
         e.setTipoCarro(carroDTO.getTipoCarro());
         e.setPlaca(carroDTO.getPlaca());
         EmpresaEntity ent = new EmpresaEntity();

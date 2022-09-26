@@ -8,4 +8,5 @@ public class EntregaDTO {
     private Long idEntrega;
     private String tipoEntrega;
     private PessoaDTO NomeEntregador;
+    private EntregaTrechoDTO EntregaTrecho;
 }

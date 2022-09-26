@@ -2,6 +2,7 @@ package com.entra21.Transportadora.view.service;
 import com.entra21.Transportadora.model.dto.*;
 import com.entra21.Transportadora.model.entity.EntregaEntity;
 import com.entra21.Transportadora.view.repository.EntregaRepository;
+import com.entra21.Transportadora.view.repository.EntregaTrechoRepository;
 import com.entra21.Transportadora.view.repository.FuncionarioRepository;
 import com.entra21.Transportadora.view.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ public class EntregaService {
     private PessoaRepository pessoaRepository;
     @Autowired
     private FuncionarioRepository funcionarioRepository;
+    @Autowired
+    private EntregaTrechoRepository trechoRepository;
 
     public void saveEntrega(EntregaDTO inputEntrega) {
         EntregaEntity newEntityentrega = new EntregaEntity();
@@ -38,20 +41,37 @@ public class EntregaService {
         entregaRepository.deleteById(idEntrega);
     }
 
-//    public List<EntregaDTO> getAllEntrega() {
-//        return entregaRepository.findAll().stream().map(er -> {
-//            EntregaDTO dtoentrega = new EntregaDTO();
-//            dtoentrega.setIdEntrega(er.getIdEntrega());
-//            dtoentrega.setTipoEntrega(er.getTipoEntrega());
+    public List<EntregaDTO> getAllEntrega() {
+        return entregaRepository.findAll().stream().map(er -> {
+//            trechoRepository.findAll().stream().map(br -> {
+            EntregaDTO dtoentrega = new EntregaDTO();
+            dtoentrega.setIdEntrega(er.getIdEntrega());
+            dtoentrega.setTipoEntrega(er.getTipoEntrega());
 //            dtoentrega.setNomeEntregador();
 //            dtoentrega.setNomeEntregador(er.getEntregador().getSobrenome());
 //            dtoentrega.setNomeEntregador(er.getEntregador().getCpf());
 //            dtoentrega.setNomeEntregador(er.getEntregador().getTelefone());
 //            dtoentrega.setNomeEntregador(er.getEntregador().getEmpresa().getRazaoSocial());
-//            return dtoentrega;
-//        }).collect(Collectors.toList());
-//    }
+            EntregaTrechoDTO entregaTrechoDTO = new EntregaTrechoDTO();
+            entregaTrechoDTO.setCompleto(entregaTrechoDTO.getCompleto());
+                entregaTrechoDTO.setDataInicio(entregaTrechoDTO.getDataInicio());
+                entregaTrechoDTO.setDataFim(entregaTrechoDTO.getDataFim());
 
+            dtoentrega.setEntregaTrecho(entregaTrechoDTO);
+
+
+            PessoaDTO cr2 = new PessoaDTO();
+            cr2.setNome(er.getEntregador().getNome());
+            cr2.setCpf(er.getEntregador().getCpf());
+            cr2.setTelefone(er.getEntregador().getTelefone());
+            cr2.setSobrenome(er.getEntregador().getSobrenome());
+            dtoentrega.setNomeEntregador(cr2);
+            return dtoentrega;
+
+//        }).collect(Collectors.toList());
+
+    }).collect(Collectors.toList());
+    }
 
 //    public EntregaDTO updateEntrega(Long idEntregaNv, EntregaDTO entregaAddDTO) {
 //        EntregaDTO entregaDTO = new EntregaDTO();

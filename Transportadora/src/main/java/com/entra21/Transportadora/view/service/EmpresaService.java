@@ -65,6 +65,7 @@ public class EmpresaService {
         }).collect(Collectors.toList());
     }
 
+
     public EmpresaAddDTO updateEmpresa (Long idEmpresanv, EmpresaAddDTO empresaDTO){
         EmpresaEntity e = empresaRepository.findById(idEmpresanv).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa não encontrada!"));
         PessoaPayLoadDTO pessoaDTO = new PessoaPayLoadDTO();
@@ -72,10 +73,8 @@ public class EmpresaService {
         e.setRazaoSocial(empresaDTO.getRazaoSocial());
         pessoaDTO.setIdPessoa(empresaDTO.getGerente().getIdPessoa());
         e = empresaRepository.save(e);
-
         empresaDTO.setGerente(pessoaDTO);
         empresaDTO.setIdEmpresa(e.getIdEmpresa());
         return empresaDTO;
     }
-
 }
