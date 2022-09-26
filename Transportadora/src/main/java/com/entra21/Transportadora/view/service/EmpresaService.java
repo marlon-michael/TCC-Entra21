@@ -65,6 +65,9 @@ public class EmpresaService {
                 e.setIdEmpresa(empresaDTO.getIdEmpresa());
                 e.setRazaoSocial(empresaDTO.getRazaoSocial());
                 pessoaDTO.setNome(empresaDTO.getGerente().getNome());
+                pessoaDTO.setSobrenome(empresaDTO.getGerente().getSobrenome());
+                pessoaDTO.setTelefone(empresaDTO.getGerente().getTelefone());
+                pessoaDTO.setCpf(empresaDTO.getGerente().getCpf());
                 empresaDTO.setGerente(pessoaDTO);
                 e.setIdGerente(e.getIdGerente());
                 e = empresaRepository.save(e);
