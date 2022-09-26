@@ -7,6 +7,7 @@ import java.util.List;
 
 @Data
 public class CarroDTO {
+    private Long idEmpresa;
     private String tipoCarro;
     private String placa;
     private EmpresaAddDTO empresaCarro;

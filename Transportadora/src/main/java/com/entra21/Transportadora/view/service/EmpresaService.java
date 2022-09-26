@@ -54,6 +54,9 @@ public class EmpresaService {
                     dtoempresa.setRazaoSocial(er.getRazaoSocial());
                     pessoaDTO.setNome(er.getIdGerente().getNome());
                     dtoempresa.setGerente(pessoaDTO);
+                    pessoaDTO.setSobrenome(dtoempresa.getGerente().getSobrenome());
+                    pessoaDTO.setTelefone(dtoempresa.getGerente().getTelefone());
+                    pessoaDTO.setCpf(dtoempresa.getGerente().getCpf());
 //                pessoaDTO.setNome(pessoaDTO.getNome());
                     return dtoempresa;
                 }).collect(Collectors.toList());
@@ -64,10 +67,8 @@ public class EmpresaService {
                 PessoaDTO pessoaDTO = new PessoaDTO();
                 e.setIdEmpresa(empresaDTO.getIdEmpresa());
                 e.setRazaoSocial(empresaDTO.getRazaoSocial());
-                pessoaDTO.setNome(empresaDTO.getGerente().getNome());
-                pessoaDTO.setSobrenome(empresaDTO.getGerente().getSobrenome());
-                pessoaDTO.setTelefone(empresaDTO.getGerente().getTelefone());
-                pessoaDTO.setCpf(empresaDTO.getGerente().getCpf());
+                pessoaDTO.setIdPessoa(empresaDTO.getGerente().getIdPessoa());
+
                 empresaDTO.setGerente(pessoaDTO);
                 e.setIdGerente(e.getIdGerente());
                 e = empresaRepository.save(e);

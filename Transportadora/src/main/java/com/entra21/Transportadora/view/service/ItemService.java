@@ -1,11 +1,14 @@
 package com.entra21.Transportadora.view.service;
 
 import com.entra21.Transportadora.model.dto.ItemDTO;
+import com.entra21.Transportadora.model.dto.PessoaDTO;
 import com.entra21.Transportadora.model.entity.ItemEntity;
+import com.entra21.Transportadora.model.entity.PessoaEntity;
 import com.entra21.Transportadora.view.repository.ItemRepository;
 import com.entra21.Transportadora.view.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -32,7 +35,12 @@ public class ItemService {
             if (fr.getPessoa() == null){
                 return dto;
             }else{
-                dto.setPessoaItem(fr.getPessoa().getIdPessoa());
+                PessoaDTO pessoaDTO = new PessoaDTO();
+                pessoaDTO.setNome(dto.getPessoaItem().getNome());
+                pessoaDTO.setSobrenome(dto.getPessoaItem().getSobrenome());
+                pessoaDTO.setTelefone(dto.getPessoaItem().getTelefone());
+                pessoaDTO.setCpf(dto.getPessoaItem().getCpf());
+                dto.setPessoaItem(pessoaDTO);
                 return dto;
             }
 
@@ -46,7 +54,7 @@ public class ItemService {
         newEntity.setLocalEntrega(input.getLocalEntrega());
         newEntity.setNomeRecebedor(input.getNomeRecebedor());
         newEntity.setStatus(input.getStatus());
-        newEntity.setPessoa(pessoaRepository.findById(input.getPessoaItem()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST)));
+        newEntity.setPessoa(pessoaRepository.findById(input.getPessoaItem().getIdPessoa()).get());
         itemRepository.save(newEntity);
     }
 
@@ -73,8 +81,9 @@ public class ItemService {
         e.setNomeRecebedor(itemDTO.getNomeRecebedor());
         e.setLocalizador(itemDTO.getLocalizador());
         e.setLocalEntrega(itemDTO.getLocalEntrega());
-        e.setPessoa(pessoaRepository.findById(itemDTO.getPessoaItem()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST)));
-        e = itemRepository.save(e);
+       PessoaEntity pessoaDTO = new PessoaEntity();
+        pessoaDTO.setIdPessoa(e.getPessoa().getIdPessoa());
+        e.setPessoa(pessoaDTO);
         itemDTO.setIdItem(e.getIdItem());
         return itemDTO;
     }
