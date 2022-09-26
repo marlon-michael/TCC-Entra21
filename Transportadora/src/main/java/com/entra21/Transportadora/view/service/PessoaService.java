@@ -50,6 +50,7 @@ public class PessoaService implements UserDetailsService{
             dto.setSobrenome(pr.getSobrenome());
             dto.setCpf(pr.getCpf());
             dto.setTelefone(pr.getTelefone());
+
 //            dto.setLogin(pr.getLogin());
 //            dto.setSenha(pr.getSenha());
 //            dto.setDesabilitado(pr.getDesabilitado());
@@ -74,13 +75,14 @@ public class PessoaService implements UserDetailsService{
 
     public void save(PessoaPayLoadDTO input) {
         PessoaEntity newEntity = new PessoaEntity();
-        newEntity.setIdPessoa(input.getIdPessoa());
+//        newEntity.setIdPessoa(input.getIdPessoa());
         newEntity.setNome(input.getNome());
         newEntity.setSobrenome(input.getSobrenome());
         newEntity.setTelefone(input.getTelefone());
         newEntity.setCpf(input.getCpf());
         newEntity.setLogin(input.getLogin());
         newEntity.setSenha(input.getSenha());
+        newEntity.setDesabilitado(input.getDesabilitado());
         pessoaRepository.save(newEntity);
     }
 
@@ -104,6 +106,7 @@ public class PessoaService implements UserDetailsService{
         e.setCpf(pessoaPayLoadDTO.getCpf());
         e.setLogin(pessoaPayLoadDTO.getLogin());
         e.setSenha(pessoaPayLoadDTO.getSenha());
+        e.setDesabilitado(pessoaPayLoadDTO.getDesabilitado());
         e = pessoaRepository.save(e);
 //        pessoaDTO.setIdPessoa(e.getIdPessoa());
         PessoaPayLoadDTO dto = new PessoaPayLoadDTO();
@@ -114,6 +117,7 @@ public class PessoaService implements UserDetailsService{
         dto.setCpf(e.getCpf());
         dto.setLogin(e.getLogin());
         dto.setSenha(e.getSenha());
+        dto.setDesabilitado(e.getDesabilitado());
         return pessoaPayLoadDTO;
     }
 

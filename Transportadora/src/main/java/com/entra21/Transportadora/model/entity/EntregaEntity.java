@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 @Data
-//@JsonIgnoreProperties({"hibernateLazyInitializer"})
+//@JsonIgnoreProperties({"hibernateLazyInitializer"}) ? ? ? ? ? ? ?
 @Entity
 @Table(name = "entrega")
 public class EntregaEntity {
@@ -24,6 +24,7 @@ public class EntregaEntity {
 
     @ManyToOne
     @JoinColumn(name="id_entregador", referencedColumnName = "id_pessoa")
+    @JsonIgnore
     private FuncionarioEntity entregador;
 
     @ManyToMany
