@@ -10,7 +10,7 @@ import java.util.List;
 @PrimaryKeyJoinColumn(name = "id_pessoa")
 public class FuncionarioEntity extends PessoaEntity{
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_supervisor",referencedColumnName = "id_pessoa")
     private FuncionarioEntity supervisor;
 

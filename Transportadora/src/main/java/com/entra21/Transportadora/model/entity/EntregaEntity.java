@@ -24,7 +24,6 @@ public class EntregaEntity {
 
     @ManyToOne
     @JoinColumn(name="id_entregador", referencedColumnName = "id_pessoa")
-    @JsonIgnore
     private FuncionarioEntity entregador;
 
     @ManyToMany
