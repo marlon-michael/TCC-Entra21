@@ -76,5 +76,14 @@ public class FuncionarioService {
         q.executeUpdate();
     }
 
+    public FuncionarioPayLoadDTO updateAllFuncionario(Long id, FuncionarioPayLoadDTO funcionarioPayLoadDTO) {
+        FuncionarioEntity e = funcionarioRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Funcionario não encontrado!"));
+        e.setSupervisor(funcionarioRepository.findById(funcionarioPayLoadDTO.getIdSupervisor()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST)));
+        e.setEmpresa(empresaRepository.findById(funcionarioPayLoadDTO.getIdEmpresa()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST)));
+        e = funcionarioRepository.save(e);
+        funcionarioPayLoadDTO.setIdPessoa(e.getIdPessoa());
+        return funcionarioPayLoadDTO;
+    }
 
 }

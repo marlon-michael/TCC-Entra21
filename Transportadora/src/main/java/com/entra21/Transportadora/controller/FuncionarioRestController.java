@@ -2,6 +2,7 @@ package com.entra21.Transportadora.controller;
 
 import com.entra21.Transportadora.model.dto.FuncionarioDTO;
 import com.entra21.Transportadora.model.dto.FuncionarioPayLoadDTO;
+import com.entra21.Transportadora.model.dto.ItemDTO;
 import com.entra21.Transportadora.model.entity.PessoaEntity;
 import com.entra21.Transportadora.view.service.FuncionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +29,9 @@ public class FuncionarioRestController {
    ){
       funcionarioService.saveFuncionario(funcionarioPayLoadDTO);
    }
-//
-////    @Autowired
-////    private FuncionarioRepository funcionarioRepository;
-//
-////    @GetMapping
-////    public List<FuncionarioEntity> getAllFuncionarios(){
-////        return funcionarioRepository.findAll();
-////    }
+   @PutMapping("/{id}")
+   public FuncionarioPayLoadDTO updateAllFuncionario(@PathVariable(name = "id") Long id,
+                             @RequestBody FuncionarioPayLoadDTO funcionarioPayLoadDTO) {
+      return funcionarioService.updateAllFuncionario(id, funcionarioPayLoadDTO);
+   }
 }
