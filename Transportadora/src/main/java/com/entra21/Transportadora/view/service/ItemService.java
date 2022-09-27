@@ -31,7 +31,6 @@ public class ItemService {
             dto.setLocalEntrega(fr.getLocalEntrega());
             dto.setNomeRecebedor(fr.getNomeRecebedor());
             dto.setStatus(fr.getStatus());
-
             if (fr.getPessoa() == null){
                 return dto;
             }else{
@@ -55,8 +54,6 @@ public class ItemService {
         newEntity.setLocalEntrega(input.getLocalEntrega());
         newEntity.setNomeRecebedor(input.getNomeRecebedor());
         newEntity.setStatus(input.getStatus());
-//        newEntity.setPessoa(pessoaRepository.findById(input.getPessoaItem().getIdPessoa()).get());
-
 //        newEntity.setPessoa(pessoaRepository.findById(input.getPessoaItem().getIdPessoa()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST)));
 //        PessoaDTO cr2 = new PessoaDTO();
 //        cr2.setNome(newEntity.getPessoa().getNome());
@@ -93,6 +90,11 @@ public class ItemService {
         e.setNomeRecebedor(itemDTO.getNomeRecebedor());
         e.setLocalizador(itemDTO.getLocalizador());
         e.setLocalEntrega(itemDTO.getLocalEntrega());
+
+        PessoaEntity pessoaDTO = new PessoaEntity();
+        pessoaDTO.setIdPessoa(e.getPessoa().getIdPessoa());
+        e.setPessoa(pessoaDTO);
+        itemDTO.setIdItem(e.getIdItem());
         e.setPessoa(pessoaRepository.findById(itemDTO.getPessoaItem().getIdPessoa()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST)));
         e = itemRepository.save(e);
 //        itemDTO.setIdItem(e.getIdItem());
