@@ -7,7 +7,7 @@ import java.util.List;
 
 @Data
 public class EmpresaDTO {
-    private Long idEmpresa;
+
     private String razaoSocial;
     private PessoaDTO gerente;
 

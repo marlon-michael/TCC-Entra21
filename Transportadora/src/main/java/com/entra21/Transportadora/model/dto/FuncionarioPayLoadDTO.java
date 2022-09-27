@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 public class FuncionarioPayLoadDTO {
-    private Long id;
-    private FuncionarioPayLoadDTO supervisorFuncionario;
-    private EmpresaAddDTO empresaFuncionario;
+    private Long idPessoa;
+    private Long idEmpresa;
+    private Long idSupervisor;
 }

@@ -12,22 +12,22 @@ import java.util.List;
 @RestController
 @RequestMapping("/funcionario")
 public class FuncionarioRestController {
-//
-//   @Autowired
-//   FuncionarioService funcionarioService;
-//
-//
-//   @GetMapping
-//   public List<FuncionarioDTO> getAllFuncionario() {
-//       return funcionarioService.getAllFuncionario();
-//   }
-//
-//   @PostMapping
-//   public void addFuncionario(
-//           @RequestBody FuncionarioPayLoadDTO funcionarioPayLoadDTO
-//   ){
-//      funcionarioService.saveFuncionario( funcionarioPayLoadDTO);
-//   }
+
+   @Autowired
+   FuncionarioService funcionarioService;
+
+
+   @GetMapping
+   public List<FuncionarioDTO> getAllFuncionario() {
+       return funcionarioService.getAllFuncionario();
+   }
+
+   @PostMapping
+   public void addFuncionario(
+           @RequestBody FuncionarioPayLoadDTO funcionarioPayLoadDTO
+   ){
+      funcionarioService.saveFuncionario(funcionarioPayLoadDTO);
+   }
 //
 ////    @Autowired
 ////    private FuncionarioRepository funcionarioRepository;
