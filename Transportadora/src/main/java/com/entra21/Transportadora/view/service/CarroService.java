@@ -39,6 +39,7 @@ public class CarroService {
             dtocarro.setPlaca(cr.getPlaca());
             EmpresaDTO cr1 = new EmpresaDTO();
             cr1.setRazaoSocial(cr.getEmpresa().getRazaoSocial());
+
             PessoaDTO cr2 = new PessoaDTO();
             cr2.setNome(cr.getEmpresa().getGerente().getNome());
             cr2.setCpf(cr.getEmpresa().getGerente().getCpf());
