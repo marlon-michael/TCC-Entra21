@@ -47,13 +47,14 @@ public class CarroService {
 
             GetAllEmpresasDTO cr1 = new GetAllEmpresasDTO();
             cr1.setRazaoSocial(cr.getEmpresa().getRazaoSocial());
-
+            cr1.setIdEmpresa(cr.getEmpresa().getIdEmpresa());
 
             PessoaDTO cr2 = new PessoaDTO();
             cr2.setNome(cr.getEmpresa().getGerente().getNome());
             cr2.setCpf(cr.getEmpresa().getGerente().getCpf());
             cr2.setTelefone(cr.getEmpresa().getGerente().getTelefone());
             cr2.setSobrenome(cr.getEmpresa().getGerente().getSobrenome());
+            cr2.setIdPessoa(cr.getEmpresa().getGerente().getIdPessoa());
 
             cr1.setNomeGerente(cr2);
             dtocarro.setEmpresaCarro(cr1);
@@ -67,14 +68,16 @@ public class CarroService {
 //    private EmpresaEntity empresaCarro;
     public CarroDTO updateCarro(Long idcarronv, CarroDTO carroDTO) {
         CarroEntity e = carroRepository.findById(idcarronv).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Carro não encontrada!"));
-//        e.setIdCarro(idcarronv);
-
         e.setTipoCarro(carroDTO.getTipoCarro());
         e.setPlaca(carroDTO.getPlaca());
         EmpresaEntity ent = new EmpresaEntity();
         ent.setIdEmpresa(carroDTO.getEmpresaCarro().getIdEmpresa());
         e.setEmpresa(ent);
         e = carroRepository.save(e);
+
+        return carroDTO;
+    }
+}
 
 //        e.setEmpresa(carroDTO.getEmpresaCarro());
 //        e = carroRepository.save(e);
@@ -84,6 +87,3 @@ public class CarroService {
 //        dto.setTipoCarro(e.getTipoCarro());
 //        dto.setPlaca(e.getPlaca());
 //        dto.setEmpresaCarro(e.getEmpresa());
-        return carroDTO;
-    }
-}
