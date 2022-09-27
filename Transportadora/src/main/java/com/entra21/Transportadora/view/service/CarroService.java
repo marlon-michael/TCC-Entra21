@@ -1,8 +1,6 @@
 package com.entra21.Transportadora.view.service;
 
-import com.entra21.Transportadora.model.dto.CarroDTO;
-import com.entra21.Transportadora.model.dto.GetAllEmpresasDTO;
-import com.entra21.Transportadora.model.dto.PessoaDTO;
+import com.entra21.Transportadora.model.dto.*;
 import com.entra21.Transportadora.model.entity.CarroEntity;
 import com.entra21.Transportadora.model.entity.EmpresaEntity;
 import com.entra21.Transportadora.view.repository.CarroRepository;
@@ -20,7 +18,7 @@ public class CarroService {
     @Autowired
     private CarroRepository carroRepository;
 
-    public void saveCarros(CarroDTO input) {
+    public void saveCarros(CarroAddDTO input) {
         CarroEntity newCarro = new CarroEntity();
         newCarro.setTipoCarro(input.getTipoCarro());
         newCarro.setPlaca(input.getPlaca());
@@ -39,20 +37,20 @@ public class CarroService {
             CarroDTO dtocarro = new CarroDTO();
             dtocarro.setTipoCarro(cr.getTipoCarro());
             dtocarro.setPlaca(cr.getPlaca());
-            GetAllEmpresasDTO cr1 = new GetAllEmpresasDTO();
+            EmpresaDTO cr1 = new EmpresaDTO();
             cr1.setRazaoSocial(cr.getEmpresa().getRazaoSocial());
             PessoaDTO cr2 = new PessoaDTO();
             cr2.setNome(cr.getEmpresa().getGerente().getNome());
             cr2.setCpf(cr.getEmpresa().getGerente().getCpf());
             cr2.setTelefone(cr.getEmpresa().getGerente().getTelefone());
             cr2.setSobrenome(cr.getEmpresa().getGerente().getSobrenome());
-            cr1.setNomeGerente(cr2);
+            cr1.setGerente(cr2);
             dtocarro.setEmpresaCarro(cr1);
             return dtocarro;
         }).collect(Collectors.toList());
     }
 
-    public CarroDTO updateCarro(Long idcarronv, CarroDTO carroDTO) {
+    public CarroAddDTO updateCarro(Long idcarronv, CarroAddDTO carroDTO) {
         CarroEntity e = carroRepository.findById(idcarronv).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Carro não encontrada!"));
 //        e.setIdCarro(idcarronv);
         e.setTipoCarro(carroDTO.getTipoCarro());

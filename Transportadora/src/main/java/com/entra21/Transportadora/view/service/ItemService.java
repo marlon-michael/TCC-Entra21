@@ -2,6 +2,7 @@ package com.entra21.Transportadora.view.service;
 
 import com.entra21.Transportadora.model.dto.ItemDTO;
 import com.entra21.Transportadora.model.dto.PessoaDTO;
+import com.entra21.Transportadora.model.dto.PessoaPayLoadDTO;
 import com.entra21.Transportadora.model.entity.ItemEntity;
 import com.entra21.Transportadora.model.entity.PessoaEntity;
 import com.entra21.Transportadora.view.repository.ItemRepository;
@@ -33,15 +34,15 @@ public class ItemService {
             dto.setStatus(fr.getStatus());
             if (fr.getPessoa() == null){
                 return dto;
-            }else{
+            }
                 PessoaDTO pessoaDTO = new PessoaDTO();
-                pessoaDTO.setNome(dto.getPessoaItem().getNome());
-                pessoaDTO.setSobrenome(dto.getPessoaItem().getSobrenome());
-                pessoaDTO.setTelefone(dto.getPessoaItem().getTelefone());
-                pessoaDTO.setCpf(dto.getPessoaItem().getCpf());
+                pessoaDTO.setNome(fr.getPessoa().getNome());
+                pessoaDTO.setSobrenome(fr.getPessoa().getSobrenome());
+                pessoaDTO.setTelefone(fr.getPessoa().getTelefone());
+                pessoaDTO.setCpf(fr.getPessoa().getCpf());
                 dto.setPessoaItem(pessoaDTO);
                 return dto;
-            }
+
         }).collect(Collectors.toList());
     }
 
@@ -54,19 +55,9 @@ public class ItemService {
         newEntity.setLocalEntrega(input.getLocalEntrega());
         newEntity.setNomeRecebedor(input.getNomeRecebedor());
         newEntity.setStatus(input.getStatus());
-//        newEntity.setPessoa(pessoaRepository.findById(input.getPessoaItem().getIdPessoa()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST)));
-//        PessoaDTO cr2 = new PessoaDTO();
-//        cr2.setNome(newEntity.getPessoa().getNome());
-//        cr2.setCpf(newEntity.getPessoa().getCpf());
-//        cr2.setTelefone(newEntity.getPessoa().getTelefone());
-//        cr2.setSobrenome(newEntity.getPessoa().getSobrenome());
-//
-//        if (input.getPessoaItem() == null){
-//            return ;
-//        }else{
-//            newEntity.setPessoa(cr2.);
-//            return dto;
-//        }
+        PessoaPayLoadDTO pessoa = new PessoaPayLoadDTO();
+        pessoa.setIdPessoa(input.getPessoaItem().getIdPessoa());
+        newEntity.setPessoa(pessoa);
         itemRepository.save(newEntity);
     }
 
@@ -97,7 +88,7 @@ public class ItemService {
         itemDTO.setIdItem(e.getIdItem());
         e.setPessoa(pessoaRepository.findById(itemDTO.getPessoaItem().getIdPessoa()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST)));
         e = itemRepository.save(e);
-//        itemDTO.setIdItem(e.getIdItem());
+        itemDTO.setIdItem(e.getIdItem());
         return itemDTO;
     }
 

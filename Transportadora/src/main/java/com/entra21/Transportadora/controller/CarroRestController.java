@@ -1,5 +1,6 @@
 package com.entra21.Transportadora.controller;
 
+import com.entra21.Transportadora.model.dto.CarroAddDTO;
 import com.entra21.Transportadora.model.dto.CarroDTO;
 import com.entra21.Transportadora.model.dto.PessoaDTO;
 import com.entra21.Transportadora.model.entity.CarroEntity;
@@ -39,7 +40,7 @@ public class CarroRestController {
     }
 
     @PostMapping
-    public void addCarro(@RequestBody CarroDTO Newcarro){
+    public void addCarro(@RequestBody CarroAddDTO Newcarro){
         carroService.saveCarros(Newcarro);
     }
 
@@ -50,8 +51,8 @@ public class CarroRestController {
 
 
     @PutMapping("/{id}")
-    public CarroDTO updateCarro(@PathVariable(name = "id") Long idcarronv,
-                                @RequestBody CarroDTO carroDTO) {
+    public CarroAddDTO updateCarro(@PathVariable(name = "id") Long idcarronv,
+                                   @RequestBody CarroAddDTO carroDTO) {
         return carroService.updateCarro(idcarronv,carroDTO);
     }
 
