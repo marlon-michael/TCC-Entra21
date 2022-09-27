@@ -8,7 +8,6 @@ import com.entra21.Transportadora.model.entity.EmpresaEntity;
 import com.entra21.Transportadora.model.entity.PessoaEntity;
 import com.entra21.Transportadora.view.repository.EmpresaRepository;
 import com.entra21.Transportadora.view.repository.PessoaRepository;
-import com.entra21.Transportadora.model.dto.EmpresaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -34,47 +33,35 @@ public class EmpresaService {
 
         empresaRepository.save(newEntity);
     }
-
-    public void deleteEmpresa (Long idEmpresa){
-        empresaRepository.deleteById(idEmpresa);
-    }
-
-    public List<EmpresaDTO> getAllEmpresas () {
+    public List<GetAllEmpresasDTO> getAllEmpresas() {
         return empresaRepository.findAll().stream().map(er -> {
-            EmpresaDTO dtoempresa = new EmpresaDTO();
-            PessoaDTO pessoaDTO = new PessoaDTO();
+            GetAllEmpresasDTO dtoempresa = new GetAllEmpresasDTO();
+            dtoempresa.setIdEmpresa(er.getIdEmpresa());
             dtoempresa.setRazaoSocial(er.getRazaoSocial());
-            pessoaDTO.setNome(er.getGerente().getNome());
-            dtoempresa.setGerente(pessoaDTO);
+//          dtoempresa.setNomeGerente(er.getGerente().getNome());
+
+            PessoaDTO cr2 = new PessoaDTO();
+            cr2.setNome(er.getGerente().getNome());
+            cr2.setCpf(er.getGerente().getCpf());
+            cr2.setTelefone(er.getGerente().getTelefone());
+            cr2.setSobrenome(er.getGerente().getSobrenome());
+            cr2.setIdPessoa(er.getGerente().getIdPessoa());
+            dtoempresa.setNomeGerente(cr2);
             return dtoempresa;
         }).collect(Collectors.toList());
     }
 
-    public List<EmpresaDTO> getAllEmpresasgerente () {
-        return empresaRepository.findAll().stream().map(er -> {
-            EmpresaDTO dtoempresa = new EmpresaDTO();
-            PessoaDTO pessoaDTO = new PessoaDTO();
-            dtoempresa.setRazaoSocial(er.getRazaoSocial());
-            pessoaDTO.setNome(er.getGerente().getNome());
-            dtoempresa.setGerente(pessoaDTO);
-            pessoaDTO.setSobrenome(dtoempresa.getGerente().getSobrenome());
-            pessoaDTO.setTelefone(dtoempresa.getGerente().getTelefone());
-            pessoaDTO.setCpf(dtoempresa.getGerente().getCpf());
-//                pessoaDTO.setNome(pessoaDTO.getNome());
-            return dtoempresa;
-        }).collect(Collectors.toList());
-    }
-
-
-    public EmpresaAddDTO updateEmpresa (Long idEmpresanv, EmpresaAddDTO empresaDTO){
-        EmpresaEntity e = empresaRepository.findById(idEmpresanv).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa não encontrada!"));
-        PessoaPayLoadDTO pessoaDTO = new PessoaPayLoadDTO();
-        e.setIdEmpresa(empresaDTO.getIdEmpresa());
-        e.setRazaoSocial(empresaDTO.getRazaoSocial());
-        pessoaDTO.setIdPessoa(empresaDTO.getGerente().getIdPessoa());
-        e = empresaRepository.save(e);
-        empresaDTO.setGerente(pessoaDTO);
-        empresaDTO.setIdEmpresa(e.getIdEmpresa());
+    public EmpresaDTO updateEmpresa(Long idEmpresanv, EmpresaAddDTO empresaAddDTO) {
+        EmpresaDTO empresaDTO = new EmpresaDTO();
+        empresaRepository.findById(idEmpresanv).ifPresentOrElse(eE -> {
+            pessoaRepository.findById(empresaAddDTO.getGerente().getIdPessoa()).ifPresentOrElse(pE -> {
+                eE.setRazaoSocial(empresaAddDTO.getRazaoSocial());
+                eE.setGerente(pE);
+                empresaDTO.setRazaoSocial(eE.getRazaoSocial());
+                empresaRepository.save(eE);
+            }, () -> {throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Gerente não foi encontrado!");});
+        }, () -> {throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Empresa não foi encontrado!");});
+//            e.setIdEmpresa(empresaAddDTO.getIdEmpresa());
         return empresaDTO;
     }
 }

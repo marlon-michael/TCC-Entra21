@@ -34,19 +34,18 @@ public class FuncionarioService {
 //           }
 //       }).collect(Collectors.toList());
 //   }
-
    public List<FuncionarioDTO> getAllFuncionario() {
        return funcionarioRepository.findAll().stream().map(fr -> {
-           FuncionarioDTO dto = new FuncionarioDTO();
-           dto.setIdFuncionario(fr.getIdPessoa());
+            FuncionarioDTO dto = new FuncionarioDTO();
+            dto.setIdFuncionario(fr.getIdPessoa());
 
-           EmpresaDTO empresaDTO = new EmpresaDTO();
-           PessoaDTO pessoaDTO = new PessoaDTO();
-empresaDTO.setRazaoSocial(fr.getEmpresa().getRazaoSocial());
-empresaDTO.setGerente(dto.getEmpresaFuncionario().getGerente());
-dto.setEmpresaFuncionario(empresaDTO);
+            EmpresaDTO empresaDTO = new EmpresaDTO();
+            PessoaDTO pessoaDTO = new PessoaDTO();
+            empresaDTO.setRazaoSocial(fr.getEmpresa().getRazaoSocial());
+            empresaDTO.setGerente(dto.getEmpresaFuncionario().getGerente());
+            dto.setEmpresaFuncionario(empresaDTO);
 
- return dto;
+            return dto;
        }).collect(Collectors.toList());
    }
 }

@@ -1,7 +1,7 @@
 package com.entra21.Transportadora.view.service;
 
-import com.entra21.Transportadora.model.dto.*;
 import com.entra21.Transportadora.model.dto.CarroDTO;
+import com.entra21.Transportadora.model.dto.GetAllEmpresasDTO;
 import com.entra21.Transportadora.model.dto.PessoaDTO;
 import com.entra21.Transportadora.model.entity.CarroEntity;
 import com.entra21.Transportadora.model.entity.EmpresaEntity;
@@ -39,24 +39,22 @@ public class CarroService {
             CarroDTO dtocarro = new CarroDTO();
             dtocarro.setTipoCarro(cr.getTipoCarro());
             dtocarro.setPlaca(cr.getPlaca());
-            EmpresaAddDTO cr1 = new EmpresaAddDTO();
+            GetAllEmpresasDTO cr1 = new GetAllEmpresasDTO();
             cr1.setRazaoSocial(cr.getEmpresa().getRazaoSocial());
-
-            PessoaPayLoadDTO cr2 = new PessoaPayLoadDTO();
+            PessoaDTO cr2 = new PessoaDTO();
             cr2.setNome(cr.getEmpresa().getGerente().getNome());
             cr2.setCpf(cr.getEmpresa().getGerente().getCpf());
             cr2.setTelefone(cr.getEmpresa().getGerente().getTelefone());
             cr2.setSobrenome(cr.getEmpresa().getGerente().getSobrenome());
-
-            cr1.setGerente(cr2);
+            cr1.setNomeGerente(cr2);
             dtocarro.setEmpresaCarro(cr1);
-
             return dtocarro;
         }).collect(Collectors.toList());
     }
 
     public CarroDTO updateCarro(Long idcarronv, CarroDTO carroDTO) {
         CarroEntity e = carroRepository.findById(idcarronv).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Carro não encontrada!"));
+//        e.setIdCarro(idcarronv);
         e.setTipoCarro(carroDTO.getTipoCarro());
         e.setPlaca(carroDTO.getPlaca());
         EmpresaEntity ent = new EmpresaEntity();
