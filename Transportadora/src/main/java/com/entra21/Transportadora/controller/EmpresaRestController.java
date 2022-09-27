@@ -1,7 +1,7 @@
 package com.entra21.Transportadora.controller;
 
 import com.entra21.Transportadora.model.dto.EmpresaAddDTO;
-import com.entra21.Transportadora.model.dto.EmpresaDTO;
+import com.entra21.Transportadora.model.dto.GetAllEmpresasDTO;
 import com.entra21.Transportadora.view.repository.EmpresaRepository;
 import com.entra21.Transportadora.view.service.EmpresaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class EmpresaRestController {
     private EmpresaService empresaService;
 
     @GetMapping
-    public List<EmpresaDTO> getEmpresa(){
+    public List<GetAllEmpresasDTO> getEmpresa(){
         return empresaService.getAllEmpresas();
     }
 

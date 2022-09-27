@@ -22,8 +22,7 @@ public class FuncionarioRestController {
 
    @GetMapping
    public List<FuncionarioDTO> getAllFuncionario() {
-//       return funcionarioService.;
-      return null;
+       return funcionarioService.getAllFuncionario();
    }
 
 //    @Autowired
