@@ -88,10 +88,15 @@ public class EntregaService {
     public EntregaDTO updateEntrega(Long idEntregaNv, EntregaDTO entregaDTO) {
         EntregaEntity e = entregaRepository.findById(idEntregaNv).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Entrega não encontrada!"));
         e.setTipoEntrega(entregaDTO.getTipoEntrega());
+
+
+        //FAZER UMA LISTA
 //        EntregaTrechoEntity entregaTrechoEntity = new EntregaTrechoEntity();
 //        entregaTrechoEntity.setCompleto(entregaDTO.getEntregaTrecho().getCompleto());
 //        entregaTrechoEntity.setDataInicio(entregaDTO.getEntregaTrecho().getDataInicio());
 //        entregaTrechoEntity.setDataFim(entregaDTO.getEntregaTrecho().getDataFim());
+
+
 
         FuncionarioEntity ent2 = new FuncionarioEntity();
         ent2.setIdPessoa(entregaDTO.getNomeEntregador().getIdFuncionario());

@@ -29,7 +29,7 @@ public class CarroRestController {
 
     @PostMapping
     public void addCarro(@RequestBody CarroDTO Newcarro){
-        carroService.saveCarros(Newcarro);
+        carroService.saveCarros( Newcarro);
     }
 
 

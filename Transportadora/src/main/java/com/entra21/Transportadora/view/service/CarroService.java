@@ -28,7 +28,8 @@ public class CarroService {
         newEntity.setIdCarro(input.getIdCarro());
         newEntity.setTipoCarro(input.getTipoCarro());
         newEntity.setPlaca(input.getPlaca());
-//       newEntity.setEmpresa(input.getEmpresaCarro());
+        EmpresaEntity ent = new EmpresaEntity();
+//       ent.setGerente(input.getEmpresaCarro().getIdEmpresa());
         carroRepository.save(newEntity);
     }
 

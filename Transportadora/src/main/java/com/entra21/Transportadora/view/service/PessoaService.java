@@ -50,7 +50,7 @@ public class PessoaService implements UserDetailsService{
             dto.setSobrenome(pr.getSobrenome());
             dto.setCpf(pr.getCpf());
             dto.setTelefone(pr.getTelefone());
-
+dto.setIdPessoa(pr.getIdPessoa());
 //            dto.setLogin(pr.getLogin());
 //            dto.setSenha(pr.getSenha());
 //            dto.setDesabilitado(pr.getDesabilitado());
@@ -73,16 +73,16 @@ public class PessoaService implements UserDetailsService{
         }).collect(Collectors.toList());
     }
 
-    public void save(PessoaPayLoadDTO input) {
+    public void save(PessoaPayLoadDTO newPessoa) {
         PessoaEntity newEntity = new PessoaEntity();
 //        newEntity.setIdPessoa(input.getIdPessoa());
-        newEntity.setNome(input.getNome());
-        newEntity.setSobrenome(input.getSobrenome());
-        newEntity.setTelefone(input.getTelefone());
-        newEntity.setCpf(input.getCpf());
-        newEntity.setLogin(input.getLogin());
-        newEntity.setSenha(input.getSenha());
-        newEntity.setDesabilitado(input.getDesabilitado());
+        newEntity.setNome(newPessoa.getNome());
+        newEntity.setSobrenome(newPessoa.getSobrenome());
+        newEntity.setTelefone(newPessoa.getTelefone());
+        newEntity.setCpf(newPessoa.getCpf());
+        newEntity.setLogin(newPessoa.getLogin());
+        newEntity.setSenha(newPessoa.getSenha());
+        newEntity.setDesabilitado(newPessoa.getDesabilitado());
         pessoaRepository.save(newEntity);
     }
 

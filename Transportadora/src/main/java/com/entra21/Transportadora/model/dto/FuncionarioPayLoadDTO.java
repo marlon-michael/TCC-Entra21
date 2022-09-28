@@ -9,4 +9,6 @@ public class FuncionarioPayLoadDTO {
     private String sobrenome;
     private String telefone;
     private String cpf;
+    private PessoaDTO supervisorFuncionario;
+    private GetAllEmpresasDTO empresaFuncionario;
 }
