@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -20,7 +21,7 @@ public class EntregaService {
     @Autowired
     private FuncionarioRepository funcionarioRepository;
     @Autowired
-    private EntregaTrechoRepository trechoRepository;
+    private TrechoRepository trechoRepository;
     @Autowired
     private ItemRepository itemRepository;
     @Autowired
@@ -28,16 +29,16 @@ public class EntregaService {
     @Autowired
     private CarroRepository carroRepository;
 
-    public List<Long> save(EntregaPayloadDTO entregaDTO) {
+    public void save(EntregaPayloadDTO entregaDTO) {
         EntregaEntity entregaEntity = new EntregaEntity();
 
         Set<ItemEntity> itemEntities = entregaDTO.getItens().stream().map(itemDTO -> {
             ItemEntity itemEntity = new ItemEntity();
-            if (itemDTO.getLocalizador() == null) {
+            if (itemDTO.getIdItem() == null) {
                 itemEntity.setLocalEntrega(itemDTO.getLocalEntrega());
                 itemEntity.setLocalizador(itemDTO.getLocalizador());
                 itemEntity.setStatus("Esperando para postagem");
-                itemEntity.setNomeRecebedor("REMOVER COLUNA \"NOME RECEBEDOR\"");
+                itemEntity.setNomeRecebedor(itemDTO.getNomeRecebedor());
 
                 if (itemDTO.getPessoaItem() != null){
                     PessoaEntity pessoaEntity = new PessoaEntity();
@@ -53,7 +54,7 @@ public class EntregaService {
 
         FuncionarioEntity funcionarioEntity = funcionarioRepository.findByCpf(entregaDTO.getEntregador().getCpf());
         if (funcionarioEntity.getCpf() == null) entregaEntity.setEntregador(null);
-        entregaEntity.setEntregador(funcionarioEntity);
+        else entregaEntity.setEntregador(funcionarioEntity);
 
         entregaEntity.setTipoEntrega(entregaDTO.getTipoEntrega());
 
@@ -65,6 +66,7 @@ public class EntregaService {
             TrechoEntity trechoEntity = new TrechoEntity();
             trechoEntity.setLocalInicio(entregaTrecho.getTrecho().getLocalFim());
             trechoEntity.setLocalFim(entregaTrecho.getTrecho().getLocalFim());
+            trechoRepository.save(trechoEntity);
             entregaTrechoEntity.setTrecho(trechoEntity);
 
             CarroEntity carroEntity = carroRepository.findByPlaca(entregaTrecho.getCarro().getPlaca());
@@ -73,17 +75,20 @@ public class EntregaService {
 
             entregaTrechoEntity.setEntrega(entregaRepository.findById(1L).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Entrega não encontrado!")));
 
+            entregaTrechoRepository.save(entregaTrechoEntity);
+
             return entregaTrechoEntity;
         }).collect(Collectors.toList());
 
         entregaEntity.setEntregaTrecho(entregaTrechoEntities);
-        return entregaTrechoEntities.stream().map(entregaTrechoEntity -> {
-            return entregaTrechoEntity.getIdEntregaTrecho();
-        }).collect(Collectors.toList());
+        entregaRepository.save(entregaEntity);
 
-//        entregaRepository.save(entregaEntity);
-
-        //update entrega from entregaTrecho
+        entregaEntity.setEntregaTrecho(entregaTrechoEntities);
+        entregaTrechoEntities.stream().map(entregaTrechoEntity -> {
+            entregaTrechoEntity.setIdEntregaTrecho(entregaEntity.getIdEntrega());
+            entregaTrechoRepository.save(entregaTrechoEntity);
+            return null;
+        });
     }
 
     public void deleteEntrega(Long idEntrega) {

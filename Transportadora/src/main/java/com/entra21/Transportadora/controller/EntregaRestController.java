@@ -1,5 +1,6 @@
 package com.entra21.Transportadora.controller;
 
+import com.entra21.Transportadora.model.dto.EntregaDTO;
 import com.entra21.Transportadora.model.dto.EntregaPayloadDTO;
 import com.entra21.Transportadora.model.entity.EntregaEntity;
 import com.entra21.Transportadora.view.repository.EntregaRepository;
@@ -20,13 +21,13 @@ public class EntregaRestController {
     private EntregaService entregaService;
 
     @GetMapping
-    public List<EntregaEntity> getEntrega(){
-        return entregaRepository.findAll();
+    public List<EntregaDTO> getEntrega(){
+        return entregaService.getAllEntrega();
     }
 
     @PostMapping
-    public List<Long> addEntrega(@RequestBody EntregaPayloadDTO NewEntrega){
-        return entregaService.save(NewEntrega);
+    public void addEntrega(@RequestBody EntregaPayloadDTO NewEntrega){
+        entregaService.save(NewEntrega);
     }
 
     @DeleteMapping("/{id}")

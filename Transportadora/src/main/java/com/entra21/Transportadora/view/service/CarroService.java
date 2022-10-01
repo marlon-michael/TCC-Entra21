@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,7 +26,7 @@ public class CarroService {
         newCarro.setTipoCarro(input.getTipoCarro());
         newCarro.setPlaca(input.getPlaca());
         EmpresaEntity newEmpresa = new EmpresaEntity();
-        newEmpresa.setIdEmpresa(input.getEmpresaCarro().getIdEmpresa());
+        newEmpresa.setIdEmpresa(input.getIdEmpresa());
         newCarro.setEmpresa(newEmpresa);
         carroRepository.save(newCarro);
     }
