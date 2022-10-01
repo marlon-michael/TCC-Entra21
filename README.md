@@ -5,4 +5,4 @@ Java Entra21 2022
 
 Sistema para Transportadora
 
-Colaboradores: Felipe, Maria, Marlon, Eder e Gabriela 
+- Colaboradores: Felipe, Maria, Marlon, Eder e Gabriela 
