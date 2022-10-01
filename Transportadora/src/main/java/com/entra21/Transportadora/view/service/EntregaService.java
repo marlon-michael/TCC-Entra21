@@ -1,17 +1,14 @@
 package com.entra21.Transportadora.view.service;
 import com.entra21.Transportadora.model.dto.*;
-import com.entra21.Transportadora.model.entity.EntregaEntity;
-import com.entra21.Transportadora.view.repository.EntregaRepository;
-import com.entra21.Transportadora.view.repository.EntregaTrechoRepository;
-import com.entra21.Transportadora.view.repository.FuncionarioRepository;
-import com.entra21.Transportadora.view.repository.PessoaRepository;
+import com.entra21.Transportadora.model.entity.*;
+import com.entra21.Transportadora.view.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.io.EOFException;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,52 +21,92 @@ public class EntregaService {
     private FuncionarioRepository funcionarioRepository;
     @Autowired
     private EntregaTrechoRepository trechoRepository;
+    @Autowired
+    private ItemRepository itemRepository;
+    @Autowired
+    private EntregaTrechoRepository entregaTrechoRepository;
+    @Autowired
+    private CarroRepository carroRepository;
 
-    public void saveEntrega(EntregaDTO inputEntrega) {
-        EntregaEntity newEntityentrega = new EntregaEntity();
-        funcionarioRepository.findById(inputEntrega.getIdEntrega()).ifPresentOrElse(fE -> {
-//        newEntityentrega.setIdEntrega(inputEntrega.getIdEntrega());
-            newEntityentrega.setTipoEntrega(inputEntrega.getTipoEntrega());
-            newEntityentrega.setEntregador(fE);
-//        newEntityentrega.setEntregaTrecho(inputEntrega.getTipoEntrega());
-            entregaRepository.save(newEntityentrega);
-        }, () -> {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Entregador não foi encontrado!");
-        });
+    public List<Long> save(EntregaPayloadDTO entregaDTO) {
+        EntregaEntity entregaEntity = new EntregaEntity();
+
+        Set<ItemEntity> itemEntities = entregaDTO.getItens().stream().map(itemDTO -> {
+            ItemEntity itemEntity = new ItemEntity();
+            if (itemDTO.getLocalizador() == null) {
+                itemEntity.setLocalEntrega(itemDTO.getLocalEntrega());
+                itemEntity.setLocalizador(itemDTO.getLocalizador());
+                itemEntity.setStatus("Esperando para postagem");
+                itemEntity.setNomeRecebedor("REMOVER COLUNA \"NOME RECEBEDOR\"");
+
+                if (itemDTO.getPessoaItem() != null){
+                    PessoaEntity pessoaEntity = new PessoaEntity();
+                    pessoaRepository.findByCpf(itemDTO.getPessoaItem().getCpf());
+                    itemEntity.setPessoa(pessoaEntity);
+                }
+            }
+            itemEntity = itemRepository.findByLocalizador(itemDTO.getLocalizador());
+//            if (itemEntity.getLocalizador() == null) return null;
+            return itemEntity;
+        }).collect(Collectors.toSet());
+        entregaEntity.setItens(itemEntities);
+
+        FuncionarioEntity funcionarioEntity = funcionarioRepository.findByCpf(entregaDTO.getEntregador().getCpf());
+        if (funcionarioEntity.getCpf() == null) entregaEntity.setEntregador(null);
+        entregaEntity.setEntregador(funcionarioEntity);
+
+        entregaEntity.setTipoEntrega(entregaDTO.getTipoEntrega());
+
+        List<EntregaTrechoEntity> entregaTrechoEntities = entregaDTO.getEntregaTrecho().stream().map(entregaTrecho -> {
+            EntregaTrechoEntity entregaTrechoEntity = new EntregaTrechoEntity();
+            entregaTrechoEntity.setIdEntregaTrecho(entregaTrechoEntity.getIdEntregaTrecho());
+            entregaTrechoEntity.setCompleto(false);
+
+            TrechoEntity trechoEntity = new TrechoEntity();
+            trechoEntity.setLocalInicio(entregaTrecho.getTrecho().getLocalFim());
+            trechoEntity.setLocalFim(entregaTrecho.getTrecho().getLocalFim());
+            entregaTrechoEntity.setTrecho(trechoEntity);
+
+            CarroEntity carroEntity = carroRepository.findByPlaca(entregaTrecho.getCarro().getPlaca());
+            if (carroEntity.getPlaca() == null) entregaTrechoEntity.setCarro(null);
+            else entregaTrechoEntity.setCarro(carroEntity);
+
+            entregaTrechoEntity.setEntrega(entregaRepository.findById(1L).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Entrega não encontrado!")));
+
+            return entregaTrechoEntity;
+        }).collect(Collectors.toList());
+
+        entregaEntity.setEntregaTrecho(entregaTrechoEntities);
+        return entregaTrechoEntities.stream().map(entregaTrechoEntity -> {
+            return entregaTrechoEntity.getIdEntregaTrecho();
+        }).collect(Collectors.toList());
+
+//        entregaRepository.save(entregaEntity);
+
+        //update entrega from entregaTrecho
     }
+
     public void deleteEntrega(Long idEntrega) {
         entregaRepository.deleteById(idEntrega);
     }
 
     public List<EntregaDTO> getAllEntrega() {
         return entregaRepository.findAll().stream().map(er -> {
-//            trechoRepository.findAll().stream().map(br -> {
             EntregaDTO dtoentrega = new EntregaDTO();
             dtoentrega.setIdEntrega(er.getIdEntrega());
             dtoentrega.setTipoEntrega(er.getTipoEntrega());
-//            dtoentrega.setNomeEntregador();
-//            dtoentrega.setNomeEntregador(er.getEntregador().getSobrenome());
-//            dtoentrega.setNomeEntregador(er.getEntregador().getCpf());
-//            dtoentrega.setNomeEntregador(er.getEntregador().getTelefone());
-//            dtoentrega.setNomeEntregador(er.getEntregador().getEmpresa().getRazaoSocial());
             EntregaTrechoDTO entregaTrechoDTO = new EntregaTrechoDTO();
             entregaTrechoDTO.setCompleto(entregaTrechoDTO.getCompleto());
-                entregaTrechoDTO.setDataInicio(entregaTrechoDTO.getDataInicio());
-                entregaTrechoDTO.setDataFim(entregaTrechoDTO.getDataFim());
-
+            entregaTrechoDTO.setDataInicio(entregaTrechoDTO.getDataInicio());
+            entregaTrechoDTO.setDataFim(entregaTrechoDTO.getDataFim());
             dtoentrega.setEntregaTrecho(entregaTrechoDTO);
-
-
-            PessoaDTO cr2 = new PessoaDTO();
+            FuncionarioDTO cr2 = new FuncionarioDTO();
             cr2.setNome(er.getEntregador().getNome());
             cr2.setCpf(er.getEntregador().getCpf());
             cr2.setTelefone(er.getEntregador().getTelefone());
             cr2.setSobrenome(er.getEntregador().getSobrenome());
             dtoentrega.setNomeEntregador(cr2);
             return dtoentrega;
-
-//        }).collect(Collectors.toList());
-
     }).collect(Collectors.toList());
     }
 
@@ -93,4 +130,3 @@ public class EntregaService {
 //        return entregaDTO;
 //    }
 }
-//        entregaAddDTO.setIdEntrega(e.getIdEntrega());

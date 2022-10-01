@@ -7,6 +7,7 @@ import lombok.Data;
 public class EntregaDTO {
     private Long idEntrega;
     private String tipoEntrega;
-    private PessoaDTO NomeEntregador;
+    private FuncionarioDTO NomeEntregador;
     private EntregaTrechoDTO EntregaTrecho;
+    private ItemDTO itemDTO;
 }

@@ -7,11 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class FuncionarioDTO {
-    private String nome;
-    private String sobrenome;
-    private String cpf;
-    private String telefone;
+public class FuncionarioDTO extends PessoaDTO{
     private PessoaDTO supervisorFuncionario;
     private EmpresaDTO empresaFuncionario;
 }

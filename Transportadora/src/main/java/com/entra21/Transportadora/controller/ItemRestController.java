@@ -54,7 +54,7 @@ public class ItemRestController {
     }
 
     @GetMapping("/{localizador}")
-    public List<ItemEntity> getItem(@PathVariable(name = "localizador") String localizador){
+    public ItemEntity getItem(@PathVariable(name = "localizador") String localizador){
         return itemRepository.findByLocalizador(localizador);
     }
 

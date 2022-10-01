@@ -41,8 +41,8 @@ public class FuncionarioService {
            dto.setSobrenome(fr.getSobrenome());
            dto.setCpf(fr.getCpf());
            dto.setTelefone(fr.getTelefone());
-    //                   dto.setLogin(fr.getLogin());
-    //                   dto.setSenha(fr.getSenha());
+//         dto.setLogin(fr.getLogin());
+//         dto.setSenha(fr.getSenha());
            dtoEmp.setRazaoSocial(fr.getEmpresa().getRazaoSocial());
            dtoPesEmp.setNome(fr.getEmpresa().getGerente().getNome());
            dtoPesEmp.setSobrenome(fr.getEmpresa().getGerente().getSobrenome());

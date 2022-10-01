@@ -7,5 +7,5 @@ import java.util.List;
 
 @Repository
 public interface ItemRepository extends JpaRepository<ItemEntity, Long> {
-    public List<ItemEntity> findByLocalizador(String localizador);
+    public ItemEntity findByLocalizador(String localizador);
 }

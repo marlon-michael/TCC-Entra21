@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class FuncionarioPayLoadDTO {
+public class FuncionarioPayLoadDTO extends PessoaPayLoadDTO{
     private Long idPessoa;
     private Long idEmpresa;
     private Long idSupervisor;
