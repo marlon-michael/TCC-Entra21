@@ -30,6 +30,11 @@ public class EntregaRestController {
         entregaService.save(NewEntrega);
     }
 
+    @PutMapping("/{id}")
+    public EntregaPayloadDTO updateEntrega(@PathVariable(name = "id") Long idEntrega, @RequestBody EntregaPayloadDTO entrega){
+        return entregaService.updateEntrega(idEntrega, entrega);
+    }
+
     @DeleteMapping("/{id}")
     public void deleteEntrega(@PathVariable(name = "id") Long idEntrega) {
         entregaService.deleteEntrega(idEntrega);

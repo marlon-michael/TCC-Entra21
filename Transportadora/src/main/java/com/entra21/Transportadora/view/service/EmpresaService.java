@@ -29,7 +29,9 @@ public class EmpresaService {
         PessoaEntity pessoaDTO = new PessoaEntity();
         newEntity.setIdEmpresa(inputEmpresa.getIdEmpresa());
         newEntity.setRazaoSocial(inputEmpresa.getRazaoSocial());
-        newEntity.setGerente(pessoaRepository.findByLogin(inputEmpresa.getGerente().getNome()));
+        newEntity.setGerente(pessoaRepository.findByLogin(inputEmpresa.getGerente().getNome()).orElseThrow(()->{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pessoa não foi encontrada!");
+        }));
 
         empresaRepository.save(newEntity);
     }
