@@ -1,4 +1,4 @@
-package com.entra21.Transportadora.model.dto;
+package com.entra21.Transportadora.model.dto.EntregaTrecho;
 
 import com.entra21.Transportadora.model.entity.CarroEntity;
 import com.entra21.Transportadora.model.entity.EntregaEntity;

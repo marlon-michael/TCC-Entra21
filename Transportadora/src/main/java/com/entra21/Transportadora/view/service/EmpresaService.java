@@ -1,9 +1,9 @@
 package com.entra21.Transportadora.view.service;
 
-import com.entra21.Transportadora.model.dto.*;
-import com.entra21.Transportadora.model.dto.EmpresaAddDTO;
-import com.entra21.Transportadora.model.dto.EmpresaDTO;
-import com.entra21.Transportadora.model.dto.PessoaDTO;
+import com.entra21.Transportadora.model.dto.Empresa.EmpresaAddDTO;
+import com.entra21.Transportadora.model.dto.Empresa.EmpresaDTO;
+import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
+import com.entra21.Transportadora.model.dto.Pessoa.PessoaAddDTO;
 import com.entra21.Transportadora.model.entity.EmpresaEntity;
 import com.entra21.Transportadora.model.entity.PessoaEntity;
 import com.entra21.Transportadora.view.repository.EmpresaRepository;
@@ -50,7 +50,7 @@ public class EmpresaService {
             cr2.setCpf(er.getGerente().getCpf());
             cr2.setTelefone(er.getGerente().getTelefone());
             cr2.setSobrenome(er.getGerente().getSobrenome());
-            cr2.setIdPessoa(er.getGerente().getIdPessoa());
+
             dtoempresa.setNomeGerente(cr2);
             return dtoempresa;
         }).collect(Collectors.toList());
@@ -74,7 +74,7 @@ public class EmpresaService {
 
     public EmpresaAddDTO updateEmpresa (Long idEmpresanv, EmpresaAddDTO empresaDTO){
         EmpresaEntity e = empresaRepository.findById(idEmpresanv).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa não encontrada!"));
-        PessoaPayLoadDTO pessoaDTO = new PessoaPayLoadDTO();
+        PessoaAddDTO pessoaDTO = new PessoaAddDTO();
         e.setIdEmpresa(empresaDTO.getIdEmpresa());
         e.setRazaoSocial(empresaDTO.getRazaoSocial());
         pessoaDTO.setIdPessoa(empresaDTO.getGerente().getIdPessoa());

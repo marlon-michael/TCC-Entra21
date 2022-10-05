@@ -1,6 +1,9 @@
 package com.entra21.Transportadora.view.service;
 
-import com.entra21.Transportadora.model.dto.*;
+import com.entra21.Transportadora.model.dto.Carro.CarroAddDTO;
+import com.entra21.Transportadora.model.dto.Carro.CarroDTO;
+import com.entra21.Transportadora.model.dto.Empresa.EmpresaDTO;
+import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
 import com.entra21.Transportadora.model.entity.CarroEntity;
 import com.entra21.Transportadora.model.entity.EmpresaEntity;
 import com.entra21.Transportadora.view.repository.CarroRepository;
@@ -53,7 +56,6 @@ public class CarroService {
 
     public CarroAddDTO updateCarro(Long idcarronv, CarroAddDTO carroDTO) {
         CarroEntity e = carroRepository.findById(idcarronv).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Carro não encontrada!"));
-//        e.setIdCarro(idcarronv);
         e.setTipoCarro(carroDTO.getTipoCarro());
         e.setPlaca(carroDTO.getPlaca());
         EmpresaEntity ent = new EmpresaEntity();

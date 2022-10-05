@@ -1,6 +1,5 @@
 package com.entra21.Transportadora.controller;
 
-import com.entra21.Transportadora.model.dto.EntregaDTO;
 import com.entra21.Transportadora.model.entity.EntregaEntity;
 import com.entra21.Transportadora.view.repository.EntregaRepository;
 import com.entra21.Transportadora.view.service.EntregaService;

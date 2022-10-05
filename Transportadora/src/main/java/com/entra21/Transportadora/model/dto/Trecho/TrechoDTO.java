@@ -1,4 +1,4 @@
-package com.entra21.Transportadora.model.dto;
+package com.entra21.Transportadora.model.dto.Trecho;
 
 import lombok.Data;
 

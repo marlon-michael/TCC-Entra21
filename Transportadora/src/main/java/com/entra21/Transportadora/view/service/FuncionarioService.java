@@ -1,9 +1,9 @@
 package com.entra21.Transportadora.view.service;
 
-import com.entra21.Transportadora.model.dto.EmpresaDTO;
-import com.entra21.Transportadora.model.dto.FuncionarioDTO;
-import com.entra21.Transportadora.model.dto.PessoaDTO;
-import com.entra21.Transportadora.model.dto.*;
+import com.entra21.Transportadora.model.dto.Empresa.EmpresaDTO;
+import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioAddDTO;
+import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioDTO;
+import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
 import com.entra21.Transportadora.view.repository.EmpresaRepository;
 import com.entra21.Transportadora.view.repository.FuncionarioRepository;
 import com.entra21.Transportadora.view.repository.PessoaRepository;
@@ -65,7 +65,7 @@ public class FuncionarioService {
     }
 
     @Transactional
-    public void saveFuncionario(FuncionarioPayLoadDTO input) {
+    public void saveFuncionario(FuncionarioAddDTO input) {
         Query q = em.createNativeQuery("INSERT INTO funcionario(id_pessoa, id_empresa, id_supervisor) VALUES(:idPessoa, :idEmpresa, :idSupervisor)");
         q.setParameter("idPessoa", input.getIdPessoa());
         q.setParameter("idEmpresa", input.getIdEmpresa());

@@ -1,8 +1,7 @@
 package com.entra21.Transportadora.controller;
 
-import com.entra21.Transportadora.model.dto.FuncionarioDTO;
-import com.entra21.Transportadora.model.dto.FuncionarioPayLoadDTO;
-import com.entra21.Transportadora.model.entity.PessoaEntity;
+import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioDTO;
+import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioAddDTO;
 import com.entra21.Transportadora.view.service.FuncionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +23,7 @@ public class FuncionarioRestController {
 
    @PostMapping
    public void addFuncionario(
-           @RequestBody FuncionarioPayLoadDTO funcionarioPayLoadDTO
+           @RequestBody FuncionarioAddDTO funcionarioPayLoadDTO
    ){
       funcionarioService.saveFuncionario(funcionarioPayLoadDTO);
    }

@@ -1,8 +1,8 @@
 package com.entra21.Transportadora.view.service;
 
 
-import com.entra21.Transportadora.model.dto.PessoaDTO;
-import com.entra21.Transportadora.model.dto.PessoaPayLoadDTO;
+import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
+import com.entra21.Transportadora.model.dto.Pessoa.PessoaAddDTO;
 import com.entra21.Transportadora.model.entity.PessoaEntity;
 import com.entra21.Transportadora.view.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,9 +58,9 @@ public class PessoaService implements UserDetailsService{
         }).collect(Collectors.toList());
     }
 
-    public List<PessoaPayLoadDTO> getAllByFuncionario() {
+    public List<PessoaAddDTO> getAllByFuncionario() {
         return pessoaRepository.findAll().stream().map(pr -> {
-            PessoaPayLoadDTO dtoN = new PessoaPayLoadDTO();
+            PessoaAddDTO dtoN = new PessoaAddDTO();
             dtoN.setIdPessoa(pr.getIdPessoa());
             dtoN.setNome(pr.getNome());
             dtoN.setSobrenome(pr.getSobrenome());
@@ -73,7 +73,7 @@ public class PessoaService implements UserDetailsService{
         }).collect(Collectors.toList());
     }
 
-    public void save(PessoaPayLoadDTO input) {
+    public void save(PessoaAddDTO input) {
         PessoaEntity newEntity = new PessoaEntity();
 //        newEntity.setIdPessoa(input.getIdPessoa());
         newEntity.setNome(input.getNome());
@@ -97,7 +97,7 @@ public class PessoaService implements UserDetailsService{
 //        pessoaRepository.deleteById(id);
 //    }
 
-    public PessoaPayLoadDTO updatePessoa(Long id, PessoaPayLoadDTO pessoaPayLoadDTO) {
+    public PessoaAddDTO updatePessoa(Long id, PessoaAddDTO pessoaPayLoadDTO) {
         PessoaEntity e = pessoaRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Pessoa não encontrada!"));
 //       e.setIdPessoa(id);
         e.setNome(pessoaPayLoadDTO.getNome());
@@ -109,7 +109,7 @@ public class PessoaService implements UserDetailsService{
         e.setDesabilitado(pessoaPayLoadDTO.getDesabilitado());
         e = pessoaRepository.save(e);
 //        pessoaDTO.setIdPessoa(e.getIdPessoa());
-        PessoaPayLoadDTO dto = new PessoaPayLoadDTO();
+        PessoaAddDTO dto = new PessoaAddDTO();
 //        dto.setIdPessoa(e.getIdPessoa());
         dto.setNome(e.getNome());
         dto.setSobrenome(e.getSobrenome());

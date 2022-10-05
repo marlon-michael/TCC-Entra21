@@ -1,15 +1,12 @@
 package com.entra21.Transportadora.controller;
 
-import com.entra21.Transportadora.model.dto.CarroAddDTO;
-import com.entra21.Transportadora.model.dto.CarroDTO;
-import com.entra21.Transportadora.model.dto.PessoaDTO;
+import com.entra21.Transportadora.model.dto.Carro.CarroAddDTO;
+import com.entra21.Transportadora.model.dto.Carro.CarroDTO;
 import com.entra21.Transportadora.model.entity.CarroEntity;
 import com.entra21.Transportadora.model.entity.EmpresaEntity;
 import com.entra21.Transportadora.view.repository.CarroRepository;
 import com.entra21.Transportadora.view.repository.EmpresaRepository;
-import com.entra21.Transportadora.view.repository.PessoaRepository;
 import com.entra21.Transportadora.view.service.CarroService;
-import com.entra21.Transportadora.view.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

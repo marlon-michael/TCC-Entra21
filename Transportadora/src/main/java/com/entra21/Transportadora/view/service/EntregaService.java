@@ -1,5 +1,7 @@
 package com.entra21.Transportadora.view.service;
-import com.entra21.Transportadora.model.dto.*;
+import com.entra21.Transportadora.model.dto.Entrega.EntregaDTO;
+import com.entra21.Transportadora.model.dto.EntregaTrecho.EntregaTrechoDTO;
+import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
 import com.entra21.Transportadora.model.entity.EntregaEntity;
 import com.entra21.Transportadora.view.repository.EntregaRepository;
 import com.entra21.Transportadora.view.repository.EntregaTrechoRepository;
@@ -10,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.io.EOFException;
 import java.util.List;
 import java.util.stream.Collectors;
 

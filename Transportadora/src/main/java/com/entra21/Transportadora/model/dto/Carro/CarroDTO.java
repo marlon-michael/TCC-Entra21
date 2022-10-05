@@ -1,12 +1,11 @@
-package com.entra21.Transportadora.model.dto;
+package com.entra21.Transportadora.model.dto.Carro;
 
-import com.entra21.Transportadora.model.entity.EmpresaEntity;
+import com.entra21.Transportadora.model.dto.Empresa.EmpresaDTO;
 import lombok.Data;
-
-import java.util.List;
 
 @Data
 public class CarroDTO {
+    private Long idCarro;
     private String tipoCarro;
     private String placa;
     private EmpresaDTO empresaCarro;

@@ -1,8 +1,7 @@
 package com.entra21.Transportadora.controller;
 
-import com.entra21.Transportadora.model.dto.PessoaDTO;
-import com.entra21.Transportadora.model.dto.PessoaPayLoadDTO;
-import com.entra21.Transportadora.model.entity.PessoaEntity;
+import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
+import com.entra21.Transportadora.model.dto.Pessoa.PessoaAddDTO;
 import com.entra21.Transportadora.view.repository.PessoaRepository;
 import com.entra21.Transportadora.view.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,18 +24,18 @@ public class PessoaRestController {
     }
 
     @GetMapping("/{byfuncionario}")
-    public List<PessoaPayLoadDTO> getAllByFuncionario() {
+    public List<PessoaAddDTO> getAllByFuncionario() {
         return pessoaService.getAllByFuncionario();
     }
 
     @PostMapping
-    public void addPessoa(@RequestBody PessoaPayLoadDTO newPessoa) {
+    public void addPessoa(@RequestBody PessoaAddDTO newPessoa) {
         pessoaService.save(newPessoa);
     }
 
     @PutMapping("/{id}")
-    public PessoaPayLoadDTO updatePessoa(@PathVariable(name = "id") Long id,
-                                  @RequestBody PessoaPayLoadDTO pessoaPayLoadDTO) {
+    public PessoaAddDTO updatePessoa(@PathVariable(name = "id") Long id,
+                                     @RequestBody PessoaAddDTO pessoaPayLoadDTO) {
         return pessoaService.updatePessoa(id, pessoaPayLoadDTO);
     }
 

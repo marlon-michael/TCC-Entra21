@@ -1,7 +1,7 @@
 package com.entra21.Transportadora.view.service;
 
 
-import com.entra21.Transportadora.model.dto.TrechoDTO;
+import com.entra21.Transportadora.model.dto.Trecho.TrechoDTO;
 import com.entra21.Transportadora.model.entity.TrechoEntity;
 import com.entra21.Transportadora.view.repository.TrechoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
