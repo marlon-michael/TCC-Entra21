@@ -34,6 +34,24 @@ public class EntregaService {
             EntregaDTO dtoentrega = new EntregaDTO();
             dtoentrega.setIdEntrega(entregaEntity.getIdEntrega());
             dtoentrega.setTipoEntrega(entregaEntity.getTipoEntrega());
+            entregaEntity.getItens().stream().map(itemEntity -> {
+                dtoentrega.getItemDTO().setIdItem(itemEntity.getIdItem());
+                dtoentrega.getItemDTO().setLocalEntrega(itemEntity.getLocalEntrega());
+                dtoentrega.getItemDTO().setLocalizador(itemEntity.getLocalizador());
+                dtoentrega.getItemDTO().setNomeRecebedor(itemEntity.getNomeRecebedor());
+                dtoentrega.getItemDTO().setStatus(itemEntity.getStatus());
+
+                PessoaDTO pessoaDTO = new PessoaDTO();
+                pessoaDTO.setIdPessoa(itemEntity.getPessoa().getIdPessoa());
+                pessoaDTO.setNome(itemEntity.getPessoa().getNome());
+                pessoaDTO.setSobrenome(itemEntity.getPessoa().getSobrenome());
+                pessoaDTO.setCpf(itemEntity.getPessoa().getCpf());
+                pessoaDTO.setTelefone(itemEntity.getPessoa().getTelefone());
+
+                dtoentrega.getItemDTO().setPessoaItem(pessoaDTO); // MAPEAR PESSOA ENTITY PARA PESSOA DTO
+
+                return null;
+            });
             EntregaTrechoDTO entregaTrechoDTO = new EntregaTrechoDTO();
             entregaTrechoDTO.setCompleto(entregaTrechoDTO.getCompleto());
             entregaTrechoDTO.setDataInicio(entregaTrechoDTO.getDataInicio());
@@ -58,10 +76,10 @@ public class EntregaService {
             ItemEntity itemEntity = new ItemEntity();
             if (itemDTO.getLocalizador() == null) {
                 //generating UUID
-                String UUId = UUID.randomUUID().toString();
-                while (itemRepository.existsByLocalizador(UUId).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Item não foi encontrado!");})){
+                String UUId;
+                do{
                     UUId = UUID.randomUUID().toString();
-                }
+                }while (itemRepository.existsByLocalizador(UUId).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Item não foi encontrado!");}));
                 itemEntity.setLocalizador(UUId);
                 itemEntity.setLocalEntrega(itemDTO.getLocalEntrega());
                 itemEntity.setLocalizador(itemDTO.getLocalizador());
