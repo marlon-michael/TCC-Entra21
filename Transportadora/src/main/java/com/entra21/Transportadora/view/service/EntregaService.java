@@ -48,7 +48,7 @@ public class EntregaService {
                 pessoaDTO.setCpf(itemEntity.getPessoa().getCpf());
                 pessoaDTO.setTelefone(itemEntity.getPessoa().getTelefone());
 
-                dtoentrega.getItemDTO().setPessoaItem(pessoaDTO); // MAPEAR PESSOA ENTITY PARA PESSOA DTO
+                dtoentrega.getItemDTO().setPessoaItem(pessoaDTO);
 
                 return null;
             });
@@ -60,7 +60,7 @@ public class EntregaService {
             //MAP ENTREGADOR
                 //MAP SUPERVISOR
                 //MAP EMPRESA
-            
+
 
 
             EntregaTrechoDTO entregaTrechoDTO = new EntregaTrechoDTO();
