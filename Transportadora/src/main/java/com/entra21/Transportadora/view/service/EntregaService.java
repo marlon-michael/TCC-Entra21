@@ -52,6 +52,17 @@ public class EntregaService {
 
                 return null;
             });
+
+            //MAP ENTREGA-TRECHO
+                //MAP TRECHO
+                //MAP CARRO
+
+            //MAP ENTREGADOR
+                //MAP SUPERVISOR
+                //MAP EMPRESA
+            
+
+
             EntregaTrechoDTO entregaTrechoDTO = new EntregaTrechoDTO();
             entregaTrechoDTO.setCompleto(entregaTrechoDTO.getCompleto());
             entregaTrechoDTO.setDataInicio(entregaTrechoDTO.getDataInicio());
