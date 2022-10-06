@@ -1,3 +1,4 @@
+
 FUNÇÕES DE CADA ENTIDADE:
 
 Pessoa:

@@ -12,7 +12,7 @@ import java.util.List;
 
 @Data
 public class FuncionarioDTO extends PessoaDTO {
-    private FuncionarioEntity supervisor;
-    private List<EntregaEntity> entrega;
-    private EmpresaEntity empresa;
+    private FuncionarioDTO supervisor;
+    private List<EntregaDTO> entrega;
+    private EmpresaDTO empresa;
 }

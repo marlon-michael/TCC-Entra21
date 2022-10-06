@@ -2,6 +2,7 @@ package com.entra21.Transportadora.view.service;
 
 import com.entra21.Transportadora.model.dto.Carro.CarroAddDTO;
 import com.entra21.Transportadora.model.dto.Carro.CarroDTO;
+import com.entra21.Transportadora.model.dto.Carro.CarroUpDTO;
 import com.entra21.Transportadora.model.dto.Empresa.EmpresaDTO;
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
 import com.entra21.Transportadora.model.entity.CarroEntity;
@@ -26,7 +27,7 @@ public class CarroService {
         newCarro.setTipoCarro(input.getTipoCarro());
         newCarro.setPlaca(input.getPlaca());
         EmpresaEntity newEmpresa = new EmpresaEntity();
-        newEmpresa.setIdEmpresa(input.getEmpresaCarro().getIdEmpresa());
+        newEmpresa.setIdEmpresa(input.getEmpresaCarro().getId());
         newCarro.setEmpresa(newEmpresa);
         carroRepository.save(newCarro);
     }
@@ -54,14 +55,14 @@ public class CarroService {
         }).collect(Collectors.toList());
     }
 
-    public CarroAddDTO updateCarro(Long idcarronv, CarroAddDTO carroDTO) {
+    public CarroUpDTO updateCarro(Long idcarronv, CarroUpDTO carroDTO) {
         CarroEntity e = carroRepository.findById(idcarronv).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Carro não encontrada!"));
         e.setTipoCarro(carroDTO.getTipoCarro());
         e.setPlaca(carroDTO.getPlaca());
         EmpresaEntity ent = new EmpresaEntity();
-        ent.setIdEmpresa(carroDTO.getEmpresaCarro().getIdEmpresa());
+        ent.setIdEmpresa(carroDTO.getEmpresaCarro().getId());
         e.setEmpresa(ent);
-        e = carroRepository.save(e);
+        carroRepository.save(e);
         return carroDTO;
     }
 }

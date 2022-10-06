@@ -1,5 +1,6 @@
 package com.entra21.Transportadora.view.service;
-import com.entra21.Transportadora.model.dto.Entrega.EntregaDTO;
+<<<<<<< HEAD
+import com.entra21.Transportadora.model.dto.Entrega.EntregaAddDTO;
 import com.entra21.Transportadora.model.dto.EntregaTrecho.EntregaTrechoDTO;
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
 import com.entra21.Transportadora.model.entity.EntregaEntity;
@@ -7,12 +8,18 @@ import com.entra21.Transportadora.view.repository.EntregaRepository;
 import com.entra21.Transportadora.view.repository.EntregaTrechoRepository;
 import com.entra21.Transportadora.view.repository.FuncionarioRepository;
 import com.entra21.Transportadora.view.repository.PessoaRepository;
+=======
+import com.entra21.Transportadora.model.entity.*;
+import com.entra21.Transportadora.view.repository.*;
+>>>>>>> 896f713429f68e3d28fd7c7542185f74e939ee58
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,74 +31,152 @@ public class EntregaService {
     @Autowired
     private FuncionarioRepository funcionarioRepository;
     @Autowired
-    private EntregaTrechoRepository trechoRepository;
+    private TrechoRepository trechoRepository;
+    @Autowired
+    private ItemRepository itemRepository;
+    @Autowired
+    private EntregaTrechoRepository entregaTrechoRepository;
+    @Autowired
+    private CarroRepository carroRepository;
 
-    public void saveEntrega(EntregaDTO inputEntrega) {
-        EntregaEntity newEntityentrega = new EntregaEntity();
-        funcionarioRepository.findById(inputEntrega.getIdEntrega()).ifPresentOrElse(fE -> {
-//        newEntityentrega.setIdEntrega(inputEntrega.getIdEntrega());
-            newEntityentrega.setTipoEntrega(inputEntrega.getTipoEntrega());
-            newEntityentrega.setEntregador(fE);
-//        newEntityentrega.setEntregaTrecho(inputEntrega.getTipoEntrega());
-            entregaRepository.save(newEntityentrega);
-        }, () -> {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Entregador não foi encontrado!");
+    public List<EntregaAddDTO> getAllEntrega() {
+        return entregaRepository.findAll().stream().map(entregaEntity -> {
+            EntregaAddDTO dtoentrega = new EntregaAddDTO();
+            dtoentrega.setIdEntrega(entregaEntity.getIdEntrega());
+            dtoentrega.setTipoEntrega(entregaEntity.getTipoEntrega());
+            entregaEntity.getItens().stream().map(itemEntity -> {
+                dtoentrega.getItemDTO().setIdItem(itemEntity.getIdItem());
+                dtoentrega.getItemDTO().setLocalEntrega(itemEntity.getLocalEntrega());
+                dtoentrega.getItemDTO().setLocalizador(itemEntity.getLocalizador());
+                dtoentrega.getItemDTO().setNomeRecebedor(itemEntity.getNomeRecebedor());
+                dtoentrega.getItemDTO().setStatus(itemEntity.getStatus());
+
+                PessoaDTO pessoaDTO = new PessoaDTO();
+                pessoaDTO.setIdPessoa(itemEntity.getPessoa().getIdPessoa());
+                pessoaDTO.setNome(itemEntity.getPessoa().getNome());
+                pessoaDTO.setSobrenome(itemEntity.getPessoa().getSobrenome());
+                pessoaDTO.setCpf(itemEntity.getPessoa().getCpf());
+                pessoaDTO.setTelefone(itemEntity.getPessoa().getTelefone());
+
+                dtoentrega.getItemDTO().setPessoaItem(pessoaDTO);
+
+                return null;
+            });
+
+            //MAP ENTREGA-TRECHO
+                //MAP TRECHO
+                //MAP CARRO
+
+            //MAP ENTREGADOR
+                //MAP SUPERVISOR
+                //MAP EMPRESA
+
+
+
+            EntregaTrechoDTO entregaTrechoDTO = new EntregaTrechoDTO();
+            entregaTrechoDTO.setCompleto(entregaTrechoDTO.getCompleto());
+            entregaTrechoDTO.setDataInicio(entregaTrechoDTO.getDataInicio());
+            entregaTrechoDTO.setDataFim(entregaTrechoDTO.getDataFim());
+            dtoentrega.setEntregaTrecho(entregaTrechoDTO);
+            FuncionarioDTO funcionarioDTO = new FuncionarioDTO();
+            funcionarioDTO.setNome(entregaEntity.getEntregador().getNome());
+            funcionarioDTO.setCpf(entregaEntity.getEntregador().getCpf());
+            funcionarioDTO.setTelefone(entregaEntity.getEntregador().getTelefone());
+            funcionarioDTO.setSobrenome(entregaEntity.getEntregador().getSobrenome());
+            dtoentrega.setNomeEntregador(funcionarioDTO);
+            return dtoentrega;
+        }).collect(Collectors.toList());
+    }
+
+    public void save(EntregaAddDTO entregaDTO) {
+        EntregaEntity entregaEntity = new EntregaEntity();
+
+        entregaEntity.setTipoEntrega(entregaDTO.getTipoEntrega());
+
+        Set<ItemEntity> itemEntities = entregaDTO.getItens().stream().map(itemDTO -> {
+            ItemEntity itemEntity = new ItemEntity();
+            if (itemDTO.getLocalizador() == null) {
+                //generating UUID
+                String UUId;
+                do{
+                    UUId = UUID.randomUUID().toString();
+                }while (itemRepository.existsByLocalizador(UUId).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Item não foi encontrado!");}));
+                itemEntity.setLocalizador(UUId);
+                itemEntity.setLocalEntrega(itemDTO.getLocalEntrega());
+                itemEntity.setLocalizador(itemDTO.getLocalizador());
+                itemEntity.setStatus("Esperando para postagem");
+                itemEntity.setNomeRecebedor(itemDTO.getNomeRecebedor());
+
+                if (itemDTO.getPessoaItem() != null){
+                    PessoaEntity pessoaEntity = new PessoaEntity();
+                    pessoaRepository.findByCpf(itemDTO.getPessoaItem().getCpf());
+                    itemEntity.setPessoa(pessoaEntity);
+                }
+                return itemEntity;
+            }
+            itemEntity = itemRepository.findByLocalizador(itemDTO.getLocalizador()).orElseThrow(() -> {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Item não foi encontrado!");
+            });
+            return itemEntity;
+        }).collect(Collectors.toSet());
+        entregaEntity.setItens(itemEntities);
+
+        FuncionarioEntity funcionarioEntity = funcionarioRepository.findByCpf(entregaDTO.getEntregador().getCpf()).orElseThrow(() -> {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Funcionario não foi encontrado!");
+        });
+        if (funcionarioEntity.getCpf() == null) entregaEntity.setEntregador(null);
+        else entregaEntity.setEntregador(funcionarioEntity);
+
+        List<EntregaTrechoEntity> entregaTrechoEntities = entregaDTO.getEntregaTrecho().stream().map(entregaTrecho -> {
+            EntregaTrechoEntity entregaTrechoEntity = new EntregaTrechoEntity();
+            entregaTrechoEntity.setIdEntregaTrecho(entregaTrechoEntity.getIdEntregaTrecho());
+            entregaTrechoEntity.setCompleto(false);
+
+            TrechoEntity trechoEntity = new TrechoEntity();
+            trechoEntity.setLocalInicio(entregaTrecho.getTrecho().getLocalFim());
+            trechoEntity.setLocalFim(entregaTrecho.getTrecho().getLocalFim());
+            trechoRepository.save(trechoEntity);
+            entregaTrechoEntity.setTrecho(trechoEntity);
+
+            CarroEntity carroEntity = carroRepository.findByPlaca(entregaTrecho.getCarro().getPlaca()).orElseThrow(() -> {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Funcionario não foi encontrado!");
+            });
+            if (carroEntity.getPlaca() == null) entregaTrechoEntity.setCarro(null);
+            else entregaTrechoEntity.setCarro(carroEntity);
+
+            entregaTrechoEntity.setEntrega(entregaRepository.findById(1L).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Entrega não encontrado!")
+            ));
+
+            entregaTrechoRepository.save(entregaTrechoEntity);
+            return entregaTrechoEntity;
+        }).collect(Collectors.toList());
+
+        entregaEntity.setEntregaTrecho(entregaTrechoEntities);
+        entregaRepository.save(entregaEntity);
+
+        entregaEntity.setEntregaTrecho(entregaTrechoEntities);
+        entregaTrechoEntities.stream().map(entregaTrechoEntity -> {
+            entregaTrechoEntity.setIdEntregaTrecho(entregaEntity.getIdEntrega());
+            entregaTrechoRepository.save(entregaTrechoEntity);
+            return null;
         });
     }
+
     public void deleteEntrega(Long idEntrega) {
         entregaRepository.deleteById(idEntrega);
     }
 
-    public List<EntregaDTO> getAllEntrega() {
-        return entregaRepository.findAll().stream().map(er -> {
-//            trechoRepository.findAll().stream().map(br -> {
-            EntregaDTO dtoentrega = new EntregaDTO();
-            dtoentrega.setIdEntrega(er.getIdEntrega());
-            dtoentrega.setTipoEntrega(er.getTipoEntrega());
-//            dtoentrega.setNomeEntregador();
-//            dtoentrega.setNomeEntregador(er.getEntregador().getSobrenome());
-//            dtoentrega.setNomeEntregador(er.getEntregador().getCpf());
-//            dtoentrega.setNomeEntregador(er.getEntregador().getTelefone());
-//            dtoentrega.setNomeEntregador(er.getEntregador().getEmpresa().getRazaoSocial());
-            EntregaTrechoDTO entregaTrechoDTO = new EntregaTrechoDTO();
-            entregaTrechoDTO.setCompleto(entregaTrechoDTO.getCompleto());
-                entregaTrechoDTO.setDataInicio(entregaTrechoDTO.getDataInicio());
-                entregaTrechoDTO.setDataFim(entregaTrechoDTO.getDataFim());
+    public EntregaPayloadDTO updateEntrega(Long idEntregaNv, EntregaPayloadDTO entregaAddDTO) {
+        entregaRepository.findById(idEntregaNv).ifPresentOrElse((entregaEntity1) -> {
+            entregaEntity1.setEntregador(
+                funcionarioRepository.findByCpf(entregaAddDTO.getEntregador().getCpf()).orElseThrow(() -> {
+                    throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Funcionario não foi encontrado!");
+                })
+            );
+            entregaRepository.save(entregaEntity1);
+        }, () -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Entrega não foi encontrada!");});
 
-            dtoentrega.setEntregaTrecho(entregaTrechoDTO);
-
-
-            PessoaDTO cr2 = new PessoaDTO();
-            cr2.setNome(er.getEntregador().getNome());
-            cr2.setCpf(er.getEntregador().getCpf());
-            cr2.setTelefone(er.getEntregador().getTelefone());
-            cr2.setSobrenome(er.getEntregador().getSobrenome());
-            dtoentrega.setNomeEntregador(cr2);
-            return dtoentrega;
-
-//        }).collect(Collectors.toList());
-
-    }).collect(Collectors.toList());
+        return entregaAddDTO;
     }
-
-//    public EntregaDTO updateEntrega(Long idEntregaNv, EntregaDTO entregaAddDTO) {
-//        EntregaDTO entregaDTO = new EntregaDTO();
-//        entregaRepository.findById(idEntregaNv).ifPresentOrElse(eE -> {
-//            funcionarioRepository.findById(eE.getEntregador().getIdPessoa()).ifPresentOrElse(fE -> {
-////        e.setIdEntrega(entregaDTO.getIdEntrega());
-//                eE.setTipoEntrega(entregaAddDTO.getTipoEntrega());
-//                eE.setEntregador(fE);
-//                entregaDTO.setTipoEntrega(eE.getTipoEntrega());
-//                entregaDTO.setNomeEntregador(eE.getEntregador().getNome());
-//                entregaRepository.save(eE);
-//            }, () -> {
-//                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Entregador não foi encontrado!");
-//            });
-//        }, () -> {
-//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Entrega não foi encontrada!");
-//        });
-////            e.setIdEmpresa(empresaAddDTO.getIdEmpresa());;
-//        return entregaDTO;
-//    }
 }
-//        entregaAddDTO.setIdEntrega(e.getIdEntrega());

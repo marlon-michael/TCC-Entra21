@@ -1,8 +1,11 @@
 package com.entra21.Transportadora.model.dto.Empresa;
 
 import com.entra21.Transportadora.model.dto.Carro.CarroAddDTO;
+import com.entra21.Transportadora.model.dto.Carro.CarroUpDTO;
 import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioAddDTO;
+import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioUpDTO;
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaAddDTO;
+import com.entra21.Transportadora.model.dto.Pessoa.PessoaUpDTO;
 import lombok.Data;
 
 import java.util.List;
@@ -10,7 +13,7 @@ import java.util.List;
 public class EmpresaUpDTO {
     private Long id;
     private String razaoSocial;
-    private PessoaAddDTO gerente;
-    private List<CarroAddDTO> carros;
-    private List<FuncionarioAddDTO> funcionarios;
+    private PessoaUpDTO gerente;
+    private List<CarroUpDTO> carros;
+    private List<FuncionarioUpDTO> funcionarios;
 }
