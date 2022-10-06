@@ -10,7 +10,9 @@ import com.entra21.Transportadora.view.repository.PessoaRepository;
 import com.entra21.Transportadora.view.service.CarroService;
 import com.entra21.Transportadora.view.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -35,7 +37,9 @@ public class CarroRestController {
     @GetMapping("/{id_empresa}")
     public List<CarroEntity> getCarroByEmpresa(@PathVariable(name = "id_empresa") Long empresa){
         Optional<EmpresaEntity> empresaEntity = empresaRepository.findById(empresa);
-        return carroRepository.findAllByEmpresa(empresaEntity.get());
+        return carroRepository.findAllByEmpresa(empresaEntity.get()).orElseThrow(()->{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa não foi encontrada!");
+        });
     }
 
     @PostMapping

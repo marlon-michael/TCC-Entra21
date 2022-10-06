@@ -16,7 +16,6 @@ public class FuncionarioEntity extends PessoaEntity{
 
     @ManyToOne
     @JoinColumn(name = "id_empresa",referencedColumnName = "id")
-    @JsonIgnore
     private EmpresaEntity empresa;
 
     @OneToMany

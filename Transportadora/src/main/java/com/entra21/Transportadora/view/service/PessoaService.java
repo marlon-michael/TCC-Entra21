@@ -25,7 +25,9 @@ public class PessoaService implements UserDetailsService{
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        PessoaEntity user = pessoaRepository.findByLogin(username);
+        PessoaEntity user = pessoaRepository.findByLogin(username).orElseThrow(()->{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pessoa não foi encontrada!");
+        });
         if (user == null) {
             throw new UsernameNotFoundException(username);
         }
