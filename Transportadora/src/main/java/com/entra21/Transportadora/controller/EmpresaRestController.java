@@ -1,6 +1,8 @@
 package com.entra21.Transportadora.controller;
 
 import com.entra21.Transportadora.model.dto.Empresa.EmpresaAddDTO;
+import com.entra21.Transportadora.model.dto.Empresa.EmpresaDTO;
+import com.entra21.Transportadora.model.dto.Empresa.EmpresaUpDTO;
 import com.entra21.Transportadora.view.repository.EmpresaRepository;
 import com.entra21.Transportadora.view.service.EmpresaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +21,7 @@ public class EmpresaRestController {
     private EmpresaService empresaService;
 
     @GetMapping
-    public List<GetAllEmpresasDTO> getEmpresa(){
+    public List<EmpresaDTO> getEmpresa(){
         return empresaService.getAllEmpresas();
     }
 
@@ -34,8 +36,8 @@ public class EmpresaRestController {
     }
 
     @PutMapping("/{id}")
-    public EmpresaAddDTO updateEmpresa(@PathVariable(name = "id") Long idEmpresanv,
-                                @RequestBody EmpresaAddDTO empresaDTO) {
+    public EmpresaUpDTO updateEmpresa(@PathVariable(name = "id") Long idEmpresanv,
+                                       @RequestBody EmpresaUpDTO empresaDTO) {
         return empresaService.updateEmpresa(idEmpresanv, empresaDTO);
     }
 }

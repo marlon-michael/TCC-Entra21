@@ -3,6 +3,8 @@ package com.entra21.Transportadora.controller;
 <<<<<<< HEAD
 =======
 import com.entra21.Transportadora.model.dto.Entrega.EntregaAddDTO;
+import com.entra21.Transportadora.model.dto.Entrega.EntregaDTO;
+import com.entra21.Transportadora.model.dto.Entrega.EntregaUpDTO;
 import com.entra21.Transportadora.model.dto.EntregaDTO;
 import com.entra21.Transportadora.model.dto.EntregaPayloadDTO;
 >>>>>>> 896f713429f68e3d28fd7c7542185f74e939ee58
@@ -35,7 +37,7 @@ public class EntregaRestController {
     }
 
     @PutMapping("/{id}")
-    public EntregaPayloadDTO updateEntrega(@PathVariable(name = "id") Long idEntrega, @RequestBody EntregaPayloadDTO entrega){
+    public EntregaUpDTO updateEntrega(@PathVariable(name = "id") Long idEntrega, @RequestBody EntregaUpDTO entrega){
         return entregaService.updateEntrega(idEntrega, entrega);
     }
 
