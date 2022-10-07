@@ -1,8 +1,6 @@
 package com.entra21.Transportadora.model.entity;
-import com.entra21.Transportadora.model.dto.CarroDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import java.util.List;

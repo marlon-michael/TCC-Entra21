@@ -1,4 +1,4 @@
-package com.entra21.Transportadora.model.dto;
+package com.entra21.Transportadora.model.dto.Pessoa;
 
 import lombok.Data;
 
@@ -9,4 +9,6 @@ public class PessoaDTO {
     private String sobrenome;
     private String telefone;
     private String cpf;
-}
+    private String login;
+    private String senha;
+    private Boolean desabilitado;}

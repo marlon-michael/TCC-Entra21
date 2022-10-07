@@ -93,7 +93,7 @@ CREATE TABLE `entrega` (
 
 LOCK TABLES `entrega` WRITE;
 /*!40000 ALTER TABLE `entrega` DISABLE KEYS */;
-INSERT INTO `entrega` VALUES (1,4,'expressa'),(2,4,'economica'),(3,5,'economica');
+INSERT INTO `entrega` VALUES (1,6,'expressa'),(2,7,'economica'),(3,8,'economica');
 /*!40000 ALTER TABLE `entrega` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -173,11 +173,11 @@ CREATE TABLE `funcionario` (
   `id_supervisor` bigint DEFAULT NULL,
   `id_empresa` bigint NOT NULL,
   PRIMARY KEY (`id_pessoa`),
-  KEY `id_supervisor` (`id_supervisor`),
   KEY `id_empresa` (`id_empresa`),
+  KEY `id_supervisor` (`id_supervisor`),
   CONSTRAINT `funcionario_ibfk_1` FOREIGN KEY (`id_pessoa`) REFERENCES `pessoa` (`id`),
-  CONSTRAINT `funcionario_ibfk_2` FOREIGN KEY (`id_supervisor`) REFERENCES `pessoa` (`id`),
-  CONSTRAINT `funcionario_ibfk_3` FOREIGN KEY (`id_empresa`) REFERENCES `empresa` (`id`)
+  CONSTRAINT `funcionario_ibfk_2` FOREIGN KEY (`id_empresa`) REFERENCES `empresa` (`id`),
+  CONSTRAINT `funcionario_ibfk_3` FOREIGN KEY (`id_supervisor`) REFERENCES `funcionario` (`id_pessoa`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -187,7 +187,7 @@ CREATE TABLE `funcionario` (
 
 LOCK TABLES `funcionario` WRITE;
 /*!40000 ALTER TABLE `funcionario` DISABLE KEYS */;
-INSERT INTO `funcionario` VALUES (4,2,1),(5,2,1),(6,3,2);
+INSERT INTO `funcionario` VALUES (4,NULL,1),(5,NULL,2),(6,4,1),(7,4,1),(8,5,2);
 /*!40000 ALTER TABLE `funcionario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -218,7 +218,7 @@ CREATE TABLE `item` (
 
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
-INSERT INTO `item` VALUES (1,'ASD1234','saiu para entrega','SC-Blumenau-Rua Paris, 136','Feleipa',NULL),(2,'ASD123X','saiu para entrega','SC-Blumenau-Rua Paris, 300','Maira',NULL),(3,'ASD123Z','saiu para entrega','SC-Blumenau-Rua Paris, 300','Pedrionh',5);
+INSERT INTO `item` VALUES (1,'ASD1234','saiu para entrega','SC-Blumenau-Rua Paris, 136','Feleipa',NULL),(2,'ASD123X','saiu para entrega','SC-Blumenau-Rua Paris, 300','Maira',NULL),(3,'ASD123Z','saiu para entrega','SC-Blumenau-Rua Paris, 300','Pedrionh',9);
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -240,7 +240,7 @@ CREATE TABLE `pessoa` (
   `desabilitado` bit(1) NOT NULL DEFAULT (0),
   PRIMARY KEY (`id`),
   UNIQUE KEY `cpf` (`cpf`,`login`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -249,7 +249,7 @@ CREATE TABLE `pessoa` (
 
 LOCK TABLES `pessoa` WRITE;
 /*!40000 ALTER TABLE `pessoa` DISABLE KEYS */;
-INSERT INTO `pessoa` VALUES (1,'Adimininastro','doZap','XXXXXXXXX','XXXXXXXXX','admin','admin',_binary '\0'),(2,'Gerente1','doZap','4799999999G','9999999999G','GerenteLogin','GerentePass',_binary '\0'),(3,'Gerente2','doZap','4799999999G','999999999G2','GerenteLogin2','GerentePass',_binary '\0'),(4,'userName','lastName','4799999999X','9999999999X','userLogin','userHardestPassword',_binary '\0'),(5,'userName2','lastName2','4799999999Y','9999999999Y','userLogin2','userHardestPassword2',_binary '\0'),(6,'userName3','lastName3','4799999999Z','9999999999Z','userLogin3','userHardestPassword3',_binary '\0');
+INSERT INTO `pessoa` VALUES (1,'Adimininastro','doZap','XXXXXXXXX','XXXXXXXXX','admin','admin',_binary '\0'),(2,'Gerente1','doZap','4799999999G','999999999G1','GerenteLogin','GerentePass',_binary '\0'),(3,'Gerente2','doZap','4799999999G','999999999G2','GerenteLogin2','GerentePass',_binary '\0'),(4,'Supervisor1','doZap','4799999999G','999999999S1','SuperL1','GerentePass',_binary '\0'),(5,'Supervisor2','doZap','4799999999G','999999999S2','SuperL2','GerentePass',_binary '\0'),(6,'Motorista1','doZap','4799999999G','999999999M1','Motora1','GerentePass',_binary '\0'),(7,'Motorista2','doZap','4799999999H','999999999M2','Motora2','GerentePass',_binary '\0'),(8,'Motorista3','doZap','4799999999I','999999999M3','Motora3','GerentePass',_binary '\0'),(9,'userName','lastName','47999999999','999999999C1','userLogin','userHardestPassword',_binary '\0'),(10,'userName2','lastName2','47999999998','999999999C2','userLogin2','userHardestPassword2',_binary '\0'),(11,'userName3','lastName3','47999999997','999999999C3','userLogin3','userHardestPassword3',_binary '\0');
 /*!40000 ALTER TABLE `pessoa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -291,4 +291,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-09-19 18:27:46
+-- Dump completed on 2022-09-20 21:03:41

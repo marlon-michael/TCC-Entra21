@@ -1,7 +1,9 @@
 package com.entra21.Transportadora.view.service;
 
 
-import com.entra21.Transportadora.model.dto.TrechoDTO;
+import com.entra21.Transportadora.model.dto.Trecho.TrechoAddDTO;
+import com.entra21.Transportadora.model.dto.Trecho.TrechoDTO;
+import com.entra21.Transportadora.model.dto.Trecho.TrechoUpDTO;
 import com.entra21.Transportadora.model.entity.TrechoEntity;
 import com.entra21.Transportadora.view.repository.TrechoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +30,7 @@ public class TrechoService {
         }).collect(Collectors.toList());
     }
 
-    public void saveTrecho(TrechoDTO input) {
+    public void saveTrecho(TrechoAddDTO input) {
         TrechoEntity newEntity = new TrechoEntity();
         newEntity.setIdTrecho(input.getIdTrecho());
         newEntity.setLocalInicio(input.getLocalInicio());
@@ -40,13 +42,12 @@ public class TrechoService {
         trechoRepository.deleteById(id);
     }
 
-    public TrechoDTO updateTrecho(Long id, TrechoDTO trechoDTO) {
+    public TrechoUpDTO updateTrecho(Long id, TrechoUpDTO trechoDTO) {
         TrechoEntity e = trechoRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Franquia não encontrada!"));
         e.setLocalInicio(trechoDTO.getLocalInicio());
         e.setLocalFim(trechoDTO.getLocalFim());
-//        trechoDTO.setIdTrecho(e.getIdTrecho());
         e = trechoRepository.save(e);
-        TrechoDTO dto = new TrechoDTO();
+        TrechoUpDTO dto = new TrechoUpDTO();
         dto.setIdTrecho(e.getIdTrecho());
         dto.setLocalFim(e.getLocalFim());
         dto.setLocalInicio(e.getLocalInicio());

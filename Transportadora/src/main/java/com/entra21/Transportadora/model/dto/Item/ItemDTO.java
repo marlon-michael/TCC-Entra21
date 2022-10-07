@@ -1,6 +1,7 @@
-package com.entra21.Transportadora.model.dto;
+package com.entra21.Transportadora.model.dto.Item;
 
-import com.entra21.Transportadora.model.entity.PessoaEntity;
+import com.entra21.Transportadora.model.dto.Pessoa.PessoaAddDTO;
+import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
 import lombok.Data;
 
 @Data

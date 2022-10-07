@@ -1,8 +1,8 @@
 package com.entra21.Transportadora.controller;
 
-import com.entra21.Transportadora.model.dto.EmpresaAddDTO;
-import com.entra21.Transportadora.model.dto.EmpresaDTO;
-import com.entra21.Transportadora.model.dto.GetAllEmpresasDTO;
+import com.entra21.Transportadora.model.dto.Empresa.EmpresaAddDTO;
+import com.entra21.Transportadora.model.dto.Empresa.EmpresaDTO;
+import com.entra21.Transportadora.model.dto.Empresa.EmpresaUpDTO;
 import com.entra21.Transportadora.view.repository.EmpresaRepository;
 import com.entra21.Transportadora.view.service.EmpresaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,20 +15,16 @@ import java.util.List;
 public class EmpresaRestController {
 
     @Autowired
-    EmpresaRepository empresaRepository;
-
-    @Autowired
     private EmpresaService empresaService;
 
     @GetMapping
-    public List<GetAllEmpresasDTO> getEmpresa(){
+    public List<EmpresaDTO> getEmpresa(){
         return empresaService.getAllEmpresas();
     }
 
-
     @PostMapping
-    public void addEmpresa(@RequestBody EmpresaAddDTO empresaAddDTO){
-        empresaService.saveEmpresas(empresaAddDTO);
+    public void addEmpresa(@RequestBody EmpresaAddDTO empresaDTO){
+        empresaService.saveEmpresas(empresaDTO);
     }
 
     @DeleteMapping("/{id}")
@@ -36,10 +32,9 @@ public class EmpresaRestController {
         empresaService.deleteEmpresa(idEmpresa);
     }
 
-
     @PutMapping("/{id}")
-    public EmpresaDTO updateEmpresa(@PathVariable(name = "id") Long idEmpresanv,
-                                @RequestBody EmpresaAddDTO empresaDTO) {
-        return empresaService.updateEmpresa(idEmpresanv,  empresaDTO);
+    public EmpresaUpDTO updateEmpresa(@PathVariable(name = "id") Long idEmpresanv,
+                                       @RequestBody EmpresaUpDTO empresaDTO) {
+        return empresaService.updateEmpresa(idEmpresanv, empresaDTO);
     }
 }

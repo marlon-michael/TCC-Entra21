@@ -1,79 +1,87 @@
 package com.entra21.Transportadora.view.service;
 
-
-import com.entra21.Transportadora.model.dto.*;
+import com.entra21.Transportadora.model.dto.Empresa.EmpresaAddDTO;
+import com.entra21.Transportadora.model.dto.Empresa.EmpresaDTO;
+import com.entra21.Transportadora.model.dto.Empresa.EmpresaUpDTO;
+import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
+import com.entra21.Transportadora.model.dto.Pessoa.PessoaAddDTO;
+import com.entra21.Transportadora.model.dto.Pessoa.PessoaUpDTO;
 import com.entra21.Transportadora.model.entity.EmpresaEntity;
 import com.entra21.Transportadora.model.entity.PessoaEntity;
 import com.entra21.Transportadora.view.repository.EmpresaRepository;
 import com.entra21.Transportadora.view.repository.PessoaRepository;
-import com.entra21.Transportadora.model.dto.EmpresaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 import java.util.stream.Collectors;
+
 @Service
 public class EmpresaService {
 
-        @Autowired
-        private EmpresaRepository empresaRepository;
+    @Autowired
+    private EmpresaRepository empresaRepository;
 
-        @Autowired
-        private PessoaRepository pessoaRepository;
+    @Autowired
+    private PessoaRepository pessoaRepository;
 
-        public void saveEmpresas(EmpresaAddDTO inputEmpresa) {
-            //newEntity.setIdEmpresa(inputEmpresa.getIdEmpresa());
-            pessoaRepository.findById(inputEmpresa.getIdGerente()).ifPresentOrElse(pE -> {
-                EmpresaEntity newEntity = new EmpresaEntity();
-                newEntity.setRazaoSocial(inputEmpresa.getRazaoSocial());
-                newEntity.setGerente(pE);
-                empresaRepository.save(newEntity);
-            }, () -> {
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Gerente não foi encontrado!");
-            });
-        }
+    public void saveEmpresas (EmpresaAddDTO inputEmpresa){
+        EmpresaEntity newEntity = new EmpresaEntity();
+        newEntity.setIdEmpresa(inputEmpresa.getId());
+        newEntity.setRazaoSocial(inputEmpresa.getRazaoSocial());
+        newEntity.setGerente(pessoaRepository.findByLogin(inputEmpresa.getGerente().getNome()).orElseThrow(()->{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pessoa não foi encontrada!");
+        }));
 
-        public void deleteEmpresa(Long idEmpresa) {
-            empresaRepository.deleteById(idEmpresa);
-        }
+        empresaRepository.save(newEntity);
+    }
 
-        public List<GetAllEmpresasDTO> getAllEmpresas() {
-            return empresaRepository.findAll().stream().map(er -> {
-                GetAllEmpresasDTO dtoempresa = new GetAllEmpresasDTO();
-                dtoempresa.setIdEmpresa(er.getIdEmpresa());
-                dtoempresa.setRazaoSocial(er.getRazaoSocial());
-//                dtoempresa.setNomeGerente(er.getGerente().getNome());
+    public void deleteEmpresa (Long idEmpresa){
+        empresaRepository.deleteById(idEmpresa);
+    }
 
-                PessoaDTO cr2 = new PessoaDTO();
-        cr2.setNome(er.getGerente().getNome());
-        cr2.setCpf(er.getGerente().getCpf());
-        cr2.setTelefone(er.getGerente().getTelefone());
-        cr2.setSobrenome(er.getGerente().getSobrenome());
-        cr2.setIdPessoa(er.getGerente().getIdPessoa());
-dtoempresa.setNomeGerente(cr2);
-                return dtoempresa;
-            }).collect(Collectors.toList());
-        }
+    public List<EmpresaDTO> getAllEmpresas () {
+        return empresaRepository.findAll().stream().map(er -> {
+            EmpresaDTO dtoempresa = new EmpresaDTO();
+            dtoempresa.setId(er.getIdEmpresa());
+            dtoempresa.setRazaoSocial(er.getRazaoSocial());
+
+            PessoaDTO pessoaDTO = new PessoaDTO();
+            pessoaDTO .setNome(er.getGerente().getNome());
+            pessoaDTO .setCpf(er.getGerente().getCpf());
+            pessoaDTO .setTelefone(er.getGerente().getTelefone());
+            pessoaDTO .setSobrenome(er.getGerente().getSobrenome());
+
+            dtoempresa.setGerente(pessoaDTO);
+            return dtoempresa;
+        }).collect(Collectors.toList());
+    }
+
+    public List<EmpresaDTO> getAllEmpresasgerente () {
+        return empresaRepository.findAll().stream().map(er -> {
+            EmpresaDTO dtoempresa = new EmpresaDTO();
+            PessoaDTO pessoaDTO = new PessoaDTO();
+            dtoempresa.setRazaoSocial(er.getRazaoSocial());
+            pessoaDTO.setNome(er.getGerente().getNome());
+            dtoempresa.setGerente(pessoaDTO);
+            pessoaDTO.setSobrenome(dtoempresa.getGerente().getSobrenome());
+            pessoaDTO.setTelefone(dtoempresa.getGerente().getTelefone());
+            pessoaDTO.setCpf(dtoempresa.getGerente().getCpf());
+            return dtoempresa;
+        }).collect(Collectors.toList());
+    }
 
 
-
-
-
-
-
-        public EmpresaDTO updateEmpresa(Long idEmpresanv, EmpresaAddDTO empresaAddDTO) {
-            EmpresaDTO empresaDTO = new EmpresaDTO();
-            empresaRepository.findById(idEmpresanv).ifPresentOrElse(eE -> {
-                pessoaRepository.findById(empresaAddDTO.getIdGerente()).ifPresentOrElse(pE -> {
-                    eE.setRazaoSocial(empresaAddDTO.getRazaoSocial());
-                    eE.setGerente(pE);
-                    empresaDTO.setRazaoSocial(eE.getRazaoSocial());
-                    empresaRepository.save(eE);
-                }, () -> {throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Gerente não foi encontrado!");});
-            }, () -> {throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Empresa não foi encontrado!");});
-//            e.setIdEmpresa(empresaAddDTO.getIdEmpresa());;
-            return empresaDTO;
-        }
-
+    public EmpresaUpDTO updateEmpresa (Long idEmpresanv, EmpresaUpDTO empresaDTO){
+        EmpresaEntity empresa = empresaRepository.findById(idEmpresanv).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa não encontrada!"));
+        PessoaUpDTO pessoaDTO = new PessoaUpDTO();
+        empresa.setIdEmpresa(empresaDTO.getId());
+        empresa.setRazaoSocial(empresaDTO.getRazaoSocial());
+        pessoaDTO.setIdPessoa(empresaDTO.getGerente().getIdPessoa());
+        empresa = empresaRepository.save(empresa);
+        empresaDTO.setGerente(pessoaDTO);
+        empresaDTO.setId(empresa.getIdEmpresa());
+        return empresaDTO;
+    }
 }
