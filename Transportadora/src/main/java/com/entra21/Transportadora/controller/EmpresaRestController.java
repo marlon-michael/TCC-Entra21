@@ -15,9 +15,6 @@ import java.util.List;
 public class EmpresaRestController {
 
     @Autowired
-    EmpresaRepository empresaRepository;
-
-    @Autowired
     private EmpresaService empresaService;
 
     @GetMapping
