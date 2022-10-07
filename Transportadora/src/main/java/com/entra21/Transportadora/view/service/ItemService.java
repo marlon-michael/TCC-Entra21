@@ -54,12 +54,9 @@ public class ItemService {
         newEntity.setLocalEntrega(input.getLocalEntrega());
         newEntity.setNomeRecebedor(input.getNomeRecebedor());
         newEntity.setStatus(input.getStatus());
-<<<<<<< HEAD
         PessoaEntity pessoa = new PessoaEntity();
         pessoa.setIdPessoa(input.getPessoaItem().getIdPessoa());
         newEntity.setPessoa(pessoa);
-=======
->>>>>>> 896f713429f68e3d28fd7c7542185f74e939ee58
         itemRepository.save(newEntity);
     }
 
@@ -89,13 +86,9 @@ public class ItemService {
         itemDTO.setIdItem(e.getIdItem());
         e.setPessoa(pessoaRepository.findById(itemDTO.getPessoaItem().getIdPessoa()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST)));
         e = itemRepository.save(e);
-<<<<<<< HEAD
-        itemDTO.setIdItem(e.getIdItem());
-=======
->>>>>>> 896f713429f68e3d28fd7c7542185f74e939ee58
-        return itemDTO;
-    }
 
+        itemDTO.setIdItem(e.getIdItem());
+}
 
 
 

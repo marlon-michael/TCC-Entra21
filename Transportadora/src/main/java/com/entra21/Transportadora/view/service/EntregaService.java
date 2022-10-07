@@ -1,17 +1,9 @@
 package com.entra21.Transportadora.view.service;
-<<<<<<< HEAD
-import com.entra21.Transportadora.model.dto.Entrega.EntregaAddDTO;
-import com.entra21.Transportadora.model.dto.EntregaTrecho.EntregaTrechoDTO;
-import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
-import com.entra21.Transportadora.model.entity.EntregaEntity;
-import com.entra21.Transportadora.view.repository.EntregaRepository;
-import com.entra21.Transportadora.view.repository.EntregaTrechoRepository;
-import com.entra21.Transportadora.view.repository.FuncionarioRepository;
-import com.entra21.Transportadora.view.repository.PessoaRepository;
-=======
+import com.entra21.Transportadora.model.dto.*;
+import com.entra21.Transportadora.model.dto.Entrega.EntregaDTO;
+import com.entra21.Transportadora.model.dto.Entrega.EntregaUpDTO;
 import com.entra21.Transportadora.model.entity.*;
 import com.entra21.Transportadora.view.repository.*;
->>>>>>> 896f713429f68e3d28fd7c7542185f74e939ee58
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -39,13 +31,13 @@ public class EntregaService {
     @Autowired
     private CarroRepository carroRepository;
 
-    public List<EntregaAddDTO> getAllEntrega() {
+    public List<EntregaDTO> getAllEntrega() {
         return entregaRepository.findAll().stream().map(entregaEntity -> {
-            EntregaAddDTO dtoentrega = new EntregaAddDTO();
+            EntregaDTO dtoentrega = new EntregaDTO();
             dtoentrega.setIdEntrega(entregaEntity.getIdEntrega());
             dtoentrega.setTipoEntrega(entregaEntity.getTipoEntrega());
             entregaEntity.getItens().stream().map(itemEntity -> {
-                dtoentrega.getItemDTO().setIdItem(itemEntity.getIdItem());
+                dtoentrega.getItens()(itemEntity.getIdItem());
                 dtoentrega.getItemDTO().setLocalEntrega(itemEntity.getLocalEntrega());
                 dtoentrega.getItemDTO().setLocalizador(itemEntity.getLocalizador());
                 dtoentrega.getItemDTO().setNomeRecebedor(itemEntity.getNomeRecebedor());
@@ -64,12 +56,12 @@ public class EntregaService {
             });
 
             //MAP ENTREGA-TRECHO
-                //MAP TRECHO
-                //MAP CARRO
+            //MAP TRECHO
+            //MAP CARRO
 
             //MAP ENTREGADOR
-                //MAP SUPERVISOR
-                //MAP EMPRESA
+            //MAP SUPERVISOR
+            //MAP EMPRESA
 
 
 
@@ -88,7 +80,7 @@ public class EntregaService {
         }).collect(Collectors.toList());
     }
 
-    public void save(EntregaAddDTO entregaDTO) {
+    public void save(EntregaPayloadDTO entregaDTO) {
         EntregaEntity entregaEntity = new EntregaEntity();
 
         entregaEntity.setTipoEntrega(entregaDTO.getTipoEntrega());
@@ -145,7 +137,7 @@ public class EntregaService {
             else entregaTrechoEntity.setCarro(carroEntity);
 
             entregaTrechoEntity.setEntrega(entregaRepository.findById(1L).orElseThrow(
-                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Entrega não encontrado!")
+                    () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Entrega não encontrado!")
             ));
 
             entregaTrechoRepository.save(entregaTrechoEntity);
@@ -167,12 +159,12 @@ public class EntregaService {
         entregaRepository.deleteById(idEntrega);
     }
 
-    public EntregaPayloadDTO updateEntrega(Long idEntregaNv, EntregaPayloadDTO entregaAddDTO) {
+    public EntregaUpDTO updateEntrega(Long idEntregaNv, EntregaUpDTO entregaAddDTO) {
         entregaRepository.findById(idEntregaNv).ifPresentOrElse((entregaEntity1) -> {
             entregaEntity1.setEntregador(
-                funcionarioRepository.findByCpf(entregaAddDTO.getEntregador().getCpf()).orElseThrow(() -> {
-                    throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Funcionario não foi encontrado!");
-                })
+                    funcionarioRepository.findByCpf(entregaAddDTO.getEntregador().getCpf()).orElseThrow(() -> {
+                        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Funcionario não foi encontrado!");
+                    })
             );
             entregaRepository.save(entregaEntity1);
         }, () -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Entrega não foi encontrada!");});

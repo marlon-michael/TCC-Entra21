@@ -41,8 +41,6 @@ public class FuncionarioService {
            dto.setSobrenome(fr.getSobrenome());
            dto.setCpf(fr.getCpf());
            dto.setTelefone(fr.getTelefone());
-//         dto.setLogin(fr.getLogin());
-//         dto.setSenha(fr.getSenha());
            dtoEmp.setRazaoSocial(fr.getEmpresa().getRazaoSocial());
            dtoPesEmp.setNome(fr.getEmpresa().getGerente().getNome());
            dtoPesEmp.setSobrenome(fr.getEmpresa().getGerente().getSobrenome());
@@ -50,15 +48,16 @@ public class FuncionarioService {
            dtoPesEmp.setTelefone(fr.getEmpresa().getGerente().getTelefone());
            dtoEmp.setGerente(dtoPesEmp);
 
-           dto.setEmpresaFuncionario(dtoEmp);
+           dto.setEmpresa(dtoEmp);
            if (fr.getSupervisor() == null) {
                return dto;
            } else {
+
                dtoPes.setNome(fr.getSupervisor().getNome());
                dtoPes.setSobrenome(fr.getSupervisor().getSobrenome());
                dtoPes.setCpf(fr.getSupervisor().getCpf());
                dtoPes.setTelefone(fr.getSupervisor().getTelefone());
-               dto.setSupervisorFuncionario(dtoPes);
+               //erro ARRUMAR
                return dto;
            }
        }).collect(Collectors.toList());
@@ -68,8 +67,8 @@ public class FuncionarioService {
     public void saveFuncionario(FuncionarioAddDTO input) {
         Query q = em.createNativeQuery("INSERT INTO funcionario(id_pessoa, id_empresa, id_supervisor) VALUES(:idPessoa, :idEmpresa, :idSupervisor)");
         q.setParameter("idPessoa", input.getIdPessoa());
-        q.setParameter("idEmpresa", input.getIdEmpresa());
-        q.setParameter("idSupervisor", input.getIdSupervisor());
+        q.setParameter("idEmpresa", input.getEmpresa().getId());
+        q.setParameter("idSupervisor", input.getSupervisor().getIdPessoa());
         q.executeUpdate();
     }
 

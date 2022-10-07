@@ -10,8 +10,9 @@ import java.util.List;
 
 @Data
 public class EntregaAddDTO {
+        private Long idEntrega;
         private String tipoEntrega;
         private FuncionarioAddDTO entregador;
         private List<EntregaTrechoDTO> entregaTrecho;
-        private HashSet<ItemDTO> itens;
+        private List<ItemDTO> itens;
     }
