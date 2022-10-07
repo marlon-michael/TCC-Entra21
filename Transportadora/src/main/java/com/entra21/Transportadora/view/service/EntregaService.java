@@ -53,6 +53,8 @@ public class EntregaService {
                 return null;
             });
 
+            entregaEntity.getEntregador().
+
             //MAP ENTREGA-TRECHO
                 //MAP TRECHO
                 //MAP CARRO
@@ -63,18 +65,18 @@ public class EntregaService {
 
 
 
-            EntregaTrechoDTO entregaTrechoDTO = new EntregaTrechoDTO();
-            entregaTrechoDTO.setCompleto(entregaTrechoDTO.getCompleto());
-            entregaTrechoDTO.setDataInicio(entregaTrechoDTO.getDataInicio());
-            entregaTrechoDTO.setDataFim(entregaTrechoDTO.getDataFim());
-            dtoentrega.setEntregaTrecho(entregaTrechoDTO);
-            FuncionarioDTO funcionarioDTO = new FuncionarioDTO();
-            funcionarioDTO.setNome(entregaEntity.getEntregador().getNome());
-            funcionarioDTO.setCpf(entregaEntity.getEntregador().getCpf());
-            funcionarioDTO.setTelefone(entregaEntity.getEntregador().getTelefone());
-            funcionarioDTO.setSobrenome(entregaEntity.getEntregador().getSobrenome());
-            dtoentrega.setNomeEntregador(funcionarioDTO);
-            return dtoentrega;
+//            EntregaTrechoDTO entregaTrechoDTO = new EntregaTrechoDTO();
+//            entregaTrechoDTO.setCompleto(entregaTrechoDTO.getCompleto());
+//            entregaTrechoDTO.setDataInicio(entregaTrechoDTO.getDataInicio());
+//            entregaTrechoDTO.setDataFim(entregaTrechoDTO.getDataFim());
+//            dtoentrega.setEntregaTrecho(entregaTrechoDTO);
+//            FuncionarioDTO funcionarioDTO = new FuncionarioDTO();
+//            funcionarioDTO.setNome(entregaEntity.getEntregador().getNome());
+//            funcionarioDTO.setCpf(entregaEntity.getEntregador().getCpf());
+//            funcionarioDTO.setTelefone(entregaEntity.getEntregador().getTelefone());
+//            funcionarioDTO.setSobrenome(entregaEntity.getEntregador().getSobrenome());
+//            dtoentrega.setNomeEntregador(funcionarioDTO);
+//            return dtoentrega;
         }).collect(Collectors.toList());
     }
 
