@@ -1,6 +1,6 @@
 package com.entra21.Transportadora.controller;
 
-import com.entra21.Transportadora.model.dto.TrechoDTO;
+import com.entra21.Transportadora.model.dto.Trecho.TrechoDTO;
 import com.entra21.Transportadora.view.service.TrechoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

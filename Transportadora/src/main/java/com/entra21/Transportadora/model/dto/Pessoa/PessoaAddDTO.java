@@ -1,9 +1,11 @@
-package com.entra21.Transportadora.model.dto;
+package com.entra21.Transportadora.model.dto.Pessoa;
 
 import lombok.Data;
 
+import javax.persistence.Column;
+
 @Data
-public class PessoaPayLoadDTO {
+public class PessoaAddDTO {
     private Long idPessoa;
     private String nome;
     private String sobrenome;
