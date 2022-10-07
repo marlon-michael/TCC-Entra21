@@ -88,8 +88,9 @@ public class ItemService {
         e = itemRepository.save(e);
 
         itemDTO.setIdItem(e.getIdItem());
-}
 
+        return itemDTO;
+    }
 
 
 }

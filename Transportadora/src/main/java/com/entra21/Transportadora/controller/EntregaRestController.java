@@ -1,14 +1,9 @@
 package com.entra21.Transportadora.controller;
 
-<<<<<<< HEAD
-=======
+
 import com.entra21.Transportadora.model.dto.Entrega.EntregaAddDTO;
 import com.entra21.Transportadora.model.dto.Entrega.EntregaDTO;
 import com.entra21.Transportadora.model.dto.Entrega.EntregaUpDTO;
-import com.entra21.Transportadora.model.dto.EntregaDTO;
-import com.entra21.Transportadora.model.dto.EntregaPayloadDTO;
->>>>>>> 896f713429f68e3d28fd7c7542185f74e939ee58
-import com.entra21.Transportadora.model.entity.EntregaEntity;
 import com.entra21.Transportadora.view.repository.EntregaRepository;
 import com.entra21.Transportadora.view.service.EntregaService;
 import org.springframework.beans.factory.annotation.Autowired;
