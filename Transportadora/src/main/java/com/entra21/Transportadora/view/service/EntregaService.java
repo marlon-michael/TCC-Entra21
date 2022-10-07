@@ -39,6 +39,13 @@ public class EntregaService {
     @Autowired
     private CarroRepository carroRepository;
 
+    //TODO
+
+    //FAZER UM METODO PARA CONVERTER ENTITY PARA DTO
+    //FAZER UM METODO PARA CONVERTER DTO EM ENTITY
+
+
+
     public List<EntregaDTO> getAllEntrega() {
         return entregaRepository.findAll().stream().map(entregaEntity -> {
             EntregaDTO dtoentrega = new EntregaDTO();
@@ -105,6 +112,10 @@ public class EntregaService {
 
             return dtoentrega;
         }).collect(Collectors.toList());
+    }
+
+    public List<EntregaEntity> getAllEntragaByEntregador(String cpf){
+        return entregaRepository.findAllByEntregador_Cpf(cpf);
     }
 
     public void save(EntregaAddDTO entregaDTO) {
