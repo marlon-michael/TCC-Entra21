@@ -32,6 +32,7 @@ package com.entra21.Transportadora.controller;
 
 import com.entra21.Transportadora.model.dto.Item.ItemAddDTO;
 import com.entra21.Transportadora.model.dto.Item.ItemDTO;
+import com.entra21.Transportadora.model.dto.Item.ItemUpDTO;
 import com.entra21.Transportadora.model.entity.ItemEntity;
 import com.entra21.Transportadora.view.repository.ItemRepository;
 import com.entra21.Transportadora.view.service.ItemService;
@@ -72,17 +73,17 @@ public class ItemRestController {
     }
 
     @PutMapping("/status/{id}")
-    public ItemAddDTO updateItem(@PathVariable(name = "id") Long id,
+    public ItemUpDTO updateItem(@PathVariable(name = "id") Long id,
 
-                              @RequestBody String novoStatus) {
+                                @RequestBody String novoStatus) {
 
         return itemService.updateStatusItem(id, novoStatus);
     }
 
     @PutMapping("/{id}")
-    public ItemAddDTO updateItem(@PathVariable(name = "id") Long id,
-                              @RequestBody ItemAddDTO itemDTO) {
-        return itemService.updateAllItem(id, itemDTO);
+    public ItemUpDTO updateItem(@PathVariable(name = "id") Long id,
+                              @RequestBody ItemUpDTO itemDTO) {
+        return itemService.itemUpDTO(id, itemDTO);
     }
 }
 

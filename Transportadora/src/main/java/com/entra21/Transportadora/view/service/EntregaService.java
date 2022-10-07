@@ -1,4 +1,5 @@
 package com.entra21.Transportadora.view.service;
+
 import com.entra21.Transportadora.model.dto.Carro.CarroDTO;
 import com.entra21.Transportadora.model.dto.Empresa.EmpresaDTO;
 import com.entra21.Transportadora.model.dto.Entrega.EntregaAddDTO;
@@ -16,7 +17,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;

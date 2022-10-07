@@ -2,6 +2,7 @@ package com.entra21.Transportadora.view.service;
 
 import com.entra21.Transportadora.model.dto.Item.ItemAddDTO;
 import com.entra21.Transportadora.model.dto.Item.ItemDTO;
+import com.entra21.Transportadora.model.dto.Item.ItemUpDTO;
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
 import com.entra21.Transportadora.model.entity.ItemEntity;
 import com.entra21.Transportadora.model.entity.PessoaEntity;
@@ -57,6 +58,7 @@ public class ItemService {
         PessoaEntity pessoa = new PessoaEntity();
         pessoa.setIdPessoa(input.getPessoaItem().getIdPessoa());
         newEntity.setPessoa(pessoa);
+
         itemRepository.save(newEntity);
     }
 
@@ -64,16 +66,16 @@ public class ItemService {
         itemRepository.deleteById(id);
     }
 
-    public ItemAddDTO updateStatusItem(Long id, String novoStatus) {
+    public ItemUpDTO updateStatusItem(Long id, String novoStatus) {
         ItemEntity e = itemRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Item não encontrado!"));
         e.setStatus(novoStatus);
         e = itemRepository.save(e);
-        ItemAddDTO dto = new ItemAddDTO();
+        ItemUpDTO dto = new ItemUpDTO();
         dto.setStatus(e.getStatus());
         return dto;
     }
 
-    public ItemAddDTO updateAllItem(Long id, ItemAddDTO itemDTO) {
+    public ItemUpDTO itemUpDTO(Long id, ItemUpDTO itemDTO) {
         ItemEntity e = itemRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Item não encontrado!"));
         e.setStatus(itemDTO.getStatus());
         e.setNomeRecebedor(itemDTO.getNomeRecebedor());
@@ -86,7 +88,6 @@ public class ItemService {
         itemDTO.setIdItem(e.getIdItem());
         e.setPessoa(pessoaRepository.findById(itemDTO.getPessoaItem().getIdPessoa()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST)));
         e = itemRepository.save(e);
-
         itemDTO.setIdItem(e.getIdItem());
 
         return itemDTO;

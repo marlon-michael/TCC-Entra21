@@ -3,6 +3,7 @@ package com.entra21.Transportadora.view.service;
 
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaAddDTO;
+import com.entra21.Transportadora.model.dto.Pessoa.PessoaUpDTO;
 import com.entra21.Transportadora.model.entity.PessoaEntity;
 import com.entra21.Transportadora.view.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,23 +49,17 @@ public class PessoaService implements UserDetailsService{
     public List<PessoaDTO> getAll() {
         return pessoaRepository.findAll().stream().map(pr -> {
             PessoaDTO dto = new PessoaDTO();
-//            dto.setIdPessoa(pr.getIdPessoa())
             dto.setNome(pr.getNome());
             dto.setSobrenome(pr.getSobrenome());
             dto.setCpf(pr.getCpf());
             dto.setTelefone(pr.getTelefone());
-
-//            dto.setLogin(pr.getLogin());
-//            dto.setSenha(pr.getSenha());
-//            dto.setDesabilitado(pr.getDesabilitado());
             return dto;
         }).collect(Collectors.toList());
     }
 
-    public List<PessoaAddDTO> getAllByFuncionario() {
+    public List<PessoaDTO> getAllByFuncionario() {
         return pessoaRepository.findAll().stream().map(pr -> {
-            PessoaAddDTO dtoN = new PessoaAddDTO();
-            dtoN.setIdPessoa(pr.getIdPessoa());
+            PessoaDTO dtoN = new PessoaDTO();
             dtoN.setNome(pr.getNome());
             dtoN.setSobrenome(pr.getSobrenome());
             dtoN.setCpf(pr.getCpf());
@@ -78,7 +73,6 @@ public class PessoaService implements UserDetailsService{
 
     public void save(PessoaAddDTO input) {
         PessoaEntity newEntity = new PessoaEntity();
-//        newEntity.setIdPessoa(input.getIdPessoa());
         newEntity.setNome(input.getNome());
         newEntity.setSobrenome(input.getSobrenome());
         newEntity.setTelefone(input.getTelefone());
@@ -89,58 +83,25 @@ public class PessoaService implements UserDetailsService{
         pessoaRepository.save(newEntity);
     }
 
-
-
-//
-//    private String cpf;
-//    private String login;
-//    private  String senha;
-
-//    public void delete(Long id) {
-//        pessoaRepository.deleteById(id);
-//    }
-
-    public PessoaAddDTO updatePessoa(Long id, PessoaAddDTO pessoaPayLoadDTO) {
-        PessoaEntity e = pessoaRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Pessoa não encontrada!"));
-//       e.setIdPessoa(id);
-        e.setNome(pessoaPayLoadDTO.getNome());
-        e.setSobrenome(pessoaPayLoadDTO.getSobrenome());
-        e.setTelefone(pessoaPayLoadDTO.getTelefone());
-        e.setCpf(pessoaPayLoadDTO.getCpf());
-        e.setLogin(pessoaPayLoadDTO.getLogin());
-        e.setSenha(pessoaPayLoadDTO.getSenha());
-        e.setDesabilitado(pessoaPayLoadDTO.getDesabilitado());
-        e = pessoaRepository.save(e);
-//        pessoaDTO.setIdPessoa(e.getIdPessoa());
+    public PessoaUpDTO updatePessoa(Long id, PessoaUpDTO pessoaPayLoadDTO) {
+        PessoaEntity pessoa = pessoaRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Pessoa não encontrada!"));
+        pessoa.setNome(pessoaPayLoadDTO.getNome());
+        pessoa.setSobrenome(pessoaPayLoadDTO.getSobrenome());
+        pessoa.setTelefone(pessoaPayLoadDTO.getTelefone());
+        pessoa.setCpf(pessoaPayLoadDTO.getCpf());
+        pessoa.setLogin(pessoaPayLoadDTO.getLogin());
+        pessoa.setSenha(pessoaPayLoadDTO.getSenha());
+        pessoa.setDesabilitado(pessoaPayLoadDTO.getDesabilitado());
+        pessoa = pessoaRepository.save(pessoa);
         PessoaAddDTO dto = new PessoaAddDTO();
-//        dto.setIdPessoa(e.getIdPessoa());
-        dto.setNome(e.getNome());
-        dto.setSobrenome(e.getSobrenome());
-        dto.setTelefone(e.getTelefone());
-        dto.setCpf(e.getCpf());
-        dto.setLogin(e.getLogin());
-        dto.setSenha(e.getSenha());
-        dto.setDesabilitado(e.getDesabilitado());
+        dto.setNome(pessoa.getNome());
+        dto.setSobrenome(pessoa.getSobrenome());
+        dto.setTelefone(pessoa.getTelefone());
+        dto.setCpf(pessoa.getCpf());
+        dto.setLogin(pessoa.getLogin());
+        dto.setSenha(pessoa.getSenha());
+        dto.setDesabilitado(pessoa.getDesabilitado());
         return pessoaPayLoadDTO;
     }
 
-//
-//
-//    public void save(FranquiaPayloadDTO input) {
-//        FranquiaEntity newEntity = new FranquiaEntity();
-//        newEntity.setNome(input.getNome());
-//        franquiaRepository.save(newEntity);
-//    }
-//
-//    public FranquiaDTO getById(Long id) {
-//        FranquiaEntity e = franquiaRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Franquia não encontrada!"));
-//        FranquiaDTO dto = new FranquiaDTO();
-//        dto.setId(e.getId());
-//        dto.setNome(e.getNome());
-//        return dto;
-//    }
-//
-//
-//
-//
 }
