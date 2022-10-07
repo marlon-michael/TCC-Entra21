@@ -1,5 +1,6 @@
 package com.entra21.Transportadora.view.service;
 import com.entra21.Transportadora.model.dto.*;
+import com.entra21.Transportadora.model.dto.Entrega.EntregaAddDTO;
 import com.entra21.Transportadora.model.dto.Entrega.EntregaDTO;
 import com.entra21.Transportadora.model.dto.Entrega.EntregaUpDTO;
 import com.entra21.Transportadora.model.entity.*;
@@ -80,7 +81,7 @@ public class EntregaService {
         }).collect(Collectors.toList());
     }
 
-    public void save(EntregaPayloadDTO entregaDTO) {
+    public void save(EntregaAddDTO entregaDTO) {
         EntregaEntity entregaEntity = new EntregaEntity();
 
         entregaEntity.setTipoEntrega(entregaDTO.getTipoEntrega());
