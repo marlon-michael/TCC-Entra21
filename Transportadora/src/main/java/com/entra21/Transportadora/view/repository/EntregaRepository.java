@@ -8,10 +8,7 @@ import java.util.List;
 
 @Repository
 public interface EntregaRepository extends JpaRepository<EntregaEntity, Long> {
-<<<<<<< HEAD
-    public EntregaEntity findAllByEntregador_Cpf(String cpf);
-=======
     public List<EntregaEntity> findAllByEntregador_Cpf(String cpf);
->>>>>>> 62232706b920785370b166f99828ff1f788223ee
+
 }
 
