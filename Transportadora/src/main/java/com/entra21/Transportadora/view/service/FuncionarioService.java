@@ -5,6 +5,7 @@ import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioAddDTO;
 import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioDTO;
 
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
+import com.entra21.Transportadora.model.entity.EmpresaEntity;
 import com.entra21.Transportadora.view.repository.EmpresaRepository;
 import com.entra21.Transportadora.view.repository.FuncionarioRepository;
 import com.entra21.Transportadora.view.repository.PessoaRepository;
@@ -48,12 +49,10 @@ public class FuncionarioService {
            dtoPesEmp.setCpf(fr.getEmpresa().getGerente().getCpf());
            dtoPesEmp.setTelefone(fr.getEmpresa().getGerente().getTelefone());
            dtoEmp.setGerente(dtoPesEmp);
-
            dto.setEmpresa(dtoEmp);
            if (fr.getSupervisor() == null) {
                return dto;
            } else {
-
                dtoPes.setNome(fr.getSupervisor().getNome());
                dtoPes.setSobrenome(fr.getSupervisor().getSobrenome());
                dtoPes.setCpf(fr.getSupervisor().getCpf());
@@ -62,6 +61,35 @@ public class FuncionarioService {
                return dto;
            }
        }).collect(Collectors.toList());
+    }
+//TESTAR - CASA
+    public List<FuncionarioDTO> getAllFuncionarioById() {
+        return funcionarioRepository.findAll().stream().map(fr -> {
+            FuncionarioDTO dto = new FuncionarioDTO();
+            dto.setNome(fr.getNome());
+            dto.setSobrenome(fr.getSobrenome());
+            dto.setCpf(fr.getCpf());
+            dto.setTelefone(fr.getTelefone());
+            PessoaDTO dtoPes = new PessoaDTO();
+            PessoaDTO dtoPesEmp = new PessoaDTO();
+            if (fr.getSupervisor() == null) {
+                return dto;
+            } else {
+                dtoPes.setNome(fr.getSupervisor().getNome());
+                dtoPes.setSobrenome(fr.getSupervisor().getSobrenome());
+                dtoPes.setCpf(fr.getSupervisor().getCpf());
+                dtoPes.setTelefone(fr.getSupervisor().getTelefone());
+            fr.getEmpresa().getFuncionarios().stream().map(EmpresaEntity -> {
+
+                    //erro ARRUMAR
+                    EmpresaDTO empresaDTO = new EmpresaDTO();
+                    empresaDTO.setFuncionarios(dto.getEmpresa().getFuncionarios());
+                    return empresaDTO;
+                }).collect(Collectors.toList());
+            }
+
+            return dto;
+        }).collect(Collectors.toList());
     }
 
     @Transactional

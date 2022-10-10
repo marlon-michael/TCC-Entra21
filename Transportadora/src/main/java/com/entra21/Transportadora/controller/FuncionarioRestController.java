@@ -30,10 +30,10 @@ public class FuncionarioRestController {
    }
    //todo
    //TIRAR O ENTITY
-//   @GetMapping("/{id}")
-//   public List<FuncionarioDTO> getAllByEmpresa(@PathVariable(name = "id")Long id){
-//      return funcionarioService.findAllByEmpresa_IdEmpresa(id).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa não foi encontrada!");});
-//   }
+   @GetMapping("/{id}")
+   public List<FuncionarioDTO> getAllByEmpresa(@PathVariable(name = "id")Long id){
+      return funcionarioService.getAllFuncionarioById();
+   }
 
    @PostMapping
    public void addFuncionario(
