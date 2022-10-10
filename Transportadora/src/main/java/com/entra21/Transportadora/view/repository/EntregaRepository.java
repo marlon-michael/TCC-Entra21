@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EntregaRepository extends JpaRepository<EntregaEntity, Long> {
-//    public EntregaEntity findAllByEntregador_Cpf(String cpf);
+    public EntregaEntity findAllByEntregador_Cpf(String cpf);
 }
+
