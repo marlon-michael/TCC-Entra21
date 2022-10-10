@@ -16,6 +16,9 @@ public class EmpresaEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEmpresa;
 
+    @Column(name = "cnpj")
+    private String cnpj;
+
     @Column(name = "razao_social")
     private String razaoSocial;
 

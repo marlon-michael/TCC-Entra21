@@ -58,6 +58,10 @@ public class EmpresaService {
         }).collect(Collectors.toList());
     }
 
+    public List<EmpresaEntity> findByCnpj(String cnpj){
+        return empresaRepository.findByCnpj(cnpj).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa não encontrada");});
+    }
+
     public List<EmpresaDTO> getAllEmpresasgerente () {
         return empresaRepository.findAll().stream().map(er -> {
             EmpresaDTO dtoempresa = new EmpresaDTO();
