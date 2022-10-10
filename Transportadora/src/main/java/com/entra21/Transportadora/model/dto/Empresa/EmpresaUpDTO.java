@@ -12,6 +12,7 @@ import java.util.List;
 @Data
 public class EmpresaUpDTO {
     private Long id;
+    private String cnpj;
     private String razaoSocial;
     private PessoaUpDTO gerente;
     private List<CarroUpDTO> carros;

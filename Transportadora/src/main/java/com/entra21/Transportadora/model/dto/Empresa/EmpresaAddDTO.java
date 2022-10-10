@@ -10,6 +10,7 @@ import java.util.List;
 @Data
 public class EmpresaAddDTO {
     private Long id;
+    private String cnpj;
     private String razaoSocial;
     private PessoaAddDTO gerente;
     private List<CarroAddDTO> carros;
