@@ -52,9 +52,11 @@ DROP TABLE IF EXISTS `empresa`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `empresa` (
   `id` bigint NOT NULL AUTO_INCREMENT,
+  `cnpj` varchar(14) NOT NULL,
   `razao_social` varchar(250) DEFAULT NULL,
   `id_gerente` bigint NOT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `cnpj` (`cnpj`),
   KEY `id_gerente` (`id_gerente`),
   CONSTRAINT `empresa_ibfk_1` FOREIGN KEY (`id_gerente`) REFERENCES `pessoa` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -66,7 +68,7 @@ CREATE TABLE `empresa` (
 
 LOCK TABLES `empresa` WRITE;
 /*!40000 ALTER TABLE `empresa` DISABLE KEYS */;
-INSERT INTO `empresa` VALUES (1,'#',2),(2,'#',3);
+INSERT INTO `empresa` VALUES (1,'98076059000168','#',2),(2,'00795919000119','#',3);
 /*!40000 ALTER TABLE `empresa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -291,4 +293,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-09-20 21:03:41
+-- Dump completed on 2022-10-10 18:34:49
