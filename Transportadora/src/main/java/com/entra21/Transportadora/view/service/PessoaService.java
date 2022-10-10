@@ -43,8 +43,16 @@ public class PessoaService implements UserDetailsService{
         }
     }
 
-
-
+    public PessoaDTO findByCpf(String cpf){
+        PessoaEntity pessoaEntity = pessoaRepository.findByCpf(cpf).orElseThrow(
+            () -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pessoa não encontrada");});
+        PessoaDTO dto = new PessoaDTO();
+        dto.setNome(pessoaEntity.getNome());
+        dto.setSobrenome(pessoaEntity.getSobrenome());
+        dto.setCpf(pessoaEntity.getCpf());
+        dto.setTelefone(pessoaEntity.getTelefone());
+        return dto;
+    }
 
     public List<PessoaDTO> getAll() {
         return pessoaRepository.findAll().stream().map(pr -> {
@@ -79,7 +87,7 @@ public class PessoaService implements UserDetailsService{
         newEntity.setCpf(input.getCpf());
         newEntity.setLogin(input.getLogin());
         newEntity.setSenha(input.getSenha());
-        newEntity.setDesabilitado(input.getDesabilitado());
+        newEntity.setDesabilitado(false);
         pessoaRepository.save(newEntity);
     }
 
