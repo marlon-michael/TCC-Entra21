@@ -3,6 +3,7 @@ package com.entra21.Transportadora.controller;
 import com.entra21.Transportadora.model.dto.Entrega.EntregaAddDTO;
 import com.entra21.Transportadora.model.dto.Entrega.EntregaDTO;
 import com.entra21.Transportadora.model.dto.Entrega.EntregaUpDTO;
+import com.entra21.Transportadora.model.entity.EntregaEntity;
 import com.entra21.Transportadora.view.repository.EntregaRepository;
 import com.entra21.Transportadora.view.service.EntregaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,11 @@ public class EntregaRestController {
     @GetMapping
     public List<EntregaDTO> getEntrega(){
         return entregaService.getAllEntrega();
+    }
+
+    @GetMapping("/{cpf}")
+    public List<EntregaEntity> getAllByEntregador(@PathVariable(name = "cpf") String cpf){
+        return entregaService.getAllEntragaByEntregador(cpf);
     }
 
     @PostMapping
