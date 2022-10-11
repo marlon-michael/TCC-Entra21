@@ -65,6 +65,7 @@ public class PessoaService implements UserDetailsService{
         }).collect(Collectors.toList());
     }
 
+    // PRA QUE SERVE ???
     public List<PessoaDTO> getAllByFuncionario() {
         return pessoaRepository.findAll().stream().map(pr -> {
             PessoaDTO pessoaDTO = new PessoaDTO();
