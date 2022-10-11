@@ -43,8 +43,16 @@ public class PessoaService implements UserDetailsService{
         }
     }
 
-
-
+    public PessoaDTO findByCpf(String cpf){
+        PessoaEntity pessoaEntity = pessoaRepository.findByCpf(cpf).orElseThrow(
+            () -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pessoa não encontrada");});
+        PessoaDTO dto = new PessoaDTO();
+        dto.setNome(pessoaEntity.getNome());
+        dto.setSobrenome(pessoaEntity.getSobrenome());
+        dto.setCpf(pessoaEntity.getCpf());
+        dto.setTelefone(pessoaEntity.getTelefone());
+        return dto;
+    }
 
     public List<PessoaDTO> getAll() {
         return pessoaRepository.findAll().stream().map(pr -> {
@@ -59,29 +67,29 @@ public class PessoaService implements UserDetailsService{
 
     public List<PessoaDTO> getAllByFuncionario() {
         return pessoaRepository.findAll().stream().map(pr -> {
-            PessoaDTO dtoN = new PessoaDTO();
-            dtoN.setNome(pr.getNome());
-            dtoN.setSobrenome(pr.getSobrenome());
-            dtoN.setCpf(pr.getCpf());
-            dtoN.setTelefone(pr.getTelefone());
-            dtoN.setLogin(pr.getLogin());
-            dtoN.setSenha(pr.getSenha());
-            dtoN.setDesabilitado(pr.getDesabilitado());
-            return dtoN;
+            PessoaDTO pessoaDTO = new PessoaDTO();
+            pessoaDTO.setNome(pr.getNome());
+            pessoaDTO.setSobrenome(pr.getSobrenome());
+            pessoaDTO.setCpf(pr.getCpf());
+            pessoaDTO.setTelefone(pr.getTelefone());
+            pessoaDTO.setLogin(pr.getLogin());
+            pessoaDTO.setSenha(pr.getSenha());
+            pessoaDTO.setDesabilitado(pr.getDesabilitado());
+            return pessoaDTO;
         }).collect(Collectors.toList());
     }
 
 
     public void save(PessoaAddDTO input) {
-        PessoaEntity newEntity = new PessoaEntity();
-        newEntity.setNome(input.getNome());
-        newEntity.setSobrenome(input.getSobrenome());
-        newEntity.setTelefone(input.getTelefone());
-        newEntity.setCpf(input.getCpf());
-        newEntity.setLogin(input.getLogin());
-        newEntity.setSenha(input.getSenha());
-        newEntity.setDesabilitado(input.getDesabilitado());
-        pessoaRepository.save(newEntity);
+        PessoaEntity pessoaEntity = new PessoaEntity();
+        pessoaEntity.setNome(input.getNome());
+        pessoaEntity.setSobrenome(input.getSobrenome());
+        pessoaEntity.setTelefone(input.getTelefone());
+        pessoaEntity.setCpf(input.getCpf());
+        pessoaEntity.setLogin(input.getLogin());
+        pessoaEntity.setSenha(input.getSenha());
+        pessoaEntity.setDesabilitado(false);
+        pessoaRepository.save(pessoaEntity);
     }
 
     public PessoaUpDTO updatePessoa(Long id, PessoaUpDTO pessoaPayLoadDTO) {

@@ -24,7 +24,12 @@ public class PessoaRestController {
         return pessoaService.getAll();
     }
 
-    @GetMapping("/{byfuncionario}")
+    @GetMapping("/{cpf}")
+    public PessoaDTO getAllByCpf(@PathVariable(name = "cpf") String cpf) {
+        return pessoaService.findByCpf(cpf);
+    }
+
+    @GetMapping("/funcionario/{byfuncionario}")
     public List<PessoaDTO> getAllByFuncionario() {
         return pessoaService.getAllByFuncionario();
     }
