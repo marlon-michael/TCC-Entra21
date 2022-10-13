@@ -1,4 +1,5 @@
 package com.entra21.Transportadora.controller;
+
 import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioAddDTO;
 import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioDTO;
 import com.entra21.Transportadora.model.entity.FuncionarioEntity;
@@ -24,7 +25,7 @@ public class FuncionarioRestController {
 
    @GetMapping
    public List<FuncionarioDTO> getAllFuncionario() {
-       return funcionarioService.getAllFuncionario();
+      return funcionarioService.getAllFuncionario();
    }
 
    @GetMapping("/{id}")
@@ -38,9 +39,12 @@ public class FuncionarioRestController {
    ){
       funcionarioService.saveFuncionario(funcionarioPayLoadDTO);
    }
-   @PutMapping("/{id}")
-   public FuncionarioPayLoadDTO updateAllFuncionario(@PathVariable(name = "id") Long id,
-                             @RequestBody FuncionarioPayLoadDTO funcionarioPayLoadDTO) {
-      return funcionarioService.updateAllFuncionario(id, funcionarioPayLoadDTO);
-   }
+//
+////    @Autowired
+////    private FuncionarioRepository funcionarioRepository;
+//
+////    @GetMapping
+////    public List<FuncionarioEntity> getAllFuncionarios(){
+////        return funcionarioRepository.findAll();
+////    }
 }
