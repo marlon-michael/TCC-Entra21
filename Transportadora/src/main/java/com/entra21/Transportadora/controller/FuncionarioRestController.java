@@ -38,12 +38,4 @@ public class FuncionarioRestController {
       funcionarioService.saveFuncionario(funcionarioPayLoadDTO);
    }
 
-//    @Autowired
-//    private FuncionarioRepository funcionarioRepository;
-
-//    @GetMapping
-//    public List<FuncionarioEntity> getAllFuncionarios(){
-//        return funcionarioRepository.findAll();
-//    }
-
 }
