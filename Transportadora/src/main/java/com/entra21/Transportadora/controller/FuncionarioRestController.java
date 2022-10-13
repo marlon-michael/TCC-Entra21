@@ -25,8 +25,7 @@ public class FuncionarioRestController {
    public List<FuncionarioDTO> getAllFuncionario() {
       return funcionarioService.getAllFuncionario();
    }
-   //todo
-   //TIRAR O ENTITY
+
    @GetMapping("/{id}")
    public List<FuncionarioDTO> getAllByEmpresa(@PathVariable(name = "id")Long id){
       return funcionarioService.getAllFuncionarioById();

@@ -21,6 +21,11 @@ public class PessoaRestController {
         return pessoaService.getAll();
     }
 
+    @GetMapping("/login")
+    public PessoaDTO getLogin() {
+        return pessoaService.buscarUsuarioLogado();
+    }
+
     @GetMapping("/{cpf}")
     public PessoaDTO getAllByCpf(@PathVariable(name = "cpf") String cpf) {
         return pessoaService.findByCpf(cpf);
