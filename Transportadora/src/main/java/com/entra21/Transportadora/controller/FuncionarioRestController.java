@@ -10,7 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
+
+        import java.util.List;
 
 @RestController
 @RequestMapping("/funcionario")
@@ -25,12 +26,13 @@ public class FuncionarioRestController {
 
    @GetMapping
    public List<FuncionarioDTO> getAllFuncionario() {
-       return funcionarioService.getAllFuncionario();
+      return funcionarioService.getAllFuncionario();
    }
-
+   //todo
+   //TIRAR O ENTITY
    @GetMapping("/{id}")
-   public List<FuncionarioEntity> getAllByEmpresa(@PathVariable(name = "id")Long id){
-      return funcionarioRepository.findAllByEmpresa_IdEmpresa(id).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa não foi encontrada!");});
+   public List<FuncionarioDTO> getAllByEmpresa(@PathVariable(name = "id")Long id){
+      return funcionarioService.getAllFuncionarioById();
    }
 
    @PostMapping
@@ -47,4 +49,5 @@ public class FuncionarioRestController {
 ////    public List<FuncionarioEntity> getAllFuncionarios(){
 ////        return funcionarioRepository.findAll();
 ////    }
+
 }

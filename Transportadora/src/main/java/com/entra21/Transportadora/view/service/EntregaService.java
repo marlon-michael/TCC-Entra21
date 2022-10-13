@@ -1,5 +1,9 @@
 package com.entra21.Transportadora.view.service;
-
+import com.entra21.Transportadora.model.entity.*;
+import com.entra21.Transportadora.view.repository.EntregaRepository;
+import com.entra21.Transportadora.view.repository.EntregaTrechoRepository;
+import com.entra21.Transportadora.view.repository.FuncionarioRepository;
+import com.entra21.Transportadora.view.repository.PessoaRepository;
 import com.entra21.Transportadora.model.dto.Carro.CarroDTO;
 import com.entra21.Transportadora.model.dto.Empresa.EmpresaDTO;
 import com.entra21.Transportadora.model.dto.Entrega.EntregaAddDTO;
@@ -10,13 +14,11 @@ import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioDTO;
 import com.entra21.Transportadora.model.dto.Item.ItemDTO;
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
 import com.entra21.Transportadora.model.dto.Trecho.TrechoDTO;
-import com.entra21.Transportadora.model.entity.*;
 import com.entra21.Transportadora.view.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -197,6 +199,7 @@ public class EntregaService {
         entregaRepository.deleteById(idEntrega);
     }
 
+
     public EntregaUpDTO updateEntrega(Long idEntregaNv, EntregaUpDTO entregaAddDTO) {
         entregaRepository.findById(idEntregaNv).ifPresentOrElse((entregaEntity1) -> {
             entregaEntity1.setEntregador(
@@ -210,3 +213,4 @@ public class EntregaService {
         return entregaAddDTO;
     }
 }
+
