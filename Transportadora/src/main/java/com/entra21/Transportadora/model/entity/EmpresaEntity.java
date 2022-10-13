@@ -1,6 +1,5 @@
 package com.entra21.Transportadora.model.entity;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
@@ -17,14 +16,15 @@ public class EmpresaEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEmpresa;
 
+    @Column(name = "cnpj")
+    private String cnpj;
+
     @Column(name = "razao_social")
     private String razaoSocial;
 
     @ManyToOne
     @JoinColumn(name = "id_gerente", referencedColumnName = "id")
     private PessoaEntity gerente;
-
-
 
     @OneToMany(mappedBy = "empresa")
     @JsonIgnore

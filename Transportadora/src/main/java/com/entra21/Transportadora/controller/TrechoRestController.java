@@ -1,14 +1,18 @@
 package com.entra21.Transportadora.controller;
 
-import com.entra21.Transportadora.model.dto.TrechoDTO;
+import com.entra21.Transportadora.model.dto.Trecho.TrechoAddDTO;
+import com.entra21.Transportadora.model.dto.Trecho.TrechoDTO;
+import com.entra21.Transportadora.model.dto.Trecho.TrechoUpDTO;
 import com.entra21.Transportadora.view.service.TrechoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @RestController
 @RequestMapping("/trecho")
 public class TrechoRestController {
+
     @Autowired
     TrechoService trechoService;
 
@@ -17,7 +21,7 @@ public class TrechoRestController {
         return trechoService.getAllTrecho();
     }
     @PostMapping
-    public void addTrecho(@RequestBody TrechoDTO carroDTO){
+    public void addTrecho(@RequestBody TrechoAddDTO carroDTO){
         trechoService.saveTrecho(carroDTO);
     }
 
@@ -27,8 +31,10 @@ public class TrechoRestController {
     }
 
     @PutMapping("/{id}")
-    public TrechoDTO upTrecho(@PathVariable(name = "id")Long id,
-                              @RequestBody TrechoDTO trechoDTO) {
+    public TrechoUpDTO upTrecho(@PathVariable(name = "id")Long id,
+                                @RequestBody TrechoUpDTO trechoDTO) {
         return trechoService.updateTrecho(id,trechoDTO);
     }
+
 }
+

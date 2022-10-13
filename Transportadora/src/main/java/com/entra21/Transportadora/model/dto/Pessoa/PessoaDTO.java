@@ -1,9 +1,9 @@
-package com.entra21.Transportadora.model.dto;
+package com.entra21.Transportadora.model.dto.Pessoa;
 
 import lombok.Data;
 
 @Data
-public class PessoaPayLoadDTO {
+public class PessoaDTO {
     private Long idPessoa;
     private String nome;
     private String sobrenome;
@@ -11,5 +11,4 @@ public class PessoaPayLoadDTO {
     private String cpf;
     private String login;
     private String senha;
-    private Boolean desabilitado;
-}
+    private Boolean desabilitado;}

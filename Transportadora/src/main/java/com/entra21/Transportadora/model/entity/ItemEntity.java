@@ -24,6 +24,7 @@ public class ItemEntity {
     @Column(name = "local_entrega")
     private String localEntrega;
 
+    // REMOVER / RECEBE PESSOA QUE JA TEM NOME, E RECEBE NOME DENOVO???
     @Column(name = "nome_recebedor")
     private String nomeRecebedor;
 
