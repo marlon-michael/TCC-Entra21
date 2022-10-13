@@ -4,10 +4,8 @@ import com.entra21.Transportadora.model.dto.Empresa.EmpresaAddDTO;
 import com.entra21.Transportadora.model.dto.Empresa.EmpresaDTO;
 import com.entra21.Transportadora.model.dto.Empresa.EmpresaUpDTO;
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
-import com.entra21.Transportadora.model.dto.Pessoa.PessoaAddDTO;
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaUpDTO;
 import com.entra21.Transportadora.model.entity.EmpresaEntity;
-import com.entra21.Transportadora.model.entity.PessoaEntity;
 import com.entra21.Transportadora.view.repository.EmpresaRepository;
 import com.entra21.Transportadora.view.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +43,7 @@ public class EmpresaService {
         return empresaRepository.findAll().stream().map(er -> {
             EmpresaDTO dtoempresa = new EmpresaDTO();
             dtoempresa.setId(er.getIdEmpresa());
+            dtoempresa.setCnpj(er.getCnpj());
             dtoempresa.setRazaoSocial(er.getRazaoSocial());
 
             PessoaDTO pessoaDTO = new PessoaDTO();
@@ -66,12 +65,15 @@ public class EmpresaService {
         return empresaRepository.findAll().stream().map(er -> {
             EmpresaDTO dtoempresa = new EmpresaDTO();
             PessoaDTO pessoaDTO = new PessoaDTO();
-            dtoempresa.setRazaoSocial(er.getRazaoSocial());
+
             pessoaDTO.setNome(er.getGerente().getNome());
-            dtoempresa.setGerente(pessoaDTO);
             pessoaDTO.setSobrenome(dtoempresa.getGerente().getSobrenome());
             pessoaDTO.setTelefone(dtoempresa.getGerente().getTelefone());
             pessoaDTO.setCpf(dtoempresa.getGerente().getCpf());
+
+            dtoempresa.setCnpj(er.getCnpj());
+            dtoempresa.setRazaoSocial(er.getRazaoSocial());
+            dtoempresa.setGerente(pessoaDTO);
             return dtoempresa;
         }).collect(Collectors.toList());
     }
@@ -81,6 +83,7 @@ public class EmpresaService {
         EmpresaEntity empresa = empresaRepository.findById(idEmpresanv).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa não encontrada!"));
         PessoaUpDTO pessoaDTO = new PessoaUpDTO();
         empresa.setIdEmpresa(empresaDTO.getId());
+        empresa.setCnpj(empresaDTO.getCnpj());
         empresa.setRazaoSocial(empresaDTO.getRazaoSocial());
         pessoaDTO.setIdPessoa(empresaDTO.getGerente().getIdPessoa());
         empresa = empresaRepository.save(empresa);
