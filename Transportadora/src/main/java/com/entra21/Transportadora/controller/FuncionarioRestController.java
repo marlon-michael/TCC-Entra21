@@ -2,13 +2,10 @@ package com.entra21.Transportadora.controller;
 
 import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioAddDTO;
 import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioDTO;
-import com.entra21.Transportadora.model.entity.FuncionarioEntity;
 import com.entra21.Transportadora.view.repository.FuncionarioRepository;
 import com.entra21.Transportadora.view.service.FuncionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 
         import java.util.List;
@@ -41,13 +38,13 @@ public class FuncionarioRestController {
    ){
       funcionarioService.saveFuncionario(funcionarioPayLoadDTO);
    }
-//
-////    @Autowired
-////    private FuncionarioRepository funcionarioRepository;
-//
-////    @GetMapping
-////    public List<FuncionarioEntity> getAllFuncionarios(){
-////        return funcionarioRepository.findAll();
-////    }
+
+//    @Autowired
+//    private FuncionarioRepository funcionarioRepository;
+
+//    @GetMapping
+//    public List<FuncionarioEntity> getAllFuncionarios(){
+//        return funcionarioRepository.findAll();
+//    }
 
 }

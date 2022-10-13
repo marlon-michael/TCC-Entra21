@@ -5,10 +5,7 @@ import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioAddDTO;
 import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioDTO;
 
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
-import com.entra21.Transportadora.model.entity.EmpresaEntity;
-import com.entra21.Transportadora.view.repository.EmpresaRepository;
 import com.entra21.Transportadora.view.repository.FuncionarioRepository;
-import com.entra21.Transportadora.view.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,39 +21,34 @@ public class FuncionarioService {
     @Autowired
     private FuncionarioRepository funcionarioRepository;
 
-   @Autowired
-   private EmpresaRepository empresaRepository;
-
-   @Autowired
-   private PessoaRepository pessoaRepository;
-
-   @Autowired
-   private EntityManager em;
+    @Autowired
+    private EntityManager em;
 
     public List<FuncionarioDTO> getAllFuncionario() {
-       return funcionarioRepository.findAll().stream().map(fr -> {
+       return funcionarioRepository.findAll().stream().map(funcionarioEntity
+        -> {
            FuncionarioDTO dto = new FuncionarioDTO();
            EmpresaDTO dtoEmp = new EmpresaDTO();
            PessoaDTO dtoPes = new PessoaDTO();
            PessoaDTO dtoPesEmp = new PessoaDTO();
-           dto.setNome(fr.getNome());
-           dto.setSobrenome(fr.getSobrenome());
-           dto.setCpf(fr.getCpf());
-           dto.setTelefone(fr.getTelefone());
-           dtoEmp.setRazaoSocial(fr.getEmpresa().getRazaoSocial());
-           dtoPesEmp.setNome(fr.getEmpresa().getGerente().getNome());
-           dtoPesEmp.setSobrenome(fr.getEmpresa().getGerente().getSobrenome());
-           dtoPesEmp.setCpf(fr.getEmpresa().getGerente().getCpf());
-           dtoPesEmp.setTelefone(fr.getEmpresa().getGerente().getTelefone());
+           dto.setNome(funcionarioEntity.getNome());
+           dto.setSobrenome(funcionarioEntity.getSobrenome());
+           dto.setCpf(funcionarioEntity.getCpf());
+           dto.setTelefone(funcionarioEntity.getTelefone());
+           dtoEmp.setRazaoSocial(funcionarioEntity.getEmpresa().getRazaoSocial());
+           dtoPesEmp.setNome(funcionarioEntity.getEmpresa().getGerente().getNome());
+           dtoPesEmp.setSobrenome(funcionarioEntity.getEmpresa().getGerente().getSobrenome());
+           dtoPesEmp.setCpf(funcionarioEntity.getEmpresa().getGerente().getCpf());
+           dtoPesEmp.setTelefone(funcionarioEntity.getEmpresa().getGerente().getTelefone());
            dtoEmp.setGerente(dtoPesEmp);
            dto.setEmpresa(dtoEmp);
-           if (fr.getSupervisor() == null) {
+           if (funcionarioEntity.getSupervisor() == null) {
                return dto;
            } else {
-               dtoPes.setNome(fr.getSupervisor().getNome());
-               dtoPes.setSobrenome(fr.getSupervisor().getSobrenome());
-               dtoPes.setCpf(fr.getSupervisor().getCpf());
-               dtoPes.setTelefone(fr.getSupervisor().getTelefone());
+               dtoPes.setNome(funcionarioEntity.getSupervisor().getNome());
+               dtoPes.setSobrenome(funcionarioEntity.getSupervisor().getSobrenome());
+               dtoPes.setCpf(funcionarioEntity.getSupervisor().getCpf());
+               dtoPes.setTelefone(funcionarioEntity.getSupervisor().getTelefone());
                //erro ARRUMAR
                return dto;
            }
@@ -64,22 +56,22 @@ public class FuncionarioService {
     }
 //TESTAR - CASA
     public List<FuncionarioDTO> getAllFuncionarioById() {
-        return funcionarioRepository.findAll().stream().map(fr -> {
+        return funcionarioRepository.findAll().stream().map(funcionarioEntity -> {
             FuncionarioDTO dto = new FuncionarioDTO();
-            dto.setNome(fr.getNome());
-            dto.setSobrenome(fr.getSobrenome());
-            dto.setCpf(fr.getCpf());
-            dto.setTelefone(fr.getTelefone());
+            dto.setNome(funcionarioEntity.getNome());
+            dto.setSobrenome(funcionarioEntity.getSobrenome());
+            dto.setCpf(funcionarioEntity.getCpf());
+            dto.setTelefone(funcionarioEntity.getTelefone());
             PessoaDTO dtoPes = new PessoaDTO();
             PessoaDTO dtoPesEmp = new PessoaDTO();
-            if (fr.getSupervisor() == null) {
+            if (funcionarioEntity.getSupervisor() == null) {
                 return dto;
             } else {
-                dtoPes.setNome(fr.getSupervisor().getNome());
-                dtoPes.setSobrenome(fr.getSupervisor().getSobrenome());
-                dtoPes.setCpf(fr.getSupervisor().getCpf());
-                dtoPes.setTelefone(fr.getSupervisor().getTelefone());
-            fr.getEmpresa().getFuncionarios().stream().map(EmpresaEntity -> {
+                dtoPes.setNome(funcionarioEntity.getSupervisor().getNome());
+                dtoPes.setSobrenome(funcionarioEntity.getSupervisor().getSobrenome());
+                dtoPes.setCpf(funcionarioEntity.getSupervisor().getCpf());
+                dtoPes.setTelefone(funcionarioEntity.getSupervisor().getTelefone());
+            funcionarioEntity.getEmpresa().getFuncionarios().stream().map(EmpresaEntity -> {
 
                     //erro ARRUMAR
                     EmpresaDTO empresaDTO = new EmpresaDTO();

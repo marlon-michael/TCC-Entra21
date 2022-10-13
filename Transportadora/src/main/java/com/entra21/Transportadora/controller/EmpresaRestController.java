@@ -4,7 +4,6 @@ import com.entra21.Transportadora.model.dto.Empresa.EmpresaAddDTO;
 import com.entra21.Transportadora.model.dto.Empresa.EmpresaDTO;
 import com.entra21.Transportadora.model.dto.Empresa.EmpresaUpDTO;
 import com.entra21.Transportadora.model.entity.EmpresaEntity;
-import com.entra21.Transportadora.view.repository.EmpresaRepository;
 import com.entra21.Transportadora.view.service.EmpresaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -4,7 +4,6 @@ import com.entra21.Transportadora.model.dto.Entrega.EntregaAddDTO;
 import com.entra21.Transportadora.model.dto.Entrega.EntregaDTO;
 import com.entra21.Transportadora.model.dto.Entrega.EntregaUpDTO;
 import com.entra21.Transportadora.model.entity.EntregaEntity;
-import com.entra21.Transportadora.view.repository.EntregaRepository;
 import com.entra21.Transportadora.view.service.EntregaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,9 +13,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/entrega")
 public class EntregaRestController {
-
-    @Autowired
-    private EntregaRepository entregaRepository;
 
     @Autowired
     private EntregaService entregaService;
