@@ -68,8 +68,26 @@ public class ItemService {
         return itemDTO;
     }
 
-    public List<ItemDTO> findAllByPessoa(String cpf){
-        return null;
+    public List<ItemDTO> findAllByPessoa_Cpf(String cpf){
+        return itemRepository.findAllByPessoa_Cpf(cpf).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pessoa/Cpf não encontrado");}).stream().map(itemEntity -> {
+            ItemDTO itemDTO = new ItemDTO();
+            PessoaDTO pessoaDTO = new PessoaDTO();
+
+            if (itemEntity.getPessoa() != null){
+                pessoaDTO.setNome(itemEntity.getPessoa().getNome());
+                pessoaDTO.setSobrenome(itemEntity.getPessoa().getSobrenome());
+                pessoaDTO.setTelefone(itemEntity.getPessoa().getTelefone());
+                pessoaDTO.setCpf(itemEntity.getPessoa().getCpf());
+            }
+
+            itemDTO.setPessoaItem(pessoaDTO);
+            itemDTO.setLocalizador(itemEntity.getLocalizador());
+            itemDTO.setLocalEntrega(itemEntity.getLocalEntrega());
+            itemDTO.setNomeRecebedor(itemEntity.getNomeRecebedor());
+            itemDTO.setStatus(itemEntity.getStatus());
+
+            return itemDTO;
+        }).collect(Collectors.toList());
     }
 
     public void saveItem(ItemAddDTO input) {
