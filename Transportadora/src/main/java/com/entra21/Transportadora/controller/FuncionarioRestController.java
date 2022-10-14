@@ -17,10 +17,6 @@ public class FuncionarioRestController {
    @Autowired
    FuncionarioService funcionarioService;
 
-   @Autowired
-   FuncionarioRepository funcionarioRepository;
-
-
    @GetMapping
    public List<FuncionarioDTO> getAllFuncionario() {
       return funcionarioService.getAllFuncionario();
@@ -28,13 +24,11 @@ public class FuncionarioRestController {
 
    @GetMapping("/{id}")
    public List<FuncionarioDTO> getAllByEmpresa(@PathVariable(name = "id")Long id){
-      return funcionarioService.getAllFuncionarioById();
+      return funcionarioService.getAllFuncionariByEmpresa();
    }
 
    @PostMapping
-   public void addFuncionario(
-           @RequestBody FuncionarioAddDTO funcionarioPayLoadDTO
-   ){
+   public void addFuncionario(@RequestBody FuncionarioAddDTO funcionarioPayLoadDTO){
       funcionarioService.saveFuncionario(funcionarioPayLoadDTO);
    }
 

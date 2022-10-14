@@ -57,10 +57,10 @@ public class ItemRestController {
         return itemService.getAllItem();
     }
 
-    //todo
+    //TODO: FAZER RETORNAR DTO
     @GetMapping("/{localizador}")
     public ItemEntity getItem(@PathVariable(name = "localizador") String localizador){
-        return itemRepository.findByLocalizador(localizador).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Item não foi encontrado!");});
+        return
     }
 
     @PostMapping

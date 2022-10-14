@@ -41,11 +41,8 @@ public class EntregaService {
     @Autowired
     private CarroRepository carroRepository;
 
-    //TODO
-
     //FAZER UM METODO PARA CONVERTER ENTITY PARA DTO
     //FAZER UM METODO PARA CONVERTER DTO EM ENTITY
-
 
 
     public List<EntregaDTO> getAllEntrega() {
@@ -54,14 +51,9 @@ public class EntregaService {
             dtoentrega.setIdEntrega(entregaEntity.getIdEntrega());
             dtoentrega.setTipoEntrega(entregaEntity.getTipoEntrega());
             entregaEntity.getItens().stream().map(itemEntity -> {
-                ItemDTO itemDTO = new ItemDTO();
-                itemDTO.setIdItem(itemEntity.getIdItem());
-                itemDTO.setLocalEntrega(itemEntity.getLocalEntrega());
-                itemDTO.setLocalizador(itemEntity.getLocalizador());
-                itemDTO.setNomeRecebedor(itemEntity.getNomeRecebedor());
-                itemDTO.setStatus(itemEntity.getStatus());
-
                 PessoaDTO pessoaDTO = new PessoaDTO();
+                ItemDTO itemDTO = new ItemDTO();
+
                 pessoaDTO.setIdPessoa(itemEntity.getPessoa().getIdPessoa());
                 pessoaDTO.setNome(itemEntity.getPessoa().getNome());
                 pessoaDTO.setSobrenome(itemEntity.getPessoa().getSobrenome());
@@ -69,8 +61,13 @@ public class EntregaService {
                 pessoaDTO.setTelefone(itemEntity.getPessoa().getTelefone());
 
                 itemDTO.setPessoaItem(pessoaDTO);
-                dtoentrega.getItens().add(itemDTO);
+                itemDTO.setIdItem(itemEntity.getIdItem());
+                itemDTO.setLocalEntrega(itemEntity.getLocalEntrega());
+                itemDTO.setLocalizador(itemEntity.getLocalizador());
+                itemDTO.setNomeRecebedor(itemEntity.getNomeRecebedor());
+                itemDTO.setStatus(itemEntity.getStatus());
 
+                dtoentrega.getItens().add(itemDTO);
                 return null;
             });
 

@@ -47,6 +47,31 @@ public class ItemService {
         }).collect(Collectors.toList());
     }
 
+    public ItemDTO findByLocalizador(String localizador){
+        ItemEntity itemEntity = itemRepository.findByLocalizador(localizador).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Item não foi encontrado!");});
+        ItemDTO itemDTO = new ItemDTO();
+        PessoaDTO pessoaDTO = new PessoaDTO();
+
+        if (itemEntity.getPessoa() != null){
+            pessoaDTO.setNome(itemEntity.getPessoa().getNome());
+            pessoaDTO.setSobrenome(itemEntity.getPessoa().getSobrenome());
+            pessoaDTO.setTelefone(itemEntity.getPessoa().getTelefone());
+            pessoaDTO.setCpf(itemEntity.getPessoa().getCpf());
+        }
+
+        itemDTO.setPessoaItem(pessoaDTO);
+        itemDTO.setLocalizador(itemEntity.getLocalizador());
+        itemDTO.setLocalEntrega(itemEntity.getLocalEntrega());
+        itemDTO.setNomeRecebedor(itemEntity.getNomeRecebedor());
+        itemDTO.setStatus(itemEntity.getStatus());
+
+        return itemDTO;
+    }
+
+    public List<ItemDTO> findAllByPessoa(String cpf){
+        return null;
+    }
+
     public void saveItem(ItemAddDTO input) {
         ItemEntity itemEntity = new ItemEntity();
         PessoaEntity pessoa = new PessoaEntity();
