@@ -97,8 +97,8 @@ public class CarroService {
 
 
     public void saveCarros(CarroAddDTO input) {
-        CarroEntity newCarro = new CarroEntity();
         EmpresaEntity newEmpresa = new EmpresaEntity();
+        CarroEntity newCarro = new CarroEntity();
         newEmpresa.setIdEmpresa(input.getEmpresaCarro().getId());
         newCarro.setEmpresa(newEmpresa);
         newCarro.setTipoCarro(input.getTipoCarro());
@@ -114,9 +114,9 @@ public class CarroService {
         EmpresaEntity empresaEntity = new EmpresaEntity();
         CarroEntity carroEntity = carroRepository.findById(idcarronv).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Carro não encontrada!"));
         empresaEntity.setIdEmpresa(carroDTO.getEmpresaCarro().getId());
+        carroEntity.setEmpresa(empresaEntity);
         carroEntity.setTipoCarro(carroDTO.getTipoCarro());
         carroEntity.setPlaca(carroDTO.getPlaca());
-        carroEntity.setEmpresa(empresaEntity);
         carroRepository.save(carroEntity);
         return carroDTO;
     }
