@@ -19,6 +19,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -50,6 +52,7 @@ public class EntregaService {
             EntregaDTO dtoentrega = new EntregaDTO();
             dtoentrega.setIdEntrega(entregaEntity.getIdEntrega());
             dtoentrega.setTipoEntrega(entregaEntity.getTipoEntrega());
+            dtoentrega.setItens(new ArrayList<>());
             entregaEntity.getItens().stream().map(itemEntity -> {
                 PessoaDTO pessoaDTO = new PessoaDTO();
                 ItemDTO itemDTO = new ItemDTO();
@@ -113,8 +116,54 @@ public class EntregaService {
         }).collect(Collectors.toList());
     }
 
-    public List<EntregaEntity> getAllEntragaByEntregador(String cpf){
-        return entregaRepository.findAllByEntregador_Cpf(cpf);
+    public List<EntregaDTO> getAllEntragaByEntregador(String cpf){
+        return entregaRepository.findAllByEntregador_Cpf(cpf).stream().map(entregaEntity -> {
+            EntregaDTO dtoentrega = new EntregaDTO();
+            dtoentrega.setTipoEntrega(entregaEntity.getTipoEntrega());
+            dtoentrega.setItens(new ArrayList<>());
+            entregaEntity.getItens().stream().map(itemEntity -> {
+                PessoaDTO pessoaDTO = new PessoaDTO();
+                ItemDTO itemDTO = new ItemDTO();
+
+                pessoaDTO.setNome(itemEntity.getPessoa().getNome());
+                pessoaDTO.setSobrenome(itemEntity.getPessoa().getSobrenome());
+                pessoaDTO.setCpf(itemEntity.getPessoa().getCpf());
+                pessoaDTO.setTelefone(itemEntity.getPessoa().getTelefone());
+
+                itemDTO.setPessoaItem(pessoaDTO);
+                itemDTO.setLocalEntrega(itemEntity.getLocalEntrega());
+                itemDTO.setLocalizador(itemEntity.getLocalizador());
+                itemDTO.setNomeRecebedor(itemEntity.getNomeRecebedor());
+                itemDTO.setStatus(itemEntity.getStatus());
+
+                dtoentrega.getItens().add(itemDTO);
+                return null;
+            });
+
+            dtoentrega.setEntregaTrecho(entregaEntity.getEntregaTrecho().stream().map(entregaTrecho -> {
+                EntregaTrechoDTO entregaTrechoDTO = new EntregaTrechoDTO();
+
+                TrechoDTO trechoDTO = new TrechoDTO();
+                trechoDTO.setLocalInicio(entregaTrecho.getTrecho().getLocalInicio());
+                trechoDTO.setLocalFim(entregaTrecho.getTrecho().getLocalFim());
+                entregaTrechoDTO.setTrecho(trechoDTO);
+
+                CarroDTO carroDTO = new CarroDTO();
+                carroDTO.setPlaca(entregaTrecho.getCarro().getPlaca());
+                carroDTO.setTipoCarro(entregaTrecho.getCarro().getTipoCarro());
+                carroDTO.setEmpresaCarro(new EmpresaDTO());
+                carroDTO.getEmpresaCarro().setRazaoSocial(entregaTrecho.getCarro().getEmpresa().getRazaoSocial());
+                entregaTrechoDTO.setCarro(carroDTO);
+
+                entregaTrechoDTO.setCompleto(entregaTrecho.getCompleto());
+                entregaTrechoDTO.setDataInicio(entregaTrecho.getDataInicio());
+                entregaTrechoDTO.setDataFim(entregaTrecho.getDataFim());
+
+                return entregaTrechoDTO;
+            }).collect(Collectors.toList()));
+
+            return dtoentrega;
+        }).collect(Collectors.toList());
     }
 
     public void save(EntregaAddDTO entregaDTO) {
