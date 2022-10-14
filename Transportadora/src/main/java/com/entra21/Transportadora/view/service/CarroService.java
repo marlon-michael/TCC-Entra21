@@ -30,6 +30,7 @@ public class CarroService {
         newEmpresa.setIdEmpresa(input.getEmpresaCarro().getId());
         newCarro.setEmpresa(newEmpresa);
         carroRepository.save(newCarro);
+
     }
 
     public void deleteCarros(Long idEmpresa) {
@@ -44,12 +45,14 @@ public class CarroService {
             EmpresaDTO cr1 = new EmpresaDTO();
             cr1.setRazaoSocial(cr.getEmpresa().getRazaoSocial());
 
+
             PessoaDTO cr2 = new PessoaDTO();
             cr2.setNome(cr.getEmpresa().getGerente().getNome());
             cr2.setCpf(cr.getEmpresa().getGerente().getCpf());
             cr2.setTelefone(cr.getEmpresa().getGerente().getTelefone());
             cr2.setSobrenome(cr.getEmpresa().getGerente().getSobrenome());
             cr1.setGerente(cr2);
+
             dtocarro.setEmpresaCarro(cr1);
             return dtocarro;
         }).collect(Collectors.toList());
@@ -66,3 +69,4 @@ public class CarroService {
         return carroDTO;
     }
 }
+

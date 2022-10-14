@@ -22,11 +22,11 @@ public class EntregaTrechoEntity {
         private Boolean Completo;
 
         @Column(name = "data_inicio")
-        @Convert(converter = Jsr310JpaConverters.LocalDateTimeConverter.class)
+//        @Convert(converter = Jsr310JpaConverters.LocalDateTimeConverter.class)
         private LocalDateTime dataInicio;
 
         @Column(name = "data_fim")
-        @Convert(converter = Jsr310JpaConverters.LocalDateTimeConverter.class)
+//        @Convert(converter = Jsr310JpaConverters.LocalDateTimeConverter.class)
         private LocalDateTime dataFim;
 
         @OneToOne

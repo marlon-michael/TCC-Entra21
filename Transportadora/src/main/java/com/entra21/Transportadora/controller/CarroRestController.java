@@ -38,6 +38,7 @@ public class CarroRestController {
         return carroService.getAllCarros();
     }
 
+
 //    @GetMapping("/{id_empresa}")
 //    public List<CarroEntity> getCarroByEmpresa(@PathVariable(name = "id_empresa") Long empresa){
 //        Optional<EmpresaEntity> empresaEntity = empresaRepository.findById(empresa);
@@ -55,6 +56,13 @@ public class CarroRestController {
 //        });
 //    }
 
+    @GetMapping("/{id_empresa}")
+    public List<CarroEntity> getCarroByEmpresa(@PathVariable(name = "id_empresa") Long empresa){
+        Optional<EmpresaEntity> empresaEntity = empresaRepository.findById(empresa);
+        return carroRepository.findAllByEmpresa(empresaEntity.get()).orElseThrow(()->{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa não foi encontrada!");
+        });
+    }
 
     @PostMapping
     public void addCarro(@RequestBody CarroAddDTO Newcarro){

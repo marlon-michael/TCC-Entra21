@@ -1,4 +1,5 @@
 package com.entra21.Transportadora.model.dto.Funcionario;
+
 import com.entra21.Transportadora.model.dto.Empresa.EmpresaUpDTO;
 import com.entra21.Transportadora.model.dto.Entrega.EntregaUpDTO;
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaUpDTO;
