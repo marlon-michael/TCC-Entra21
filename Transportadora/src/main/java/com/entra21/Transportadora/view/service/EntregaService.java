@@ -51,18 +51,15 @@ public class EntregaService {
     public List<EntregaDTO> getAllEntrega() {
         return entregaRepository.findAll().stream().map(entregaEntity -> {
             EntregaDTO dtoentrega = new EntregaDTO();
-            dtoentrega.setIdEntrega(entregaEntity.getIdEntrega());
             dtoentrega.setTipoEntrega(entregaEntity.getTipoEntrega());
             entregaEntity.getItens().stream().map(itemEntity -> {
                 ItemDTO itemDTO = new ItemDTO();
-                itemDTO.setIdItem(itemEntity.getIdItem());
                 itemDTO.setLocalEntrega(itemEntity.getLocalEntrega());
                 itemDTO.setLocalizador(itemEntity.getLocalizador());
                 itemDTO.setNomeRecebedor(itemEntity.getNomeRecebedor());
                 itemDTO.setStatus(itemEntity.getStatus());
 
                 PessoaDTO pessoaDTO = new PessoaDTO();
-                pessoaDTO.setIdPessoa(itemEntity.getPessoa().getIdPessoa());
                 pessoaDTO.setNome(itemEntity.getPessoa().getNome());
                 pessoaDTO.setSobrenome(itemEntity.getPessoa().getSobrenome());
                 pessoaDTO.setCpf(itemEntity.getPessoa().getCpf());

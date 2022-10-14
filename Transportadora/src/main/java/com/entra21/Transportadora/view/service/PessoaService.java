@@ -73,8 +73,6 @@ public class PessoaService implements UserDetailsService{
             pessoaDTO.setSobrenome(pr.getSobrenome());
             pessoaDTO.setCpf(pr.getCpf());
             pessoaDTO.setTelefone(pr.getTelefone());
-            pessoaDTO.setLogin(pr.getLogin());
-            pessoaDTO.setSenha(pr.getSenha());
             pessoaDTO.setDesabilitado(pr.getDesabilitado());
             return pessoaDTO;
         }).collect(Collectors.toList());

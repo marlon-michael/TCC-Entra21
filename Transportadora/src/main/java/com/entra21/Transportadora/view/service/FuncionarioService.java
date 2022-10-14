@@ -5,12 +5,9 @@ import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioAddDTO;
 import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioDTO;
 
 import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioUpDTO;
-import com.entra21.Transportadora.model.dto.Item.ItemUpDTO;
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
 import com.entra21.Transportadora.model.entity.EmpresaEntity;
 import com.entra21.Transportadora.model.entity.FuncionarioEntity;
-import com.entra21.Transportadora.model.entity.ItemEntity;
-import com.entra21.Transportadora.model.entity.PessoaEntity;
 import com.entra21.Transportadora.view.repository.EmpresaRepository;
 import com.entra21.Transportadora.view.repository.FuncionarioRepository;
 import com.entra21.Transportadora.view.repository.PessoaRepository;
@@ -107,7 +104,7 @@ public class FuncionarioService {
         q.setParameter("idSupervisor", input.getSupervisor().getIdPessoa());
         q.executeUpdate();
     }
-
+    
     public FuncionarioUpDTO funcionarioUpDTO(Long id, FuncionarioUpDTO novoFuncionario){
         FuncionarioEntity e = funcionarioRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Item não encontrado!"));
         e.setIdPessoa(novoFuncionario.getIdPessoa());
@@ -128,6 +125,7 @@ public class FuncionarioService {
 
         return novoFuncionario;
     }
+
 
 }
 

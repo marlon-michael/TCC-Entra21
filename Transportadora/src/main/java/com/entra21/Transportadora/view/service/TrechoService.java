@@ -23,7 +23,6 @@ public class TrechoService {
     public List<TrechoDTO> getAllTrecho() {
         return trechoRepository.findAll().stream().map(fr -> {
             TrechoDTO dto = new TrechoDTO();
-            dto.setIdTrecho(fr.getIdTrecho());
             dto.setLocalInicio(fr.getLocalInicio());
             dto.setLocalFim(fr.getLocalFim());
             return dto;

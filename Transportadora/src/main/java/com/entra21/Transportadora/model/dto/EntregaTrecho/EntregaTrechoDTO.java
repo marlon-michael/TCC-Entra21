@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 @Data
 public class EntregaTrechoDTO {
-        private Long idEntregaTrecho;
+
         private Boolean Completo;
         private LocalDateTime dataInicio;
         private LocalDateTime dataFim;
