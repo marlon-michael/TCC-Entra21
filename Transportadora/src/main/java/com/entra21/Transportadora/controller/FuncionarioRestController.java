@@ -28,19 +28,21 @@ public class FuncionarioRestController {
    public List<FuncionarioDTO> getAllFuncionario() {
       return funcionarioService.getAllFuncionario();
    }
+
    //todo
    //TIRAR O ENTITY
    @GetMapping("/{id}")
-   public List<FuncionarioDTO> getAllByEmpresa(@PathVariable(name = "id")Long id){
+   public List<FuncionarioDTO> getAllByEmpresa(@PathVariable(name = "id") Long id) {
       return funcionarioService.getAllFuncionarioById();
    }
 
    @PostMapping
    public void addFuncionario(
            @RequestBody FuncionarioAddDTO funcionarioPayLoadDTO
-   ){
+   ) {
       funcionarioService.saveFuncionario(funcionarioPayLoadDTO);
    }
+}
 //
 ////    @Autowired
 ////    private FuncionarioRepository funcionarioRepository;
@@ -49,5 +51,3 @@ public class FuncionarioRestController {
 ////    public List<FuncionarioEntity> getAllFuncionarios(){
 ////        return funcionarioRepository.findAll();
 ////    }
-
-}
