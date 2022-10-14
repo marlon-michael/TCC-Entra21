@@ -22,25 +22,20 @@ public class CarroRestController {
 
     @Autowired
     private CarroService carroService;
-    @Autowired
-    CarroRepository carroRepository;
-
-    @Autowired
-    EmpresaRepository empresaRepository;
 
     @GetMapping
     public List<CarroDTO> getCarro(){
         return carroService.getAllCarros();
     }
 
+    @GetMapping("/placa/{placa}")
+    public CarroDTO getCarroByPlaca(@PathVariable(name = "placa")String placa){
+        return carroService.getCarroByPlaca(placa);
+    }
 
-    //todo
-    @GetMapping("/{id_empresa}")
-    public List<CarroEntity> getCarroByEmpresa(@PathVariable(name = "id_empresa") Long empresa){
-        Optional<EmpresaEntity> empresaEntity = empresaRepository.findById(empresa);
-        return carroRepository.findAllByEmpresa(empresaEntity.get()).orElseThrow(()->{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa não foi encontrada!");
-        });
+    @GetMapping("/empresa/{cnpj_empresa}")
+    public List<CarroDTO> getCarroByEmpresa(@PathVariable(name = "cnpj_empresa") String empresa_CNPJ){
+        return carroService.getCarroByEmpresa_Cnpj(empresa_CNPJ);
     }
 
     @PostMapping
