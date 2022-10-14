@@ -4,13 +4,20 @@ import com.entra21.Transportadora.model.dto.Empresa.EmpresaDTO;
 import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioAddDTO;
 import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioDTO;
 
+import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioUpDTO;
+import com.entra21.Transportadora.model.dto.Item.ItemUpDTO;
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
 import com.entra21.Transportadora.model.entity.EmpresaEntity;
+import com.entra21.Transportadora.model.entity.FuncionarioEntity;
+import com.entra21.Transportadora.model.entity.ItemEntity;
+import com.entra21.Transportadora.model.entity.PessoaEntity;
 import com.entra21.Transportadora.view.repository.EmpresaRepository;
 import com.entra21.Transportadora.view.repository.FuncionarioRepository;
 import com.entra21.Transportadora.view.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -101,5 +108,28 @@ public class FuncionarioService {
         q.executeUpdate();
     }
 
+    public FuncionarioUpDTO funcionarioUpDTO(Long id, FuncionarioUpDTO novoFuncionario){
+        FuncionarioEntity e = funcionarioRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Item não encontrado!"));
+        e.setIdPessoa(novoFuncionario.getIdPessoa());
+
+
+
+        EmpresaEntity empresa = new EmpresaEntity();
+        empresa.setCnpj(novoFuncionario.getEmpresa().getCnpj());
+
+        //Supervisor
+        FuncionarioEntity funcionario = new FuncionarioEntity();
+        funcionario.setIdPessoa(novoFuncionario.getIdPessoa());
+
+
+        e.setIdPessoa(novoFuncionario.getIdPessoa());
+        e.setEmpresa(empresa);
+        e.setSupervisor(funcionario);
+
+        return novoFuncionario;
+    }
+
 }
+
+
 

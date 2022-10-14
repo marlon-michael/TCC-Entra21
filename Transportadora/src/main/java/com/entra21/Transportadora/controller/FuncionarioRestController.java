@@ -2,6 +2,8 @@ package com.entra21.Transportadora.controller;
 
 import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioAddDTO;
 import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioDTO;
+import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioUpDTO;
+import com.entra21.Transportadora.model.dto.Item.ItemUpDTO;
 import com.entra21.Transportadora.model.entity.FuncionarioEntity;
 import com.entra21.Transportadora.view.repository.FuncionarioRepository;
 import com.entra21.Transportadora.view.service.FuncionarioService;
@@ -40,6 +42,12 @@ public class FuncionarioRestController {
            @RequestBody FuncionarioAddDTO funcionarioPayLoadDTO
    ){
       funcionarioService.saveFuncionario(funcionarioPayLoadDTO);
+   }
+
+   @PutMapping("/{id}")
+   public FuncionarioUpDTO updateFuncionario(@PathVariable(name = "id") Long id,
+                                             @RequestBody FuncionarioUpDTO funcionarioUpDTO) {
+      return funcionarioService.funcionarioUpDTO(id, funcionarioUpDTO);
    }
 //
 ////    @Autowired
