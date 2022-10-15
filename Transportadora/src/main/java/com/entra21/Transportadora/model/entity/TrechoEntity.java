@@ -19,8 +19,4 @@ public class TrechoEntity {
     @Column(name = "local_fim")
     private String localFim;
 
-//    @ManyToOne
-//    @JoinColumn(name = "id_trecho", referencedColumnName = "id")
-//    private EntregaTrechoEntity entregaTrecho;
-
 }

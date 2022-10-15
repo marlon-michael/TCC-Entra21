@@ -28,6 +28,5 @@ public class ItemEntity {
 
     @ManyToOne
     @JoinColumn(name = "id_pessoa", referencedColumnName = "id")
-    @JsonIgnore
     private PessoaEntity pessoa;
 }

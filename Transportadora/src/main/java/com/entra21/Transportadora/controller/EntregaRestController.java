@@ -3,6 +3,7 @@ package com.entra21.Transportadora.controller;
 import com.entra21.Transportadora.model.dto.Entrega.EntregaAddDTO;
 import com.entra21.Transportadora.model.dto.Entrega.EntregaDTO;
 import com.entra21.Transportadora.model.dto.Entrega.EntregaUpDTO;
+import com.entra21.Transportadora.model.entity.EntregaEntity;
 import com.entra21.Transportadora.view.service.EntregaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -22,7 +22,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -47,32 +46,37 @@ public class EntregaService {
     //FAZER UM METODO PARA CONVERTER DTO EM ENTITY
 
 
+    public List<EntregaEntity> test() {
+        return entregaRepository.findAll();
+    }
+
     public List<EntregaDTO> getAllEntrega() {
         return entregaRepository.findAll().stream().map(entregaEntity -> {
             EntregaDTO dtoentrega = new EntregaDTO();
+
             dtoentrega.setIdEntrega(entregaEntity.getIdEntrega());
             dtoentrega.setTipoEntrega(entregaEntity.getTipoEntrega());
+
             dtoentrega.setItens(new ArrayList<>());
-            entregaEntity.getItens().stream().map(itemEntity -> {
+            List<ItemDTO> itensDTO = entregaEntity.getItens().stream().map(itemEntity -> {
                 PessoaDTO pessoaDTO = new PessoaDTO();
                 ItemDTO itemDTO = new ItemDTO();
 
-                pessoaDTO.setIdPessoa(itemEntity.getPessoa().getIdPessoa());
                 pessoaDTO.setNome(itemEntity.getPessoa().getNome());
                 pessoaDTO.setSobrenome(itemEntity.getPessoa().getSobrenome());
                 pessoaDTO.setCpf(itemEntity.getPessoa().getCpf());
                 pessoaDTO.setTelefone(itemEntity.getPessoa().getTelefone());
 
                 itemDTO.setPessoaItem(pessoaDTO);
-                itemDTO.setIdItem(itemEntity.getIdItem());
                 itemDTO.setLocalEntrega(itemEntity.getLocalEntrega());
                 itemDTO.setLocalizador(itemEntity.getLocalizador());
                 itemDTO.setNomeRecebedor(itemEntity.getNomeRecebedor());
                 itemDTO.setStatus(itemEntity.getStatus());
 
                 dtoentrega.getItens().add(itemDTO);
-                return null;
-            });
+                return itemDTO;
+            }).collect(Collectors.toList());
+//            dtoentrega.setItens(itensDTO);
 
             dtoentrega.setEntregador(new FuncionarioDTO());
             dtoentrega.getEntregador().setCpf(entregaEntity.getEntregador().getCpf());
@@ -105,12 +109,8 @@ public class EntregaService {
                 entregaTrechoDTO.setDataInicio(entregaTrecho.getDataInicio());
                 entregaTrechoDTO.setDataFim(entregaTrecho.getDataFim());
 
-//                dtoentrega.getEntregaTrecho().add(entregaTrechoDTO);
-
                 return entregaTrechoDTO;
             }).collect(Collectors.toList()));
-
-
 
             return dtoentrega;
         }).collect(Collectors.toList());
@@ -120,25 +120,25 @@ public class EntregaService {
         return entregaRepository.findAllByEntregador_Cpf(cpf).stream().map(entregaEntity -> {
             EntregaDTO dtoentrega = new EntregaDTO();
             dtoentrega.setTipoEntrega(entregaEntity.getTipoEntrega());
-            dtoentrega.setItens(new ArrayList<>());
-            entregaEntity.getItens().stream().map(itemEntity -> {
-                PessoaDTO pessoaDTO = new PessoaDTO();
-                ItemDTO itemDTO = new ItemDTO();
+            dtoentrega.setItens(
+                entregaEntity.getItens().stream().map(itemEntity -> {
+                    PessoaDTO pessoaDTO = new PessoaDTO();
+                    ItemDTO itemDTO = new ItemDTO();
 
-                pessoaDTO.setNome(itemEntity.getPessoa().getNome());
-                pessoaDTO.setSobrenome(itemEntity.getPessoa().getSobrenome());
-                pessoaDTO.setCpf(itemEntity.getPessoa().getCpf());
-                pessoaDTO.setTelefone(itemEntity.getPessoa().getTelefone());
+                    pessoaDTO.setNome(itemEntity.getPessoa().getNome());
+                    pessoaDTO.setSobrenome(itemEntity.getPessoa().getSobrenome());
+                    pessoaDTO.setCpf(itemEntity.getPessoa().getCpf());
+                    pessoaDTO.setTelefone(itemEntity.getPessoa().getTelefone());
 
-                itemDTO.setPessoaItem(pessoaDTO);
-                itemDTO.setLocalEntrega(itemEntity.getLocalEntrega());
-                itemDTO.setLocalizador(itemEntity.getLocalizador());
-                itemDTO.setNomeRecebedor(itemEntity.getNomeRecebedor());
-                itemDTO.setStatus(itemEntity.getStatus());
+                    itemDTO.setPessoaItem(pessoaDTO);
+                    itemDTO.setLocalEntrega(itemEntity.getLocalEntrega());
+                    itemDTO.setLocalizador(itemEntity.getLocalizador());
+                    itemDTO.setNomeRecebedor(itemEntity.getNomeRecebedor());
+                    itemDTO.setStatus(itemEntity.getStatus());
 
-                dtoentrega.getItens().add(itemDTO);
-                return null;
-            });
+                    return itemDTO;
+                }).collect(Collectors.toList())
+            );
 
             dtoentrega.setEntregaTrecho(entregaEntity.getEntregaTrecho().stream().map(entregaTrecho -> {
                 EntregaTrechoDTO entregaTrechoDTO = new EntregaTrechoDTO();
@@ -171,7 +171,7 @@ public class EntregaService {
 
         entregaEntity.setTipoEntrega(entregaDTO.getTipoEntrega());
 
-        Set<ItemEntity> itemEntities = entregaDTO.getItens().stream().map(itemDTO -> {
+        List<ItemEntity> itemEntities = entregaDTO.getItens().stream().map(itemDTO -> {
             ItemEntity itemEntity = new ItemEntity();
             if (itemDTO.getLocalizador() == null) {
                 //generating UUID
@@ -196,7 +196,7 @@ public class EntregaService {
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Item não foi encontrado!");
             });
             return itemEntity;
-        }).collect(Collectors.toSet());
+        }).collect(Collectors.toList());
         entregaEntity.setItens(itemEntities);
 
         FuncionarioEntity funcionarioEntity = funcionarioRepository.findByCpf(entregaDTO.getEntregador().getCpf()).orElseThrow(() -> {
