@@ -22,7 +22,7 @@ public class EntregaRestController {
         return entregaService.getAllEntrega();
     }
 
-    @GetMapping("/{cpf}")
+    @GetMapping("/entregador/{cpf}")
     public List<EntregaDTO> getAllByEntregador(@PathVariable(name = "cpf") String cpf){
         return entregaService.getAllEntragaByEntregador(cpf);
     }
