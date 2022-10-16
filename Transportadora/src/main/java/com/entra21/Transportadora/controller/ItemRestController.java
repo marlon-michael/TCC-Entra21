@@ -72,23 +72,14 @@ public class ItemRestController {
         itemService.saveItem(ItemDTO);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteItem(@PathVariable(name = "id") Long id) {
-        itemService.deleteItem(id);
+    @DeleteMapping("/{localizador}")
+    public void deleteItem(@PathVariable(name = "localizador") String localizador) {
+        itemService.deleteItem(localizador);
     }
 
-    @PutMapping("/status/{id}")
-    public ItemUpDTO updateItem(@PathVariable(name = "id") Long id,
-
-                                @RequestBody String novoStatus) {
-
-        return itemService.updateStatusItem(id, novoStatus);
-    }
-
-    @PutMapping("/{id}")
-    public ItemUpDTO updateItem(@PathVariable(name = "id") Long id,
-                              @RequestBody ItemUpDTO itemDTO) {
-        return itemService.itemUpDTO(id, itemDTO);
+    @PutMapping("/{localizador}")
+    public void updateItem(@PathVariable(name = "localizador") String localizador, @RequestBody ItemUpDTO itemDTO) {
+        itemService.itemUpDTO(localizador, itemDTO);
     }
 }
 

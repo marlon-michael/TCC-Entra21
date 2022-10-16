@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -28,9 +29,10 @@ public class ItemService {
     public List<ItemDTO> getAllItem() {
         return itemRepository.findAll().stream().map(itemEntity -> {
             ItemDTO itemDTO = new ItemDTO();
-            PessoaDTO pessoaDTO = new PessoaDTO();
+            PessoaDTO pessoaDTO = null;
 
             if (itemEntity.getPessoa() != null){
+                pessoaDTO = new PessoaDTO();
                 pessoaDTO.setNome(itemEntity.getPessoa().getNome());
                 pessoaDTO.setSobrenome(itemEntity.getPessoa().getSobrenome());
                 pessoaDTO.setTelefone(itemEntity.getPessoa().getTelefone());
@@ -50,9 +52,10 @@ public class ItemService {
     public ItemDTO findByLocalizador(String localizador){
         ItemEntity itemEntity = itemRepository.findByLocalizador(localizador).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Item não foi encontrado!");});
         ItemDTO itemDTO = new ItemDTO();
-        PessoaDTO pessoaDTO = new PessoaDTO();
+        PessoaDTO pessoaDTO = null;
 
         if (itemEntity.getPessoa() != null){
+            pessoaDTO = new PessoaDTO();
             pessoaDTO.setNome(itemEntity.getPessoa().getNome());
             pessoaDTO.setSobrenome(itemEntity.getPessoa().getSobrenome());
             pessoaDTO.setTelefone(itemEntity.getPessoa().getTelefone());
@@ -90,52 +93,40 @@ public class ItemService {
         }).collect(Collectors.toList());
     }
 
-    public void saveItem(ItemAddDTO input) {
+    public void saveItem(ItemAddDTO itemDTO) {
+        PessoaEntity pessoaEntity = null;
         ItemEntity itemEntity = new ItemEntity();
-        PessoaEntity pessoa = new PessoaEntity();
-
-        pessoa.setIdPessoa(input.getPessoaItem().getIdPessoa());
-        itemEntity.setPessoa(pessoa);
-        itemEntity.setLocalizador(input.getLocalizador());
-        itemEntity.setLocalEntrega(input.getLocalEntrega());
-        itemEntity.setNomeRecebedor(input.getNomeRecebedor());
-        itemEntity.setStatus(input.getStatus());
-
-        itemRepository.save(itemEntity);
-    }
-
-    public void deleteItem(Long id) {
-        itemRepository.deleteById(id);
-    }
-
-    public ItemUpDTO updateStatusItem(Long id, String novoStatus) {
-        ItemEntity itemEntity = itemRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Item não encontrado!"));
-        ItemUpDTO itemUpDTO = new ItemUpDTO();
-
-        itemUpDTO.setStatus(novoStatus);
-
-        itemEntity.setStatus(novoStatus);
-        itemRepository.save(itemEntity);
-
-        return itemUpDTO;
-    }
-
-    public ItemUpDTO itemUpDTO(Long id, ItemUpDTO itemDTO) {
-        ItemEntity itemEntity = itemRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Item não encontrado!"));
-        itemEntity.setStatus(itemDTO.getStatus());
-        itemEntity.setNomeRecebedor(itemDTO.getNomeRecebedor());
-        itemEntity.setLocalizador(itemDTO.getLocalizador());
+        String UUId; //generating UUID
+        do{
+            UUId = UUID.randomUUID().toString();
+        }while (itemRepository.existsByLocalizador(UUId));
+        itemEntity.setLocalizador(UUId);
         itemEntity.setLocalEntrega(itemDTO.getLocalEntrega());
+        itemEntity.setStatus("Preparando pedido");
+        itemEntity.setNomeRecebedor(itemDTO.getNomeRecebedor());
 
-        PessoaEntity pessoaDTO = new PessoaEntity();
-        pessoaDTO.setIdPessoa(itemEntity.getPessoa().getIdPessoa());
-        itemEntity.setPessoa(pessoaDTO);
-        itemDTO.setIdItem(itemEntity.getIdItem());
-        itemEntity.setPessoa(pessoaRepository.findById(itemDTO.getPessoaItem().getIdPessoa()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST)));
-        itemEntity = itemRepository.save(itemEntity);
-        itemDTO.setIdItem(itemEntity.getIdItem());
+        if (itemDTO.getPessoaItem() != null && itemDTO.getPessoaItem().getCpf() != null){
+            pessoaEntity = pessoaRepository.findByCpf(itemDTO.getPessoaItem().getCpf()).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cpf/Pessoa não encontrada");});
+        }
+        itemEntity.setPessoa(pessoaEntity);
 
-        return itemDTO;
+        itemRepository.save(itemEntity);
+    }
+
+    public void deleteItem(String localizador) {
+        itemRepository.deleteById(
+                itemRepository.findByLocalizador(localizador).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Item/Localizador não encontrado")).getIdItem()
+        );
+    }
+
+    public void itemUpDTO(String localizador, ItemUpDTO itemDTO) {
+        ItemEntity itemEntity = itemRepository.findByLocalizador(localizador).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Item não encontrado!"));
+        if (itemDTO.getPessoaItem() != null){
+            PessoaEntity pessoaDTO = pessoaRepository.findByCpf(itemDTO.getPessoaItem().getCpf()).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cpf/Entregador não encontrado");});
+            itemEntity.setPessoa(pessoaDTO);
+        }
+        itemEntity.setStatus(itemDTO.getStatus());
+        itemRepository.save(itemEntity);
     }
 
 }
