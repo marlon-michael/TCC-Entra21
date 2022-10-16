@@ -113,6 +113,7 @@ public class ItemService {
         itemRepository.save(itemEntity);
     }
 
+    //TODO: UM ITEM DEVE DER DELETADO ???
     public void deleteItem(String localizador) {
         itemRepository.deleteById(
                 itemRepository.findByLocalizador(localizador).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Item/Localizador não encontrado")).getIdItem()
