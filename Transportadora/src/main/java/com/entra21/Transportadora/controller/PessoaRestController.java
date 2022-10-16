@@ -21,7 +21,6 @@ public class PessoaRestController {
         return pessoaService.getAll();
     }
 
-    //TODO: FAZER RETORNAR BOOLEAN
     @GetMapping("/login")
     public PessoaDTO getLogin() {
         return pessoaService.buscarUsuarioLogado();
@@ -32,22 +31,14 @@ public class PessoaRestController {
         return pessoaService.findByCpf(cpf);
     }
 
-    // PRA QUE SERVE ???
-    @GetMapping("/funcionario/{byfuncionario}")
-    public List<PessoaDTO> getAllByFuncionario() {
-        return pessoaService.getAllByFuncionario();
-    }
-
     @PostMapping
     public void addPessoa(@RequestBody PessoaAddDTO newPessoa) {
         pessoaService.save(newPessoa);
     }
 
-    // UPDATE & POST RETORNARÃO VOID
-    @PutMapping("/{id}")
-    public PessoaUpDTO updatePessoa(@PathVariable(name = "id") Long id,
-                                    @RequestBody PessoaUpDTO pessoaPayLoadDTO) {
-        return pessoaService.updatePessoa(id, pessoaPayLoadDTO);
+    @PutMapping("/{cpf}")
+    public void updatePessoa(@PathVariable(name = "cpf") String cpf, @RequestBody PessoaUpDTO pessoaPayLoadDTO) {
+        pessoaService.updatePessoa(cpf, pessoaPayLoadDTO);
     }
 
 }
