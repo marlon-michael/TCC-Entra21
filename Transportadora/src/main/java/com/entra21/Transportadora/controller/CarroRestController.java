@@ -28,7 +28,7 @@ public class CarroRestController {
         return carroService.getAllCarros();
     }
 
-    @GetMapping("/placa/{placa}")
+    @GetMapping("/{placa}")
     public CarroDTO getCarroByPlaca(@PathVariable(name = "placa")String placa){
         return carroService.getCarroByPlaca(placa);
     }
@@ -43,16 +43,15 @@ public class CarroRestController {
         carroService.saveCarros(Newcarro);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteCarros(@PathVariable(name = "id") Long idEmpresa) {
-        carroService.deleteCarros(idEmpresa);
+    @DeleteMapping("/{placa}")
+    public void deleteCarros(@PathVariable(name = "placa") String placa) {
+        carroService.deleteCarros(placa);
     }
 
     //TODO: FAZER RETORNAR VOID
-    @PutMapping("/{id}")
-    public CarroUpDTO updateCarro(@PathVariable(name = "id") Long idcarronv,
-                                      @RequestBody CarroUpDTO carroUpDTO) {
-        return carroService.updateCarro(idcarronv,carroUpDTO);
+    @PutMapping("/{placa}")
+    public void updateCarro(@PathVariable(name = "placa") String placa, @RequestBody CarroUpDTO carroUpDTO) {
+        carroService.updateCarro(placa,carroUpDTO);
     }
 
 }
