@@ -194,7 +194,7 @@ public class EntregaService {
                 String UUId;
                 do{
                     UUId = UUID.randomUUID().toString();
-                }while (itemRepository.existsByLocalizador(UUId).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Item não foi encontrado!");}));
+                }while (itemRepository.existsByLocalizador(UUId));
                 itemEntity.setLocalizador(UUId);
                 itemEntity.setLocalEntrega(itemDTO.getLocalEntrega());
                 itemEntity.setLocalizador(itemDTO.getLocalizador());
@@ -222,7 +222,6 @@ public class EntregaService {
         else entregaEntity.setEntregador(funcionarioEntity);
 
         //TODO: ENTREGA TRECHO PODE INICIAR VAZIO???
-        //TODO: ENTREGA TRECHO PODE SER ALTERADO???
         List<EntregaTrechoEntity> entregaTrechoEntities = entregaDTO.getEntregaTrecho().stream().map(entregaTrecho -> {
             EntregaTrechoEntity entregaTrechoEntity = new EntregaTrechoEntity();
             entregaTrechoEntity.setIdEntregaTrecho(entregaTrechoEntity.getIdEntregaTrecho());
@@ -265,13 +264,13 @@ public class EntregaService {
 
     //TODO: ENCONTRAR UM JEITO DO USUARIO ENCONTRAR A ENTREGA/ENTREGA_TRECHO (LOCALIZADOR DE ENTREGA???)
     public EntregaUpDTO updateEntrega(Long idEntregaNv, EntregaUpDTO entregaDTO) {
-        entregaRepository.findById(idEntregaNv).ifPresentOrElse((entregaEntity1) -> {
-            entregaEntity1.setEntregador(
+        entregaRepository.findById(idEntregaNv).ifPresentOrElse((entregaEntity) -> {
+            entregaEntity.setEntregador(
                     funcionarioRepository.findByCpf(entregaDTO.getEntregador().getCpf()).orElseThrow(() -> {
                         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Funcionario não foi encontrado!");
                     })
             );
-            entregaRepository.save(entregaEntity1);
+            entregaRepository.save(entregaEntity);
         }, () -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Entrega não foi encontrada!");});
 
         return entregaDTO;
