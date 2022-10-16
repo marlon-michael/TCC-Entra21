@@ -31,13 +31,13 @@ public class EmpresaRestController {
         empresaService.saveEmpresas(empresaDTO);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteCarros(@PathVariable(name = "id") Long idEmpresa) {
-        empresaService.deleteEmpresa(idEmpresa);
+    @DeleteMapping("/{cnpj}")
+    public void deleteCarros(@PathVariable(name = "cnpj") String cnpj) {
+        empresaService.deleteEmpresa(cnpj);
     }
 
-    @PutMapping("/{id}")
-    public EmpresaUpDTO updateEmpresa(@PathVariable(name = "id") Long idEmpresanv, @RequestBody EmpresaUpDTO empresaDTO) {
-        return empresaService.updateEmpresa(idEmpresanv, empresaDTO);
+    @PutMapping("/{cnpj}")
+    public void updateEmpresa(@PathVariable(name = "cnpj") String cnpj, @RequestBody EmpresaUpDTO empresaDTO) {
+        empresaService.updateEmpresa(cnpj, empresaDTO);
     }
 }
