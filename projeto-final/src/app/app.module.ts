@@ -3,6 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { PagInicialLoginComponent } from './logado/pag-inicial-login/pag-inicial-login.component';
+import { LocalizadorComponent } from './logado/localizador/localizador.component';
+import { ConfiguracoesComponent } from 'src/app/logado/configuracoes/configuracoes.component';
 
 import { FooterComponent } from 'src/app/sharepage/footer/footer.component';
 import { ContactComponent } from '../pages/contact/contact.component';
@@ -24,6 +27,10 @@ import { BasicAuthInterceptor } from './helpers/basic-auth.interceptor';
     HomeComponent,
     AboutComponent,
     LoginComponent,
+    LocalizadorComponent,
+    ConfiguracoesComponent,
+    PagInicialLoginComponent,
+
   ],
   imports: [
     BrowserModule,

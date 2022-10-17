@@ -1,5 +1,5 @@
 .banner{
-    background-image: url(css/fundo.jpeg);
+    background-image: url(src\css\fundo.jpeg);
     height: 800px;
     background-position: center!important;
     background-size: cover;

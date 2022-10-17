@@ -1,9 +1,11 @@
 .footer{
     overflow: hidden;
-    background-color: rgba(0, 0, 0, 0.644);
-    padding: 20px 10px;
+    background-color: #110d1adc;
+    padding: 40px 10px;
     position: sticky;
     top: 100%;
+    right: 100%;
+    /* margin-top: 20%; */
 }
 
 h1{
