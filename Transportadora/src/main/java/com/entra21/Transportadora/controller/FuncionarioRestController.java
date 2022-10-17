@@ -2,7 +2,6 @@ package com.entra21.Transportadora.controller;
 
 import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioAddDTO;
 import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioDTO;
-import com.entra21.Transportadora.view.repository.FuncionarioRepository;
 import com.entra21.Transportadora.view.service.FuncionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,14 +21,19 @@ public class FuncionarioRestController {
       return funcionarioService.getAllFuncionario();
    }
 
-   @GetMapping("/{id}")
-   public List<FuncionarioDTO> getAllByEmpresa(@PathVariable(name = "id")Long id){
-      return funcionarioService.getAllFuncionariByEmpresa();
+   @GetMapping("/empresa/{cnpj}")
+   public List<FuncionarioDTO> getAllByEmpresa(@PathVariable(name = "cnpj")String cnpj){
+      return funcionarioService.getAllFuncionariByEmpresa(cnpj);
    }
 
    @PostMapping
    public void addFuncionario(@RequestBody FuncionarioAddDTO funcionarioPayLoadDTO){
       funcionarioService.saveFuncionario(funcionarioPayLoadDTO);
+   }
+
+   @DeleteMapping("/{cpf}")
+   public void deleteFuncionarioByCPF(@PathVariable(name = "cpf")String cpf){
+      funcionarioService.deleteByFuncionario(cpf);
    }
 
 }
