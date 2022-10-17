@@ -118,5 +118,6 @@ public class FuncionarioService {
         funcionarioRepository.deleteById(funcionarioRepository.findByCpf(cpf).orElseThrow(() -> {throw  new ResponseStatusException(HttpStatus.NOT_FOUND, "Cpf/Funcionário not found");}).getIdPessoa());
     }
 
+
 }
 

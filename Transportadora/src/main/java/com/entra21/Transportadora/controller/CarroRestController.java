@@ -3,18 +3,12 @@ package com.entra21.Transportadora.controller;
 import com.entra21.Transportadora.model.dto.Carro.CarroAddDTO;
 import com.entra21.Transportadora.model.dto.Carro.CarroDTO;
 import com.entra21.Transportadora.model.dto.Carro.CarroUpDTO;
-import com.entra21.Transportadora.model.entity.CarroEntity;
-import com.entra21.Transportadora.model.entity.EmpresaEntity;
-import com.entra21.Transportadora.view.repository.CarroRepository;
-import com.entra21.Transportadora.view.repository.EmpresaRepository;
 import com.entra21.Transportadora.view.service.CarroService;
+import com.entra21.Transportadora.view.service.EmpresaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/carro")
@@ -22,6 +16,9 @@ public class CarroRestController {
 
     @Autowired
     private CarroService carroService;
+
+    @Autowired
+    EmpresaService empresaService;
 
     @GetMapping
     public List<CarroDTO> getCarro(){
