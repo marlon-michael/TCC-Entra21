@@ -1,0 +1,15 @@
+.banner{
+    background-image: url(src\css\fundo.jpeg);
+    height: 800px;
+    background-position: center!important;
+    background-size: cover;
+}
+
+.banner h1{
+    color: white;
+    font-size: 70px;
+    font-weight: bold;
+    top: 20%;
+    left: 60%;
+    position: absolute;
+}
