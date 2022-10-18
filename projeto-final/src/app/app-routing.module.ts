@@ -14,7 +14,7 @@ const routes: Routes = [
 {path: 'login',component:LoginComponent},
 {path: 'about',component:AboutComponent},
 {path: 'contact',component:ContactComponent},
-{path: 'loc', component:LocalizadorComponent},
+{path: 'localizador', component:LocalizadorComponent},
 {path: 'config', component:ConfiguracoesComponent},
 {path: 'app-pag-inicial-login', component:PagInicialLoginComponent}
 ];
