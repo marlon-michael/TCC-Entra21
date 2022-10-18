@@ -1,6 +1,7 @@
 package com.entra21.Transportadora.view.service;
 
 
+import com.entra21.Transportadora.model.dto.Pessoa.LoginDTO;
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaAddDTO;
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaUpDTO;
@@ -26,21 +27,32 @@ public class PessoaService implements UserDetailsService{
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        PessoaEntity user = pessoaRepository.findByLogin(username).orElseThrow(()->{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pessoa não foi encontrada!");
-        });
+        PessoaEntity user = pessoaRepository.findByLogin(username);
         if (user == null) {
             throw new UsernameNotFoundException(username);
         }
         return user;
     }
 
-    public PessoaEntity buscarUsuarioLogado() {
+    public PessoaDTO buscarUsuarioLogado() {
+        PessoaDTO pessoaDTO = new PessoaDTO();
+        PessoaEntity user = new PessoaEntity();
         try {
-            return (PessoaEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            user = (PessoaEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN);
         }
+
+        pessoaDTO.setCpf(user.getCpf());
+        pessoaDTO.setNome(user.getNome());
+        pessoaDTO.setSobrenome(user.getSobrenome());
+        pessoaDTO.setTelefone(user.getTelefone());
+        pessoaDTO.setLogin(user.getLogin());
+        pessoaDTO.setSenha(user.getSenha());
+        pessoaDTO.setDesabilitado(user.getDesabilitado());
+        pessoaDTO.setIdPessoa(user.getIdPessoa());
+
+        return pessoaDTO;
     }
 
     public PessoaDTO findByCpf(String cpf){
@@ -65,22 +77,6 @@ public class PessoaService implements UserDetailsService{
         }).collect(Collectors.toList());
     }
 
-    // PRA QUE SERVE ???
-    public List<PessoaDTO> getAllByFuncionario() {
-        return pessoaRepository.findAll().stream().map(pr -> {
-            PessoaDTO pessoaDTO = new PessoaDTO();
-            pessoaDTO.setNome(pr.getNome());
-            pessoaDTO.setSobrenome(pr.getSobrenome());
-            pessoaDTO.setCpf(pr.getCpf());
-            pessoaDTO.setTelefone(pr.getTelefone());
-            pessoaDTO.setLogin(pr.getLogin());
-            pessoaDTO.setSenha(pr.getSenha());
-            pessoaDTO.setDesabilitado(pr.getDesabilitado());
-            return pessoaDTO;
-        }).collect(Collectors.toList());
-    }
-
-
     public void save(PessoaAddDTO input) {
         PessoaEntity pessoaEntity = new PessoaEntity();
         pessoaEntity.setNome(input.getNome());
@@ -93,25 +89,26 @@ public class PessoaService implements UserDetailsService{
         pessoaRepository.save(pessoaEntity);
     }
 
-    public PessoaUpDTO updatePessoa(Long id, PessoaUpDTO pessoaPayLoadDTO) {
-        PessoaEntity pessoa = pessoaRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Pessoa não encontrada!"));
-        pessoa.setNome(pessoaPayLoadDTO.getNome());
-        pessoa.setSobrenome(pessoaPayLoadDTO.getSobrenome());
-        pessoa.setTelefone(pessoaPayLoadDTO.getTelefone());
-        pessoa.setCpf(pessoaPayLoadDTO.getCpf());
-        pessoa.setLogin(pessoaPayLoadDTO.getLogin());
-        pessoa.setSenha(pessoaPayLoadDTO.getSenha());
-        pessoa.setDesabilitado(pessoaPayLoadDTO.getDesabilitado());
-        pessoa = pessoaRepository.save(pessoa);
-        PessoaAddDTO dto = new PessoaAddDTO();
-        dto.setNome(pessoa.getNome());
-        dto.setSobrenome(pessoa.getSobrenome());
-        dto.setTelefone(pessoa.getTelefone());
-        dto.setCpf(pessoa.getCpf());
-        dto.setLogin(pessoa.getLogin());
-        dto.setSenha(pessoa.getSenha());
-        dto.setDesabilitado(pessoa.getDesabilitado());
-        return pessoaPayLoadDTO;
+    public void updatePessoa(String cpf, PessoaUpDTO pessoaPayLoadDTO) {
+        PessoaEntity pessoa = pessoaRepository.findByCpf(cpf).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Pessoa não encontrada!"));
+        if (pessoaPayLoadDTO.getNome() != null) pessoa.setNome(pessoaPayLoadDTO.getNome());
+        if (pessoaPayLoadDTO.getSobrenome() != null) pessoa.setSobrenome(pessoaPayLoadDTO.getSobrenome());
+        if (pessoaPayLoadDTO.getTelefone() != null) pessoa.setTelefone(pessoaPayLoadDTO.getTelefone());
+        if (pessoaPayLoadDTO.getCpf() != null) pessoa.setCpf(pessoaPayLoadDTO.getCpf());
+        if (pessoaPayLoadDTO.getLogin() != null) pessoa.setLogin(pessoaPayLoadDTO.getLogin());
+        if (pessoaPayLoadDTO.getSenha() != null) pessoa.setSenha(pessoaPayLoadDTO.getSenha());
+        if (pessoaPayLoadDTO.getDesabilitado() != null) pessoa.setDesabilitado(pessoaPayLoadDTO.getDesabilitado());
+        pessoaRepository.save(pessoa);
     }
+
+    public PessoaEntity buscarLogin(LoginDTO login) {
+        PessoaEntity e = pessoaRepository.findByLogin(login.getUsername());
+        if (e != null && e.getSenha().equals(login.getPassword())) {
+            return e;
+        }
+        return null;
+    }
+
+    //TODO: DESABILITAR USUARIO  /  DELETAR USUARIO SE NÃO ESTIVER SENDO USADO EM NENHUMA OUTRA TABELA
 
 }

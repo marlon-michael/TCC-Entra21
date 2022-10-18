@@ -3,20 +3,12 @@ package com.entra21.Transportadora.controller;
 import com.entra21.Transportadora.model.dto.Carro.CarroAddDTO;
 import com.entra21.Transportadora.model.dto.Carro.CarroDTO;
 import com.entra21.Transportadora.model.dto.Carro.CarroUpDTO;
-import com.entra21.Transportadora.model.dto.Empresa.EmpresaDTO;
-import com.entra21.Transportadora.model.entity.CarroEntity;
-import com.entra21.Transportadora.model.entity.EmpresaEntity;
-import com.entra21.Transportadora.view.repository.CarroRepository;
-import com.entra21.Transportadora.view.repository.EmpresaRepository;
 import com.entra21.Transportadora.view.service.CarroService;
 import com.entra21.Transportadora.view.service.EmpresaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/carro")
@@ -24,11 +16,6 @@ public class CarroRestController {
 
     @Autowired
     private CarroService carroService;
-    @Autowired
-    CarroRepository carroRepository;
-
-    @Autowired
-    EmpresaRepository empresaRepository;
 
     @Autowired
     EmpresaService empresaService;
@@ -38,30 +25,14 @@ public class CarroRestController {
         return carroService.getAllCarros();
     }
 
+    @GetMapping("/{placa}")
+    public CarroDTO getCarroByPlaca(@PathVariable(name = "placa")String placa){
+        return carroService.getCarroByPlaca(placa);
+    }
 
-//    @GetMapping("/{id_empresa}")
-//    public List<CarroEntity> getCarroByEmpresa(@PathVariable(name = "id_empresa") Long empresa){
-//        Optional<EmpresaEntity> empresaEntity = empresaRepository.findById(empresa);
-//        return carroRepository.findAllByEmpresa(empresaEntity.get()).orElseThrow(()->{
-//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa não foi encontrada!");
-//        });
-//    }
-
-//    @GetMapping("/{id_empresa}")
-//    public List<CarroDTO> getCarroByEmpresa(@PathVariable(name = "id_empresa") String empresa){
-//        Optional<EmpresaDTO> empresaDTO = empresaService.findByCnpj(empresa);
-//        return carroService.findAllByEmpresa
-//        (empresaDTO.get()).orElseThrow(()->{
-//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa não foi encontrada!");
-//        });
-//    }
-
-    @GetMapping("/{id_empresa}")
-    public List<CarroEntity> getCarroByEmpresa(@PathVariable(name = "id_empresa") Long empresa){
-        Optional<EmpresaEntity> empresaEntity = empresaRepository.findById(empresa);
-        return carroRepository.findAllByEmpresa(empresaEntity.get()).orElseThrow(()->{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa não foi encontrada!");
-        });
+    @GetMapping("/empresa/{cnpj_empresa}")
+    public List<CarroDTO> getCarroByEmpresa(@PathVariable(name = "cnpj_empresa") String empresa_CNPJ){
+        return carroService.getCarroByEmpresa_Cnpj(empresa_CNPJ);
     }
 
     @PostMapping
@@ -69,16 +40,15 @@ public class CarroRestController {
         carroService.saveCarros(Newcarro);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteCarros(@PathVariable(name = "id") Long idEmpresa) {
-        carroService.deleteCarros(idEmpresa);
+    @DeleteMapping("/{placa}")
+    public void deleteCarros(@PathVariable(name = "placa") String placa) {
+        carroService.deleteCarros(placa);
     }
 
-
-    @PutMapping("/{id}")
-    public CarroUpDTO updateCarro(@PathVariable(name = "id") Long idcarronv,
-                                      @RequestBody CarroUpDTO carroUpDTO) {
-        return carroService.updateCarro(idcarronv,carroUpDTO);
+    //TODO: FAZER RETORNAR VOID
+    @PutMapping("/{placa}")
+    public void updateCarro(@PathVariable(name = "placa") String placa, @RequestBody CarroUpDTO carroUpDTO) {
+        carroService.updateCarro(placa,carroUpDTO);
     }
 
 }

@@ -9,5 +9,6 @@ import java.util.Optional;
 @Repository
 public interface ItemRepository extends JpaRepository<ItemEntity, Long> {
     public Optional<ItemEntity> findByLocalizador(String localizador);
-    public Optional<Boolean> existsByLocalizador(String localizador);
+    public Optional<List<ItemEntity>> findAllByPessoa_Cpf(String cpf);
+    public Boolean existsByLocalizador(String localizador);
 }

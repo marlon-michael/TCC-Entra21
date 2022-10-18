@@ -4,7 +4,6 @@ import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioUpDTO;
 import com.entra21.Transportadora.model.dto.Item.ItemUpDTO;
 import lombok.Data;
 
-import java.util.HashSet;
 import java.util.List;
 
 

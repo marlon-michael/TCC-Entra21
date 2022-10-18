@@ -1,15 +1,11 @@
 package com.entra21.Transportadora.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 @Data
-//@JsonIgnoreProperties({"hibernateLazyInitializer"}) ? ? ? ? ? ? ?
 @Entity
 @Table(name = "entrega")
 public class EntregaEntity {
@@ -32,7 +28,7 @@ public class EntregaEntity {
             joinColumns = @JoinColumn(name = "id_entrega"),
             inverseJoinColumns = @JoinColumn(name = "id_item")
     )
-    private Set<ItemEntity> itens;
+    private List<ItemEntity> itens;
 
     @OneToMany
     @JoinColumn(name = "id_entrega", referencedColumnName = "id")
