@@ -1,8 +1,9 @@
 <h3>Localizar Itens</h3>
-<div *ngFor="let item of allItens">
-    teste
-    <span>{{item.status}}</span>
-    <span>{{item.localizador}}</span>
-    <span>{{item.nomeRecebedor}}</span>
-    <span>{{item.localEntrega}}</span>
+<div *ngFor="let item of allItens"
+style="display: block;">
+    <span style="display: block;">{{item.status}}</span>
+    <span style="display: block;">{{item.localizador}}</span>
+    <span style="display: block;">{{item.nomeRecebedor}}</span>
+    <span style="display: block;">{{item.localEntrega}}</span>
+    <hr>
 </div>
