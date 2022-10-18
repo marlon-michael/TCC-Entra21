@@ -23,5 +23,5 @@ public class FuncionarioEntity extends PessoaEntity{
     @JoinColumn(name="id_entregador", referencedColumnName = "id_pessoa")
     @JsonIgnore
     private List<EntregaEntity> entrega;
-
+    
 }
