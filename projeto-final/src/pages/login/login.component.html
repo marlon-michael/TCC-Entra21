@@ -55,7 +55,7 @@
 
 <!-- <img src="C:\Users\User\Documents\TCC-Entra21\projeto-final\src\css\aboutus.jpg" alt=""> -->
 <body>
-	<form>
+	<form  (ngSubmit)="onSubmit()">
 		
 <div class="container-fluid">
 <div class="login-html">
@@ -73,11 +73,11 @@
 					<h1>Login</h1>
 					<div class="textfield">
 						<label for="usuario"  class="label">Usuários</label>
-						<input type="submitted-name" name="usuario" placeholder="Usuário" class="input">
+						<input type="submitted-name" name="usuario" placeholder="Usuário" class="input" formControlName="login">
 					</div>
 					<div class="textfield">
 						<label for="senha" class="label">Senha</label>
-						<input type="password" name="senha" placeholder="Senha" class="input">
+						<input type="password" name="senha" placeholder="Senha" class="input" formControlName="senha">
 					</div>
 					<!-- <div class="group">
 						<label for="user" class="label">Username</label>
@@ -88,9 +88,9 @@
 						<input id="pass" type="password" class="input" data-type="password">
 					</div> -->
 				
-						<a class="btn-login" routerLink="/app-pag-inicial-login">Sign in</a>
+					 <input type="submit"  value="Sing in" class="btn-login"   [disabled]="!loginForm.valid">
 
-						<label class="cadastrar" routerLink="/cadastro" >Cadastrar-se</label>
+						<a class="cadastrar" routerLink="/cadastro" >Cadastrar-se</a>
 						<!-- class="btn-login" -->
 
 						

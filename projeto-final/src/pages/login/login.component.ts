@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { first } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/logado/helpers/auth.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -12,12 +12,12 @@ import { AuthenticationService } from 'src/app/logado/helpers/auth.service';
 export class LoginComponent {
 
   loginForm: FormGroup = this.formBuilder.group({
-    username: ['', Validators.required],
-    password: ['', Validators.required]
+    login: ['', Validators.required],
+    senha: ['', Validators.required]
   });
   loading = false;
   submitted = false;
-  returnUrl: string = this.route.snapshot.queryParams['returnUrl'];;
+  returnUrl: string = this.route.snapshot.queryParams['returnUrl'];
   error = '';
 
   constructor(
@@ -38,20 +38,20 @@ export class LoginComponent {
       this.submitted = true;
 
       // stop here if form is invalid
-      if (this.loginForm!.invalid) {
+      if (this.loginForm.invalid) {
           return;
       }
-
       this.loading = true;
-      this.authenticationService.login(this.loginForm.get('username')?.value, this.loginForm.get('password')?.value)
+      this.authenticationService.login(this.loginForm.get('login')?.value, this.loginForm.get('senha')?.value)
           .pipe(first())
           .subscribe(
-              (              _data: any) => {
-                  this.router.navigate([this.returnUrl ?? '/dashboard']);
+              data => {
+                  this.router.navigate([this.returnUrl ?? 'dashboard']);
               },
-              (              error: string) => {
+              error => {
                   this.error = error;
                   this.loading = false;
               });
   }
+
 }
