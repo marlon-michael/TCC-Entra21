@@ -8,16 +8,18 @@ import { LocalizadorComponent } from './logado/localizador/localizador.component
 import { PagInicialLoginComponent } from './logado/pag-inicial-login/pag-inicial-login.component'; 
 import { LoginComponent } from 'src/pages/login/login.component';
 import { CadastroComponent } from 'src/pages/login/cadastro/cadastro.component';
+import { AuthGuard } from './logado/helpers/auth.guard';
 
 const routes: Routes = [
 {path: '', component:HomeComponent},
-{path: 'login', component:LoginComponent},
+{path: 'login', component:LoginComponent, canActivate: [AuthGuard]},
 {path: 'about',component:AboutComponent},
 {path: 'contact',component:ContactComponent},
 { path: 'localizador', component: LocalizadorComponent},
 { path: 'config', component: ConfiguracoesComponent},
 {path: 'app-pag-inicial-login', component: PagInicialLoginComponent},
-{path: 'cadastro', component: CadastroComponent}
+{path: 'cadastro', component: CadastroComponent},
+{ path: '**', redirectTo: '/'}
 ];
 
 

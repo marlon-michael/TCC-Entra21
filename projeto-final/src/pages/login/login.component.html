@@ -54,14 +54,11 @@
 </div> -->
 
 <!-- <img src="C:\Users\User\Documents\TCC-Entra21\projeto-final\src\css\aboutus.jpg" alt=""> -->
-<body>
+<!-- <body>
 	<form  (ngSubmit)="onSubmit()">
 		
 <div class="container-fluid">
 <div class="login-html">
-
-<!-- <div class="login-form">				<input id="tab-1" type="radio" name="tab" class="sign-in" checked ><label for="tab-1" class="tab" >Sign In</label>
-				<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label> -->
 	<div class="main-login">
 		    	<div class="left-login">
 					<h1>FAÇA LOGIN<br> E acompanhe seus itens</h1>
@@ -79,19 +76,11 @@
 						<label for="senha" class="label">Senha</label>
 						<input type="password" name="senha" placeholder="Senha" class="input" formControlName="senha">
 					</div>
-					<!-- <div class="group">
-						<label for="user" class="label">Username</label>
-						<input id="user" type="text" class="input">
-					</div> -->
-					<!-- <div class="group">
-						<label for="pass" class="label">Password</label>
-						<input id="pass" type="password" class="input" data-type="password">
-					</div> -->
-				
-					 <input type="submit"  value="Sing in" class="btn-login"   [disabled]="!loginForm.valid">
-
+		
+					<a type="button" class="btn-login" routerLink="/app-pag-inicial-login"value="Sing up">Sing up</a>  
+					
 						<a class="cadastrar" routerLink="/cadastro" >Cadastrar-se</a>
-						<!-- class="btn-login" -->
+					
 
 						
 					</div>
@@ -105,7 +94,38 @@
 		
 		</body>
 		
-					
+					 -->
 
 				
-		
+					 <div class="col-md-6 offset-md-3 mt-5">
+						<div class="alert alert-info">
+							Username: admin<br />
+							Password: admin
+						</div>
+						<div class="card">
+							<h4 class="card-header">Angular 9 Basic Authentication Example</h4>
+							<div class="card-body">
+								<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+									<div class="form-group">
+										<label for="username">Username</label>
+										<input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['username'].errors }" />
+										<div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
+											<div *ngIf="f['username'].errors['required']">Username is required</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="password">Password</label>
+										<input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" />
+										<div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+											<div *ngIf="f['password'].errors['required']">Password is required</div>
+										</div>
+									</div>
+									<button [disabled]="loading" class="btn btn-primary">
+										<span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+										Login
+									</button>
+									<div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+								</form>
+							</div>
+						</div>
+					</div>

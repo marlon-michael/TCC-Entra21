@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { User } from 'types/types';
+import { AuthenticationService } from '../helpers/auth.service';
 
 @Component({
   selector: 'app-pag-inicial-login',
@@ -6,14 +9,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pag-inicial-login.component.css']
 })
 export class PagInicialLoginComponent implements OnInit {
-logout() {
-throw new Error('Method not implemented.');
-}
-user: any;
+  title = 'ConnActionAngularProject';
 
-  constructor() { }
+  user: User | null = null;
 
+    constructor(
+        private router: Router,
+        private authenticationService: AuthenticationService
+    ) {
+        this.authenticationService.user.subscribe(x => this.user = x);
+    }
   ngOnInit(): void {
+    console.log(this.user?.id);
   }
 
+    logout() {
+        this.authenticationService.logout();
+    }
 }

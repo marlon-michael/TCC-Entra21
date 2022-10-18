@@ -28,7 +28,10 @@
         <li class="nav-item">
           <a  class="nav-link" href="#">Ajuda</a>
         </li>
-        <button type="button" class="btn btn-link">Sair</button>
+         <a type="button" class="btn btn-link" *ngIf="this.user != null" (click)="logout()">Sair</a>
+        <!-- <li class="nav-item">
+          <a class="nav-link" *ngIf="this.user != null" (click)="logout()">Logout</a>
+        </li> -->
         <!-- <li class="nav-item" *ngIf="user != null">
           <a class="nav-link" href="#" (click)="logout()">Logout</a>
         </li> -->

@@ -1,5 +1,4 @@
 <form (ngSubmit)="cadastrar()">
-    <div (click)="onClick()">
 <div class="login-html">
 <div class="main-login">
             
@@ -34,7 +33,7 @@
                 </div>
                 <div class="textfield">
                      <label for="pass" class="label">Senha: </label>
-                     <input id="pass" type="password" class="input" data-type="password" placeholder="Senha">
+                     <input id="pass" type="password" class="input" data-type="password" placeholder="Senha"  minlength="6">
                 </div>
                     <div class="cliente">
                         <label for="check" class="label">Cliente </label>
@@ -49,8 +48,7 @@
                     <input type="checkbox" name="Empresa" id="empresa" class="input">
                     </div>
                 
-                <input type="submit" class="btn-login" routerLink="/app-pag-inicial-login" value="Sing up">
-</div>
+                <a type="button" class="btn-login" routerLink="/app-pag-inicial-login" value="Sing up">Sing up</a>
 </div>
 </div>
 </div>

@@ -31,8 +31,7 @@ import { CadastroComponent } from 'src/pages/login/cadastro/cadastro.component';
     LocalizadorComponent,
     ConfiguracoesComponent,
     PagInicialLoginComponent,
-    CadastroComponent,
-
+    CadastroComponent
   ],
   imports: [
     BrowserModule,

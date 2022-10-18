@@ -65,10 +65,10 @@ import { AuthenticationService } from 'src/app/logado/helpers/auth.service';
 
 @Component({
   selector: 'app-cadastro',
-  templateUrl: '../cadastro.component.html',
+  templateUrl: './cadastro.component.html',
   styleUrls: ['./cadastro.component.css']
 })
-export class CadastroComponent implements OnInit{
+export class CadastroComponent {
   [x: string]: any;
 
 cadastroForm;
