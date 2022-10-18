@@ -11,10 +11,10 @@ import { PagInicialLoginComponent } from 'src/app/logado/pag-inicial-login/pag-i
 
 const routes: Routes = [
 {path: '', component:HomeComponent},
-{path:'login',component:LoginComponent},
+{path: 'login',component:LoginComponent},
 {path: 'about',component:AboutComponent},
 {path: 'contact',component:ContactComponent},
-{path: 'local', component:LocalizadorComponent},
+{path: 'loc', component:LocalizadorComponent},
 {path: 'config', component:ConfiguracoesComponent},
 {path: 'app-pag-inicial-login', component:PagInicialLoginComponent}
 ];
