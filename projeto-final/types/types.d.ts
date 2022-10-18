@@ -4,3 +4,8 @@ export type User = {
     password: string;
     authdata?: string;
 }
+
+// export type  = {
+//     id: number;
+//     nome: string;
+// }

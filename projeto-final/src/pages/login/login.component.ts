@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute} from '@angular/router';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { AuthenticationService } from 'src/app/helpers/auth.service';
+import { AuthenticationService } from 'src/app/logado/helpers/auth.service';
 
 @Component({
   selector: 'app-login',

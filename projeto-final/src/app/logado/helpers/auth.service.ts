@@ -5,7 +5,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from 'types/types';
 
-
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
     private userSubject: BehaviorSubject<User | null>;
