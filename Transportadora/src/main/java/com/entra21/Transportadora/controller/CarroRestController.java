@@ -24,11 +24,6 @@ public class CarroRestController {
 
     @Autowired
     private CarroService carroService;
-    @Autowired
-    CarroRepository carroRepository;
-
-    @Autowired
-    EmpresaRepository empresaRepository;
 
     @Autowired
     EmpresaService empresaService;
@@ -38,30 +33,16 @@ public class CarroRestController {
         return carroService.getAllCarros();
     }
 
+    @GetMapping("/placa/{placa}")
+    public CarroDTO getCarroByPlaca(@PathVariable(name = "placa")String placa){
+        return carroService.getCarroByPlaca(placa);
+    }
 
-//    @GetMapping("/{id_empresa}")
-//    public List<CarroEntity> getCarroByEmpresa(@PathVariable(name = "id_empresa") Long empresa){
-//        Optional<EmpresaEntity> empresaEntity = empresaRepository.findById(empresa);
-//        return carroRepository.findAllByEmpresa(empresaEntity.get()).orElseThrow(()->{
-//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa não foi encontrada!");
-//        });
-//    }
 
-//    @GetMapping("/{id_empresa}")
-//    public List<CarroDTO> getCarroByEmpresa(@PathVariable(name = "id_empresa") String empresa){
-//        Optional<EmpresaDTO> empresaDTO = empresaService.findByCnpj(empresa);
-//        return carroService.findAllByEmpresa
-//        (empresaDTO.get()).orElseThrow(()->{
-//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa não foi encontrada!");
-//        });
-//    }
+    @GetMapping("/empresa/{cnpj_empresa}")
+    public List<CarroDTO> getCarroByEmpresa(@PathVariable(name = "cnpj_empresa") String empresa_CNPJ){
+        return carroService.getCarroByEmpresa_Cnpj(empresa_CNPJ);
 
-    @GetMapping("/{id_empresa}")
-    public List<CarroEntity> getCarroByEmpresa(@PathVariable(name = "id_empresa") Long empresa){
-        Optional<EmpresaEntity> empresaEntity = empresaRepository.findById(empresa);
-        return carroRepository.findAllByEmpresa(empresaEntity.get()).orElseThrow(()->{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa não foi encontrada!");
-        });
     }
 
     @PostMapping
@@ -74,7 +55,7 @@ public class CarroRestController {
         carroService.deleteCarros(idEmpresa);
     }
 
-
+    //TODO: FAZER RETORNAR VOID
     @PutMapping("/{id}")
     public CarroUpDTO updateCarro(@PathVariable(name = "id") Long idcarronv,
                                       @RequestBody CarroUpDTO carroUpDTO) {

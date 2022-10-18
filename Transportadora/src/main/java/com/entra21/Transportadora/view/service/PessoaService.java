@@ -3,6 +3,7 @@ package com.entra21.Transportadora.view.service;
 
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaAddDTO;
+import com.entra21.Transportadora.model.dto.Pessoa.PessoaLoad;
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaUpDTO;
 import com.entra21.Transportadora.model.entity.PessoaEntity;
 import com.entra21.Transportadora.view.repository.PessoaRepository;
@@ -35,12 +36,25 @@ public class PessoaService implements UserDetailsService{
         return user;
     }
 
-    public PessoaEntity buscarUsuarioLogado() {
+    public PessoaLoad buscarUsuarioLogado() {
+        PessoaLoad pessoaDTO = new PessoaLoad();
+        PessoaEntity user = new PessoaEntity();
         try {
-            return (PessoaEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            user = (PessoaEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN);
         }
+
+        pessoaDTO.setCpf(user.getCpf());
+        pessoaDTO.setNome(user.getNome());
+        pessoaDTO.setSobrenome(user.getSobrenome());
+        pessoaDTO.setTelefone(user.getTelefone());
+        pessoaDTO.setLogin(user.getLogin());
+        pessoaDTO.setSenha(user.getSenha());
+        pessoaDTO.setDesabilitado(user.getDesabilitado());
+        pessoaDTO.setIdPessoa(user.getIdPessoa());
+
+        return pessoaDTO;
     }
 
     public PessoaDTO findByCpf(String cpf){

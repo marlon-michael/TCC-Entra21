@@ -2,8 +2,8 @@ package com.entra21.Transportadora.controller;
 
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaAddDTO;
+import com.entra21.Transportadora.model.dto.Pessoa.PessoaLoad;
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaUpDTO;
-import com.entra21.Transportadora.view.repository.PessoaRepository;
 import com.entra21.Transportadora.view.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,12 +16,16 @@ public class PessoaRestController {
 
     @Autowired
     private PessoaService pessoaService;
-    @Autowired
-    private PessoaRepository pessoaRepository;
 
     @GetMapping
     public List<PessoaDTO> getPessoas() {
         return pessoaService.getAll();
+    }
+
+    //TODO: FAZER RETORNAR BOOLEAN
+    @GetMapping("/login")
+    public PessoaLoad getLogin() {
+        return pessoaService.buscarUsuarioLogado();
     }
 
     @GetMapping("/{cpf}")
@@ -29,6 +33,7 @@ public class PessoaRestController {
         return pessoaService.findByCpf(cpf);
     }
 
+    // PRA QUE SERVE ???
     @GetMapping("/funcionario/{byfuncionario}")
     public List<PessoaDTO> getAllByFuncionario() {
         return pessoaService.getAllByFuncionario();
@@ -39,6 +44,7 @@ public class PessoaRestController {
         pessoaService.save(newPessoa);
     }
 
+    // UPDATE & POST RETORNARÃO VOID
     @PutMapping("/{id}")
     public PessoaUpDTO updatePessoa(@PathVariable(name = "id") Long id,
                                     @RequestBody PessoaUpDTO pessoaPayLoadDTO) {

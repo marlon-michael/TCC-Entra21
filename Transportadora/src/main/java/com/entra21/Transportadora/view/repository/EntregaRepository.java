@@ -9,6 +9,5 @@ import java.util.List;
 @Repository
 public interface EntregaRepository extends JpaRepository<EntregaEntity, Long> {
     public List<EntregaEntity> findAllByEntregador_Cpf(String cpf);
-
 }
 

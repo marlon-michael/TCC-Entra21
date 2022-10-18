@@ -57,10 +57,14 @@ public class ItemRestController {
         return itemService.getAllItem();
     }
 
-    //todo
     @GetMapping("/{localizador}")
-    public ItemEntity getItem(@PathVariable(name = "localizador") String localizador){
-        return itemRepository.findByLocalizador(localizador).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Item não foi encontrado!");});
+    public ItemDTO getItemByLocalizador(@PathVariable(name = "localizador") String localizador){
+        return itemService.findByLocalizador(localizador);
+    }
+
+    @GetMapping("/pessoa/{cpf}")
+    public List<ItemDTO> getItemByPessoa(@PathVariable(name = "cpf") String cpf){
+        return itemService.findAllByPessoa_Cpf(cpf);
     }
 
     @PostMapping

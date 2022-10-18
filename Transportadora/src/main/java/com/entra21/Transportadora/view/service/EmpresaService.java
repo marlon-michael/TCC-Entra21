@@ -41,26 +41,43 @@ public class EmpresaService {
     }
 
     public List<EmpresaDTO> getAllEmpresas () {
-        return empresaRepository.findAll().stream().map(er -> {
-            EmpresaDTO dtoempresa = new EmpresaDTO();
-            dtoempresa.setCnpj(er.getCnpj());
-            dtoempresa.setRazaoSocial(er.getRazaoSocial());
+
+        return empresaRepository.findAll().stream().map(empresaEntity -> {
 
             PessoaDTO pessoaDTO = new PessoaDTO();
-            pessoaDTO .setNome(er.getGerente().getNome());
-            pessoaDTO .setCpf(er.getGerente().getCpf());
-            pessoaDTO .setTelefone(er.getGerente().getTelefone());
-            pessoaDTO .setSobrenome(er.getGerente().getSobrenome());
+            EmpresaDTO dtoempresa = new EmpresaDTO();
+
+            pessoaDTO .setNome(empresaEntity.getGerente().getNome());
+            pessoaDTO .setCpf(empresaEntity.getGerente().getCpf());
+            pessoaDTO .setTelefone(empresaEntity.getGerente().getTelefone());
+            pessoaDTO .setSobrenome(empresaEntity.getGerente().getSobrenome());
 
             dtoempresa.setGerente(pessoaDTO);
+            dtoempresa.setCnpj(empresaEntity.getCnpj());
+            dtoempresa.setRazaoSocial(empresaEntity.getRazaoSocial());
+
             return dtoempresa;
         }).collect(Collectors.toList());
     }
 
-    public List<EmpresaEntity> findByCnpj(String cnpj){
-        return empresaRepository.findByCnpj(cnpj).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa não encontrada");});
+    public EmpresaDTO findByCnpj(String cnpj){
+        EmpresaEntity empresaEntity = empresaRepository.findByCnpj(cnpj).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa não encontrada");});
+        PessoaDTO pessoaDTO = new PessoaDTO();
+        EmpresaDTO empresaDTO = new EmpresaDTO();
+
+        pessoaDTO .setNome(empresaEntity.getGerente().getNome());
+        pessoaDTO .setCpf(empresaEntity.getGerente().getCpf());
+        pessoaDTO .setTelefone(empresaEntity.getGerente().getTelefone());
+        pessoaDTO .setSobrenome(empresaEntity.getGerente().getSobrenome());
+
+        empresaDTO.setGerente(pessoaDTO);
+        empresaDTO.setCnpj(empresaEntity.getCnpj());
+        empresaDTO.setRazaoSocial(empresaEntity.getRazaoSocial());
+
+        return empresaDTO;
     }
 
+    // PRA QUE SERVE ???
     public List<EmpresaDTO> getAllEmpresasgerente () {
         return empresaRepository.findAll().stream().map(er -> {
             EmpresaDTO dtoempresa = new EmpresaDTO();
