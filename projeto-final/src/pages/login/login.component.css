@@ -1,0 +1,330 @@
+ body{
+	margin:0;
+	color:#6a6f8c;
+	background:#c8c8c8;
+	font:600 16px/18px 'Poppins';
+}
+*,:after,:before{box-sizing:border-box}
+.clearfix:after,.clearfix:before{content:'';display:table}
+.clearfix:after{clear:both;display:block}
+a{color:inherit;text-decoration:none}
+
+
+.login-html{
+	width:100%;
+	height:100%;
+	position: relative;
+    overflow: hidden;
+	padding:60px 50px 50px 50px;
+	background: rgba(176, 60, 243, 0.575);
+	border-radius: 25px;
+	margin-bottom: 50px;
+}
+.login-html .sign-in-htm,
+.login-html .sign-up-htm{
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	position:absolute;
+	transform:rotateY(180deg);
+	backface-visibility:hidden;
+	transition:all .4s linear;
+}
+.login-html .sign-in,
+.login-html .sign-up,
+.login-form .textfield .check{
+	display:none;
+}
+.login-html .tab,
+.login-form .textfield .label,
+.login-form .textfield .btn-login{
+	text-transform:uppercase;
+}
+.login-html .tab{
+	font-size:22px;
+	margin-right:15px;
+	padding-bottom:5px;
+	margin:0 15px 10px 0;
+	display:inline-block;
+	border-bottom:2px solid transparent;
+}
+.login-html .sign-in:checked + .tab,
+.login-html .sign-up:checked + .tab{
+	color:#fff;
+	border-color:#1161ee;
+}
+.login-form{
+	min-height:345px;
+	position:relative;
+	perspective:1000px;
+	transform-style:preserve-3d;
+} 
+
+/* apartir daqui aparece as tabelas */
+.login-form .textfield{
+	margin-bottom:15px;
+}
+.login-form .textfield .label,
+.login-form .textfield .input,
+.login-form .textfield .btn-login{
+	width:100%;
+	color:#fff;
+	display:block;
+}
+.login-form .textfield .input,
+.login-form .textfield .btn-login{
+	border:none;
+	padding: 8px 20px;
+	border-radius:25px;
+	background:rgba(255,255,255,.1);
+}
+.login-form .textfield input[data-type="password"]{
+	text-security:circle;
+	-webkit-text-security:circle;
+}
+.login-form .textfield .label{
+	color:#aaa;
+	font-size:12px;
+}
+.login-form .textfield .btn-login{
+	background:#3f73ce71;
+}
+
+.login-form .textfield .btn-login:hover{
+	background:#3f73cec9;
+}
+.login-form .textfield label .icon{
+	width:15px;
+	height:15px;
+	border-radius:2px;
+	position:relative;
+	display:inline-block;
+	background:rgba(255,255,255,.1);
+}
+.login-form .textfield label .icon:before,
+.login-form .textfield label .icon:after{
+	content:'';
+	width:10px;
+	height:2px;
+	background:#fff;
+	position:absolute;
+	transition:all .2s ease-in-out 0s;
+}
+.login-form .textfield label .icon:before{
+	left:3px;
+	width:5px;
+	bottom:6px;
+	transform:scale(0) rotate(0);
+}
+.login-form .textfield label .icon:after{
+	top:6px;
+    right:0;
+	transform:scale(0) rotate(0);
+}
+.login-form .textfield .check:checked + label{
+	color:#fff;
+}
+.login-form .textfield .check:checked + label .icon{
+	background:#1161ee;
+}
+.login-form .textfield .check:checked + label .icon:before{
+	transform:scale(1) rotate(45deg);
+}
+.login-form .textfield .check:checked + label .icon:after{
+	transform:scale(1) rotate(-45deg);
+}
+.login-html .sign-in:checked + .tab + .sign-up + .tab + .login-form .sign-in-htm{
+	transform:rotate(0);
+}
+.login-html .sign-up:checked + .tab + .login-form .sign-up-htm{
+	transform:rotate(0);
+}
+
+.hr{
+	height:2px;
+	margin:60px 0 50px 0;
+	background:rgba(255,255,255,.2);
+}
+.foot-lnk{
+	text-align:center;
+}
+
+
+
+ /* --------------------------------------------------------------------------------------------------------------- */
+.body {
+	margin: 0;
+
+}
+
+body *{
+	box-sizing: border-box;
+}
+
+.main-login{
+	width: 100vw;
+	height: 100vh;
+	background: #201b2c;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.left-login{
+width: 50vw;
+height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+}
+
+.left-login > h1{
+	font-size: 3vh;
+	color: #77ffc0;
+}
+
+.left-login-image{
+	width: 35vw;
+}
+
+.right-login{
+width: 50vw;
+height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+
+
+.card-login{
+width: 60%;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+padding: 30px 35px;
+background: #2f2841;
+border-radius: 20px;
+box-shadow: 0px 10px 40px #00000056;
+}
+
+.card-login > h1{
+	color: #00ff88;
+	font-weight: 800;
+	margin: 0;
+}
+
+.textfield{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	margin: 10px 0px;
+}
+
+.textfield > input{
+	width: 100%;
+	border: none;
+	border-radius: 10px;
+	padding: 15px;
+	background: #514869;
+	color: #f0ffffde;
+	font-size: 12pt;
+	box-shadow: 0px 10px 40px #00000056;
+	outline: none;
+	box-sizing: border-box;
+}
+
+.textfield > input:hover{
+	background:  #f0ffff70;
+}
+
+.textfield > label{
+	color:#f0ffffde;
+	margin-bottom: 10px;
+}
+
+.textfield > input::placeholder{
+	color:#f0ffff94;
+}
+
+.btn-login{
+	width: 100%;
+	padding:16px 0px ;
+	margin: 25px;
+	border: none;
+	border-radius: 8px;
+	outline: none;
+	text-transform: uppercase;
+	font-weight: 800;
+	color: #2b134b;
+	background: #00ff88; 
+	letter-spacing: 3px;
+	cursor: pointer;
+	box-shadow: 0px 10px 40px -12px #00ff6052;
+}
+
+.btn-login:hover{
+	background: #00c267; 
+	transition: all;
+}
+
+@media only screen and (max-width: 950px){
+	.card-login{
+		width: 85%;
+	}
+}
+
+@media only screen and (max-width: 600px){
+.main-login{
+	flex-direction: column;
+}
+.left-login > h1 {
+	display: none;
+}
+
+.left-login{
+	width: 100%;
+	height: auto;
+}
+
+
+.right-login{
+	width: 100%;
+	height: auto;
+}
+
+.left-login-image{
+	width: 50vh;
+}
+
+.card-login{
+width: 90%;
+ }
+} 
+
+.login-form .textfield .check:checked + label .icon:before{
+	transform:scale(1) rotate(45deg);
+}
+.login-form .textfield .check:checked + label .icon:after{
+	transform:scale(1) rotate(-45deg);
+}
+.login-html .sign-in:checked + .tab + .sign-up + .tab + .login-form .sign-in-htm{
+	transform:rotate(0);
+}
+.login-html .sign-up:checked + .tab + .login-form .sign-up-htm{
+	transform:rotate(0);
+}
+
+.hr{
+	height:2px;
+	margin:60px 0 50px 0;
+	background:rgba(255,255,255,.2);
+}
+.foot-lnk{
+	text-align:center;
+}
