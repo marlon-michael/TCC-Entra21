@@ -3,8 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { first } from 'rxjs';
-import { AuthenticationService } from 'src/app/logado/helpers/auth.service';
 import { cadastroService } from 'src/app/Rest/cadastro.service';
 
 @Component({
@@ -14,7 +12,7 @@ import { cadastroService } from 'src/app/Rest/cadastro.service';
 })
 export class CadastroComponent {
 
-cadastroForm = this.formBuilder.group({
+cadastroForm: FormGroup = this.formBuilder.group({
   nome: ['', Validators.required],
   sobrenome: ['', Validators.required],
   telefone: ['', Validators.required],
@@ -32,33 +30,33 @@ error = '';
 succes = false;
 
 
-
 constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private http: HttpClient,
     private cadastroService: cadastroService
-){}
+){
+//   if (this.cadastroService) { 
+//     this.router.navigate(['/home']);
+// }
+}
 get f() {
   return this.cadastroForm.controls;
 } 
 
-cadastro() {
+cadastrar() {
   this.submitted = true;
   if (this.cadastroForm.invalid) {
       return;
   }
+  console.log(this.cadastroForm.value);
   this.http.post<any>('/pessoa/cadastro', this.cadastroForm.value)
-  this.cadastroService.cadastro(this.cadastroForm.get('nome')?.value, this.cadastroForm.get('sobrenome')?.value,this.cadastroForm.get('telefone')?.value,
-  this.cadastroForm.get('cpf')?.value,this.cadastroForm.get('login')?.value,this.cadastroForm.get('senha')?.value,)
-  .pipe(first())
-  .subscribe(
-      data => {
-          this.router.navigate([this.returnUrl ?? 'home']);
+    .subscribe({
+      next: (response) => {
+        console.log(response);
+        this.router.navigateByUrl('/home');
       },
-      error => {
-          this.error = error;
-          this.loading = false;
-      });
+      error: (error) => console.log(error),
+    });
 }}

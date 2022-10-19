@@ -32,7 +32,7 @@ export class cadastroService {
     //   });
 
       cadastro( nome:string | null, sobrenome: string | null, telefone: string | null, cpf: string | null, login: string | null, senha: string | null) {
-        return this.http.post<any>(`/pessoa/cadastro`, { nome,sobrenome,telefone,cpf,login,senha })
+        return this.http.post<any>(`/pessoa/cadastro`, { nome, sobrenome,telefone,cpf,login,senha })
             .pipe(map(user2 => {
                 // store user details and basic auth credentials in local storage to keep user logged in between page refreshes
                 user2.authdata = window.btoa(nome + ':' + senha  + ':' + telefone  + ':' + cpf  + ':' + login  + ':' +  senha );

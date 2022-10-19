@@ -6,12 +6,12 @@ export type User = {
 }
 
 export type Cadastro = {
-    nome : string,
-    sobrenome : string,
-    telefone: string,
-    cpf : string,
-    login : string,
-    senha : string,
+    nome : string | null | undefined,
+    sobrenome : string | null| undefined,
+    telefone: string | null| undefined,
+    cpf : string | null| undefined,
+    login : string | null| undefined,
+    senha : string | null| undefined,
     authdata?: string;
 }
 
