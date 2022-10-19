@@ -1,6 +1,6 @@
 package com.entra21.Transportadora.view.service;
 
-
+import com.entra21.Transportadora.model.dto.Pessoa.LoginDTO;
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaAddDTO;
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaUpDTO;
@@ -26,9 +26,7 @@ public class PessoaService implements UserDetailsService{
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        PessoaEntity user = pessoaRepository.findByLogin(username).orElseThrow(()->{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pessoa não foi encontrada!");
-        });
+        PessoaEntity user = pessoaRepository.findByLogin(username);
         if (user == null) {
             throw new UsernameNotFoundException(username);
         }
@@ -100,6 +98,14 @@ public class PessoaService implements UserDetailsService{
         if (pessoaPayLoadDTO.getSenha() != null) pessoa.setSenha(pessoaPayLoadDTO.getSenha());
         if (pessoaPayLoadDTO.getDesabilitado() != null) pessoa.setDesabilitado(pessoaPayLoadDTO.getDesabilitado());
         pessoaRepository.save(pessoa);
+    }
+
+    public PessoaEntity buscarLogin(LoginDTO login) {
+        PessoaEntity e = pessoaRepository.findByLogin(login.getUsername());
+        if (e != null && e.getSenha().equals(login.getPassword())) {
+            return e;
+        }
+        return null;
     }
 
     //TODO: DESABILITAR USUARIO  /  DELETAR USUARIO SE NÃO ESTIVER SENDO USADO EM NENHUMA OUTRA TABELA

@@ -11,11 +11,13 @@ import { FooterComponent } from 'src/app/sharepage/footer/footer.component';
 import { ContactComponent } from '../pages/contact/contact.component';
 import { HomeComponent } from 'src/pages/home/home.component';
 import { AboutComponent } from 'src/pages/about/about.component';
-import { LoginComponent } from 'src/pages/login/login.component';
 import { NavbarComponent } from './sharepage/navbar/navbar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { BasicAuthInterceptor } from './helpers/basic-auth.interceptor';
+import { BasicAuthInterceptor } from './logado/helpers/basic-auth.interceptor';
+import { LoginComponent } from 'src/pages/login/login.component';
+import { CadastroComponent } from 'src/pages/login/cadastro/cadastro.component';
+import { ItemComponent } from './item/item.component';
 
 @NgModule({
   declarations: [
@@ -23,12 +25,14 @@ import { BasicAuthInterceptor } from './helpers/basic-auth.interceptor';
     NavbarComponent,
     FooterComponent,
     ContactComponent,
+    LoginComponent,
     HomeComponent,
     AboutComponent,
-    LoginComponent,
     LocalizadorComponent,
     ConfiguracoesComponent,
-    PagInicialLoginComponent
+    PagInicialLoginComponent,
+    CadastroComponent,
+    ItemComponent
   ],
   imports: [
     BrowserModule,
