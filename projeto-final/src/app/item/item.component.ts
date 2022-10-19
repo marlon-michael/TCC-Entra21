@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Item } from 'types/types';
+import { ItemServiceComponent } from '../services/item-service/item-service.component';
 
 @Component({
   selector: 'app-item',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ItemComponent implements OnInit {
 
-  constructor() { }
+  item: Item | null | undefined;
+
+  constructor(private itemService: ItemServiceComponent) { }
 
   ngOnInit(): void {
+  }
+
+  onFindItem(): void {
+    // itemService.getByLocalizador();
   }
 
 }

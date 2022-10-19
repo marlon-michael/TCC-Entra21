@@ -18,6 +18,7 @@ import { BasicAuthInterceptor } from './logado/helpers/basic-auth.interceptor';
 import { LoginComponent } from 'src/pages/login/login.component';
 import { CadastroComponent } from 'src/pages/login/cadastro/cadastro.component';
 import { ItemComponent } from './item/item.component';
+import { ItemServiceComponent } from './services/item-service/item-service.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ItemComponent } from './item/item.component';
     ConfiguracoesComponent,
     PagInicialLoginComponent,
     CadastroComponent,
-    ItemComponent
+    ItemComponent,
+    ItemServiceComponent
   ],
   imports: [
     BrowserModule,
