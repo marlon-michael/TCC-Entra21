@@ -12,8 +12,8 @@ import { first } from 'rxjs/operators';
 export class LoginComponent {
 
   loginForm: FormGroup = this.formBuilder.group({
-    login: ['', Validators.required],
-    senha: ['', Validators.required]
+    username: ['', Validators.required],
+    password: ['', Validators.required]
   });
   loading = false;
   submitted = false;
@@ -28,7 +28,7 @@ export class LoginComponent {
   ) { 
       // redirect to home if already logged in
       if (this.authenticationService.userValue) { 
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/home']);
       }
   }
 
@@ -42,11 +42,11 @@ export class LoginComponent {
           return;
       }
       this.loading = true;
-      this.authenticationService.login(this.loginForm.get('login')?.value, this.loginForm.get('senha')?.value)
+      this.authenticationService.login(this.loginForm.get('username')?.value, this.loginForm.get('password')?.value)
           .pipe(first())
           .subscribe(
               data => {
-                  this.router.navigate([this.returnUrl ?? 'dashboard']);
+                  this.router.navigate([this.returnUrl ?? 'home']);
               },
               error => {
                   this.error = error;

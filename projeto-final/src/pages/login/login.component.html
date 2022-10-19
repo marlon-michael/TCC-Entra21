@@ -54,7 +54,7 @@
 </div> -->
 
 <!-- <img src="C:\Users\User\Documents\TCC-Entra21\projeto-final\src\css\aboutus.jpg" alt=""> -->
-<!-- <body>
+<body>
 	<form  (ngSubmit)="onSubmit()">
 		
 <div class="container-fluid">
@@ -69,18 +69,26 @@
 			<div class="card-login">
 					<h1>Login</h1>
 					<div class="textfield">
-						<label for="usuario"  class="label">Usuários</label>
-						<input type="submitted-name" name="usuario" placeholder="Usuário" class="input" formControlName="login">
+						<label for="usuario"  class="label"  [ngClass]="{ 'is-invalid': submitted && f['username'].errors }">Usuários</label>
+						<input type="submitted-name" name="usuario" placeholder="Usuário" class="input" formControlName="username" id="usuario">
+						<div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
+							<div *ngIf="f['username'].errors['required']">Username is required</div>
+						</div>
 					</div>
 					<div class="textfield">
 						<label for="senha" class="label">Senha</label>
-						<input type="password" name="senha" placeholder="Senha" class="input" formControlName="senha">
+						<input type="password" name="senha" placeholder="Senha" class="input" formControlName="senha" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" >
+										<div *ngIf="submitted && f['senha'].errors" class="invalid-feedback">
+											<div *ngIf="f['senha'].errors['required']">Password is required</div>
+										</div>
 					</div>
 		
-					<a type="button" class="btn-login" routerLink="/app-pag-inicial-login"value="Sing up">Sing up</a>  
-					
+					<button type="button"[disabled]="loading" class="btn-login" routerLink="/app-pag-inicial-login">Sing up
+						<span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+					</button>  
+					<div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
 						<a class="cadastrar" routerLink="/cadastro" >Cadastrar-se</a>
-					
+						
 
 						
 					</div>
@@ -94,10 +102,10 @@
 		
 		</body>
 		
-					 -->
+					
 
 				
-					 <div class="col-md-6 offset-md-3 mt-5">
+					 <!-- <div class="col-md-6 offset-md-3 mt-5">
 						<div class="alert alert-info">
 							Username: admin<br />
 							Password: admin
@@ -109,6 +117,8 @@
 									<div class="form-group">
 										<label for="username">Username</label>
 										<input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['username'].errors }" />
+										
+										
 										<div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
 											<div *ngIf="f['username'].errors['required']">Username is required</div>
 										</div>
@@ -120,6 +130,7 @@
 											<div *ngIf="f['password'].errors['required']">Password is required</div>
 										</div>
 									</div>
+
 									<button [disabled]="loading" class="btn btn-primary">
 										<span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
 										Login
@@ -128,4 +139,4 @@
 								</form>
 							</div>
 						</div>
-					</div>
+					</div> -->
