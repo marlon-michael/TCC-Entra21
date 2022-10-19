@@ -1,4 +1,4 @@
-<form (ngSubmit)="cadastrar()">
+<form [formGroup]="cadastroForm" (ngSubmit)="cadastrar()">
 <div class="login-html">
 <div class="main-login">
             
@@ -8,32 +8,32 @@
                 <h1>Sing up <br></h1>
                 <div class="textfield">
                     <label for="user" class="label">Nome: </label>
-                    <input id="user" type="text" class="input"  placeholder="Nome">
+                    <input id="user" type="text" class="input"  placeholder="Nome" formControlName="nome">
                 </div>
                 <div *ngIf="submitted && f.nome.errors" class="invalid-feedback">
                     <div *ngIf="f.nome.errors">Nome em branco!</div>
                 </div>
                 <div class="textfield">
                     <label for="users" class="label">Sobrenome: </label>
-                    <input id="users" type="text" class="input" placeholder="Sobrenome">
+                    <input id="users" type="text" class="input" placeholder="Sobrenome" formControlName="sobrenome">
                 </div>
                 <div class="textfield">
                     <label for="telefone" class="label">Telefone: </label>
-                    <input type="tel" id="telefone" class="input" required placeholder="(xx) xxxxx-xxxx" minlength="10" maxlength="11">
+                    <input type="tel" id="telefone" class="input" required placeholder="(xx) xxxxx-xxxx" minlength="10" maxlength="11" formControlName="telefone">
                 </div>
                 <div class="textfield">
-                    <label for="cpf" class="label">CPF: </label>
+                    <label for="cpf" class="label">CPF/CNPJ: </label>
                     <input type="text" name="cpf" id="cpf" pattern="(\d{3}\.?\d{3}\.?\d{3}-?\d{2})|(\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2})"
                      placeholder="xxx.xxx.xxx-xx" required
-                     minlength="11" maxlength="11" size="11" class="input">
+                     minlength="11" maxlength="11" size="11" class="input" formControlName="cpf">
                 </div>
                 <div class="textfield">
                     <label for="email" class="label">Email: </label>
-                    <input id="email" type="email" class="input" placeholder="Blumenau@gmail.com">
+                    <input id="email" type="email" class="input" placeholder="Blumenau@gmail.com" formControlName="login">
                 </div>
                 <div class="textfield">
                      <label for="pass" class="label">Senha: </label>
-                     <input id="pass" type="password" class="input" data-type="password" placeholder="Senha"  minlength="6">
+                     <input id="pass" type="password" class="input" data-type="password" placeholder="Senha"  minlength="6" formControlName="senha">
                 </div>
                     <div class="cliente">
                         <label for="check" class="label">Cliente </label>
