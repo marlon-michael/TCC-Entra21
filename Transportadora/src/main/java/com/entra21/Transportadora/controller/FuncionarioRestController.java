@@ -2,13 +2,9 @@ package com.entra21.Transportadora.controller;
 
 import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioAddDTO;
 import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioDTO;
-import com.entra21.Transportadora.model.entity.FuncionarioEntity;
-import com.entra21.Transportadora.view.repository.FuncionarioRepository;
 import com.entra21.Transportadora.view.service.FuncionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 
         import java.util.List;
@@ -20,34 +16,24 @@ public class FuncionarioRestController {
    @Autowired
    FuncionarioService funcionarioService;
 
-   @Autowired
-   FuncionarioRepository funcionarioRepository;
-
-
    @GetMapping
    public List<FuncionarioDTO> getAllFuncionario() {
       return funcionarioService.getAllFuncionario();
    }
 
-   //todo
-   //TIRAR O ENTITY
-   @GetMapping("/{id}")
-   public List<FuncionarioDTO> getAllByEmpresa(@PathVariable(name = "id") Long id) {
-      return funcionarioService.getAllFuncionarioById();
+   @GetMapping("/empresa/{cnpj}")
+   public List<FuncionarioDTO> getAllByEmpresa(@PathVariable(name = "cnpj")String cnpj){
+      return funcionarioService.getAllFuncionariByEmpresa(cnpj);
    }
 
    @PostMapping
-   public void addFuncionario(
-           @RequestBody FuncionarioAddDTO funcionarioPayLoadDTO
-   ) {
+   public void addFuncionario(@RequestBody FuncionarioAddDTO funcionarioPayLoadDTO){
       funcionarioService.saveFuncionario(funcionarioPayLoadDTO);
    }
+
+   @DeleteMapping("/{cpf}")
+   public void deleteFuncionarioByCPF(@PathVariable(name = "cpf")String cpf){
+      funcionarioService.deleteByFuncionario(cpf);
+   }
+
 }
-//
-////    @Autowired
-////    private FuncionarioRepository funcionarioRepository;
-//
-////    @GetMapping
-////    public List<FuncionarioEntity> getAllFuncionarios(){
-////        return funcionarioRepository.findAll();
-////    }

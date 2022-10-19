@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { first } from 'rxjs';
+import { Funcionarios } from 'types/types';
+import { FuncionarioRestController } from '../Rest/funcionarios.rest';
 
 @Component({
   selector: 'app-funcionarios',
@@ -6,10 +9,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./funcionarios.component.css']
 })
 export class FuncionariosComponent implements OnInit {
+  loading = false;
+  funcionarios: Funcionarios[] = [];
 
-  constructor() { }
+  constructor(private funcionarioRestController: FuncionarioRestController) { }
 
   ngOnInit(): void {
+    this.loading = true;
+    this.funcionarioRestController.getAll().pipe(first()).subscribe(funcionarios => {
+        this.loading = false;
+        this.funcionarios = funcionarios;
+    });
   }
 
 }

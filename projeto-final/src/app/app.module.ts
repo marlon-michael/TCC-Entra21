@@ -26,6 +26,7 @@ import { FuncionariosComponent } from './funcionarios/funcionarios.component';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,8 @@ import { FuncionariosComponent } from './funcionarios/funcionarios.component';
     PagInicialLoginComponent,
     NavComponent,
     AjudaComponent,
-    FuncionariosComponent
+    FuncionariosComponent,
+    // ListaComponent
   ],
   imports: [
     BrowserModule,

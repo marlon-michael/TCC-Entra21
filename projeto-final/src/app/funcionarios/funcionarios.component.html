@@ -1,1 +1,6 @@
-<p>funcionarios works!</p>
+
+<div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+
+<ul class="list-group list-group-flush">
+  <li class="list-group-item" *ngFor="let funcionarios of funcionarios">{{funcionarios.nome + " " + funcionarios.sobrenome}}</li>
+</ul>

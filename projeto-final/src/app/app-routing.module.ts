@@ -11,6 +11,7 @@ import { PagInicialLoginComponent } from './logado/pag-inicial-login/pag-inicial
 import { AjudaComponent } from './ajuda/ajuda.component';
 import { FuncionariosComponent } from './funcionarios/funcionarios.component';
 
+
 const routes: Routes = [
 {path: '', component:HomeComponent},
 {path:'login',component:LoginComponent},
@@ -20,7 +21,7 @@ const routes: Routes = [
 { path: 'config', component: ConfiguracoesComponent},
 {path: 'inicio', component: PagInicialLoginComponent},
 {path: 'ajuda', component: AjudaComponent},
-{path: 'func', component: FuncionariosComponent}
+{path: 'funcionarios', component: FuncionariosComponent}
 ];
 
 

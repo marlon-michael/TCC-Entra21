@@ -4,22 +4,36 @@
 
 <form class="form1">
     <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Nome</label>
-      <input type="submitted-name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nome antigo">
+      <label for="user" class="form-label">Nome</label>
+      <input type="text" class="form-control" id="user" placeholder="Nome antigo">
       <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
     </div>
     <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label" >Email</label>
-      <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Email antigo">
+      <label for="users" class="form-label" >Sobrenome</label>
+      <input type="text" class="form-control" id="users" placeholder="Sobrenome antigo">
     </div>
     <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label" >Senha</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Senha antiga">
+      <label for="telefone" class="form-label" >Telefone</label>
+      <input type="tel" class="form-control" id="telefone" required placeholder="(xx) xxxxx-xxxx" minlength="10" maxlength="11">
+    </div>
+    <div class="mb-3">
+      <label for="cpf" class="form-label" >CPF</label>
+      <input type="text" class="form-control" name="cpf" id="cpf" pattern="(\d{3}\.?\d{3}\.?\d{3}-?\d{2})|(\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2})"
+      placeholder="xxx.xxx.xxx-xx" required
+      minlength="11" maxlength="11" size="11">
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label" >Email</label>
+      <input type="email" class="form-control" id="email" placeholder="Email antigo">
+    </div>
+    <div class="mb-3">
+        <label for="pass" class="form-label" >Senha</label>
+        <input type="password" class="form-control" data-type="password" id="pass" placeholder="Senha antiga">
       </div>
-      <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label" >Repetir Senha</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Senha antiga">
-      </div>
+      <!-- <div class="mb-3">
+        <label for="pass" class="form-label" >Repetir Senha</label>
+        <input type="password" class="form-control" data-type="password" id="pass" placeholder="Senha antiga">
+      </div> -->
     <button type="submit" class="btn btn-outline-dark">Salvar</button>
   </form>
 

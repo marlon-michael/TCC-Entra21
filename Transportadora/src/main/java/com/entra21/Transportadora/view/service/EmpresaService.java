@@ -26,70 +26,67 @@ public class EmpresaService {
     private PessoaRepository pessoaRepository;
 
     public void saveEmpresas (EmpresaAddDTO inputEmpresa){
-        EmpresaEntity newEntity = new EmpresaEntity();
-        newEntity.setIdEmpresa(inputEmpresa.getId());
-        newEntity.setRazaoSocial(inputEmpresa.getRazaoSocial());
-        newEntity.setGerente(pessoaRepository.findByLogin(inputEmpresa.getGerente().getNome()).orElseThrow(()->{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pessoa não foi encontrada!");
+        EmpresaEntity empresaEntity = new EmpresaEntity();
+        empresaEntity.setCnpj(inputEmpresa.getCnpj());
+        empresaEntity.setRazaoSocial(inputEmpresa.getRazaoSocial());
+        empresaEntity.setGerente(pessoaRepository.findByCpf(inputEmpresa.getGerente().getCpf()).orElseThrow(()->{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pessoa/CPF não foi encontrado!");
         }));
 
-        empresaRepository.save(newEntity);
+        empresaRepository.save(empresaEntity);
     }
 
-    public void deleteEmpresa (Long idEmpresa){
-        empresaRepository.deleteById(idEmpresa);
+    public void deleteEmpresa (String cnpj){
+        empresaRepository.deleteById(
+                empresaRepository.findByCnpj(cnpj).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa/CNPJ não encontrado");}).getIdEmpresa()
+        );
     }
 
     public List<EmpresaDTO> getAllEmpresas () {
-        return empresaRepository.findAll().stream().map(er -> {
-            EmpresaDTO dtoempresa = new EmpresaDTO();
-            dtoempresa.setId(er.getIdEmpresa());
-            dtoempresa.setCnpj(er.getCnpj());
-            dtoempresa.setRazaoSocial(er.getRazaoSocial());
-
+        return empresaRepository.findAll().stream().map(empresaEntity -> {
             PessoaDTO pessoaDTO = new PessoaDTO();
-            pessoaDTO .setNome(er.getGerente().getNome());
-            pessoaDTO .setCpf(er.getGerente().getCpf());
-            pessoaDTO .setTelefone(er.getGerente().getTelefone());
-            pessoaDTO .setSobrenome(er.getGerente().getSobrenome());
+            EmpresaDTO dtoempresa = new EmpresaDTO();
+
+            pessoaDTO .setNome(empresaEntity.getGerente().getNome());
+            pessoaDTO .setCpf(empresaEntity.getGerente().getCpf());
+            pessoaDTO .setTelefone(empresaEntity.getGerente().getTelefone());
+            pessoaDTO .setSobrenome(empresaEntity.getGerente().getSobrenome());
 
             dtoempresa.setGerente(pessoaDTO);
+            dtoempresa.setCnpj(empresaEntity.getCnpj());
+            dtoempresa.setRazaoSocial(empresaEntity.getRazaoSocial());
+
             return dtoempresa;
         }).collect(Collectors.toList());
     }
 
-    public List<EmpresaEntity> findByCnpj(String cnpj){
-        return empresaRepository.findByCnpj(cnpj).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa não encontrada");});
-    }
+    public EmpresaDTO findByCnpj(String cnpj){
+        EmpresaEntity empresaEntity = empresaRepository.findByCnpj(cnpj).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa/CNPJ não encontrada");});
+        PessoaDTO pessoaDTO = new PessoaDTO();
+        EmpresaDTO empresaDTO = new EmpresaDTO();
 
-    public List<EmpresaDTO> getAllEmpresasgerente () {
-        return empresaRepository.findAll().stream().map(er -> {
-            EmpresaDTO dtoempresa = new EmpresaDTO();
-            PessoaDTO pessoaDTO = new PessoaDTO();
+        pessoaDTO .setNome(empresaEntity.getGerente().getNome());
+        pessoaDTO .setCpf(empresaEntity.getGerente().getCpf());
+        pessoaDTO .setTelefone(empresaEntity.getGerente().getTelefone());
+        pessoaDTO .setSobrenome(empresaEntity.getGerente().getSobrenome());
 
-            pessoaDTO.setNome(er.getGerente().getNome());
-            pessoaDTO.setSobrenome(dtoempresa.getGerente().getSobrenome());
-            pessoaDTO.setTelefone(dtoempresa.getGerente().getTelefone());
-            pessoaDTO.setCpf(dtoempresa.getGerente().getCpf());
-
-            dtoempresa.setCnpj(er.getCnpj());
-            dtoempresa.setRazaoSocial(er.getRazaoSocial());
-            dtoempresa.setGerente(pessoaDTO);
-            return dtoempresa;
-        }).collect(Collectors.toList());
-    }
-
-
-    public EmpresaUpDTO updateEmpresa (Long idEmpresanv, EmpresaUpDTO empresaDTO){
-        EmpresaEntity empresa = empresaRepository.findById(idEmpresanv).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa não encontrada!"));
-        PessoaUpDTO pessoaDTO = new PessoaUpDTO();
-        empresa.setIdEmpresa(empresaDTO.getId());
-        empresa.setCnpj(empresaDTO.getCnpj());
-        empresa.setRazaoSocial(empresaDTO.getRazaoSocial());
-        pessoaDTO.setIdPessoa(empresaDTO.getGerente().getIdPessoa());
-        empresa = empresaRepository.save(empresa);
         empresaDTO.setGerente(pessoaDTO);
-        empresaDTO.setId(empresa.getIdEmpresa());
+        empresaDTO.setCnpj(empresaEntity.getCnpj());
+        empresaDTO.setRazaoSocial(empresaEntity.getRazaoSocial());
+
         return empresaDTO;
+    }
+
+
+    public void updateEmpresa (String cnpj, EmpresaUpDTO empresaDTO){
+        EmpresaEntity empresaEntity = empresaRepository.findByCnpj(cnpj).orElseThrow(() -> new ResponseStatusException(HttpStatus.OK, "Empresa/CNPJ não encontrado!"));
+        empresaEntity.setCnpj(empresaDTO.getCnpj());
+        empresaEntity.setRazaoSocial(empresaDTO.getRazaoSocial());
+
+        empresaEntity.setGerente(pessoaRepository.findByCpf(empresaDTO.getGerente().getCpf()).orElseThrow(()->{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pessoa/CPF não foi encontrado!");
+        }));
+
+        empresaRepository.save(empresaEntity);
     }
 }

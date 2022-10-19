@@ -1,10 +1,7 @@
 package com.entra21.Transportadora.model.dto.EntregaTrecho;
 
-import com.entra21.Transportadora.model.dto.Carro.CarroAddDTO;
 import com.entra21.Transportadora.model.dto.Carro.CarroUpDTO;
-import com.entra21.Transportadora.model.dto.Entrega.EntregaAddDTO;
 import com.entra21.Transportadora.model.dto.Entrega.EntregaUpDTO;
-import com.entra21.Transportadora.model.dto.Trecho.TrechoAddDTO;
 import com.entra21.Transportadora.model.dto.Trecho.TrechoUpDTO;
 import lombok.Data;
 

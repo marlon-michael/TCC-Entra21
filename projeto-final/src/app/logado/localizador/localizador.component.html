@@ -9,17 +9,17 @@
         <th scope="col">Pedido</th>
         <th scope="col">Destinatario</th>
         <th scope="col">Endereço</th>
-        <th scope="col">Entregador</th>
+        <th scope="col">Status</th>
         <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Localizador</td>
-        <td>Nome</td>
-        <td>Endereço</td>
-        <td>Entregador</td>
-        <td>Editar e Deletar</td>
+      <tr *ngFor="let itens of itens">
+        <td>{{itens.localizador}}</td>
+        <td>{{itens.nomeRecebedor}}</td>
+        <td>{{itens.localEntrega}}</td>
+        <td>{{itens.status}}</td>
+        <td >Editar e Deletar</td>
       </tr>
     </tbody>
   </table>

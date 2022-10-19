@@ -1,7 +1,5 @@
 package com.entra21.Transportadora.model.entity;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import org.hibernate.annotations.Columns;
 
 import javax.persistence.*;
 
@@ -24,12 +22,11 @@ public class ItemEntity {
     @Column(name = "local_entrega")
     private String localEntrega;
 
-    // REMOVER / RECEBE PESSOA QUE JA TEM NOME, E RECEBE NOME DENOVO???
     @Column(name = "nome_recebedor")
     private String nomeRecebedor;
 
     @ManyToOne
     @JoinColumn(name = "id_pessoa", referencedColumnName = "id")
-    @JsonIgnore
     private PessoaEntity pessoa;
+    
 }
