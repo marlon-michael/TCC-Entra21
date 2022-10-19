@@ -1,36 +1,52 @@
 <nav class="navbar navbar-expand-lg" style="background-color:#110d1adc;">
-  <div class="logo">
-    <img class="navbar-brand-image"
-    src="https://uploaddeimagens.com.br/images/004/060/252/thumb/Meu_projeto.png?1665705449" alt="logo"/>
-  </div>
-  <div class="title">
-    <a class="title">TechMoves</a>
-  </div>  
-  <div class="container-fluid">
-    
+        <div class="logo">
+          <img class="navbar-brand-image"
+             src="https://uploaddeimagens.com.br/images/004/060/252/thumb/Meu_projeto.png?1665705449" alt="logo"/>
+        </div>
+        <div class="title">
+          <a class="title" >TechMoves</a>
+        </div>  
+    <div class="container-fluid" >
+      <!-- *ngIf="user == null" -->
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="outline: none;">
-        <span class="navbar-toggler-icon" style="color: white;"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="" routerLinkActive="active-link" >Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="login" routerLinkActive="active-link">Login</a>
-          </li>
-          <!-- <li class="nav-item" *ngIf="user != null">
-            <a class="nav-link" href="#" (click)="logout()">Logout</a>
-          </li> -->
-          <li class="nav-item">
-            <a class="nav-link" routerLink="about" routerLinkActive="active-link">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="contact" routerLinkActive="active-link">Contact</a>
-          </li>
-        </ul>
-      </div>
+       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="outline: none;">
+         <span class="navbar-toggler-icon" style="color: white;"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="" routerLinkActive="active-link" >Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="login" routerLinkActive="active-link" *ngIf="user == null">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="about" routerLinkActive="active-link">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="contact" routerLinkActive="active-link">Contact</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" routerLink="" routerLinkActive="active-link" class="nav-link" data-bs-dismiss="offcanvas">Início</a>
+            </li> -->
+            <li class="nav-item">
+              <a routerLink="localizador" routerLinkActive="active-link" class="nav-link" data-bs-dismiss="offcanvas" *ngIf="user != null">Localizador</a>
+            </li>
+            <li class="nav-item">
+              <a  class="nav-link" routerLink="config" routerLinkActive="active-link" class="nav-link" data-bs-dismiss="offcanvas" *ngIf="user != null">Configurações</a>
+             <!-- Alterar perfil está marcado com "configurações" -->
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="funcionarios" routerLinkActive="active-link" class="nav-link" data-bs-dismiss="offcanvas" *ngIf="user != null">Funcionários</a>
+            </li>
+            <li class="nav-item">
+              <a   class="nav-link" routerLink="ajuda" routerLinkActive="active-link" class="nav-link" data-bs-dismiss="offcanvas" *ngIf="user != null">Ajuda</a>
+            </li>
+            <li class="nav-item" *ngIf="user != null">
+              <a class="nav-link" href="#" (click)="logout()">Logout</a>
+            </li>
+          </ul>
+        </div>
     </div>
   </nav>

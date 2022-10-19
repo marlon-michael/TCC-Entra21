@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { first } from 'rxjs';
+
+import { ItemRestController } from 'src/app/Rest/itens.rest';
+import { Itens } from 'types/types';
 
 @Component({
   selector: 'app-localizador',
@@ -7,9 +11,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LocalizadorComponent implements OnInit {
 
-  constructor() { }
+  itens: Itens[] = [];
+
+  constructor(private itemRestController: ItemRestController) { }
 
   ngOnInit(): void {
+    this.itemRestController.getAll().pipe(first()).subscribe((itens: Itens[]) => {
+      this.itens = itens;
+  });
   }
 
 }

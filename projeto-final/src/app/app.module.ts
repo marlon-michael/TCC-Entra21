@@ -3,7 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PagInicialLoginComponent } from './logado/pag-inicial-login/pag-inicial-login.component';
+
+
+
+import { NavComponent } from './nav/nav.component';
+import { AjudaComponent } from './ajuda/ajuda.component';
+
 import { LocalizadorComponent } from './logado/localizador/localizador.component';
 import { ConfiguracoesComponent } from 'src/app/logado/configuracoes/configuracoes.component';
 
@@ -17,6 +22,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BasicAuthInterceptor } from './logado/helpers/basic-auth.interceptor';
 import { LoginComponent } from 'src/pages/login/login.component';
 import { CadastroComponent } from 'src/pages/login/cadastro/cadastro.component';
+import { FuncionariosComponent } from './funcionarios/funcionarios.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+
 
 
 @NgModule({
@@ -30,8 +38,11 @@ import { CadastroComponent } from 'src/pages/login/cadastro/cadastro.component';
     AboutComponent,
     LocalizadorComponent,
     ConfiguracoesComponent,
-    PagInicialLoginComponent,
-    CadastroComponent
+    CadastroComponent,
+    NavComponent,
+    AjudaComponent,
+    FuncionariosComponent,
+    // ListaComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +50,7 @@ import { CadastroComponent } from 'src/pages/login/cadastro/cadastro.component';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [ {provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true}],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, {provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

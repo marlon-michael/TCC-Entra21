@@ -101,6 +101,7 @@ public class PessoaService implements UserDetailsService{
         pessoaRepository.save(pessoa);
     }
 
+
     public PessoaEntity buscarLogin(LoginDTO login) {
         PessoaEntity e = pessoaRepository.findByLogin(login.getUsername());
         if (e != null && e.getSenha().equals(login.getPassword())) {
@@ -108,7 +109,5 @@ public class PessoaService implements UserDetailsService{
         }
         return null;
     }
-
     //TODO: DESABILITAR USUARIO  /  DELETAR USUARIO SE NÃO ESTIVER SENDO USADO EM NENHUMA OUTRA TABELA
-
 }

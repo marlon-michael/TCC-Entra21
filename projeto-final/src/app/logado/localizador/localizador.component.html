@@ -1,1 +1,26 @@
-<p>localizador works!</p>
+<form class="d-flex" role="search">
+    <input class="form-control me-2" type="search" placeholder="Localizador" aria-label="Search">
+    <button class="btn btn-outline-dark" type="submit">Buscar</button>
+  </form>
+
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">Pedido</th>
+        <th scope="col">Destinatario</th>
+        <th scope="col">Endereço</th>
+        <th scope="col">Status</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let itens of itens">
+        <td>{{itens.localizador}}</td>
+        <td>{{itens.nomeRecebedor}}</td>
+        <td>{{itens.localEntrega}}</td>
+        <td>{{itens.status}}</td>
+        <td >Editar e Deletar</td>
+      </tr>
+    </tbody>
+  </table>
+  <button type="submit" class="btn btn-outline-dark">Adicionar</button>

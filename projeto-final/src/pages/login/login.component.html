@@ -55,37 +55,38 @@
 
 <!-- <img src="C:\Users\User\Documents\TCC-Entra21\projeto-final\src\css\aboutus.jpg" alt=""> -->
 <body>
-	<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-		
+
+
+	<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">	
 <div class="container-fluid">
 <div class="login-html">
 	<div class="main-login">
-		    	<div class="left-login">
+		    	<!-- <div class="left-login">
 					<h1>FAÇA LOGIN<br> E acompanhe seus itens</h1>
 					<img src="css/loguinho.svg" alt="legal" class="left-login-image">
-		    	</div>
+		    	</div> -->
 			<div class="sing-in-htm">
 			<div class="right-login">
 			<div class="card-login">
 					<h1>Login</h1>
 					<div class="textfield">
-						<label for="usuario"  class="label"  [ngClass]="{ 'is-invalid': submitted && f['username'].errors }">Usuários</label>
-						<input type="submitted-name" name="usuario" placeholder="Usuário" class="input" formControlName="username" id="usuario">
+						<label for="usuario"  class="label">Usuários</label>
+						<input type="submitted-name" name="usuario" placeholder="Usuário"  class="input" formControlName="username" id="usuario">
 						<div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
 							<div *ngIf="f['username'].errors['required']">Username is required</div>
 						</div>
 					</div>
 					<div class="textfield">
 						<label for="senha" class="label">Senha</label>
-						<input type="password" name="senha" placeholder="Senha" class="input" formControlName="senha" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" >
-										<div *ngIf="submitted && f['senha'].errors" class="invalid-feedback">
-											<div *ngIf="f['senha'].errors['required']">Password is required</div>
-										</div>
+						<input type="password" name="senha" id="senha" placeholder="Senha" class="input"  formControlName="password" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" >
+							<div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+							<div *ngIf="f['password'].errors['required']">Password is required</div>
+						</div>
 					</div>
-		
-					<button type="button"[disabled]="loading" class="btn-login" routerLink="/app-pag-inicial-login">Sing up
-						<span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-					</button>  
+					<!-- routerLink="/nav" -->
+					<input type="submit" class="btn-login" value="Sing in">
+						<span *ngIf="loading" class="spinner-border spinner-border-sm-light mr-1"></span>
+					
 					<div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
 						<a class="cadastrar" routerLink="/cadastro" >Cadastrar-se</a>
 						

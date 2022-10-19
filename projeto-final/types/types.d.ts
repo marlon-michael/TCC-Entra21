@@ -1,7 +1,7 @@
 export type User = {
     id: number;
-    login: string;
-    senha: string;
+    username: string;
+    password: string;
     authdata?: string;
 }
 
@@ -12,6 +12,18 @@ export type Cadastro = {
     cpf : string,
     login : string,
     senha : string,
-   
+    authdata?: string;
+}
+
+export type Funcionarios = {
+    nome: string,
+    sobrenome: string
+}
+
+export type Itens = {
+    localizador: string,
+    status: string,
+    nomeRecebedor: string,
+    localEntrega: string
 }
 
