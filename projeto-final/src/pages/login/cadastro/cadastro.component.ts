@@ -60,8 +60,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { constructor } from 'jasmine';
-import { first } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/logado/helpers/auth.service';
 
 @Component({
@@ -109,31 +107,32 @@ onSubmit() {
     if (this.cadastroForm.invalid) {
         return;
     }
-    this.loading = true;
-    this.authenticationService.login(this.cadastroForm.get('username')?.value, this.cadastroForm.get('password')?.value)
-        .pipe(first())
-        .subscribe(
-            data => {
-                this.router.navigate([this.returnUrl ?? 'home']);
-            },
-            error => {
-                this.error = error;
-                this.loading = false;
-            });
-}
-cadastrar() {
-  this.submitted = true;
-  if (this.cadastroForm.invalid) {
-      return;
-  }
-  this.http.post<any>('/pessoa/cadastro', this.cadastroForm.value)
-    .subscribe({
-      next: (response) => {
-        console.log(response);
-      },
-      error: (error) => console.log(error),
-    });
-    this.router.navigateByUrl('/login');
+//     this.loading = true;
+//     this.authenticationService.login(this.cadastroForm.get('username')?.value, this.cadastroForm.get('password')?.value)
+//         .pipe(first())
+//         .subscribe(
+//             data => {
+//                 this.router.navigate([this.returnUrl ?? 'home']);
+//             },
+//             error => {
+//                 this.error = error;
+//                 this.loading = false;
+//             });
+// }
+// cadastrar() {
+//   this.submitted = true;
+//   if (this.cadastroForm.invalid) {
+//       return;
+//   }
+//   this.http.post<any>('/pessoa/cadastro', this.cadastroForm.value)
+//     .subscribe({
+//       next: (response: any) => {
+//         console.log(response);
+//       },
+//       error: (error: any) => console.log(error),
+//     });
+//     this.router.navigateByUrl('/login');
+// }
 }
 }
   
@@ -142,6 +141,10 @@ cadastrar() {
 
 
 
+
+  function cadastrar() {
+    throw new Error('Function not implemented.');
+  }
 // function subscribe(arg0: { next: (response: any) => void; error: (error: any) => void; }) {
 //   throw new Error('Function not implemented.');
 // }
