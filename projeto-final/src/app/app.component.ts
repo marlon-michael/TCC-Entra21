@@ -9,7 +9,7 @@ import { AuthenticationService } from './logado/helpers/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  title = 'ConnActionAngularProject';
+
 
   user: User | null = null;
 

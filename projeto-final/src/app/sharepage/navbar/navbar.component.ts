@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/logado/helpers/auth.service';
+import { User } from 'types/types';
 // import { AuthenticationService } from 'src/app/helpers/auth.service';
 // import { User } from 'types/types';
 
@@ -9,21 +11,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-//   user: User | null = null;
-//   constructor( private router: Router,
-//     private authenticationService: AuthenticationService
-// ) {
-//     this.authenticationService.user.subscribe(x => this.user = x);
-// }
+  title = 'PROJETO-FINAL';
+
+  user: User | null = null;
+
+    constructor(
+        private router: Router,
+        private authenticationService: AuthenticationService
+    ) {
+        this.authenticationService.user.subscribe(x => this.user = x);
+    }
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    console.log(this.user?.id);
   }
 
-// logout() {
-//     this.authenticationService.logout();
-// }
 }
-
-
-
 

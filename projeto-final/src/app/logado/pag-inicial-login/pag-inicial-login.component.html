@@ -1,8 +1,8 @@
 
 <nav class="navbar bg-light">
     <div class="container-fluid">
-      <p class="texto1">TechMoves</p>
-      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+      <p class="texto1" href="#" *ngIf="user == null">TechMoves</p>
+      <button class="navbar-toggler" *ngIf="user != null" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
         <span class="navbar-toggler-icon"></span>
       </button>
       
@@ -28,15 +28,31 @@
         <li class="nav-item">
           <a  class="nav-link" href="#">Ajuda</a>
         </li>
-         <a type="button" class="btn btn-link" *ngIf="this.user != null" (click)="logout()">Sair</a>
-        <!-- <li class="nav-item">
-          <a class="nav-link" *ngIf="this.user != null" (click)="logout()">Logout</a>
-        </li> -->
-        <!-- <li class="nav-item" *ngIf="user != null">
+
+        //user ta null
+        <li class="nav-item" *ngIf="user != null">
           <a class="nav-link" href="#" (click)="logout()">Logout</a>
-        </li> -->
+        </li>
       </ul>
     </div>
   </div>
 </div>
 </nav>
+
+<!-- <nav class="navbar navbar-dark bg-dark"> LUCAS
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#" *ngIf="user == null">iBook</a>
+    <a *ngIf="user != null" class="navbar-brand" data-bs-toggle="offcanvas" href="#offcanvasMenu" role="button" aria-controls="offcanvasMenu">☰ iBook</a>
+    <div id="navbarSupportedContent">
+      <div class="spacer"></div>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item" *ngIf="user == null">
+          <a class="nav-link" routerLink="/login">Login/Cadastro</a>
+        </li>
+        <li class="nav-item" *ngIf="user != null">
+          <a class="nav-link" href="#" (click)="logout()">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav> -->

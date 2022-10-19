@@ -10,7 +10,7 @@ import { AuthenticationService } from '../helpers/auth.service';
 })
 
 export class PagInicialLoginComponent implements OnInit {
-  title = 'ConnActionAngularProject';
+  title = 'PROJETO-FINAL';
 
   user: User | null = null;
 
