@@ -16,6 +16,8 @@ public class PessoaDTO {
     private String senha;
     private Boolean desabilitado;
 
+    private String role;
+
     public PessoaDTO(PessoaEntity e) {
         this.idPessoa = e.getIdPessoa();
         this.nome = e.getNome();
@@ -25,5 +27,6 @@ public class PessoaDTO {
         this.login = e.getLogin();
         this.senha = e.getSenha();
         this.desabilitado = e.getDesabilitado();
+        this.role = "GERENTE";
     }
 }

@@ -34,14 +34,17 @@
               <a routerLink="localizador" routerLinkActive="active-link" class="nav-link" data-bs-dismiss="offcanvas" *ngIf="user != null">Localizador</a>
             </li>
             <li class="nav-item">
-              <a  class="nav-link" routerLink="config" routerLinkActive="active-link" class="nav-link" data-bs-dismiss="offcanvas" *ngIf="user != null">Configurações</a>
+              <a  class="nav-link" routerLink="config" routerLinkActive="active-link" class="nav-link" data-bs-dismiss="offcanvas" *ngIf="user != null && user.role == 'GERENTE'">Configurações</a>
              <!-- Alterar perfil está marcado com "configurações" -->
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="funcionarios" routerLinkActive="active-link" class="nav-link" data-bs-dismiss="offcanvas" *ngIf="user != null">Funcionários</a>
+              <a class="nav-link" routerLink="funcionarios" routerLinkActive="active-link" class="nav-link" data-bs-dismiss="offcanvas" *ngIf="user != null && user.role == 'GERENTE'">Funcionários</a>
             </li>
             <li class="nav-item">
               <a   class="nav-link" routerLink="ajuda" routerLinkActive="active-link" class="nav-link" data-bs-dismiss="offcanvas" *ngIf="user != null">Ajuda</a>
+            </li>
+            <li class="nav-item">
+              <a   class="nav-link" routerLink="ajuda" routerLinkActive="active-link" class="nav-link" data-bs-dismiss="offcanvas" *ngIf="user != null && (user.role == 'FUNCIONARIO' || user.role == 'GERENTE')">Teste</a>
             </li>
             <li class="nav-item" *ngIf="user != null">
               <a class="nav-link" href="#" (click)="logout()">Logout</a>

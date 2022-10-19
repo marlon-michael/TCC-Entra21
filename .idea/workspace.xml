@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e003cc54-7777-4244-af53-39f3936e9546" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/FUNCOES_SISTEMA.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/dto/Carro/CarroAddDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/dto/Carro/CarroDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/dto/Carro/CarroUpDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/dto/Empresa/EmpresaAddDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/dto/Empresa/EmpresaDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/dto/Empresa/EmpresaUpDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/dto/Entrega/EntregaAddDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/dto/Entrega/EntregaDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/dto/Entrega/EntregaUpDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/dto/EntregaTrecho/EntregaTrechoAddDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/dto/EntregaTrecho/EntregaTrechoDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/dto/EntregaTrecho/EntregaTrechoUpDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/dto/Funcionario/FuncionarioAddDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/dto/Funcionario/FuncionarioDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/dto/Funcionario/FuncionarioUpDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/dto/Item/ItemAddDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/dto/Item/ItemUpDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/dto/Pessoa/PessoaAddDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/dto/Trecho/TrechoAddDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/dto/Trecho/TrechoUpDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/controller/CarroRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/controller/CarroRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/controller/EmpresaRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/controller/EmpresaRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/controller/EntregaRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/controller/EntregaRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/controller/FuncionarioRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/controller/FuncionarioRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/controller/ItemRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/controller/ItemRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/controller/PessoaRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/controller/PessoaRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/controller/TrechoRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/controller/TrechoRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/dto/CarroDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/dto/EmpresaAddDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/dto/EmpresaDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/dto/EntregaDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/dto/EntregaTrechoDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/dto/FuncionarioDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/dto/FuncionarioPayLoadDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/dto/GetAllEmpresasDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/dto/ItemDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/dto/Item/ItemDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/dto/PessoaDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/dto/Pessoa/PessoaDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/dto/PessoaPayLoadDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/dto/Pessoa/PessoaUpDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/dto/TrechoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/dto/Trecho/TrechoDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/entity/CarroEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/entity/CarroEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/entity/EmpresaEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/entity/EmpresaEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/entity/EntregaEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/entity/EntregaEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/entity/EntregaTrechoEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/entity/EntregaTrechoEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/entity/FuncionarioEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/entity/FuncionarioEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/entity/ItemEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/entity/ItemEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/entity/TrechoEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/model/entity/TrechoEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/view/repository/CarroRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/view/repository/CarroRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/view/repository/EntregaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/view/repository/EntregaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/view/repository/FuncionarioRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/view/repository/FuncionarioRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/view/repository/ItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/view/repository/ItemRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/view/repository/PessoaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/view/repository/PessoaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/view/service/CarroService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/view/service/CarroService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/view/service/EmpresaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/view/service/EmpresaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/view/service/EntregaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/view/service/EntregaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/view/service/FuncionarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/view/service/FuncionarioService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/view/service/ItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/view/service/ItemService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/view/service/PessoaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/view/service/PessoaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/view/service/TrechoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Transportadora/src/main/java/com/entra21/Transportadora/view/service/TrechoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/database-tcc-20-09.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/database-tcc.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/database-tcc.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/database.txt" beforeDir="false" afterPath="$PROJECT_DIR$/database/database.txt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2FpQ5PJah2eEpowEulOCKdhujUR" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/martomio/Documents/TCC-Entra21/Transportadora",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e003cc54-7777-4244-af53-39f3936e9546" name="Changes" comment="" />
+      <created>1665186373821</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1665186373821</updated>
+    </task>
+    <servers />
+  </component>
+</project>
