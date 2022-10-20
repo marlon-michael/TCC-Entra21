@@ -127,15 +127,15 @@ public class FuncionarioService {
     public void saveFuncionario(FuncionarioAddDTO input) {
         Query q = em.createNativeQuery("INSERT INTO funcionario(id_pessoa, id_empresa, id_supervisor) VALUES(:idPessoa, :idEmpresa, :idSupervisor)");
         
-       q.setParameter("idPessoa",
-           pessoaRepository.findByCpf(input.getCpf()).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "CPF NOT FOUND");}).getIdPessoa()
-       );
-       q.setParameter("idEmpresa",
-           empresaRepository.findByCnpj(input.getEmpresa().getCnpj()).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "CNPJ NOT FOUND");}).getIdEmpresa()
-       );
-       q.setParameter("idSupervisor",
-           funcionarioRepository.findByCpf(input.getSupervisor().getCpf()).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "CPF NOT FOUND");}).getIdPessoa()
-       );
+        q.setParameter("idPessoa",
+            pessoaRepository.findByCpf(input.getCpf()).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "CPF NOT FOUND");}).getIdPessoa()
+        );
+        q.setParameter("idEmpresa",
+            empresaRepository.findByCnpj(input.getEmpresa().getCnpj()).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "CNPJ NOT FOUND");}).getIdEmpresa()
+        );
+        q.setParameter("idSupervisor",
+            funcionarioRepository.findByCpf(input.getSupervisor().getCpf()).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "CPF NOT FOUND");}).getIdPessoa()
+        );
 
         q.executeUpdate();  
     }

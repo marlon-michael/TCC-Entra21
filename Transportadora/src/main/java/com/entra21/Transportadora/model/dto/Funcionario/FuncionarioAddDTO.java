@@ -4,7 +4,6 @@ import com.entra21.Transportadora.model.dto.Empresa.EmpresaAddDTO;
 import com.entra21.Transportadora.model.dto.Entrega.EntregaAddDTO;
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaAddDTO;
 import lombok.Data;
-
 import java.util.List;
 
 @Data

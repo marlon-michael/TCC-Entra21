@@ -4,7 +4,6 @@ import com.entra21.Transportadora.model.entity.*;
 import com.entra21.Transportadora.view.repository.EntregaRepository;
 import com.entra21.Transportadora.view.repository.EntregaTrechoRepository;
 import com.entra21.Transportadora.view.repository.FuncionarioRepository;
-import com.entra21.Transportadora.view.repository.PessoaRepository;
 import com.entra21.Transportadora.model.dto.Carro.CarroDTO;
 import com.entra21.Transportadora.model.dto.Empresa.EmpresaDTO;
 import com.entra21.Transportadora.model.dto.Entrega.EntregaAddDTO;
@@ -23,15 +22,12 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
 public class EntregaService {
     @Autowired
     private EntregaRepository entregaRepository;
-    @Autowired
-    private PessoaRepository pessoaRepository;
     @Autowired
     private FuncionarioRepository funcionarioRepository;
     @Autowired
