@@ -5,9 +5,8 @@ import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioAddDTO;
 import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioDTO;
 
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
-import com.entra21.Transportadora.view.repository.EmpresaRepository;
+import com.entra21.Transportadora.model.entity.FuncionarioEntity;
 import com.entra21.Transportadora.view.repository.FuncionarioRepository;
-import com.entra21.Transportadora.view.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -25,14 +24,43 @@ public class FuncionarioService {
     @Autowired
     private FuncionarioRepository funcionarioRepository;
 
-    @Autowired
-    private EmpresaRepository empresaRepository;
+    // @Autowired
+    // private EmpresaRepository empresaRepository;
 
-    @Autowired
-    private PessoaRepository pessoaRepository;
+    // @Autowired
+    // private PessoaRepository pessoaRepository;
 
     @Autowired
     private EntityManager em;
+
+    public FuncionarioDTO findByCpf(String cpf){
+        FuncionarioEntity funcionarioEntity = funcionarioRepository.findByCpf(cpf).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Funcionário/CPF NOT FOUND");});
+        FuncionarioDTO dto = new FuncionarioDTO();
+        EmpresaDTO dtoEmp = new EmpresaDTO();
+        PessoaDTO dtoPes = new PessoaDTO();
+        PessoaDTO dtoPesEmp = new PessoaDTO();
+        dto.setNome(funcionarioEntity.getNome());
+        dto.setSobrenome(funcionarioEntity.getSobrenome());
+        dto.setCpf(funcionarioEntity.getCpf());
+        dto.setTelefone(funcionarioEntity.getTelefone());
+        dtoEmp.setRazaoSocial(funcionarioEntity.getEmpresa().getRazaoSocial());
+        dtoEmp.setCnpj(funcionarioEntity.getEmpresa().getCnpj());
+        dtoPesEmp.setNome(funcionarioEntity.getEmpresa().getGerente().getNome());
+        dtoPesEmp.setSobrenome(funcionarioEntity.getEmpresa().getGerente().getSobrenome());
+        dtoPesEmp.setCpf(funcionarioEntity.getEmpresa().getGerente().getCpf());
+        dtoPesEmp.setTelefone(funcionarioEntity.getEmpresa().getGerente().getTelefone());
+        dtoEmp.setGerente(dtoPesEmp);
+        dto.setEmpresa(dtoEmp);
+        if (funcionarioEntity.getSupervisor() == null) {
+            return dto;
+        } else {
+            dtoPes.setNome(funcionarioEntity.getSupervisor().getNome());
+            dtoPes.setSobrenome(funcionarioEntity.getSupervisor().getSobrenome());
+            dtoPes.setCpf(funcionarioEntity.getSupervisor().getCpf());
+            dtoPes.setTelefone(funcionarioEntity.getSupervisor().getTelefone());
+            return dto;
+        }
+    }
 
     public List<FuncionarioDTO> getAllFuncionario() {
        return funcionarioRepository.findAll().stream().map(funcionarioEntity -> {
