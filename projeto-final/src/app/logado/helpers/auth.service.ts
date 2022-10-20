@@ -7,6 +7,9 @@ import { User } from 'types/types';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
+    cadastro(value: string | null | undefined, value1: string | null | undefined, value2: string | null | undefined, value3: string | null | undefined, value4: string | null | undefined, value5: string | null | undefined) {
+      throw new Error('Method not implemented.');
+    }
     private userSubject: BehaviorSubject<User | null>;
     public user: Observable<User | null>;
 
@@ -29,7 +32,6 @@ export class AuthenticationService {
                 user.authdata = window.btoa(username + ':' + password);
                 localStorage.setItem('user', JSON.stringify(user));
                 this.userSubject.next(user);
-                console.log(user);
                 return user;
             }));
     }

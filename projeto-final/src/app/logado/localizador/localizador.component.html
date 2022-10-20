@@ -1,9 +1,28 @@
-<h3>Localizar Itens</h3>
-<div *ngFor="let item of allItens"
-style="display: block;">
-    <span style="display: block;">{{item.status}}</span>
-    <span style="display: block;">{{item.localizador}}</span>
-    <span style="display: block;">{{item.nomeRecebedor}}</span>
-    <span style="display: block;">{{item.localEntrega}}</span>
-    <hr>
-</div>
+
+<form class="d-flex" role="search">
+    <input class="form-control me-2" type="search" placeholder="Localizador" aria-label="Search">
+    <button class="btn btn-outline-dark" type="submit" (click)="onSearch()">Buscar</button>
+  </form>
+
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">Pedido</th>
+        <th scope="col">Destinatario</th>
+        <th scope="col">Endereço</th>
+        <th scope="col">Status</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- <tr *ngFor="let itens of itens"> -->
+        <tr *ngFor="let itens of results$ | async ">
+        <td>{{itens.localizador}}</td>
+        <td>{{itens.nomeRecebedor}}</td>
+        <td>{{itens.localEntrega}}</td>
+        <td>{{itens.status}}</td>
+        <td >Editar e Deletar</td>
+      </tr>
+    </tbody>
+  </table>
+  <button type="submit" class="btn btn-outline-dark">Adicionar</button>

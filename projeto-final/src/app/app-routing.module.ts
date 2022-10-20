@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HttpClientModule }from '@angular/common/http';
 import { AboutComponent } from 'src/pages/about/about.component';
 import { ContactComponent } from 'src/pages/contact/contact.component';
 import { HomeComponent } from 'src/pages/home/home.component';
 import { ConfiguracoesComponent } from 'src/app/logado/configuracoes/configuracoes.component';
-import { LocalizadorComponent } from './logado/localizador/localizador.component';
-import { PagInicialLoginComponent } from './logado/pag-inicial-login/pag-inicial-login.component'; 
+import { LocalizadorComponent } from './logado/localizador/localizador.component'; 
 import { LoginComponent } from 'src/pages/login/login.component';
 import { CadastroComponent } from 'src/pages/login/cadastro/cadastro.component';
+import { AjudaComponent } from './ajuda/ajuda.component';
+import { FuncionariosComponent } from './funcionarios/funcionarios.component';
+import { NavComponent } from './nav/nav.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 const routes: Routes = [
@@ -18,10 +20,14 @@ const routes: Routes = [
 {path: 'contact',component:ContactComponent},
 { path: 'localizador', component: LocalizadorComponent},
 { path: 'config', component: ConfiguracoesComponent},
-{path: 'app-pag-inicial-login', component: PagInicialLoginComponent},
-{path: 'cadastro', component: CadastroComponent}
+{path: 'cadastro', component: CadastroComponent},
+{path: 'ajuda', component: AjudaComponent},
+{path: 'funcionarios', component: FuncionariosComponent},
+{path: 'nav',component: NavComponent},
+{path: '**', redirectTo: '/'},
+{path: 'edit', component: FuncionariosComponent}
 ];
-// , canActivate: [AuthGuard]
+// , canActivate: [AuthGuard] se tiver logado
 
 @NgModule({
   imports: [

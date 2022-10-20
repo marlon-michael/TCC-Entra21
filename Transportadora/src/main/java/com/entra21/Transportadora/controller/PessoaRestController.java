@@ -22,9 +22,11 @@ public class PessoaRestController {
         return pessoaService.getAll();
     }
 
+
     @PostMapping("/login")
     public PessoaDTO getLogin(@RequestBody LoginDTO login) {
         return new PessoaDTO(pessoaService.buscarLogin(login));
+
     }
 
     @GetMapping("/{cpf}")
@@ -32,7 +34,7 @@ public class PessoaRestController {
         return pessoaService.findByCpf(cpf);
     }
 
-    @PostMapping
+    @PostMapping("/cadastro")
     public void addPessoa(@RequestBody PessoaAddDTO newPessoa) {
         pessoaService.save(newPessoa);
     }

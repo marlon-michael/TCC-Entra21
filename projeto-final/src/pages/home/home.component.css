@@ -1,5 +1,5 @@
 .banner{
-    background-image: url(src\css\fundo.jpeg);
+    background-image: url(../../assets/img/fundo.jpeg);
     background-position: center!important;
     background-size: cover;
  max-width: 2560px;
@@ -24,3 +24,22 @@
     width: 80%;
     padding: 60px;
 }
+
+.nos .nospessoas img > .gabi  {
+    height: 1000vh;
+}
+
+.card img {
+    /* max-width:200px;
+    max-height:150px;
+    width: auto; */
+    height: 260px;
+    border-radius: 100%;
+    /* border: ; */
+}
+
+.card {
+    border: none;
+}
+
+

@@ -1,0 +1,36 @@
+
+.texto1 {
+    font-size: 40px;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 25px;
+}
+
+.table.table-bordered {
+    width: 800px;
+    margin-left: 450px;
+    max-width: 80%;
+    margin: 2rem auto;
+    text-align: center;
+    /* min-width: ; */
+}
+
+/* .btn.btn-outline-dark {
+    margin-left: 740px;
+} */
+
+.no {
+    width: 900px;
+    padding-top: 16px;
+}
+
+.campos{
+    display: inline-block;
+    margin-right: 40px;
+
+}
+.head {
+    display: inline-table;
+    margin-right: 70px;
+    padding: 10px;
+}

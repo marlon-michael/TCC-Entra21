@@ -42,8 +42,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 }
-.card-login,
-.sign-in:checked{
+.card-login{
 width: 100%;
 display: flex;
 align-items: center;
@@ -165,7 +164,7 @@ color: #00ff88;
         display: inline;
         text-decoration: none;
 }
-2560
+
 /* ARRUMAR ISSO NESSE TAMANHO */
 
 @media only screen and (max-width: 2560px){
@@ -233,7 +232,7 @@ color: #00ff88;
     
 
 
-@media only screen and (max-width: 600px){
+@media only screen and (max-width: 615px){
 .main-login{
 	flex-direction: column;
     display: flex;
