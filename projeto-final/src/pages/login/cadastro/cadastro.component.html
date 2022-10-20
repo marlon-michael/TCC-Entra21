@@ -10,7 +10,7 @@
                         <div class="textfield">
                             <label for="usuario" class="label">Nome: </label>
                             <input id="usuario" type="text" class="input"  placeholder="Nome" formControlName="nome">
-                            <div *ngIf="submitted && f['nome'].errors" class="invalid-feedback">
+                            <div *ngIf="submitted && f['nome'].errors" class="invalid-feedback"  minlength="3">
                                 <div *ngIf="f['nome'].errors['required']">nome is required</div>
                             </div>
                         </div>
