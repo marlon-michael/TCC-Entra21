@@ -33,10 +33,11 @@ export type Itens = {
     localizador: string,
     status: string,
     nomeRecebedor: string,
-    localEntrega: string
+    localEntrega: string,
+    pessoaItem:  Pessoa;
 }
 
-export type ItensPessos = {
+export type ItensPessoas = {
 
 localizador: string;
 status:string;

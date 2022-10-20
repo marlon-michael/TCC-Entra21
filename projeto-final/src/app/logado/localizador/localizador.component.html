@@ -15,11 +15,12 @@
     </thead>
     <tbody>
       <!-- <tr *ngFor="let itens of itens"> -->
-        <tr *ngFor="let itens of results$ | async ">
-        <td>{{itens.localizador}}</td>
-        <td>{{itens.nomeRecebedor}}</td>
-        <td>{{itens.localEntrega}}</td>
-        <td>{{itens.status}}</td>
+        <tr *ngFor="let item of itens ">
+        <td>{{item.localizador}}</td>
+        <td>{{item.nomeRecebedor}}</td>
+        <td>{{item.localEntrega}}</td>
+        <td>{{item.status}}</td>
+        <td>{{item.pessoaItem.cpf}}</td>
         <td >Editar e Deletar</td>
       </tr>
     </tbody>
