@@ -17,13 +17,13 @@ export type Cadastro = {
 }
 
 export type Funcionarios = {
-    sort(): Funcionarios;
-    find(arg0: (h: Funcionarios) => boolean): Funcionarios;
-    push(funcionario: Funcionarios): Funcionarios;
-    findIndex(arg0: (h: Funcionarios) => boolean): Funcionarios;
-    map(arg0: (h: Funcionarios) => string):  Funcionarios;
-    length: number;
-    filter(arg0: (h: Funcionarios) => boolean): Funcionarios;
+    // sort(): Funcionarios;
+    // find(arg0: (h: Funcionarios) => boolean): Funcionarios;
+    // push(funcionario: Funcionarios): Funcionarios;
+    // findIndex(arg0: (h: Funcionarios) => boolean): Funcionarios;
+    // map(arg0: (h: Funcionarios) => string):  Funcionarios;
+    // length: number;
+    // filter(arg0: (h: Funcionarios) => boolean): Funcionarios;
     nome: string,
     sobrenome: string,
     cpf: string

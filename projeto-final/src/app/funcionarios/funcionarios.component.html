@@ -1,4 +1,4 @@
-<!-- <form  [formGroup]="form" >
+<form  [formGroup]="form" >
 <p class="texto1">Funcionários</p>
 
 
@@ -16,43 +16,44 @@
   </thead>
   <tbody>
     <tr *ngFor="let funcionarios of funcionarios">
-       <div *ngIf="this.funcionarios | async as funcionarios; else loading"></div> 
+       <!-- <div *ngIf="this.funcionarios | async as funcionarios; else loading"></div> Resolver -->
       <td class="no">
         <div class="campos" formControlName="nome">{{funcionarios.nome}}</div>  
         <div class="campos" formControlName="sobrenome">{{funcionarios.sobrenome}}</div>
         <div formControlName="cpf">{{funcionarios.cpf}}</div>
       </td>
       <td>
-         <input  class="btn btn-outline-danger" type="submit" value="Deletar" (click)="onDelete()"> 
-         <input  class="btn btn-outline-primary" type="submit" value="Editar" (edit)="onEdit()"> 
+         <!-- <input  class="btn btn-outline-danger" type="submit" value="Deletar" (click)="onDelete()"> 
+         <input  class="btn btn-outline-primary" type="submit" value="Editar" (edit)="onEdit()">  -->
       </td>
     </tr>
   </tbody>
-  <small (click)="onEdit()"
+</table> 
+
+
+
+</form>
+  <!-- <small (click)="onEdit()"
   style="cursor: pointer;"
   title="Editar">✏️</small>
 <small (click)="onDelete()"
   style="cursor: pointer;"
-  title="Excluir">🗑️</small>
+  title="Excluir">🗑️</small> -->
 
-  <div *ngFor="let funcionarios of funcionarios">
+  <!-- <div *ngFor="let funcionarios of funcionarios">
     <app-funcionarios [funcionario]="funcionario" (funcionarioDelete)="remove($event)" (funcionarioEdit)="edit($event)"></app-funcionarios>
 <button type="button" (click)="inserirFuncionario()" *ngIf="!inserting">Nova pessoa</button>
 <app-funcionarios [funcionario]="funcionario" *ngIf="inserting" (insertChange)="inserting=$event" (Save)="save($event)"></app-funcionarios>
 </div> 
    <input class="btn btn-outline-success" type="submit" value="Salvar" (click)="onSubmit()">
-<button type="button" class="btn btn-outline-danger" (click)="onCancel()">Cancelar</button> 
- <input  class="btn btn-outline-dark" type="submit" value="Adicionar" (ngSubmit)="onAdd()" routerLink="cadastro"> 
- </table> 
-
-
-
-</form> -->
-
+<button type="button" class="btn btn-outline-danger" (click)="cancel()">Cancelar</button> 
+ <input  class="btn btn-outline-dark" type="submit" value="Adicionar" (ngSubmit)="onAdd()" routerLink="cadastro">  -->
+ 
+<!-- 
 <form [formGroup]="form" (submit)="onSubmit()"
 style="display: flex; flex-direction: column; width: 25%; gap: 4px;">
     <label for="heroName">Name: </label>
-    <input type="text" name="heroName" id="heroName" formControlName="nome" />
+    <input type="text" name="heroName" id="heroName" formControlName="nome" /> -->
 
     <!-- <label for="secretIdentity">Secret Identity: </label>
     <input type="text" name="secretIdentity"
@@ -64,13 +65,13 @@ style="display: flex; flex-direction: column; width: 25%; gap: 4px;">
         <label for="deceased"> Deceased</label>
     </div> -->
     <!-- <label for="universe">Universe: </label> -->
-    <div>
+    <!-- <div>
       <label for="heroNamen">sobrenome: </label>
         <input type="text" name="universe" value="DC"
-            id="universe_DC" formControlName="universe"> DC
+            id="universe_DC" formControlName="universe"> DC -->
         <!-- <input type="radio" name="universe" value="marvel"
             id="universe_MARVEL" formControlName="universe"> Marvel -->
-    </div>
+    <!-- </div>
     <button type="submit" [disabled]="!form.valid">{{ funcionarioEdit != null ? 'Atualizar' : 'Criar'}} </button>
     <button type="button" (click)="cancel()">Cancelar</button>
     <small (click)="onEdit()"
@@ -89,5 +90,5 @@ style="display: flex; flex-direction: column; width: 25%; gap: 4px;">
 <button type="button" class="btn btn-outline-danger" (click)="onCancel()">Cancelar</button> 
  <input  class="btn btn-outline-dark" type="submit" value="Adicionar" (ngSubmit)="onAdd()" routerLink="cadastro"> 
  </table> 
+ -->
 
-</form>

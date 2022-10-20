@@ -1,6 +1,6 @@
 <form class="d-flex" role="search">
     <input class="form-control me-2" type="search" placeholder="Localizador" aria-label="Search">
-    <button class="btn btn-outline-dark" type="submit">Buscar</button>
+    <button class="btn btn-outline-dark" type="submit" (click)="onSearch()">Buscar</button>
   </form>
 
 <table class="table table-bordered">
@@ -14,7 +14,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let itens of itens">
+      <!-- <tr *ngFor="let itens of itens"> -->
+        <tr *ngFor="let itens of results$ | async ">
         <td>{{itens.localizador}}</td>
         <td>{{itens.nomeRecebedor}}</td>
         <td>{{itens.localEntrega}}</td>
