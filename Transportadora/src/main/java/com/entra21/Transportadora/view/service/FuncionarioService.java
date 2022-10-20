@@ -3,15 +3,15 @@ package com.entra21.Transportadora.view.service;
 import com.entra21.Transportadora.model.dto.Empresa.EmpresaDTO;
 import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioAddDTO;
 import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioDTO;
-
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
 import com.entra21.Transportadora.model.entity.FuncionarioEntity;
+import com.entra21.Transportadora.view.repository.EmpresaRepository;
 import com.entra21.Transportadora.view.repository.FuncionarioRepository;
+import com.entra21.Transportadora.view.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
@@ -24,11 +24,11 @@ public class FuncionarioService {
     @Autowired
     private FuncionarioRepository funcionarioRepository;
 
-    // @Autowired
-    // private EmpresaRepository empresaRepository;
+    @Autowired
+    private EmpresaRepository empresaRepository;
 
-    // @Autowired
-    // private PessoaRepository pessoaRepository;
+    @Autowired
+    private PessoaRepository pessoaRepository;
 
     @Autowired
     private EntityManager em;
@@ -126,20 +126,18 @@ public class FuncionarioService {
     @Transactional
     public void saveFuncionario(FuncionarioAddDTO input) {
         Query q = em.createNativeQuery("INSERT INTO funcionario(id_pessoa, id_empresa, id_supervisor) VALUES(:idPessoa, :idEmpresa, :idSupervisor)");
-        q.setParameter("idPessoa", input.getIdPessoa());
-        q.setParameter("idEmpresa", input.getEmpresa().getId());
-        q.setParameter("idSupervisor", input.getSupervisor().getIdPessoa());
-        q.executeUpdate();
-//
-//        q.setParameter("idPessoa",
-//            pessoaRepository.findByCpf(input.getCpf()).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "CPF NOT FOUND");}).getIdPessoa()
-//        );
-//        q.setParameter("idEmpresa",
-//            empresaRepository.findByCnpj(input.getEmpresa().getCnpj()).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "CNPJ NOT FOUND");}).getIdEmpresa()
-//        );
-//        q.setParameter("idSupervisor",
-//            funcionarioRepository.findByCpf(input.getSupervisor().getCpf()).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "CPF NOT FOUND");}).getIdPessoa()
-//        );
+        
+       q.setParameter("idPessoa",
+           pessoaRepository.findByCpf(input.getCpf()).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "CPF NOT FOUND");}).getIdPessoa()
+       );
+       q.setParameter("idEmpresa",
+           empresaRepository.findByCnpj(input.getEmpresa().getCnpj()).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "CNPJ NOT FOUND");}).getIdEmpresa()
+       );
+       q.setParameter("idSupervisor",
+           funcionarioRepository.findByCpf(input.getSupervisor().getCpf()).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "CPF NOT FOUND");}).getIdPessoa()
+       );
+
+        q.executeUpdate();  
     }
 
     public void deleteByFuncionario(String cpf){
