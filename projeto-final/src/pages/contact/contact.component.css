@@ -33,13 +33,62 @@ border-radius: 20px;
 box-shadow: 0px 10px 40px #00000056;
 color: aliceblue;
 }
-
-.contato-links{
-border-bottom: 1px solid whitesmoke;
-padding: 40px;
-display: block;
+.contato-links > .line {
+	border-bottom: 4px solid whitesmoke;
+	width: 50%;
+}
+.contato-links > input{
+	width: 70%; 
+	border: none;
+	padding: 15px;
+	font-size: 10pt;
+	outline: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-decoration: none;
+	background:  #514869;
+	border-radius: 16px;
 }
 
+.contato-links .form-control{
+	border: none;
+	border-radius: 4px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-decoration: none;
+	background: #e1e0e4;
+	color: #020303de;
+	font-size: 10pt;
+	box-shadow: 0px 10px 40px #00000056;
+	outline: none;
+	box-sizing: border-box;
+	width: 70%;
+	padding-bottom: 10px;
+	height: 120px;
+}
+
+.contato-links .assunto{
+	border: none;
+	border-radius: 16px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-decoration: none;
+	color: #020303de;
+	font-size: 10pt;
+	box-shadow: 0px 10px 40px #00000056;
+	outline: none;
+	box-sizing: border-box;
+	width: 70%;
+	padding-bottom: 10px;
+	height: 50px;
+	text-decoration: none;
+	background:  #514869;
+	padding: 15px;
+	
+}
 
 @media only screen and (max-width: 950px){
 	.card-sobre{

@@ -9,7 +9,6 @@ import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { AjudaComponent } from './ajuda/ajuda.component';
 
-import { PagInicialLoginComponent } from './logado/pag-inicial-login/pag-inicial-login.component';
 import { LocalizadorComponent } from './logado/localizador/localizador.component';
 import { ConfiguracoesComponent } from 'src/app/logado/configuracoes/configuracoes.component';
 
@@ -17,13 +16,14 @@ import { FooterComponent } from 'src/app/sharepage/footer/footer.component';
 import { ContactComponent } from '../pages/contact/contact.component';
 import { HomeComponent } from 'src/pages/home/home.component';
 import { AboutComponent } from 'src/pages/about/about.component';
-import { LoginComponent } from 'src/pages/login/login.component';
 import { NavbarComponent } from './sharepage/navbar/navbar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { BasicAuthInterceptor } from './helpers/basic-auth.interceptor';
+import { BasicAuthInterceptor } from './logado/helpers/basic-auth.interceptor';
+import { LoginComponent } from 'src/pages/login/login.component';
+import { CadastroComponent } from 'src/pages/login/cadastro/cadastro.component';
 import { FuncionariosComponent } from './funcionarios/funcionarios.component';
-
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
 
@@ -33,12 +33,12 @@ import { FuncionariosComponent } from './funcionarios/funcionarios.component';
     NavbarComponent,
     FooterComponent,
     ContactComponent,
+    LoginComponent,
     HomeComponent,
     AboutComponent,
-    LoginComponent,
     LocalizadorComponent,
     ConfiguracoesComponent,
-    PagInicialLoginComponent,
+    CadastroComponent,
     NavComponent,
     AjudaComponent,
     FuncionariosComponent,
@@ -50,7 +50,7 @@ import { FuncionariosComponent } from './funcionarios/funcionarios.component';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [ {provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true}],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, {provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

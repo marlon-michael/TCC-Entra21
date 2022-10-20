@@ -5,9 +5,11 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from 'types/types';
 
-
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
+    cadastro(value: string | null | undefined, value1: string | null | undefined, value2: string | null | undefined, value3: string | null | undefined, value4: string | null | undefined, value5: string | null | undefined) {
+      throw new Error('Method not implemented.');
+    }
     private userSubject: BehaviorSubject<User | null>;
     public user: Observable<User | null>;
 
@@ -24,7 +26,7 @@ export class AuthenticationService {
     }
 
     login(username: string, password: string) {
-        return this.http.post<any>(`/login`, { username, password })
+        return this.http.post<any>(`/pessoa/login`, { username, password })
             .pipe(map(user => {
                 // store user details and basic auth credentials in local storage to keep user logged in between page refreshes
                 user.authdata = window.btoa(username + ':' + password);

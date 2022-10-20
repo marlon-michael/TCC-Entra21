@@ -1,6 +1,19 @@
+<p class="texto1">Funcionários</p>
+
 
 <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
 
-<ul class="list-group list-group-flush">
-  <li class="list-group-item" *ngFor="let funcionarios of funcionarios">{{funcionarios.nome + " " + funcionarios.sobrenome}}</li>
-</ul>
+<table class="table table-bordered">
+  <tbody>
+    <tr *ngFor="let funcionarios of funcionarios">
+      <td class="no">{{funcionarios.nome + " " + funcionarios.sobrenome}}</td>
+      <td>
+        <input  class="btn btn-outline-danger" type="submit" value="Deletar">
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<input  class="btn btn-outline-dark" type="submit" value="Adicionar">
+

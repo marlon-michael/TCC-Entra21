@@ -1,5 +1,6 @@
 package com.entra21.Transportadora.controller;
 
+import com.entra21.Transportadora.model.dto.Pessoa.LoginDTO;
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaAddDTO;
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaUpDTO;
@@ -21,9 +22,11 @@ public class PessoaRestController {
         return pessoaService.getAll();
     }
 
-    @GetMapping("/login")
-    public PessoaDTO getLogin() {
-        return pessoaService.buscarUsuarioLogado();
+
+    @PostMapping("/login")
+    public PessoaDTO getLogin(@RequestBody LoginDTO login) {
+        return new PessoaDTO(pessoaService.buscarLogin(login));
+
     }
 
     @GetMapping("/{cpf}")
@@ -31,7 +34,7 @@ public class PessoaRestController {
         return pessoaService.findByCpf(cpf);
     }
 
-    @PostMapping
+    @PostMapping("/cadastro")
     public void addPessoa(@RequestBody PessoaAddDTO newPessoa) {
         pessoaService.save(newPessoa);
     }

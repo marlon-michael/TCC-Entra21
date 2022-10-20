@@ -1,7 +1,18 @@
 export type User = {
     id: number;
-    login: string;
+    username: string;
     password: string;
+    role: string;
+    authdata?: string;
+}
+
+export type Cadastro = {
+    nome : string | null | undefined,
+    sobrenome : string | null| undefined,
+    telefone: string | null| undefined,
+    cpf : string | null| undefined,
+    login : string | null| undefined,
+    senha : string | null| undefined,
     authdata?: string;
 }
 
@@ -16,3 +27,4 @@ export type Itens = {
     nomeRecebedor: string,
     localEntrega: string
 }
+

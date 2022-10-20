@@ -1,0 +1,21 @@
+
+.texto1 {
+    font-size: 40px;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 25px;
+}
+
+.table.table-bordered {
+    width: 800px;
+    margin-left: 450px;
+}
+
+.btn.btn-outline-dark {
+    margin-left: 740px;
+}
+
+.no {
+    width: 900px;
+    padding-top: 16px;
+}

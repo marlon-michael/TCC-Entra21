@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute} from '@angular/router';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/logado/helpers/auth.service';
 import { first } from 'rxjs/operators';
-import { AuthenticationService } from 'src/app/helpers/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +17,7 @@ export class LoginComponent {
   });
   loading = false;
   submitted = false;
-  returnUrl: string = this.route.snapshot.queryParams['returnUrl'];;
+  returnUrl: string = this.route.snapshot.queryParams['returnUrl'];
   error = '';
 
   constructor(
@@ -29,7 +28,7 @@ export class LoginComponent {
   ) { 
       // redirect to home if already logged in
       if (this.authenticationService.userValue) { 
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/home']);
       }
   }
 
@@ -39,20 +38,20 @@ export class LoginComponent {
       this.submitted = true;
 
       // stop here if form is invalid
-      if (this.loginForm!.invalid) {
+      if (this.loginForm.invalid) {
           return;
       }
-
       this.loading = true;
       this.authenticationService.login(this.loginForm.get('username')?.value, this.loginForm.get('password')?.value)
           .pipe(first())
           .subscribe(
-              (              _data: any) => {
-                  this.router.navigate([this.returnUrl ?? '/dashboard']);
+              data => {
+                  this.router.navigate([this.returnUrl ?? 'home']);
               },
-              (              error: string) => {
+              error => {
                   this.error = error;
                   this.loading = false;
               });
   }
+
 }

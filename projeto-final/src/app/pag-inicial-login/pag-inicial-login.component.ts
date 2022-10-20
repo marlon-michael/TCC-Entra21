@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Routes } from '@angular/router';
+import { LocalizadorComponent } from '../localizador/localizador.component';
+
 
 @Component({
   selector: 'app-pag-inicial-login',
@@ -6,10 +9,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pag-inicial-login.component.css']
 })
 export class PagInicialLoginComponent implements OnInit {
-logout() {
-throw new Error('Method not implemented.');
-}
-user: any;
 
   constructor() { }
 
