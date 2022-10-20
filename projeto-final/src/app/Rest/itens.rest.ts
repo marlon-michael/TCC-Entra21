@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Itens } from 'types/types';
+import { Itens} from 'types/types';
 
 @Injectable({ providedIn: 'root' })
 export class ItemRestController {
@@ -9,4 +9,8 @@ export class ItemRestController {
     getAll() {
         return this.http.get<Itens[]>(`/item`);
     }
+
+    // getAll() {
+    //     return this.http.get<ItensPessos>(`/item"/pessoa/{cpf}"`)
+    // }
 }

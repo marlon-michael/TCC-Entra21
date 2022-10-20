@@ -15,21 +15,7 @@ export class cadastroService {
     this.user2 = this.userSubject.asObservable();
 }
 
-  // cadastro( nome: string | null, sobrenome: string | null, telefone: string | null, cpf: string | null, login: string | null, senha: string | null) {
-  //   const cadastrar = {
-  //     "nome" : this.cadastro.name,
-  //     "sobrenome" : this.cadastro.,
-  //     "telefone" : this.cadastro.telefone,
-  //     "cpf" : this.cadastro.cpf,
-  //     "login" : this.cadastro.login,
-  //     "senha" : this.cadastro.senha,
-  //   };
 
-    // this.http.post<any>('/pessoa/cadastro', cadastro)
-    //   .subscribe({
-    //     next: (response) => console.log(response),
-    //     error: (error) => console.log(error),
-    //   });
 
       cadastro( nome:string | null, sobrenome: string | null, telefone: string | null, cpf: string | null, login: string | null, senha: string | null) {
         return this.http.post<any>(`/pessoa/cadastro`, { nome, sobrenome,telefone,cpf,login,senha })

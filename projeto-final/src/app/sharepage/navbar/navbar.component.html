@@ -19,7 +19,7 @@
               <a class="nav-link" routerLink="" routerLinkActive="active-link" >Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="login" routerLinkActive="active-link" *ngIf="user == null">Login</a>
+              <a class="nav-link" routerLink="login" routerLinkActive="active-link" *ngIf="user == null || user.role == 'GERENTE'">Login</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" routerLink="about" routerLinkActive="active-link">About</a>
@@ -27,6 +27,7 @@
             <li class="nav-item">
               <a class="nav-link" routerLink="contact" routerLinkActive="active-link">Contact</a>
             </li>
+
             <!-- <li class="nav-item">
               <a class="nav-link" routerLink="" routerLinkActive="active-link" class="nav-link" data-bs-dismiss="offcanvas">Início</a>
             </li> -->
@@ -53,3 +54,45 @@
         </div>
     </div>
   </nav>
+<!-- =======
+          </ul>
+          <button class="navbar-toggler" *ngIf="user != null" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+    </div></nav>
+                
+                
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+              <div class="offcanvas-header">
+                <img class="navbar-brand" src="https://uploaddeimagens.com.br/images/004/060/252/thumb/Meu_projeto.png?1665705449"/>
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">TechMoves</h5>
+            
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              </div>
+              <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                  <li class="nav-item">
+                    <a routerLink="localizador" routerLinkActive="active-link" class="nav-link" data-bs-dismiss="offcanvas" *ngIf="user != null">Localizador</a>
+                  </li>
+                  <li class="nav-item">
+                    <a  class="nav-link" routerLink="config" routerLinkActive="active-link" class="nav-link" data-bs-dismiss="offcanvas" *ngIf="user != null && user.role == 'GERENTE'">Configurações</a>
+                   Alterar perfil está marcado com "configurações" 
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLink="funcionarios" routerLinkActive="active-link" class="nav-link" data-bs-dismiss="offcanvas" *ngIf="user != null && user.role == 'GERENTE'">Funcionários</a>
+                  </li>
+                  <li class="nav-item">
+                    <a   class="nav-link" routerLink="ajuda" routerLinkActive="active-link" class="nav-link" data-bs-dismiss="offcanvas" *ngIf="user != null">Ajuda</a>
+                  </li>
+                  <li class="nav-item">
+                    <a   class="nav-link" routerLink="ajuda" routerLinkActive="active-link" class="nav-link" data-bs-dismiss="offcanvas" *ngIf="user != null && (user.role == 'FUNCIONARIO' || user.role == 'GERENTE')">Teste</a>
+                  </li>
+                  <li class="nav-item" *ngIf="user != null">
+                    <a class="nav-link" href="#" (click)="logout()">Logout</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+  
+>>>>>>> 0007f688797532bc0e6bf2e2563f51004b0bb935 -->

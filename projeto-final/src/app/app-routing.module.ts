@@ -25,7 +25,8 @@ const routes: Routes = [
 {path: 'ajuda', component: AjudaComponent},
 {path: 'funcionarios', component: FuncionariosComponent},
 {path: 'nav',component: NavComponent},
-{path: '**', redirectTo: '/'}
+{path: '**', redirectTo: '/'},
+{path: 'edit', component: FuncionariosComponent}
 
 
 ];

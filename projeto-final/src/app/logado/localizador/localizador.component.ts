@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs';
 
 import { ItemRestController } from 'src/app/Rest/itens.rest';
-import { Itens } from 'types/types';
+import { Itens } from "/types/types';
+// import { Itenspessos } from 'types/types';
 
 @Component({
   selector: 'app-localizador',
@@ -12,6 +13,7 @@ import { Itens } from 'types/types';
 export class LocalizadorComponent implements OnInit {
 
   itens: Itens[] = [];
+  // itenspessos: ItensPessos[] = [];
 
   constructor(private itemRestController: ItemRestController) { }
 
@@ -19,6 +21,10 @@ export class LocalizadorComponent implements OnInit {
     this.itemRestController.getAll().pipe(first()).subscribe((itens: Itens[]) => {
       this.itens = itens;
   });
+    // this.itemRestController.getAll().pipe(first()).subscribe((itenspessos) =>{
+    //   this.itenspessos = itenspessos;
+    // });
+  
   }
 
 }

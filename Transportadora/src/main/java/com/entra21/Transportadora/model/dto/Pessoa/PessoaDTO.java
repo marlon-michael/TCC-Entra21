@@ -1,7 +1,9 @@
 package com.entra21.Transportadora.model.dto.Pessoa;
 
 import com.entra21.Transportadora.model.entity.PessoaEntity;
+
 import com.entra21.Transportadora.view.repository.EmpresaRepository;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,7 +18,9 @@ public class PessoaDTO {
     private String login;
     private String senha;
     private Boolean desabilitado;
+
     private EmpresaRepository  empresaRepositorypessoa;
+
     private String role;
 
     public PessoaDTO(PessoaEntity e) {
@@ -31,5 +35,4 @@ public class PessoaDTO {
         this.role = "GERENTE";
     }
 
-//    public
 }

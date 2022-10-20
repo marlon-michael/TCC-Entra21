@@ -17,8 +17,16 @@ export type Cadastro = {
 }
 
 export type Funcionarios = {
+    sort(): Funcionarios;
+    find(arg0: (h: Funcionarios) => boolean): Funcionarios;
+    push(funcionario: Funcionarios): Funcionarios;
+    findIndex(arg0: (h: Funcionarios) => boolean): Funcionarios;
+    map(arg0: (h: Funcionarios) => string):  Funcionarios;
+    length: number;
+    filter(arg0: (h: Funcionarios) => boolean): Funcionarios;
     nome: string,
-    sobrenome: string
+    sobrenome: string,
+    cpf: string
 }
 
 export type Itens = {
@@ -28,3 +36,26 @@ export type Itens = {
     localEntrega: string
 }
 
+export type ItensPessos = {
+
+localizador: string;
+status:string;
+localEntrega:string;
+nomeRecebedor:string;
+pessoaItem:  Pessoa;
+}
+
+export type Pessoa = {
+     nome:string
+     sobrenome: string;
+     telefone: string;
+     cpf: string;
+     login: string;
+     senha: string;
+}
+
+// export type Funcionario = {
+//  FuncionarioDTO supervisor:;
+//  List<EntregaDTO> entrega:;
+//  EmpresaDTO empresa:;
+// }
