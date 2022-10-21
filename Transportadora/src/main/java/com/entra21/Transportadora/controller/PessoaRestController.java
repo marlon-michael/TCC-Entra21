@@ -1,5 +1,6 @@
 package com.entra21.Transportadora.controller;
 
+import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioDTO;
 import com.entra21.Transportadora.model.dto.Pessoa.LoginDTO;
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaAddDTO;
@@ -37,23 +38,21 @@ public class PessoaRestController {
     @PostMapping("/login")
     public PessoaDTO getLogin(@RequestBody LoginDTO login) {
         PessoaDTO pessoaDTO = new PessoaDTO(pessoaService.buscarLogin(login));
+        if(pessoaDTO.getCpf() == null) return pessoaDTO;
 
-        if (new PessoaDTO(pessoaService.buscarLogin(login)).getLogin() == null) return pessoaDTO;
         AtomicReference<Boolean> gerenteBool = new AtomicReference<>(false);
         empresaService.getAllEmpresas().stream().map(empresa -> {
-            if (empresa.getGerente().getLogin().equals(new PessoaDTO(pessoaService.buscarLogin(login)).getLogin())){
+            if(empresa.getGerente().getCpf().equals(pessoaDTO.getCpf())){
                 gerenteBool.set(true);
                 pessoaDTO.setRole("GERENTE");
             }
+            else {
+                pessoaDTO.setRole("GARANTE");
+            }
             return null;
         });
-        if (gerenteBool.get()){
-            pessoaDTO.setRole("GERENTE");
-            return pessoaDTO;
-        }
-        pessoaDTO.setRole("test");
 
-        if (funcionarioService.findByCpf(new PessoaDTO(pessoaService.buscarLogin(login)).getCpf()).getLogin() != null) {
+        if (funcionarioService.findByCpf(new PessoaDTO(pessoaService.buscarLogin(login)).getCpf()).getCpf().equals(pessoaDTO.getCpf())){
             pessoaDTO.setRole("FUNCIONARIO");
             return pessoaDTO;
         }
