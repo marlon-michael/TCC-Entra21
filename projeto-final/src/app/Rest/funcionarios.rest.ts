@@ -10,7 +10,9 @@ export class FuncionarioRestController {
     getAll() {
         return this.http.get<Funcionarios[]>(`/funcionario`);
     }
-
+    getbycnpj() {
+        return this.http.get<Funcionarios[]>(`/funcionario/empresa/{cnpj}`);
+    }
     // onEdit(){
         // this.router.navigate(controls:['edit', form.cpf], extras: {relativeTo: this.route})
         //   }

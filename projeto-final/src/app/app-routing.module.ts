@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import { AboutComponent } from 'src/pages/about/about.component';
 import { ContactComponent } from 'src/pages/contact/contact.component';
 import { HomeComponent } from 'src/pages/home/home.component';
@@ -11,7 +10,7 @@ import { CadastroComponent } from 'src/pages/login/cadastro/cadastro.component';
 import { AjudaComponent } from './ajuda/ajuda.component';
 import { FuncionariosComponent } from './funcionarios/funcionarios.component';
 import { NavComponent } from './nav/nav.component';
-
+import { HttpClientModule } from '@angular/common/http';
 
 
 const routes: Routes = [
@@ -27,14 +26,16 @@ const routes: Routes = [
 {path: 'nav',component: NavComponent},
 {path: '**', redirectTo: '/'},
 {path: 'edit', component: FuncionariosComponent}
-
-
 ];
 // , canActivate: [AuthGuard] se tiver logado
 
-
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(routes),
+    HttpClientModule
+  ],
+  exports: [
+    RouterModule
+  ]
 })
 export class AppRoutingModule { }

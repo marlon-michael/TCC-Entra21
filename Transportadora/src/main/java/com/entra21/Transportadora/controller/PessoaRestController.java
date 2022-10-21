@@ -17,16 +17,15 @@ public class PessoaRestController {
     @Autowired
     private PessoaService pessoaService;
 
+
     @GetMapping
     public List<PessoaDTO> getPessoas() {
         return pessoaService.getAll();
     }
 
-
     @PostMapping("/login")
     public PessoaDTO getLogin(@RequestBody LoginDTO login) {
         return new PessoaDTO(pessoaService.buscarLogin(login));
-
     }
 
     @GetMapping("/{cpf}")

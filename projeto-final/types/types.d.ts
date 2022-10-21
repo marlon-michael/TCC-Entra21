@@ -55,8 +55,41 @@ export type Pessoa = {
      senha: string;
 }
 
-// export type Funcionario = {
-//  FuncionarioDTO supervisor:;
-//  List<EntregaDTO> entrega:;
-//  EmpresaDTO empresa:;
-// }
+export type Funcionario = {
+ supervisor: Pessoa;
+ entrega: Entrega[];
+  empresa: Empresa;
+}
+
+export type Entrega = {
+     tipoEntrega: string;
+     entregador: Pessoa;
+     entregaTrecho: EntregaTrecho[];
+     itens: Itens[];
+}
+
+export type Empresa = {
+     cnpj: string;
+     razaoSocial:string;
+    gerente: Pessoa;
+    carros: Carro[];
+     funcionarios: Pessoa[];
+}
+
+export type Carro = {
+      tipoCarro: string;
+      placa: string;
+      empresaCarro: Empresa;
+}
+
+export type EntregaTrecho = {
+     Completo: boolean;
+     carro: Carro;
+     entrega: Entrega;
+     trecho: Trecho;
+}
+
+export type Trecho = {
+     localInicio: string;
+     localFim: string;
+}

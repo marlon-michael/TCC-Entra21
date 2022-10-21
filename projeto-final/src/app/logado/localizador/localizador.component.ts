@@ -7,6 +7,7 @@ import { ItemRestController } from 'src/app/Rest/itens.rest';
 import { Itens, ItensPessoas } from "types/types";
 // import { Itenspessos } from 'types/types';
 
+
 @Component({
   selector: 'app-localizador',
   templateUrl: './localizador.component.html',
@@ -22,6 +23,9 @@ total:number | undefined;
   itens2: ItensPessoas[] = [];
   // itenspessos: ItensPessos[] = [];
 
+  // itenspessos: itenspessos[] = [];
+
+
   constructor(private itemRestController: ItemRestController,
     private http: HttpClient) { }
 
@@ -29,7 +33,6 @@ total:number | undefined;
     this.itemRestController.getAll().pipe(first()).subscribe((itens: Itens[]) => {
       this.itens = itens;
   });
-
   }
  
   onSearch() {

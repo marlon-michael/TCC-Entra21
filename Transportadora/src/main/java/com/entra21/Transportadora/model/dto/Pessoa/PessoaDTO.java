@@ -18,10 +18,8 @@ public class PessoaDTO {
     private String login;
     private String senha;
     private Boolean desabilitado;
-
-    private EmpresaRepository  empresaRepositorypessoa;
-
     private String role;
+    private EmpresaRepository  empresaRepositorypessoa;
 
     public PessoaDTO(PessoaEntity e) {
         this.idPessoa = e.getIdPessoa();
@@ -32,7 +30,7 @@ public class PessoaDTO {
         this.login = e.getLogin();
         this.senha = e.getSenha();
         this.desabilitado = e.getDesabilitado();
-        this.role = "GERENTE";
+        this.role = "PESSOA";
     }
 
 }

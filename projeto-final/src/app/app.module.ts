@@ -1,17 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-
-
 import { NavComponent } from './nav/nav.component';
 import { AjudaComponent } from './ajuda/ajuda.component';
-
 import { LocalizadorComponent } from './logado/localizador/localizador.component';
 import { ConfiguracoesComponent } from 'src/app/logado/configuracoes/configuracoes.component';
-
 import { FooterComponent } from 'src/app/sharepage/footer/footer.component';
 import { ContactComponent } from '../pages/contact/contact.component';
 import { HomeComponent } from 'src/pages/home/home.component';
@@ -24,7 +18,6 @@ import { LoginComponent } from 'src/pages/login/login.component';
 import { CadastroComponent } from 'src/pages/login/cadastro/cadastro.component';
 import { FuncionariosComponent } from './funcionarios/funcionarios.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-
 
 
 @NgModule({
@@ -41,8 +34,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     CadastroComponent,
     NavComponent,
     AjudaComponent,
-    FuncionariosComponent,
-    // ListaComponent
+    FuncionariosComponent
   ],
   imports: [
     BrowserModule,

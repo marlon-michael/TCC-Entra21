@@ -21,6 +21,7 @@ error = '';
 succes = false;
 inserting = false;
 
+funcionariobuscar: Funcionarios[] = [];
   form: FormGroup;
   constructor(private funcionarioRestController: FuncionarioRestController, 
     private formBuilder: FormBuilder,
@@ -45,6 +46,15 @@ inserting = false;
     });
   
   }
+
+  onSearch(){
+    this.funcionarioRestController.getbycnpj().pipe(first()).subscribe((funcionariobuscar: Funcionarios[]) => { 
+      console.log(this.funcionariobuscar.values);
+    // },
+    // error: (console.error();
+    // ) => console.log(Error),
+  });
+}
 
 
   // onDelete() {
@@ -74,7 +84,7 @@ inserting = false;
 // inserirFuncionario = () => {
 //     this.funcionarioEdit;
 //     this.inserting = true;
-//   }
+//   } 
 
 //   // save = (funcionario: Funcionarios) => {
 //   //   if (funcionario.cpf == null) {
