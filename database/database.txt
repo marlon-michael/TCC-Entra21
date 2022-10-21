@@ -1,4 +1,5 @@
 
+select e.id_trecho  from entrega_trecho e;
 
 -- TEST SELECT
 select * from pessoa p;
@@ -27,10 +28,10 @@ values
 	('userName2', 'lastName2', '47999999998','999999999C2', 'userLogin2', 'userHardestPassword2'),
 	('userName3', 'lastName3', '47999999997','999999999C3', 'userLogin3', 'userHardestPassword3');
 
-insert into empresa (cnpj, razao_social, id_gerente)
+insert into empresa (razao_social, id_gerente)
 values
-	('98076059000168','Empresa X', 2),
-	('00795919000119','Empresa Y', 3);
+	('#', 2),
+	('#', 3);
 	
 insert into funcionario (id_pessoa, id_supervisor, id_empresa)
 values 
@@ -44,7 +45,7 @@ insert into carro (tipo, placa, id_empresa)
 values
 	('CAMINHAO', 'ABCD1234Z', 1),
 	('VAN','ABCD1235Y', 1),
-	('MINI VAN','ABCD1236X', 2);
+	('CAMINHAO','ABCD1236X', 2);
 
 insert into trecho (local_inicio, local_fim)
 values
@@ -54,9 +55,9 @@ values
 
 insert into entrega (id_entregador, tipo_entrega)
 values
-	(6, 'EXPRESSA'),
-	(7, 'ECONOMICA'),
-	(8, 'ECONOMICA');
+	(6, 'expressa'),
+	(7, 'economica'),
+	(8, 'economica');
 
 insert into entrega_trecho (id_entrega, id_trecho, id_carro, completo, data_inicio, data_fim)
 values
@@ -91,16 +92,13 @@ cpf char(11) not null,
 login varchar(100) not null,
 senha varchar(50) not null,
 desabilitado bit default(0) not null,
-unique(cpf),
-unique(login)
+unique(cpf, login)
 );
 
 create table empresa(
 id bigint not null primary key auto_increment,
-cnpj varchar(14) not null,
 razao_social varchar(250),
 id_gerente bigint not null,
-unique(cnpj),
 foreign key (id_gerente) references pessoa(id)
 );
 
@@ -150,7 +148,7 @@ foreign key (id_trecho) references trecho(id)
 create table item(
 id bigint not null auto_increment primary key,
 localizador varchar(100) not null,
-status varchar(50) default('Preparando envio'),
+status varchar(50) default('Em espera'),
 local_entrega varchar(300) not null,
 nome_recebedor varchar(50) not null,
 id_pessoa bigint,
@@ -167,3 +165,11 @@ foreign key (id_item) references item(id)
 );
 
 
+-- disable table
+-- create table carro_emrpesa(
+-- id_carro bigint not null,
+-- id_empresa bigint not null,
+-- foreign key (id_carro) references carro(id),
+-- foreign key (id_empresa) references emrpesa(id),
+-- primary key(id_carro, id_emrpesa)
+-- )

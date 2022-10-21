@@ -5,7 +5,6 @@ import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioAddDTO;
 import com.entra21.Transportadora.model.dto.Item.ItemDTO;
 import lombok.Data;
 
-import java.util.HashSet;
 import java.util.List;
 
 @Data

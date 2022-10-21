@@ -3,7 +3,6 @@ package com.entra21.Transportadora.view.service;
 import com.entra21.Transportadora.model.dto.Pessoa.LoginDTO;
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaAddDTO;
-import com.entra21.Transportadora.model.dto.Pessoa.PessoaLoad;
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaUpDTO;
 import com.entra21.Transportadora.model.entity.PessoaEntity;
 import com.entra21.Transportadora.view.repository.PessoaRepository;
@@ -34,8 +33,8 @@ public class PessoaService implements UserDetailsService{
         return user;
     }
 
-    public PessoaLoad buscarUsuarioLogado() {
-        PessoaLoad pessoaDTO = new PessoaLoad();
+    public PessoaDTO buscarUsuarioLogado() {
+        PessoaDTO pessoaDTO = new PessoaDTO();
         PessoaEntity user = new PessoaEntity();
         try {
             user = (PessoaEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -77,23 +76,6 @@ public class PessoaService implements UserDetailsService{
         }).collect(Collectors.toList());
     }
 
-<<<<<<< HEAD
-    // PRA QUE SERVE ???
-    public List<PessoaDTO> getAllByFuncionario() {
-        return pessoaRepository.findAll().stream().map(pr -> {
-            PessoaDTO pessoaDTO = new PessoaDTO();
-            pessoaDTO.setNome(pr.getNome());
-            pessoaDTO.setSobrenome(pr.getSobrenome());
-            pessoaDTO.setCpf(pr.getCpf());
-            pessoaDTO.setTelefone(pr.getTelefone());
-            pessoaDTO.setDesabilitado(pr.getDesabilitado());
-            return pessoaDTO;
-        }).collect(Collectors.toList());
-    }
-
-
-=======
->>>>>>> 2c5ebfca49f4067c9735a65bb9213265c35ff608
     public void save(PessoaAddDTO input) {
         PessoaEntity pessoaEntity = new PessoaEntity();
         pessoaEntity.setNome(input.getNome());

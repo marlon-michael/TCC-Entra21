@@ -11,4 +11,4 @@ public class FuncionarioUpDTO extends PessoaUpDTO {
     private FuncionarioUpDTO supervisor;
     private List<EntregaUpDTO> entrega;
     private EmpresaUpDTO empresa;
-}  
+}

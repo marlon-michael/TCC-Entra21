@@ -30,17 +30,9 @@ public class CarroRestController {
         return carroService.getCarroByPlaca(placa);
     }
 
-<<<<<<< HEAD
-
     @GetMapping("/empresa/{cnpj_empresa}")
     public List<CarroDTO> getCarroByEmpresa(@PathVariable(name = "cnpj_empresa") String empresa_CNPJ){
         return carroService.getCarroByEmpresa_Cnpj(empresa_CNPJ);
-
-=======
-    @GetMapping("/empresa/{cnpj_empresa}")
-    public List<CarroDTO> getCarroByEmpresa(@PathVariable(name = "cnpj_empresa") String empresa_CNPJ){
-        return carroService.getCarroByEmpresa_Cnpj(empresa_CNPJ);
->>>>>>> 2c5ebfca49f4067c9735a65bb9213265c35ff608
     }
 
     @PostMapping

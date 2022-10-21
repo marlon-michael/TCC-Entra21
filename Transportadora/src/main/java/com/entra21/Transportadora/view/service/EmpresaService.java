@@ -41,9 +41,7 @@ public class EmpresaService {
     }
 
     public List<EmpresaDTO> getAllEmpresas () {
-
         return empresaRepository.findAll().stream().map(empresaEntity -> {
-
             PessoaDTO pessoaDTO = new PessoaDTO();
             EmpresaDTO dtoempresa = new EmpresaDTO();
 

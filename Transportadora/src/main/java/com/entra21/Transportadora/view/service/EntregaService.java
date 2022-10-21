@@ -52,28 +52,6 @@ public class EntregaService {
         return entregaRepository.findAll().stream().map(entregaEntity -> {
             EntregaDTO dtoentrega = new EntregaDTO();
             dtoentrega.setTipoEntrega(entregaEntity.getTipoEntrega());
-<<<<<<< HEAD
-            dtoentrega.setItens(new ArrayList<>());
-            entregaEntity.getItens().stream().map(itemEntity -> {
-
-                PessoaDTO pessoaDTO = new PessoaDTO();
-                ItemDTO itemDTO = new ItemDTO();
-
-                pessoaDTO.setNome(itemEntity.getPessoa().getNome());
-                pessoaDTO.setSobrenome(itemEntity.getPessoa().getSobrenome());
-                pessoaDTO.setCpf(itemEntity.getPessoa().getCpf());
-                pessoaDTO.setTelefone(itemEntity.getPessoa().getTelefone());
-
-                itemDTO.setPessoaItem(pessoaDTO);
-                itemDTO.setLocalEntrega(itemEntity.getLocalEntrega());
-                itemDTO.setLocalizador(itemEntity.getLocalizador());
-                itemDTO.setNomeRecebedor(itemEntity.getNomeRecebedor());
-                itemDTO.setStatus(itemEntity.getStatus());
-
-                dtoentrega.getItens().add(itemDTO);
-                return dtoentrega;
-            });
-=======
             dtoentrega.setItens(
                 entregaEntity.getItens().stream().map(itemEntity -> {
                     ItemDTO itemDTO = new ItemDTO();
@@ -92,7 +70,6 @@ public class EntregaService {
                     return itemDTO;
                 }).collect(Collectors.toList())
             );
->>>>>>> 2c5ebfca49f4067c9735a65bb9213265c35ff608
 
             dtoentrega.setEntregador(new FuncionarioDTO());
             dtoentrega.getEntregador().setCpf(entregaEntity.getEntregador().getCpf());

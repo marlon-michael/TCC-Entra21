@@ -3,16 +3,9 @@ package com.entra21.Transportadora.view.service;
 import com.entra21.Transportadora.model.dto.Empresa.EmpresaDTO;
 import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioAddDTO;
 import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioDTO;
-<<<<<<< HEAD
-import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioUpDTO;
-import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
-import com.entra21.Transportadora.model.entity.EmpresaEntity;
-import com.entra21.Transportadora.model.entity.FuncionarioEntity;
-=======
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
 import com.entra21.Transportadora.model.entity.FuncionarioEntity;
 import com.entra21.Transportadora.view.repository.EmpresaRepository;
->>>>>>> 2c5ebfca49f4067c9735a65bb9213265c35ff608
 import com.entra21.Transportadora.view.repository.FuncionarioRepository;
 import com.entra21.Transportadora.view.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -150,30 +143,7 @@ public class FuncionarioService {
     public void deleteByFuncionario(String cpf){
         funcionarioRepository.deleteById(funcionarioRepository.findByCpf(cpf).orElseThrow(() -> {throw  new ResponseStatusException(HttpStatus.NOT_FOUND, "Cpf/Funcionário not found");}).getIdPessoa());
     }
-    
-    public FuncionarioUpDTO funcionarioUpDTO(Long id, FuncionarioUpDTO novoFuncionario){
-        FuncionarioEntity e = funcionarioRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Item não encontrado!"));
-        e.setIdPessoa(novoFuncionario.getIdPessoa());
-
-
-
-        EmpresaEntity empresa = new EmpresaEntity();
-        empresa.setCnpj(novoFuncionario.getEmpresa().getCnpj());
-
-        //Supervisor
-        FuncionarioEntity funcionario = new FuncionarioEntity();
-        funcionario.setIdPessoa(novoFuncionario.getIdPessoa());
-
-
-        e.setIdPessoa(novoFuncionario.getIdPessoa());
-        e.setEmpresa(empresa);
-        e.setSupervisor(funcionario);
-
-        return novoFuncionario;
-    }
 
 
 }
-
-
 

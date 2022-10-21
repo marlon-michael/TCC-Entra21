@@ -34,7 +34,7 @@ public class ItemRestController {
         return itemService.findAllByPessoa_Cpf(cpf);
     }
 
-    @PostMapping("/additem")
+    @PostMapping
     public void addItem(@RequestBody ItemAddDTO ItemDTO){
         itemService.saveItem(ItemDTO);
     }

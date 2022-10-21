@@ -21,7 +21,6 @@ public class EntregaRestController {
         return entregaService.getAllEntrega();
     }
 
-    //tabela da gabi entrergas do entregador
     @GetMapping("/entregador/{cpf}")
     public List<EntregaDTO> getAllByEntregador(@PathVariable(name = "cpf") String cpf){
         return entregaService.getAllEntragaByEntregador(cpf);

@@ -21,6 +21,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { EntregasComponent } from './entregas/entregas.component';
 import { EntregasItemDetalhesComponent } from './entregas-item-detalhes/entregas-item-detalhes.component';
 import { ItemComponent } from './item/item.component';
+import { LocalizadorEditarComponent } from './localizador-editar/localizador-editar.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { ItemComponent } from './item/item.component';
     FuncionariosComponent,
     EntregasComponent,
     EntregasItemDetalhesComponent,
-    ItemComponent
+    ItemComponent,
+    LocalizadorEditarComponent
     // ListaComponent
 
   ],

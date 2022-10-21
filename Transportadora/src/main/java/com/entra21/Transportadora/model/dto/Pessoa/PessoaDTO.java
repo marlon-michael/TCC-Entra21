@@ -10,14 +10,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class PessoaDTO {
-
+    private Long idPessoa;
     private String nome;
     private String sobrenome;
     private String telefone;
     private String cpf;
-<<<<<<< HEAD
-    private Boolean desabilitado;}
-=======
     private String login;
     private String senha;
     private Boolean desabilitado;
@@ -37,4 +34,3 @@ public class PessoaDTO {
     }
 
 }
->>>>>>> 2c5ebfca49f4067c9735a65bb9213265c35ff608
