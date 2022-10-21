@@ -4,7 +4,6 @@ import com.entra21.Transportadora.model.dto.Empresa.EmpresaAddDTO;
 import com.entra21.Transportadora.model.dto.Empresa.EmpresaDTO;
 import com.entra21.Transportadora.model.dto.Empresa.EmpresaUpDTO;
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
-import com.entra21.Transportadora.model.dto.Pessoa.PessoaUpDTO;
 import com.entra21.Transportadora.model.entity.EmpresaEntity;
 import com.entra21.Transportadora.view.repository.EmpresaRepository;
 import com.entra21.Transportadora.view.repository.PessoaRepository;
@@ -13,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,18 +24,20 @@ public class EmpresaService {
     private PessoaRepository pessoaRepository;
 
     public void saveEmpresas (EmpresaAddDTO inputEmpresa){
-        EmpresaEntity newEntity = new EmpresaEntity();
-        newEntity.setIdEmpresa(inputEmpresa.getId());
-        newEntity.setRazaoSocial(inputEmpresa.getRazaoSocial());
-        newEntity.setGerente(pessoaRepository.findByLogin(inputEmpresa.getGerente().getNome()).orElseThrow(()->{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pessoa não foi encontrada!");
+        EmpresaEntity empresaEntity = new EmpresaEntity();
+        empresaEntity.setCnpj(inputEmpresa.getCnpj());
+        empresaEntity.setRazaoSocial(inputEmpresa.getRazaoSocial());
+        empresaEntity.setGerente(pessoaRepository.findByCpf(inputEmpresa.getGerente().getCpf()).orElseThrow(()->{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pessoa/CPF não foi encontrado!");
         }));
 
-        empresaRepository.save(newEntity);
+        empresaRepository.save(empresaEntity);
     }
 
-    public void deleteEmpresa (Long idEmpresa){
-        empresaRepository.deleteById(idEmpresa);
+    public void deleteEmpresa (String cnpj){
+        empresaRepository.deleteById(
+                empresaRepository.findByCnpj(cnpj).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa/CNPJ não encontrado");}).getIdEmpresa()
+        );
     }
 
     public List<EmpresaDTO> getAllEmpresas () {
@@ -61,7 +61,7 @@ public class EmpresaService {
     }
 
     public EmpresaDTO findByCnpj(String cnpj){
-        EmpresaEntity empresaEntity = empresaRepository.findByCnpj(cnpj).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa não encontrada");});
+        EmpresaEntity empresaEntity = empresaRepository.findByCnpj(cnpj).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa/CNPJ não encontrada");});
         PessoaDTO pessoaDTO = new PessoaDTO();
         EmpresaDTO empresaDTO = new EmpresaDTO();
 
@@ -77,35 +77,16 @@ public class EmpresaService {
         return empresaDTO;
     }
 
-    // PRA QUE SERVE ???
-    public List<EmpresaDTO> getAllEmpresasgerente () {
-        return empresaRepository.findAll().stream().map(er -> {
-            EmpresaDTO dtoempresa = new EmpresaDTO();
-            PessoaDTO pessoaDTO = new PessoaDTO();
 
-            pessoaDTO.setNome(er.getGerente().getNome());
-            pessoaDTO.setSobrenome(dtoempresa.getGerente().getSobrenome());
-            pessoaDTO.setTelefone(dtoempresa.getGerente().getTelefone());
-            pessoaDTO.setCpf(dtoempresa.getGerente().getCpf());
+    public void updateEmpresa (String cnpj, EmpresaUpDTO empresaDTO){
+        EmpresaEntity empresaEntity = empresaRepository.findByCnpj(cnpj).orElseThrow(() -> new ResponseStatusException(HttpStatus.OK, "Empresa/CNPJ não encontrado!"));
+        empresaEntity.setCnpj(empresaDTO.getCnpj());
+        empresaEntity.setRazaoSocial(empresaDTO.getRazaoSocial());
 
-            dtoempresa.setCnpj(er.getCnpj());
-            dtoempresa.setRazaoSocial(er.getRazaoSocial());
-            dtoempresa.setGerente(pessoaDTO);
-            return dtoempresa;
-        }).collect(Collectors.toList());
-    }
+        empresaEntity.setGerente(pessoaRepository.findByCpf(empresaDTO.getGerente().getCpf()).orElseThrow(()->{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pessoa/CPF não foi encontrado!");
+        }));
 
-
-    public EmpresaUpDTO updateEmpresa (Long idEmpresanv, EmpresaUpDTO empresaDTO){
-        EmpresaEntity empresa = empresaRepository.findById(idEmpresanv).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa não encontrada!"));
-        PessoaUpDTO pessoaDTO = new PessoaUpDTO();
-        empresa.setIdEmpresa(empresaDTO.getId());
-        empresa.setCnpj(empresaDTO.getCnpj());
-        empresa.setRazaoSocial(empresaDTO.getRazaoSocial());
-        pessoaDTO.setIdPessoa(empresaDTO.getGerente().getIdPessoa());
-        empresa = empresaRepository.save(empresa);
-        empresaDTO.setGerente(pessoaDTO);
-        empresaDTO.setId(empresa.getIdEmpresa());
-        return empresaDTO;
+        empresaRepository.save(empresaEntity);
     }
 }

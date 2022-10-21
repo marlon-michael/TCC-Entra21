@@ -1,0 +1,206 @@
+ body{
+	font-family: 'Poppins';
+}
+*,:after,:before{box-sizing:border-box}
+.clearfix:after,.clearfix:before{content:'';display:table}
+.clearfix:after{clear:both;display:block}
+a{color:inherit;text-decoration:none}
+
+ 
+ .textfield [data-type="password"]{
+	text-security:circle;
+	-webkit-text-security:circle;
+}
+
+.body {
+	margin: 0;
+
+}
+
+body *{
+	box-sizing: border-box;
+}
+
+.main-login{
+	width: 100vw;
+	height: 100vh;
+	background: #201b2c;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-size: cover;
+
+}
+
+.left-login{
+width: 50vw;
+height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+}
+
+.left-login > h1{
+	font-size: 3vh;
+	color: #77ffc0;
+}
+
+.left-login-image{
+	width: 35vw;
+}
+
+.right-login{
+width: 50vw;
+height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.card-login,
+.sign-in:checked{
+width: 60%;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+padding: 30px 35px;
+background: #2f2841;
+border-radius: 20px;
+box-shadow: 0px 10px 40px #00000056;
+/* position: relative;
+overflow: hidden; */
+
+}
+/* .card-login > h1,  -v */
+ .sign-in,
+ .sign-up,
+ .card-login > h1{
+	color: #00ff88;
+	font-weight: 800;
+	margin: 0;
+	font-size:22px;
+	margin-right:15px;
+	padding-bottom:5px;
+	/* margin:0 15px 10px 0; */
+	display:inline-block;
+	border-bottom:2px solid transparent;
+}
+
+.textfield{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	margin: 10px 0px;
+}
+
+.textfield > input{
+	width: 100%;
+	border: none;
+	border-radius: 10px;
+	padding: 15px;
+	background: #514869;
+	color: #f0ffffde;
+	font-size: 12pt;
+	box-shadow: 0px 10px 40px #00000056;
+	outline: none;
+	box-sizing: border-box;
+}
+
+.textfield > input:hover{
+	background:  #f0ffff70;
+}
+
+.textfield > label{
+	color:#f0ffffde;
+	margin-bottom: 10px;
+}
+
+.textfield > input::placeholder{
+	color:#f0ffff94;
+}
+
+.btn-login{
+	width: 100%;
+	padding:16px 0px ;
+	margin: 25px 20px;
+	/* margin-left: 10px; */
+	border: none;
+	border-radius: 20px;
+	outline: none;
+	text-transform: uppercase;
+	font-weight: 800;
+	color: #2b134b;
+	background: #00ff88; 
+	letter-spacing: 3px;
+	cursor: pointer;
+	text-align: center;
+	box-shadow: 0px 10px 40px -12px #00ff6052;
+}
+
+.btn-login:hover{
+	background: #00c267; 
+	transition: all;
+}
+
+.cadastrar{
+	color: aliceblue;
+
+}
+.cadastrar:hover{
+color: #00ff88;
+}
+
+
+@media only screen and (max-width: 950px){
+	.card-login{
+		width: 85%;
+	}
+}
+
+@media only screen and (max-width: 600px){
+.main-login{
+	flex-direction: column;
+	height: auto;
+	background-size: cover;
+	padding-left: 0%;
+}
+.left-login > h1 {
+	display: none;
+}
+
+.left-login{
+	width: 100%;
+	height: auto;
+}
+
+
+.right-login{
+	width: 100%;
+	height: auto;
+}
+
+.left-login-image{
+	width: 50vh;
+}
+
+.card-login{
+width: 90%;
+ }
+} 
+
+.login-form .textfield .checked{
+	transform:scale(1) rotate(45deg);
+}
+.login-form .textfield .checked{
+	transform:scale(1) rotate(-45deg);
+}
+.card-login .sign-in:checked + .tab + .sign-up + .tab + .login-form .sign-in-htm{
+	transform:rotate(0);
+}
+.card-login .sign-up:checked + .tab + .login-form .sign-up-htm{
+	transform:rotate(0);
+}
+

@@ -1,0 +1,37 @@
+
+
+<form class="d-flex" role="search" >
+    <input class="form-control me-2" type="search" placeholder="Localizador" aria-label="Search">
+    <button class="btn btn-outline-dark" type="submit" (click)="onSearch()">Buscar</button>
+  </form>
+
+<p class="t1">Meus Itens</p>
+
+
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">Pedido</th>
+        <th scope="col">Destinatario</th>
+        <th scope="col">Endereço</th>
+        <th scope="col">Status</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+
+      <!-- <tr *ngFor="let itens of itens"> -->
+        <tr *ngFor="let item of itens ">
+        <td>{{item.localizador}}</td>
+        <td>{{item.nomeRecebedor}}</td>
+        <td>{{item.localEntrega}}</td>
+        <td>{{item.status}}</td>
+        <td>{{item.pessoaItem.cpf}}</td>
+        <td >Editar e Deletar</td>
+
+      </tr>
+    </tbody>
+  </table>
+  <button type="submit" class="btn btn-outline-dark" routerLink="/additem">Adicionar</button>
+
+  <!-- Button trigger modal -->

@@ -3,20 +3,12 @@ package com.entra21.Transportadora.controller;
 import com.entra21.Transportadora.model.dto.Carro.CarroAddDTO;
 import com.entra21.Transportadora.model.dto.Carro.CarroDTO;
 import com.entra21.Transportadora.model.dto.Carro.CarroUpDTO;
-import com.entra21.Transportadora.model.dto.Empresa.EmpresaDTO;
-import com.entra21.Transportadora.model.entity.CarroEntity;
-import com.entra21.Transportadora.model.entity.EmpresaEntity;
-import com.entra21.Transportadora.view.repository.CarroRepository;
-import com.entra21.Transportadora.view.repository.EmpresaRepository;
 import com.entra21.Transportadora.view.service.CarroService;
 import com.entra21.Transportadora.view.service.EmpresaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/carro")
@@ -33,16 +25,22 @@ public class CarroRestController {
         return carroService.getAllCarros();
     }
 
-    @GetMapping("/placa/{placa}")
+    @GetMapping("/{placa}")
     public CarroDTO getCarroByPlaca(@PathVariable(name = "placa")String placa){
         return carroService.getCarroByPlaca(placa);
     }
 
+<<<<<<< HEAD
 
     @GetMapping("/empresa/{cnpj_empresa}")
     public List<CarroDTO> getCarroByEmpresa(@PathVariable(name = "cnpj_empresa") String empresa_CNPJ){
         return carroService.getCarroByEmpresa_Cnpj(empresa_CNPJ);
 
+=======
+    @GetMapping("/empresa/{cnpj_empresa}")
+    public List<CarroDTO> getCarroByEmpresa(@PathVariable(name = "cnpj_empresa") String empresa_CNPJ){
+        return carroService.getCarroByEmpresa_Cnpj(empresa_CNPJ);
+>>>>>>> 2c5ebfca49f4067c9735a65bb9213265c35ff608
     }
 
     @PostMapping
@@ -50,16 +48,15 @@ public class CarroRestController {
         carroService.saveCarros(Newcarro);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteCarros(@PathVariable(name = "id") Long idEmpresa) {
-        carroService.deleteCarros(idEmpresa);
+    @DeleteMapping("/{placa}")
+    public void deleteCarros(@PathVariable(name = "placa") String placa) {
+        carroService.deleteCarros(placa);
     }
 
     //TODO: FAZER RETORNAR VOID
-    @PutMapping("/{id}")
-    public CarroUpDTO updateCarro(@PathVariable(name = "id") Long idcarronv,
-                                      @RequestBody CarroUpDTO carroUpDTO) {
-        return carroService.updateCarro(idcarronv,carroUpDTO);
+    @PutMapping("/{placa}")
+    public void updateCarro(@PathVariable(name = "placa") String placa, @RequestBody CarroUpDTO carroUpDTO) {
+        carroService.updateCarro(placa,carroUpDTO);
     }
 
 }

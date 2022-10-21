@@ -1,0 +1,50 @@
+.banner{
+    background-image: url(../../assets/img/fundo.jpeg);
+    background-position: center!important;
+    background-size: cover;
+ max-width: 2560px;
+ margin: auto;
+ min-width: 320px;
+ height: 720px;
+ 
+}
+
+.banner > h1{
+    color: white;
+    font-size: 70px;
+    font-weight: bold;
+    top: 20%;
+    left: 50%;
+    position: absolute;
+    margin: auto;
+
+}
+
+.section{
+    width: 80%;
+    padding: 60px;
+
+}
+
+.nos .nospessoas img > .gabi  {
+    height: 1000vh;
+}
+
+.card img {
+    padding: auto;
+    max-width:300px;
+    max-height:260px;
+    align-items: center;
+    border-radius: 20%;
+    border-color: black;
+    border: 2px solid black;
+    
+}
+h1{
+    font-size: 75px;
+    text-align: center;
+padding: 20px;
+}
+.card {
+    border: none;
+}

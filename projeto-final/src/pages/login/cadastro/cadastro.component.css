@@ -1,0 +1,257 @@
+.body {
+	margin: 0;
+
+}
+
+body *{
+	box-sizing: border-box;
+}
+
+.main-login{
+	width: 100vw;
+	height: 100vh;
+	background: #201b2c;
+    background-size: cover;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.right-login{
+width: 60vw;
+height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.card-login{
+width: 100%;
+display: flex;
+align-items: center;
+padding: 30px 35px;
+background: #2f2841;
+border-radius: 20px;
+box-shadow: 0px 10px 40px #00000056;
+position: relative;
+overflow: hidden;
+flex-direction: row;
+flex-wrap: wrap;
+align-content: stretch;
+justify-content: space-between;
+/* height: 80vh; */
+
+}
+/* .card-login > h1,  -v */
+ .card-login > h1{
+	color: #00ff88;
+	font-weight: 800;
+	margin: 0;
+    padding-left: 255px;
+    text-align: center;
+	font-size:42px;
+    /* margin-right: 200px; */
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+	/* margin-right:15px; */
+	/* padding-bottom:5px; */
+	/* margin:0 15px 10px 0; */
+	display: table;
+	/* border-bottom:2px solid transparent; */
+}
+
+.textfield{
+	width: 30%;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	margin: 10px 0px;
+}
+
+.textfield > input{
+
+	width: 100%;
+	border: none;
+	border-radius: 10px;
+	padding: 10px;
+	background: #514869;
+	color: #f0ffffde;
+	font-size: 12pt;
+	box-shadow: 0px 10px 40px #00000056;
+	outline: none;
+	box-sizing: border-box;
+}
+
+.textfield > input:hover{
+	background:  #f0ffff70;
+}
+
+.textfield > label{
+	color:#f0ffffde;
+	margin-bottom: 10px;
+}
+
+.textfield > input::placeholder{
+	color:#f0ffff94;
+}
+
+.btn-login{
+	width: 20%;
+	padding:12px 2px ;
+	margin: 20px 20px;
+    margin-top: 50px;
+    text-decoration: none;
+	/* margin-left: 10px; */
+	border: none;
+	border-radius: 28px;
+	outline: none;
+	text-transform: uppercase;
+	font-weight: 800;
+	color: #2b134b;
+	background: #00ff88; 
+	letter-spacing: 3px;
+	cursor: pointer;
+	text-align: center;
+	box-shadow: 0px 10px 40px -12px #00ff6052;
+}
+
+.btn-login:hover{
+	background: #00c267; 
+	transition: all;
+}
+
+.cadastrar{
+	color: aliceblue;
+
+}
+.cadastrar:hover{
+color: #00ff88;
+}
+.cliente {
+    color: aliceblue;
+        align-items: center;
+        padding: 100px;
+        display: inline;
+        text-decoration: none;
+}
+  .supervisor{
+    color: aliceblue;
+    align-items: center;
+    padding: 100px;
+    display: inline;  
+    text-decoration: none;
+}
+ .empresa{
+    color: aliceblue;
+        align-items: center;
+        padding: 50px;
+        display: inline;
+        text-decoration: none;
+}
+
+/* ARRUMAR ISSO NESSE TAMANHO */
+
+@media only screen and (max-width: 2560px){
+	.main-login{
+        flex-direction: column;
+        display: flex;
+        align-items: center;
+        height: auto;
+    }
+    
+    .right-login{
+        width: 100%;
+        height: auto;
+    }
+    
+    .card-login{
+    width: 70%;
+    flex-direction: column;
+            flex-wrap: nowrap;
+            align-content: center;
+            justify-content: space-around;
+            align-items: flex-start;
+            display: flex;
+            margin-left:0;
+            padding: auto;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            height: auto;
+     }
+     /* .pessoa{
+        color: aliceblue;
+        align-items: center;
+        padding: 20px;
+     } */
+    
+ .cliente {
+    color: aliceblue;
+        align-items: center;
+        padding: 20px;
+        display: block;
+}
+  .supervisor{
+    color: aliceblue;
+    align-items: center;
+    padding: 20px;
+    display: block;  
+}
+ .empresa{
+    color: aliceblue;
+        align-items: center;
+        padding: 20px;
+        display: block;
+}
+
+     .textfield > input{
+        width: 340%;
+        align-items: center;
+        display: flex;
+    }
+    .btn-login{
+        width: 76%;
+    }
+    } 
+    
+    
+
+
+@media only screen and (max-width: 615px){
+.main-login{
+	flex-direction: column;
+    display: flex;
+    align-items: center;
+	height: auto;
+}
+
+.right-login{
+	width: 100%;
+	height: auto;
+}
+
+.card-login{
+width: 90%;
+flex-direction: column;
+        flex-wrap: nowrap;
+        align-content: center;
+        justify-content: space-around;
+        align-items: flex-start;
+        display: flex;
+        margin-left:0;
+        padding: auto;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        height: auto;
+ }
+
+ .textfield > input{
+	width: 340%;
+    align-items: center;
+    display: flex;
+}
+.btn-login{
+    width: 76%;
+}
+} 
+

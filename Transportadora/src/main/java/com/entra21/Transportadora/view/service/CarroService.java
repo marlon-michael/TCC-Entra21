@@ -8,6 +8,7 @@ import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
 import com.entra21.Transportadora.model.entity.CarroEntity;
 import com.entra21.Transportadora.model.entity.EmpresaEntity;
 import com.entra21.Transportadora.view.repository.CarroRepository;
+import com.entra21.Transportadora.view.repository.EmpresaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -23,13 +24,14 @@ public class CarroService {
     @Autowired
     private CarroRepository carroRepository;
 
+    @Autowired
+    private EmpresaRepository empresaRepository;
+
     public CarroDTO getCarroByPlaca(String placa) {
         PessoaDTO pessoaDTO = new PessoaDTO();
         EmpresaDTO empresaDTO = new EmpresaDTO();
         CarroDTO carroDTO = new CarroDTO();
-        CarroEntity carroEntity = carroRepository.findByPlaca(placa).orElseThrow(() -> {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Carro/Placa não encontrado");
-        });
+        CarroEntity carroEntity = carroRepository.findByPlaca(placa).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Carro/Placa não encontrado");});
 
         pessoaDTO.setNome(carroEntity.getEmpresa().getGerente().getNome());
         pessoaDTO.setCpf(carroEntity.getEmpresa().getGerente().getCpf());
@@ -72,7 +74,7 @@ public class CarroService {
 
     public List<CarroDTO> getCarroByEmpresa_Cnpj(@PathVariable(name = "id_empresa") String empresa_CNPJ){
         return carroRepository.findAllByEmpresa_Cnpj(empresa_CNPJ).orElseThrow(()->{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa não foi encontrada!");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "CNPJ/Empresa/Carro não foi encontrado!");
         }).stream().map(carroEntity1 -> {
             CarroDTO carroDTO = new CarroDTO();
             EmpresaDTO empresaDTO = new EmpresaDTO();
@@ -96,28 +98,32 @@ public class CarroService {
     }
 
     public void saveCarros(CarroAddDTO input) {
-        EmpresaEntity newEmpresa = new EmpresaEntity();
         CarroEntity newCarro = new CarroEntity();
-        newEmpresa.setIdEmpresa(input.getEmpresaCarro().getId());
-        newCarro.setEmpresa(newEmpresa);
+        EmpresaEntity empresaEntity = empresaRepository.findByCnpj(input.getEmpresaCarro().getCnpj()).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa/CNPJ/Carro não encontrado");});
+        newCarro.setEmpresa(empresaEntity);
         newCarro.setTipoCarro(input.getTipoCarro());
         newCarro.setPlaca(input.getPlaca());
-        carroRepository.save(newCarro);
+        try {
+            carroRepository.save(newCarro);
+        }catch (Exception e){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "dados invalidos");
+        }
     }
 
-    public void deleteCarros(Long idEmpresa) {
-        carroRepository.deleteById(idEmpresa);
+    public void deleteCarros(String placa) {
+        carroRepository.deleteById(
+            carroRepository.findByPlaca(placa).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Placa/Carro não encontrado");}).getIdCarro()
+        );
     }
 
-    public CarroUpDTO updateCarro(Long idcarronv, CarroUpDTO carroDTO) {
-        EmpresaEntity empresaEntity = new EmpresaEntity();
-        CarroEntity carroEntity = carroRepository.findById(idcarronv).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Carro não encontrada!"));
-        empresaEntity.setIdEmpresa(carroDTO.getEmpresaCarro().getId());
+    public void updateCarro(String placa, CarroUpDTO carroDTO) {
+        EmpresaEntity empresaEntity = empresaRepository.findByCnpj(carroDTO.getEmpresaCarro().getCnpj()).orElseThrow(() -> {{throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa/CNPJ não encontrado");}});
+        CarroEntity carroEntity = carroRepository.findByPlaca(placa).orElseThrow(()->{throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Carro/Placa não encontrada!");});
+        empresaEntity.setIdEmpresa(empresaEntity.getIdEmpresa());
         carroEntity.setEmpresa(empresaEntity);
         carroEntity.setTipoCarro(carroDTO.getTipoCarro());
         carroEntity.setPlaca(carroDTO.getPlaca());
         carroRepository.save(carroEntity);
-        return carroDTO;
     }
 }
 

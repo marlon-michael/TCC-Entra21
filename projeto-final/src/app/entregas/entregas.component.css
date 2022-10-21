@@ -1,0 +1,19 @@
+.btn.btn-outline-dark {
+    text-align: center;
+}
+
+table.table-bordered {
+    margin-top: 10px;
+    margin-left: 50px;
+    width: 1500px;
+}
+
+.t1 {
+    font-size: 35px;
+    text-align: center;
+    
+}
+
+.t2 {
+    font-size: 22px;
+}

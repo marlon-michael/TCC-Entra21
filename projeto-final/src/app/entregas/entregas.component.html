@@ -1,0 +1,70 @@
+
+<p class="t1">Entregas</p>
+
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th class="t2" scope="col">Pedido</th>
+        <th class="t2" scope="col">Destinatario</th>
+        <th class="t2" scope="col">Endereço</th>
+        <th class="t2" scope="col">Status</th>
+        <th class="t2" scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- <tr *ngFor="let itens of itens"> -->
+        <tr>
+        <!-- <td>{{itens.localizador}}</td>
+        <td>{{itens.nomeRecebedor}}</td>
+        <td>{{itens.localEntrega}}</td>
+        <td>{{itens.status}}</td> -->
+
+        <td>eeeeee</td>
+        <td>eeeeee</td>
+        <td>eeeeee</td>
+        <td>eeeeee</td>
+        
+        <td class="t2" scope="col">
+            <button class="btn btn-outline-dark" routerLink="/entregas/eeeeee">Editar</button>
+            <!-- trocar o eeeeee para '/entregas/{{item.localizador}}' -->
+            <button (click)="onDeleteEntrega()" class="btn btn-outline-danger">Deletar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- <button type="submit" class="btn btn-outline-dark">Adicionar</button> -->
+
+  <!-- Button trigger modal -->
+<button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Adicionar
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="func" class="form-label" >Localizador</label>
+          <input type="text" class="form-control" id="func" placeholder="Localizador">
+        </div>
+        <div class="mb-3">
+          <label for="func" class="form-label" >Destinatario</label>
+          <input type="text" class="form-control" id="func" placeholder="Destinatario">
+        </div>
+        <div class="mb-3">
+          <label for="func" class="form-label" >Endereço</label>
+          <input type="text" class="form-control" id="func" placeholder="Endereço">
+        </div>
+        <div class="mb-3">
+          <label for="func" class="form-label" >Status</label>
+          <input type="text" class="form-control" id="func" placeholder="Status">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Adicionar</button>
+      </div>
+    </div>
+  </div>
+</div>
