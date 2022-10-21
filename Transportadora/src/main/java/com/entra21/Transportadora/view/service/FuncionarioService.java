@@ -39,18 +39,22 @@ public class FuncionarioService {
         EmpresaDTO dtoEmp = new EmpresaDTO();
         PessoaDTO dtoPes = new PessoaDTO();
         PessoaDTO dtoPesEmp = new PessoaDTO();
-        dto.setNome(funcionarioEntity.getNome());
-        dto.setSobrenome(funcionarioEntity.getSobrenome());
-        dto.setCpf(funcionarioEntity.getCpf());
-        dto.setTelefone(funcionarioEntity.getTelefone());
-        dtoEmp.setRazaoSocial(funcionarioEntity.getEmpresa().getRazaoSocial());
-        dtoEmp.setCnpj(funcionarioEntity.getEmpresa().getCnpj());
+
         dtoPesEmp.setNome(funcionarioEntity.getEmpresa().getGerente().getNome());
         dtoPesEmp.setSobrenome(funcionarioEntity.getEmpresa().getGerente().getSobrenome());
         dtoPesEmp.setCpf(funcionarioEntity.getEmpresa().getGerente().getCpf());
         dtoPesEmp.setTelefone(funcionarioEntity.getEmpresa().getGerente().getTelefone());
+
         dtoEmp.setGerente(dtoPesEmp);
+        dtoEmp.setRazaoSocial(funcionarioEntity.getEmpresa().getRazaoSocial());
+        dtoEmp.setCnpj(funcionarioEntity.getEmpresa().getCnpj());
+
+        dto.setNome(funcionarioEntity.getNome());
+        dto.setSobrenome(funcionarioEntity.getSobrenome());
+        dto.setCpf(funcionarioEntity.getCpf());
+        dto.setTelefone(funcionarioEntity.getTelefone());
         dto.setEmpresa(dtoEmp);
+
         if (funcionarioEntity.getSupervisor() == null) {
             return dto;
         } else {
