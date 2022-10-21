@@ -38,27 +38,28 @@ public class PessoaRestController {
     @PostMapping("/login")
     public PessoaDTO getLogin(@RequestBody LoginDTO login) {
         PessoaDTO pessoaDTO = new PessoaDTO(pessoaService.buscarLogin(login));
-        if(pessoaDTO.getCpf() == null) return pessoaDTO;
-
-        AtomicReference<Boolean> gerenteBool = new AtomicReference<>(false);
-        empresaService.getAllEmpresas().stream().map(empresa -> {
-            if(empresa.getGerente().getCpf().equals(pessoaDTO.getCpf())){
-                gerenteBool.set(true);
-                pessoaDTO.setRole("GERENTE");
-            }
-            else {
-                pessoaDTO.setRole("GARANTE");
-            }
-            return null;
-        });
-
-        if (funcionarioService.findByCpf(new PessoaDTO(pessoaService.buscarLogin(login)).getCpf()).getCpf().equals(pessoaDTO.getCpf())){
-            pessoaDTO.setRole("FUNCIONARIO");
-            return pessoaDTO;
-        }
-
-        return pessoaDTO;
     }
+//        if (pessoaDTO.getCpf() == null) return pessoaDTO;
+//    }
+//        AtomicReference<Boolean> gerenteBool = new AtomicReference<>(false);
+//        empresaService.getAllEmpresas().stream().map(empresa -> {
+//            if(empresa.getGerente().getCpf().equals(pessoaDTO.getCpf())){
+//                gerenteBool.set(true);
+//                pessoaDTO.setRole("GERENTE");
+//            }
+//            else {
+//                pessoaDTO.setRole("GARANTE");
+//            }
+//            return null;
+//        });
+//
+//        if (funcionarioService.findByCpf(new PessoaDTO(pessoaService.buscarLogin(login)).getCpf()).getCpf().equals(pessoaDTO.getCpf())){
+//            pessoaDTO.setRole("FUNCIONARIO");
+//            return pessoaDTO;
+//        }
+//
+//        return pessoaDTO;
+//    }
 
     @GetMapping("/{cpf}")
     public PessoaDTO getAllByCpf(@PathVariable(name = "cpf") String cpf) {

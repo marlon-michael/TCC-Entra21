@@ -15,7 +15,8 @@
         <th scope="col">Destinatario</th>
         <th scope="col">Endereço</th>
         <th scope="col">Status</th>
-        
+        <th scope="col">CPF</th>
+        <th scope="col" ></th>
       </tr>
     </thead>
     <tbody>
@@ -28,6 +29,13 @@
         <td>{{item.status}}</td>
         <td>{{item.pessoaItem.cpf}}</td>
         <td >Editar e Deletar</td>
+
+        <td [ngStyle]="{'visibility': (item.localizador != null) ? 'hidden' : 'visible'}" >
+          <button class="btn btn-outline-dark" >Editar</button>
+            
+            <button  class="btn btn-outline-danger">Deletar</button>
+        </td>
+
 
       </tr>
     </tbody>

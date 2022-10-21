@@ -23,6 +23,7 @@ import { EntregasItemDetalhesComponent } from './entregas-item-detalhes/entregas
 import { ItemComponent } from './item/item.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,8 +41,6 @@ import { ItemComponent } from './item/item.component';
     EntregasComponent,
     EntregasItemDetalhesComponent,
     ItemComponent
-    // ListaComponent
-
   ],
   imports: [
     BrowserModule,

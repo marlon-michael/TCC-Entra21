@@ -4,11 +4,12 @@
 <table class="table table-bordered">
     <thead>
       <tr>
-        <th class="t2" scope="col">Pedido</th>
-        <th class="t2" scope="col">Destinatario</th>
+        <th class="t2" scope="col" style="width: 12%;">Pedido</th>
+        <th class="t2" scope="col" style="width: 20%;">Nome do Entregador</th>
+        <th class="t2" scope="col" style="width: 15%;">Tipo de Entrega</th>
         <th class="t2" scope="col">Endereço</th>
         <th class="t2" scope="col">Status</th>
-        <th class="t2" scope="col"></th>
+        <th class="t2" scope="col" style="width: 12%;"></th>
       </tr>
     </thead>
     <tbody>
@@ -19,6 +20,7 @@
         <td>{{itens.localEntrega}}</td>
         <td>{{itens.status}}</td> -->
 
+        <td>eeeeee</td>
         <td>eeeeee</td>
         <td>eeeeee</td>
         <td>eeeeee</td>
@@ -45,12 +47,16 @@
     <div class="modal-content">
       <div class="modal-body">
         <div class="mb-3">
-          <label for="func" class="form-label" >Localizador</label>
+          <label for="func" class="form-label" >Pedido</label>
           <input type="text" class="form-control" id="func" placeholder="Localizador">
         </div>
         <div class="mb-3">
-          <label for="func" class="form-label" >Destinatario</label>
-          <input type="text" class="form-control" id="func" placeholder="Destinatario">
+          <label for="func" class="form-label" >Nome do Entregador</label>
+          <input type="text" class="form-control" id="func" placeholder="Nome do Entregador">
+        </div>
+        <div class="mb-3">
+          <label for="func" class="form-label" >Tipo de Entrega</label>
+          <input type="text" class="form-control" id="func" placeholder="Tipo de Entrega">
         </div>
         <div class="mb-3">
           <label for="func" class="form-label" >Endereço</label>

@@ -4,7 +4,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Item } from 'types/types';
 import { ItemRestController } from '../Rest/itens.rest';
+
 // import { ItemServiceComponent } from '../services/item-service/item-service.component';
+
 
 @Component({
   selector: 'app-item',
@@ -27,6 +29,7 @@ error = '';
 succes = false;
 
   constructor(
+
     private itemRestController: ItemRestController,
     private http: HttpClient, 
     private formBuilder: FormBuilder,
@@ -46,6 +49,7 @@ succes = false;
         return;
     }
     console.log(this.itemForm.value);
+
     this.http.get<any>(`/pessoa/${this.itemForm.get("pessoaItem")?.value}`).subscribe(result => {
       let item = this.itemForm.value;
       item['pessoaItem'] = {"cpf": result.cpf}
@@ -66,5 +70,6 @@ succes = false;
       return null;
     }
     return this.http.get<Item[]>(`/item/`+localizador);
+
   }
 }
