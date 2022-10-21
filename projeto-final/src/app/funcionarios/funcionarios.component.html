@@ -1,19 +1,33 @@
+<form  [formGroup]="form" >
 <p class="texto1">Funcionários</p>
 
-
+<form class="d-flex" role="search">
+  <input class="form-control me-2" type="search" placeholder="Buscar Funcionários" aria-label="Search">
+  <button class="btn " type="submit" (click)="onSearch()" >Buscar</button>
+</form>
 <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
 
 <table class="table table-bordered">
+  <thead>
+    <tr>
+    <th class="left" >Nome</th>
+    <th class="meio">Sobrenome</th>
+    <th class="meio">Cpf</th>
+    <th class="right">Telefone</th>
+  </tr>
+  </thead>
   <tbody>
-    <tr *ngFor="let funcionarios of funcionarios">
-      <td class="no">{{funcionarios.nome + " " + funcionarios.sobrenome}}</td>
-      <td>
-        <input  class="btn btn-outline-danger" type="submit" value="Deletar">
-      </td>
+    <tr *ngFor="let funcionarios of funcionarios" class="linhas">
+       <!-- <div *ngIf="this.funcionarios | async as funcionarios; else loading"></div> Resolver -->
+      <!-- <th class="no"> -->
+        <td> {{funcionarios.nome}}</td> 
+        <td>{{funcionarios.sobrenome}}</td>
+        <td>{{funcionarios.cpf}}</td>
+        <td>{{funcionarios.telefone}}</td>
     </tr>
+  <button type="button" routerLink="cadastro" class="btn">Cadastrar</button>
   </tbody>
-</table>
+</table> 
+</form>
 
-
-<input  class="btn btn-outline-dark" type="submit" value="Adicionar">
-
+ 

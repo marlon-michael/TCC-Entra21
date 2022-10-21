@@ -1,6 +1,6 @@
 <div class="cadastro">
     <form [formGroup]="cadastroForm" (ngSubmit)="cadastrar()">
-  <div class="container-fluid">
+  <!-- <div class="container-fluid"> -->
     <div class="login-html">
         <div class="main-login">
             <div class="sing-in-htm">
@@ -10,7 +10,8 @@
                         <div class="textfield">
                             <label for="usuario" class="label">Nome: </label>
                             <input id="usuario" type="text" class="input"  placeholder="Nome" formControlName="nome">
-                            <div *ngIf="submitted && f['nome'].errors" class="invalid-feedback">
+                            <div *ngIf="submitted && f['nome'].errors" class="invalid-feedback"  minlength="3">
+
                                 <div *ngIf="f['nome'].errors['required']">nome is required</div>
                             </div>
                         </div>
@@ -54,6 +55,7 @@
                             <input type="checkbox" name="Empresa" id="empresa" class="input">
                         </div> -->
                         <!-- routerLink="nav" -->
+                        <div id="liveAlertPlaceholder"></div>
                         <input type="submit" [disabled]="loading" class="btn-login"  value="Sing up"  [disabled]="!cadastroForm.valid">
                         <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                             <!-- <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div> -->
@@ -62,6 +64,6 @@
             </div>
         </div>
     </div>
-  </div>
+  <!-- </div> -->
 </form>
 </div>

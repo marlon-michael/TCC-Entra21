@@ -18,7 +18,8 @@
               <a class="nav-link" routerLink="" routerLinkActive="active-link" >Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="login" routerLinkActive="active-link" *ngIf="user == null">Login</a>
+              <!-- || user.role == 'GERENTE'" -->
+              <a class="nav-link" routerLink="login" routerLinkActive="active-link" *ngIf="user == null ">Login</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" routerLink="about" routerLinkActive="active-link">About</a>
@@ -31,7 +32,9 @@
             <span class="navbar-toggler-icon" style="color: white;"></span>
           </button>
         </div>
-    </div></nav>
+        </div>
+        
+    </nav>
                 
                 
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
@@ -47,14 +50,14 @@
                     <a id routerLink="localizador" routerLinkActive="active-link" class="nav-link-a" data-bs-dismiss="offcanvas" *ngIf="user != null ">Meus Itens</a>
                   </li>
                   <li class="nav-item">
-                    <a id routerLink="entregas" routerLinkActive="active-link" class="nav-link-a" data-bs-dismiss="offcanvas" *ngIf="user != null">Entregas</a>
+                    <a id routerLink="entregas" routerLinkActive="active-link" class="nav-link-a" data-bs-dismiss="offcanvas" *ngIf="user != null ">Entregas</a>
                   </li>
                   <li class="nav-item">
-                    <a  class="nav-link" routerLink="config" routerLinkActive="active-link" class="nav-link-a" data-bs-dismiss="offcanvas" *ngIf="user != null">Configurações</a>
+                    <a  class="nav-link" routerLink="config" routerLinkActive="active-link" class="nav-link-a" data-bs-dismiss="offcanvas" *ngIf="user != null ">Configurações</a>
                   <!-- Alterar perfil está marcado com "configurações" -->
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" routerLink="funcionarios" routerLinkActive="active-link" class="nav-link-a" data-bs-dismiss="offcanvas" *ngIf="user != null ">Funcionários</a>
+                    <a class="nav-link" routerLink="funcionarios" routerLinkActive="active-link" class="nav-link-a" data-bs-dismiss="offcanvas" *ngIf="user != null">Funcionários</a>
                   </li>
                   <li class="nav-item">
                     <a   class="nav-link" routerLink="ajuda" routerLinkActive="active-link" class="nav-link-a" data-bs-dismiss="offcanvas" *ngIf="user != null">Ajuda</a>

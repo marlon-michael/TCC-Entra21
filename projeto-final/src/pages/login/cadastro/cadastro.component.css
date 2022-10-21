@@ -16,24 +16,6 @@ body *{
 	justify-content: center;
 	align-items: center;
 }
-/*  
-.left-login{
-width: 50vw;
-height: 100vh;
-display: flex;
-justify-content: center;
-align-items: center;
-flex-direction: column;
-}
-
-.left-login > h1{
-	font-size: 3vh;
-	color: #77ffc0;
-}
-
-.left-login-image{
-	width: 35vw;
-} */
 
 .right-login{
 width: 60vw;
@@ -67,7 +49,10 @@ justify-content: space-between;
     padding-left: 255px;
     text-align: center;
 	font-size:42px;
-    margin-right: 200px;
+    /* margin-right: 200px; */
+    margin: auto;
+    align-items: center;
+    justify-content: center;
 	/* margin-right:15px; */
 	/* padding-bottom:5px; */
 	/* margin:0 15px 10px 0; */

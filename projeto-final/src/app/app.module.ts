@@ -1,17 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-
-
-import { NavComponent } from './nav/nav.component';
 import { AjudaComponent } from './ajuda/ajuda.component';
-
 import { LocalizadorComponent } from './logado/localizador/localizador.component';
 import { ConfiguracoesComponent } from 'src/app/logado/configuracoes/configuracoes.component';
-
 import { FooterComponent } from 'src/app/sharepage/footer/footer.component';
 import { ContactComponent } from '../pages/contact/contact.component';
 import { HomeComponent } from 'src/pages/home/home.component';
@@ -27,7 +20,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { EntregasComponent } from './entregas/entregas.component';
 import { EntregasItemDetalhesComponent } from './entregas-item-detalhes/entregas-item-detalhes.component';
-
+import { ItemComponent } from './item/item.component';
+import { LocalizadorEditarComponent } from './localizador-editar/localizador-editar.component';
 
 
 @NgModule({
@@ -42,12 +36,14 @@ import { EntregasItemDetalhesComponent } from './entregas-item-detalhes/entregas
     LocalizadorComponent,
     ConfiguracoesComponent,
     CadastroComponent,
-    NavComponent,
     AjudaComponent,
     FuncionariosComponent,
     EntregasComponent,
     EntregasItemDetalhesComponent,
+    ItemComponent,
+    LocalizadorEditarComponent
     // ListaComponent
+
   ],
   imports: [
     BrowserModule,
