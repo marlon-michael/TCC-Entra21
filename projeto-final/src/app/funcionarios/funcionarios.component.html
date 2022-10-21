@@ -10,16 +10,16 @@
 <table class="table table-bordered">
   <thead>
     <tr>
-    <td class="left" >Nome</td>
-    <td class="meio">Sobrenome</td>
-    <td class="meio">Cpf</td>
-    <td class="right">Telefone</td>
+    <th class="left" >Nome</th>
+    <th class="meio">Sobrenome</th>
+    <th class="meio">Cpf</th>
+    <th class="right">Telefone</th>
   </tr>
   </thead>
   <tbody>
     <tr *ngFor="let funcionarios of funcionarios" class="linhas">
        <!-- <div *ngIf="this.funcionarios | async as funcionarios; else loading"></div> Resolver -->
-      <!-- <td class="no"> -->
+      <!-- <th class="no"> -->
         <td> {{funcionarios.nome}}</td> 
         <td>{{funcionarios.sobrenome}}</td>
         <td>{{funcionarios.cpf}}</td>

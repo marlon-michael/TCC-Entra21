@@ -1,5 +1,5 @@
 <p>APP WORKS VAI CARAI</p>
-<!-- <form class="d-flex" role="search" [formGroup]="itemForm" (ngSubmit)="AddItem()"
+<form class="d-flex" role="search" [formGroup]="itemForm" (ngSubmit)="AddItem()">
 
 <p class="t1">Meus Itens</p>
 
@@ -16,8 +16,8 @@
     </thead>
     <tbody>
 
-       <tr *ngFor="let itens of itens"> 
-        <tr *ngFor="let item of item ">
+       <!-- <tr *ngFor="let itens of itens">  -->
+        <!-- <tr *ngFor="let item of item "> -->
         <td>
             <label for="localiz" class="label">Localizador </label>
             <input type="text" id="localiz"  placeholder="Sobrenome" formControlName="localizador"></td>
@@ -29,7 +29,7 @@
         
         <td >Editar e Deletar</td>
 
-      </tr>
+    
     </tbody>
   </table>
-  <input type="submit" class="btn btn-outline-dark" value="Adicionar" > -->
+  <input type="submit" class="btn btn-outline-dark" value="Adicionar" >

@@ -22,6 +22,7 @@ import { ItemComponent } from './item/item.component';
 
 const routes: Routes = [
 {path: '', component:HomeComponent},
+{path: 'additem', component: ItemComponent},
 {path: 'login', component:LoginComponent},
 {path: 'about',component:AboutComponent},
 {path: 'contact',component:ContactComponent},
@@ -30,11 +31,11 @@ const routes: Routes = [
 {path: 'cadastro', component: CadastroComponent},
 {path: 'ajuda', component: AjudaComponent},
 {path: 'funcionarios', component: FuncionariosComponent},
-{path: '**', redirectTo: '/'},
 {path: 'edit', component: FuncionariosComponent},
 {path: 'entregas', component: EntregasComponent},
 {path: 'entregas/:localizador', component: EntregasItemDetalhesComponent},
-{path: 'additem', component: ItemComponent}
+
+{path: '**', redirectTo: '/'},
 ];
 // , canActivate: [AuthGuard] se tiver logado
 

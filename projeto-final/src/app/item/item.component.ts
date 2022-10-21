@@ -13,7 +13,6 @@ import { ItemServiceComponent } from '../services/item-service/item-service.comp
 })
 export class ItemComponent implements OnInit {
 
-  item: Item[] = [];
   itemForm: FormGroup = this.formBuilder.group({
     localizador: ['', Validators.required],
     status:  ['', Validators.required],
