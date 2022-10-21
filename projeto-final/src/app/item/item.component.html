@@ -1,35 +1,40 @@
-<p>APP WORKS VAI CARAI</p>
+
 <form class="d-flex" role="search" [formGroup]="itemForm" (ngSubmit)="AddItem()">
 
-<p class="t1">Meus Itens</p>
+<!-- <p class="t1">Meus Itens</p> -->
+<h3>Meus Itens</h3>
 
 
 <table class="table table-bordered">
     <thead>
-      <tr>
-        <th scope="col">Pedido</th>
-        <th scope="col">Destinatario</th>
-        <th scope="col">Endereço</th>
-        <th scope="col">Status</th>
+     
+        <!-- <td scope="col">Pedido</td>
+        <td scope="col">Destinatario</td>
+        <td scope="col">Endereço</td>
+        <td scope="col">Status</td> -->
         
-      </tr>
+      
     </thead>
     <tbody>
 
        <!-- <tr *ngFor="let itens of itens">  -->
         <!-- <tr *ngFor="let item of item "> -->
-        <td>
-            <label for="localiz" class="label">Localizador </label>
-            <input type="text" id="localiz"  placeholder="Sobrenome" formControlName="localizador"></td>
-        <td><input type="text">Status</td>
-        <td><input type="text">Nome do Recebedor</td>
-        <td><input type="text">Local Entrega</td>
-        <td><input type="text">Pessoa Item</td>
         
-        
-        <td >Editar e Deletar</td>
+            <td><label for="localiz" class="label">Localizador </label>
+            <input type="text" id="localiz"  placeholder="Localizador" formControlName="localizador"></td>
 
-    
+            <td> <label for="status" class="label">Status </label>
+            <input type="text" id="localiz"  placeholder="status" formControlName="status"></td>
+
+            <td> <label for="nomeRecebedor" class="label">Nome do Recebedor </label>
+            <input type="text" id="nomeRecebedor"  placeholder="Nome do cliente" formControlName="nomeRecebedor"></td>
+
+            <td> <label for="localEntrega" class="label">Local Entrega </label>
+            <input type="text" id="localEntrega"  placeholder="Local da entrega" formControlName="localEntrega"></td>
+
+            <td><label for="pessoaItem" class="label">Pessoa Item </label>
+            <input type="text" id="pessoaItem"  placeholder="Pessoa" formControlName="pessoaItem"></td>
+        <td >Editar e Deletar</td> 
     </tbody>
   </table>
   <input type="submit" class="btn btn-outline-dark" value="Adicionar" >

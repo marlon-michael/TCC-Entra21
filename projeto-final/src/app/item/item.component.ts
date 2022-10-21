@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Item } from 'types/types';
 import { ItemRestController } from '../Rest/itens.rest';
-import { ItemServiceComponent } from '../services/item-service/item-service.component';
+// import { ItemServiceComponent } from '../services/item-service/item-service.component';
 
 @Component({
   selector: 'app-item',
@@ -26,7 +26,7 @@ returnUrl: string = this.route.snapshot.queryParams['returnUrl'];
 error = '';
 succes = false;
 
-  constructor(private itemService: ItemServiceComponent,
+  constructor(
     private itemRestController: ItemRestController,
     private http: HttpClient, 
     private formBuilder: FormBuilder,
@@ -46,13 +46,25 @@ succes = false;
         return;
     }
     console.log(this.itemForm.value);
-    this.http.post<any>('/item/additem', this.itemForm.value)
+    this.http.get<any>(`/pessoa/${this.itemForm.get("pessoaItem")?.value}`).subscribe(result => {
+      let item = this.itemForm.value;
+      item['pessoaItem'] = {"cpf": result.cpf}
+      this.http.post<any>('/item/additem', item)
       .subscribe({
         next: (response) => {
           console.log(response);
-          this.router.navigateByUrl('/localizador');
+          this.router.navigateByUrl('/itens');
         },
         error: (error) => console.log(error),
       });
+    });
+  }
+
+  
+  getByLocalizador(localizador: string) {
+    if (localizador.length < 1) {
+      return null;
+    }
+    return this.http.get<Item[]>(`/item/`+localizador);
   }
 }

@@ -38,7 +38,7 @@ export class ItemRestController {
 //                 this.userSubject.next(item);
 //                 return item;
 //             }));
-localiza( localizador: string | null,status: string | null,nomeRecebedor: string | null,localEntrega: string | null, pessoaItem: Pessoa) {
+localiza( localizador: string | null,status: string | null,nomeRecebedor: string | null,localEntrega: string | null, pessoaItem: Pessoa["cpf"]) {
     return this.http.post<any>(`/item/additem`, { localizador,status, nomeRecebedor, localEntrega, pessoaItem })
             .pipe(map((localizador: Itens | null) => {
               localStorage.setItem('user', JSON.stringify(localizador));

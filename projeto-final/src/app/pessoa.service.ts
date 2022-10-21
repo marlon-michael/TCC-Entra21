@@ -16,4 +16,3 @@ export class PessoaService {
 // edit = (funcionarioCPF: string) => {
 //   this.editingHero = this.funcionario.find((h: Funcionarios) => h.cpf! == funcionarioCPF!);
 //   this.inserting = true;
-}
