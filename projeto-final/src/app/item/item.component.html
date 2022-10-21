@@ -1,3 +1,8 @@
+<<<<<<< Updated upstream
+=======
+<p>APP WORKS VAI CARAI</p>
+<form class="d-flex" role="search" [formGroup]="itemForm" (ngSubmit)="AddItem()">
+>>>>>>> Stashed changes
 
 <form class="d-flex" role="search" [formGroup]="itemForm" (ngSubmit)="AddItem()">
 
@@ -19,6 +24,7 @@
 
        <!-- <tr *ngFor="let itens of itens">  -->
         <!-- <tr *ngFor="let item of item "> -->
+
         
             <td><label for="localiz" class="label">Localizador </label>
             <input type="text" id="localiz"  placeholder="Localizador" formControlName="localizador"></td>
@@ -32,9 +38,11 @@
             <td> <label for="localEntrega" class="label">Local Entrega </label>
             <input type="text" id="localEntrega"  placeholder="Local da entrega" formControlName="localEntrega"></td>
 
+
             <td><label for="pessoaItem" class="label">Pessoa Item </label>
-            <input type="text" id="pessoaItem"  placeholder="Pessoa" formControlName="pessoaItem"></td>
+            <input type="text" id="pessoaItem"  placeholder="CPF do cliente" formControlName="pessoaItem"></td>
         <td >Editar e Deletar</td> 
+
     </tbody>
   </table>
   <input type="submit" class="btn btn-outline-dark" value="Adicionar" >
