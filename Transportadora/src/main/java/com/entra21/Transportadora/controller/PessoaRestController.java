@@ -5,6 +5,8 @@ import com.entra21.Transportadora.model.dto.Pessoa.LoginDTO;
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaAddDTO;
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaUpDTO;
+import com.entra21.Transportadora.view.repository.EmpresaRepository;
+import com.entra21.Transportadora.view.repository.FuncionarioRepository;
 import com.entra21.Transportadora.view.service.EmpresaService;
 import com.entra21.Transportadora.view.service.FuncionarioService;
 import com.entra21.Transportadora.view.service.PessoaService;
@@ -15,6 +17,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/pessoa")
@@ -24,10 +27,10 @@ public class PessoaRestController {
     private PessoaService pessoaService;
 
     @Autowired
-    private FuncionarioService funcionarioService;
+    private FuncionarioRepository funcionarioService;
 
     @Autowired
-    private EmpresaService empresaService;
+    private EmpresaRepository empresaService;
     
 
     @GetMapping
@@ -37,7 +40,29 @@ public class PessoaRestController {
 
     @PostMapping("/login")
     public PessoaDTO getLogin(@RequestBody LoginDTO login) {
+//        return new PessoaDTO(pessoaService.buscarLogin(login));
+
         PessoaDTO pessoaDTO = new PessoaDTO(pessoaService.buscarLogin(login));
+
+        List<Object> pessoaDTOS = empresaService.findAll().stream().map(empresa -> {
+            if(empresa.getGerente().getCpf().equals(pessoaDTO.getCpf())){
+                pessoaDTO.setRole("GERENTE");
+            }
+            return null;
+        }).collect(Collectors.toList());
+
+        if (pessoaDTO.getRole().equals("GERENTE")){
+            return pessoaDTO;
+        }
+        else if(funcionarioService.findByCpf(pessoaDTO.getCpf()).isPresent()){
+            pessoaDTO.setRole("FUNCIONARIO");
+            return pessoaDTO;
+        }
+        else {
+            pessoaDTO.setRole("USER");
+            return pessoaDTO;
+        }
+
     }
 //        if (pessoaDTO.getCpf() == null) return pessoaDTO;
 //    }
