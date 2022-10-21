@@ -66,7 +66,7 @@
                     <a   class="nav-link" routerLink="ajuda" routerLinkActive="active-link" class="nav-link-a" data-bs-dismiss="offcanvas" *ngIf="user != null && (user.role == 'FUNCIONARIO' || user.role == 'GERENTE')">Teste</a>
                   </li> -->
                   <li class="nav-item" *ngIf="user != null">
-                    <a class="nav-link-a" href="#" (click)="logout()">Logout</a>
+                    <a class="nav-link-a" href="#" onClick="window.location.reload()" (click)="logout()">Logout</a>
                   </li>
                 </ul>
               </div>
