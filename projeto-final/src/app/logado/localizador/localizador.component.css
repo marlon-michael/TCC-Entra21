@@ -8,8 +8,14 @@
 }
 
 .btn.btn-outline-dark {
-    text-align: center;
+    margin-right: 10px;
+margin-left: 14px;
 }
+
+.btn.btn-outline-secondary {
+    margin-left: 750px;
+}
+
 
 table.table-bordered {
     margin-top: 10px;

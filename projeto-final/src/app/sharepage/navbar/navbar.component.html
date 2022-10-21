@@ -56,6 +56,11 @@
               <a class="nav-link" href="#" (click)="logout()">Logout</a>
             </li>
           </ul>
+
+          <button class="navbar-toggler-always nav" *ngIf="user != null" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+            <span class="navbar-toggler-icon" style="color: white;"></span>
+          </button>
+
         </div>
 
         </div>
