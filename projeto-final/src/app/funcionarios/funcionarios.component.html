@@ -2,34 +2,32 @@
 <p class="texto1">Funcionários</p>
 
 <form class="d-flex" role="search">
-  <input class="form-control me-2" type="search" placeholder="Localizador" aria-label="Search">
-  <button class="btn btn-outline-dark" type="submit" (click)="onSearch()" placeholder="Buscar Funcionários">Buscar</button>
+  <input class="form-control me-2" type="search" placeholder="Buscar Funcionários" aria-label="Search">
+  <button class="btn " type="submit" (click)="onSearch()" >Buscar</button>
 </form>
 <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
 
 <table class="table table-bordered">
   <thead>
     <tr>
-    <td>
-    <div class="head">Nome</div>
-    <div class="head">Sobrenome</div>
-    <div class="head">Cpf</div>
-    </td>
+    <td class="left" >Nome</td>
+    <td class="meio">Sobrenome</td>
+    <td class="meio">Cpf</td>
+    <td class="right">Telefone</td>
   </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let funcionarios of funcionarios">
+    <tr *ngFor="let funcionarios of funcionarios" class="linhas">
        <!-- <div *ngIf="this.funcionarios | async as funcionarios; else loading"></div> Resolver -->
-      <td class="no">
-        <td>{{funcionarios.nome}}</td> 
+      <!-- <td class="no"> -->
+        <td> {{funcionarios.nome}}</td> 
         <td>{{funcionarios.sobrenome}}</td>
         <td>{{funcionarios.cpf}}</td>
-      <!-- </td> -->
+        <td>{{funcionarios.telefone}}</td>
     </tr>
+  <button type="button" routerLink="cadastro" class="btn">Cadastrar</button>
   </tbody>
 </table> 
-<!-- 
-
-
 </form>
+
  

@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+
 import { AboutComponent } from 'src/pages/about/about.component';
 import { ContactComponent } from 'src/pages/contact/contact.component';
 import { HomeComponent } from 'src/pages/home/home.component';
@@ -9,8 +11,13 @@ import { LoginComponent } from 'src/pages/login/login.component';
 import { CadastroComponent } from 'src/pages/login/cadastro/cadastro.component';
 import { AjudaComponent } from './ajuda/ajuda.component';
 import { FuncionariosComponent } from './funcionarios/funcionarios.component';
-import { NavComponent } from './nav/nav.component';
-import { HttpClientModule } from '@angular/common/http';
+
+
+
+import { EntregasComponent } from './entregas/entregas.component';
+import { EntregasItemDetalhesComponent } from './entregas-item-detalhes/entregas-item-detalhes.component';
+import { ItemComponent } from './item/item.component';
+
 
 
 const routes: Routes = [
@@ -23,9 +30,11 @@ const routes: Routes = [
 {path: 'cadastro', component: CadastroComponent},
 {path: 'ajuda', component: AjudaComponent},
 {path: 'funcionarios', component: FuncionariosComponent},
-{path: 'nav',component: NavComponent},
 {path: '**', redirectTo: '/'},
-{path: 'edit', component: FuncionariosComponent}
+{path: 'edit', component: FuncionariosComponent},
+{path: 'entregas', component: EntregasComponent},
+{path: 'entregas/:localizador', component: EntregasItemDetalhesComponent},
+{path: 'additem', component: ItemComponent}
 ];
 // , canActivate: [AuthGuard] se tiver logado
 

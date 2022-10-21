@@ -1,8 +1,12 @@
 
-<form class="d-flex" role="search">
+
+<form class="d-flex" role="search" >
     <input class="form-control me-2" type="search" placeholder="Localizador" aria-label="Search">
     <button class="btn btn-outline-dark" type="submit" (click)="onSearch()">Buscar</button>
   </form>
+
+<p class="t1">Meus Itens</p>
+
 
 <table class="table table-bordered">
     <thead>
@@ -11,10 +15,11 @@
         <th scope="col">Destinatario</th>
         <th scope="col">Endereço</th>
         <th scope="col">Status</th>
-        <th scope="col"></th>
+        
       </tr>
     </thead>
     <tbody>
+
       <!-- <tr *ngFor="let itens of itens"> -->
         <tr *ngFor="let item of itens ">
         <td>{{item.localizador}}</td>
@@ -23,7 +28,10 @@
         <td>{{item.status}}</td>
         <td>{{item.pessoaItem.cpf}}</td>
         <td >Editar e Deletar</td>
+
       </tr>
     </tbody>
   </table>
-  <button type="submit" class="btn btn-outline-dark">Adicionar</button>
+  <button type="submit" class="btn btn-outline-dark" routerLink="additem">Adicionar</button>
+
+  <!-- Button trigger modal -->

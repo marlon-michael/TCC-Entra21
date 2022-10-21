@@ -1,18 +1,30 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Itens, ItensPessoas} from 'types/types';
-import { map, pipe } from 'rxjs';
+import { Itens, ItensPessoas, Pessoa} from 'types/types';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 
-@Injectable({ providedIn: 'root' })
+
+@Injectable({ 
+  providedIn: 'root' 
+})
 export class ItemRestController {
-    constructor(private http: HttpClient) { }
+  private userSubject: BehaviorSubject<Itens | null>;
+  public localizador: Observable<Itens | null>;
+
+    constructor(private http: HttpClient) {
+      this.userSubject = new BehaviorSubject<Itens | null>(localStorage.getItem( 'user') != null ? JSON.parse( localStorage.getItem('user')!): null);
+      this.localizador = this.userSubject.asObservable();
+     }
 
     getAll() {
         return this.http.get<Itens[]>(`/item`);
     }
+
     getbycpf() {
         return this.http.get<ItensPessoas[]>(`/item/pessoa/{cpf}`);
     }
+
+  
 
     // getAll() {
     //     return this.http.get<ItensPessos>(`/item"/pessoa/{cpf}"`)
@@ -26,18 +38,15 @@ export class ItemRestController {
 //                 this.userSubject.next(item);
 //                 return item;
 //             }));
-localizador( localizador: string,status: string,nomeRecebedor: string,localEntrega: string) {
-       this.http.post<any>(`/item/additem`, { localizador,status, nomeRecebedor, localEntrega })
-            .subscribe(
-                (resultado: any) => {
-                console.log(resultado)
-              },
-                (erro: { status: number; }) => {
-                if(erro.status == 400) {
-                  console.log(erro);
-                }
-              }
-            );
+localiza( localizador: string | null,status: string | null,nomeRecebedor: string | null,localEntrega: string | null, pessoaItem: Pessoa) {
+    return this.http.post<any>(`/item/additem`, { localizador,status, nomeRecebedor, localEntrega, pessoaItem })
+            .pipe(map((localizador: Itens | null) => {
+              localStorage.setItem('user', JSON.stringify(localizador));
+              this.userSubject.next(localizador);
+              return localizador;
+
+          }));
+        }
     
 }
 
@@ -52,7 +61,7 @@ localizador( localizador: string,status: string,nomeRecebedor: string,localEntre
     //             }
     //           }
     //         );
-}
+
 
 
 function subscribe(arg0: (resultado: any) => void, arg1: (erro: { status: number; }) => void) {
@@ -61,3 +70,4 @@ function subscribe(arg0: (resultado: any) => void, arg1: (erro: { status: number
 // function subscribe(arg0: (resultado: any) => void, arg1: (erro: { status: number; }) => void) {
 //         throw new Error('Function not implemented.');
 //     }
+

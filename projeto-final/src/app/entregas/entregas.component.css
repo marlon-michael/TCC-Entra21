@@ -1,4 +1,3 @@
-
 .btn.btn-outline-dark {
     text-align: center;
 }
@@ -13,4 +12,8 @@ table.table-bordered {
     font-size: 35px;
     text-align: center;
     
+}
+
+.t2 {
+    font-size: 22px;
 }

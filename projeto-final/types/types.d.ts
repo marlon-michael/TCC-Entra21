@@ -26,7 +26,8 @@ export type Funcionarios = {
     // filter(arg0: (h: Funcionarios) => boolean): Funcionarios;
     nome: string,
     sobrenome: string,
-    cpf: string
+    cpf: string,
+    telefone: string
 }
 
 export type Itens = {
@@ -35,6 +36,12 @@ export type Itens = {
     nomeRecebedor: string,
     localEntrega: string,
     pessoaItem:  Pessoa;
+}
+export type Item = {
+    localizador: string,
+    status: string,
+    nomeRecebedor: string,
+    localEntrega: string,
 }
 
 export type ItensPessoas = {
