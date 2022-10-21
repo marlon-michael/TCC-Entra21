@@ -100,7 +100,6 @@ public class PessoaService implements UserDetailsService{
         pessoaRepository.save(pessoa);
     }
 
-
     public PessoaEntity buscarLogin(LoginDTO login) {
         PessoaEntity e = pessoaRepository.findByLogin(login.getUsername());
         if (e != null && e.getSenha().equals(login.getPassword())) {
