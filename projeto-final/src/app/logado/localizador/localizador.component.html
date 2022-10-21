@@ -11,12 +11,12 @@
 <table class="table table-bordered">
     <thead>
       <tr>
-        <th scope="col">Pedido</th>
-        <th scope="col">Destinatario</th>
-        <th scope="col">Endereço</th>
-        <th scope="col">Status</th>
-        <th scope="col">CPF</th>
-        <th scope="col" ></th>
+        <th scope="col" style="width: 8%;">Pedido</th>
+        <th scope="col" style="width: 15%;">Destinatario</th>
+        <th scope="col" >Endereço</th>
+        <th scope="col" style="width: 20%;">Status</th>
+        <th scope="col" style="width: 16%;">CPF</th>
+        <th scope="col" style="width: 14%;"></th>
       </tr>
     </thead>
     <tbody>
@@ -29,7 +29,40 @@
         <td>{{item.status}}</td>
         <td>{{item.pessoaItem.cpf}}</td>
         <td [ngStyle]="{'visibility': (item.localizador != null) ? 'hidden' : 'visible'}" >
-          <button class="btn btn-outline-dark" >Editar</button>
+          <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Editar
+          </button>
+          
+          <!-- Modal -->
+          <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <div class="mb-3">
+                    <label for="func" class="form-label" >Destinatario</label>
+                    <input type="text" class="form-control" id="func" placeholder="Destinatario antigo">
+                  </div>
+                  <div class="mb-3">
+                    <label for="func" class="form-label" >Endereço</label>
+                    <input type="text" class="form-control" id="func" placeholder="Endereço antigo">
+                  </div>
+                  <div class="mb-3">
+                    <label for="func" class="form-label" >Status</label>
+                    <input type="text" class="form-control" id="func" placeholder="Status antigo">
+                  </div>
+                  <div class="mb-3">
+                    <label for="func" class="form-label" >CPF</label>
+                    <input type="text" class="form-control"  minlength="11" maxlength="11" size="11" id="func" placeholder="CPF antigo">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                  <button type="submit" class="btn btn-primary">Editar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
             
             <button  class="btn btn-outline-danger">Deletar</button>
         </td>
@@ -37,6 +70,6 @@
       </tr>
     </tbody>
   </table>
-  <button type="submit" class="btn btn-outline-dark" routerLink="/additem">Adicionar</button>
+  <button type="submit" class="btn btn-outline-secondary" routerLink="/additem">Adicionar</button>
 
   <!-- Button trigger modal -->
