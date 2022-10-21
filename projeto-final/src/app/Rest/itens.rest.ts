@@ -9,4 +9,5 @@ export class ItemRestController {
     getAll() {
         return this.http.get<Itens[]>(`/item`);
     }
+    
 }

@@ -26,6 +26,11 @@ public class FuncionarioRestController {
       return funcionarioService.getAllFuncionariByEmpresa(cnpj);
    }
 
+   @GetMapping("/{cpf}")
+   public FuncionarioDTO getByCPF(@PathVariable(name = "cpf")String cpf){
+      return funcionarioService.findByCpf(cpf);
+   }
+
    @PostMapping
    public void addFuncionario(@RequestBody FuncionarioAddDTO funcionarioPayLoadDTO){
       funcionarioService.saveFuncionario(funcionarioPayLoadDTO);

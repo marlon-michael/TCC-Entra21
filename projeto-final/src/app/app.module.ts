@@ -25,6 +25,9 @@ import { CadastroComponent } from 'src/pages/login/cadastro/cadastro.component';
 import { FuncionariosComponent } from './funcionarios/funcionarios.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
+import { EntregasComponent } from './entregas/entregas.component';
+import { EntregasItemDetalhesComponent } from './entregas-item-detalhes/entregas-item-detalhes.component';
+
 
 
 @NgModule({
@@ -42,6 +45,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     NavComponent,
     AjudaComponent,
     FuncionariosComponent,
+    EntregasComponent,
+    EntregasItemDetalhesComponent,
     // ListaComponent
   ],
   imports: [
