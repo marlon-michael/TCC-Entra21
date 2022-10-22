@@ -1,0 +1,8 @@
+h2 {
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    display: block;
+    color: rgb(0, 0, 0);
+    font-size: 50px;
+}
