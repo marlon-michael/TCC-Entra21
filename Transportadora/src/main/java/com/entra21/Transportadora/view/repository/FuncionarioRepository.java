@@ -10,4 +10,5 @@ import java.util.Optional;
 public interface FuncionarioRepository  extends JpaRepository<FuncionarioEntity, Long> {
     public Optional<FuncionarioEntity> findByCpf(String cpf);
     public Optional<List<FuncionarioEntity>> findAllByEmpresa_Cnpj(String cnpj);
+    public Optional<List<FuncionarioEntity>> findBySupervisor_Cpf(String cpf);
 }

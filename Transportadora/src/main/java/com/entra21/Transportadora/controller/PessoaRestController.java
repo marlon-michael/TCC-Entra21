@@ -42,29 +42,17 @@ public class PessoaRestController {
     public PessoaDTO getLogin(@RequestBody LoginDTO login) {
         PessoaDTO pessoaDTO = new PessoaDTO(pessoaService.buscarLogin(login));
 
-        funcionarioService.findAll().forEach(pessoa -> {
-            if (pessoa.getSupervisor() != null){
-                if(pessoa.getSupervisor().getCpf().equals(pessoaDTO.getCpf())){
-                    pessoaDTO.setRole("SUPERVISOR");
-                }
-            }
-
-        });
-
-        empresaService.findAll().forEach(empresa -> {
-            if(empresa.getGerente().getCpf().equals(pessoaDTO.getCpf())){
-                pessoaDTO.setRole("GERENTE");
-            }
-        });
-
-        if (pessoaDTO.getRole().equals("GERENTE")){
-            return pessoaDTO;
-        }
-        else if(pessoaDTO.getRole().equals("SUPERVISOR")){
+        if (empresaService.findByGerente_Cpf(pessoaDTO.getCpf()).isPresent()){
+            pessoaDTO.setRole("GERENTE");
             return pessoaDTO;
         }
         else if(funcionarioService.findByCpf(pessoaDTO.getCpf()).isPresent()){
             pessoaDTO.setRole("FUNCIONARIO");
+            if(funcionarioService.findBySupervisor_Cpf(pessoaDTO.getCpf()).isPresent()){
+                if (!funcionarioService.findBySupervisor_Cpf(pessoaDTO.getCpf()).get().isEmpty()){
+                    pessoaDTO.setRole("SUPERVISOR");
+                }
+            }
             return pessoaDTO;
         }
         else {
