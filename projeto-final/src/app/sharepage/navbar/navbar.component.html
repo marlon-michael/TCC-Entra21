@@ -27,18 +27,16 @@
             <li class="nav-item">
               <a class="nav-link" routerLink="contact" routerLinkActive="active-link">Contact</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="additem" routerLinkActive="active-link" >Adicionar Item</a>
-            </li>
+           
 
             <!-- <li class="nav-item">
               <a class="nav-link" routerLink="" routerLinkActive="active-link" class="nav-link" data-bs-dismiss="offcanvas">Início</a>
             </li> -->
             <li class="nav-item">
-              <a routerLink="localizador" routerLinkActive="active-link" class="nav-link" data-bs-dismiss="offcanvas" *ngIf="user != null">Localizador</a>
+              <a routerLink="localizador" routerLinkActive="active-link" class="nav-link" data-bs-dismiss="offcanvas" *ngIf="user != null && (user.role == 'USER' || user.role == 'GERENTE')">Localizador</a>
             </li>
             <li class="nav-item">
-              <a  class="nav-link" routerLink="config" routerLinkActive="active-link" class="nav-link" data-bs-dismiss="offcanvas" *ngIf="user != null && user.role == 'GERENTE'">Configurações</a>
+              <a  class="nav-link" routerLink="config" routerLinkActive="active-link" class="nav-link" data-bs-dismiss="offcanvas" *ngIf="user != null">Configurações</a>
              <!-- Alterar perfil está marcado com "configurações" -->
             </li>
             <li class="nav-item">
@@ -48,7 +46,10 @@
               <a   class="nav-link" routerLink="ajuda" routerLinkActive="active-link" class="nav-link" data-bs-dismiss="offcanvas" *ngIf="user != null">Ajuda</a>
             </li>
             <li class="nav-item">
-              <a   class="nav-link" routerLink="cadastro" routerLinkActive="active-link" class="nav-link" data-bs-dismiss="offcanvas" *ngIf="user != null && (user.role == 'FUNCIONARIO' || user.role == 'GERENTE')">Cadastro</a></li>
+              <a class="nav-link" routerLink="additem" routerLinkActive="active-link" *ngIf="user != null && (user.role == 'FUNCIONARIO' || user.role == 'GERENTE')">Adicionar Item</a>
+            </li>
+            <li class="nav-item">
+              <a   class="nav-link" routerLink="cadastro" routerLinkActive="active-link" class="nav-link" data-bs-dismiss="offcanvas" *ngIf="user != null && (user.role == 'GERENTE')">Cadastro</a></li>
             <!-- </li>
             <a   class="nav-link" routerLink="cadastro" routerLinkActive="active-link" class="nav-link" data-bs-dismiss="offcanvas" *ngIf="user != null && (user.role == 'FUNCIONARIO' || user.role == 'GERENTE')">Cadastro</a>
           </li> -->
@@ -93,9 +94,9 @@
                   <li class="nav-item">
                     <a   class="nav-link" routerLink="ajuda" routerLinkActive="active-link" class="nav-link-a" data-bs-dismiss="offcanvas" *ngIf="user != null">Ajuda</a>
                   </li>
-                  <!-- <li class="nav-item">
+                  <li class="nav-item">
                     <a   class="nav-link" routerLink="ajuda" routerLinkActive="active-link" class="nav-link-a" data-bs-dismiss="offcanvas" *ngIf="user != null && (user.role == 'FUNCIONARIO' || user.role == 'GERENTE')">Teste</a>
-                  </li> -->
+                  </li>
                   <li class="nav-item" *ngIf="user != null">
                     <a class="nav-link-a" href="#" onClick="window.location.reload()" (click)="logout()">Logout</a>
                   </li>
