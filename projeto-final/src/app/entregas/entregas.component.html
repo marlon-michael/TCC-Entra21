@@ -5,7 +5,7 @@
     <thead>
       <tr>
         <th class="t2" scope="col" style="width: 12%;">Pedido</th>
-        <th class="t2" scope="col" style="width: 20%;">Nome do Entregador</th>
+        <th class="t2" scope="col" style="width: 20%;">Destinatario </th>
         <th class="t2" scope="col" style="width: 15%;">Tipo de Entrega</th>
         <th class="t2" scope="col">Endereço</th>
         <th class="t2" scope="col">Status</th>
@@ -27,10 +27,31 @@
         <td>eeeeee</td>
         
         <td class="t2" scope="col">
-            <button class="btn btn-outline-dark" routerLink="/entregas/eeeeee">Editar</button>
-            <!-- trocar o eeeeee para '/entregas/{{item.localizador}}' -->
-            <button (click)="onDeleteEntrega()" class="btn btn-outline-danger">Deletar</button>
+          <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Editar Status
+          </button>
+          
+        
+          <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <div class="mb-3">
+                    <label for="func" class="form-label" >Status</label>
+                    <input type="text" class="form-control" id="func" placeholder="Status antigo">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                  <button type="submit" class="btn btn-primary">Editar</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </td>
+            <!-- trocar o eeeeee para '/entregas/{{item.localizador}}' -->
+            <!-- <button (click)="onDeleteEntrega()" class="btn btn-outline-danger">Deletar</button> -->
+        
       </tr>
     </tbody>
   </table>

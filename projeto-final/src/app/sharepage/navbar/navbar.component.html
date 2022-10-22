@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg" style="background-color:#110d1adc;">
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#110d1adc;">
         <div class="logo">
           <img class="navbar-brand-image"
              src="https://uploaddeimagens.com.br/images/004/060/252/thumb/Meu_projeto.png?1665705449" alt="logo"/>
@@ -28,7 +28,7 @@
               <a class="nav-link" routerLink="contact" routerLinkActive="active-link">Contact</a>
             </li>
           </ul>
-          <button class="navbar-toggler-always nav" *ngIf="user != null" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+          <button class="navbar-toggler-always" style="color: white;" *ngIf="user != null" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
             <span class="navbar-toggler-icon" style="color: white;"></span>
           </button>
         </div>
@@ -50,14 +50,14 @@
                     <a id routerLink="localizador" routerLinkActive="active-link" class="nav-link-a" data-bs-dismiss="offcanvas" *ngIf="user != null ">Meus Itens</a>
                   </li>
                   <li class="nav-item">
-                    <a id routerLink="entregas" routerLinkActive="active-link" class="nav-link-a" data-bs-dismiss="offcanvas" *ngIf="user != null ">Entregas</a>
+                    <a id routerLink="entregas" routerLinkActive="active-link" class="nav-link-a" data-bs-dismiss="offcanvas" *ngIf="user != null && (user.role == 'FUNCIONARIO' || user.role == 'GERENTE')">Entregas</a>
                   </li>
                   <li class="nav-item">
                     <a  class="nav-link" routerLink="config" routerLinkActive="active-link" class="nav-link-a" data-bs-dismiss="offcanvas" *ngIf="user != null ">Configurações</a>
                   <!-- Alterar perfil está marcado com "configurações" -->
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" routerLink="funcionarios" routerLinkActive="active-link" class="nav-link-a" data-bs-dismiss="offcanvas" *ngIf="user != null">Funcionários</a>
+                    <a class="nav-link" routerLink="funcionarios" routerLinkActive="active-link" class="nav-link-a" data-bs-dismiss="offcanvas" *ngIf="user != null && (user.role == 'FUNCIONARIO' || user.role == 'GERENTE')">Funcionários</a>
                   </li>
                   <li class="nav-item">
                     <a   class="nav-link" routerLink="ajuda" routerLinkActive="active-link" class="nav-link-a" data-bs-dismiss="offcanvas" *ngIf="user != null">Ajuda</a>
@@ -66,7 +66,9 @@
                     <a   class="nav-link" routerLink="ajuda" routerLinkActive="active-link" class="nav-link-a" data-bs-dismiss="offcanvas" *ngIf="user != null && (user.role == 'FUNCIONARIO' || user.role == 'GERENTE')">Teste</a>
                   </li> -->
                   <li class="nav-item" *ngIf="user != null">
-                    <a class="nav-link-a" href="#" onClick="window.location.reload()" (click)="logout()">Logout</a>
+                     <a class="nav-link-a" data-bs-dismiss="offcanvas" href="#" (click)="logout() " >Logout</a>
+                    
+            
                   </li>
                 </ul>
               </div>

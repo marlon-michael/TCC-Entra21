@@ -46,13 +46,19 @@ succes = false;
         return;
     }
     console.log(this.itemForm.value);
-    this.http.post<any>('/item/additem', this.itemForm.value)
+
+    this.http.get<any>(`/pessoa/${this.itemForm.get("pessoaItem")?.value}`).subscribe(result => {
+      let item = this.itemForm.value;
+      item['pessoaItem'] = {"cpf": result.cpf}
+      this.http.post<any>('/item/additem', item)
       .subscribe({
         next: (response) => {
           console.log(response);
-          this.router.navigateByUrl('/localizador');
+          this.router.navigateByUrl('/itens');
         },
         error: (error) => console.log(error),
       });
+    });
   }
+  
 }
