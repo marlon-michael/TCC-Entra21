@@ -22,6 +22,7 @@ export class ItemRestController {
 
     getbycpf() {
         return this.http.get<ItensPessoas[]>(`/item/pessoa/{cpf}`);
+        
     }
 
   
