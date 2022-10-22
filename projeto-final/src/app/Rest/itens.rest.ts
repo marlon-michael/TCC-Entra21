@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Itens, ItensPessoas, Pessoa} from 'types/types';
+import { Itens, Pessoa} from 'types/types';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 
 
@@ -20,10 +20,13 @@ export class ItemRestController {
         return this.http.get<Itens[]>(`/item`);
     }
 
-    getbycpf() {
-        return this.http.get<ItensPessoas[]>(`/item/pessoa/{cpf}`);
+    // getbycpf() {
+    //      this.http.get<any>(`/item/${this.formLocalizador.get("pessoaItem")?.value}`).subscribe(result => {
+    //       let item = this.formLocalizador.value;
+    //       item['pessoaItem'] = {"cpf": result.cpf}
+    //     return this.http.get<ItensPessoas[]>(`/item/pessoa/{cpf}`);
         
-    }
+    // }
 
   
 

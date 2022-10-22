@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { first, map, Observable, tap } from 'rxjs';
 
 import { ItemRestController } from 'src/app/Rest/itens.rest';
-import { Itens, ItensPessoas } from "types/types";
+import { Itens } from "types/types";
 // import { Itenspessos } from 'types/types';
 
 
@@ -15,13 +15,25 @@ import { Itens, ItensPessoas } from "types/types";
   styleUrls: ['./localizador.component.css']
 })
 export class LocalizadorComponent implements OnInit {
-queryField = new FormControl();
-readonly SEARCH_URL = 'https://api.cdnjs.com/libraries';
-results$: Observable<any> | undefined;
+// results$: Observable<any> | undefined;
 
-total:number | undefined;
+// total:number | undefined;
   itens: Itens[] = [];
-  itens2: ItensPessoas[] = [];
+//   itens2: ItensPessoas[] = [];
+formLocalizador: FormGroup = this.formBuilder.group({
+  localizador: ['', Validators.required],
+  status:  ['', Validators.required],
+  nomeRecebedor:  ['', Validators.required],
+  localEntrega:  ['', Validators.required],
+  pessoaItem: ['', Validators.required]
+});
+loading = false;
+submitted = false;
+returnUrl: string = this.route.snapshot.queryParams['returnUrl'];
+error = '';
+succes = false;
+  result: any;
+
 
   // itenspessos: ItensPessos[] = [];
 
@@ -35,9 +47,9 @@ total:number | undefined;
     private router: Router) { }
 
   ngOnInit() {
-    this.itemRestController.getAll().pipe(first()).subscribe((itens: Itens[]) => {
-      this.itens = itens;
-  });
+  //   this.itemRestController.getAll().pipe(first()).subscribe((itens: Itens[]) => {
+  //     this.itens = itens;
+  // });
   }
  
   onSearch() {
@@ -45,16 +57,59 @@ total:number | undefined;
     // this.results$ = this.http.get(this.SEARCH_URL + '?fields=localizador,nomeRecebedor,localEntrega,status&search=angular').pipe
     // (tap((res: any )=> this.total = res.total),
     // map((res: any ) => res.itens));
-    this.itemRestController.getbycpf().pipe(first()).subscribe((itens2: ItensPessoas[]) => { 
-      console.log(this.itens2.values);
+    // this.itemRestController.getbycpf().pipe(first()).subscribe((itens2: ItensPessoas[]) => { 
+    //   console.log(this.itens2.values);
+    //    }); 
+
+
+        this.submitted = true;
+        if (this.formLocalizador.invalid) {
+            return;
+        }
+        console.log(this.formLocalizador.value);
+    
+        this.http.get<any>(`/item/${this.formLocalizador.get("pessoaItem")?.value}`).subscribe(result => {
+          let item = this.formLocalizador.value;
+          item['pessoaItem'] = {"cpf": result.cpf}
+          this.result = item;
+          console.log(result);
+
+        });
+      }
+    }
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     // },
     // error: (console.error();
     // ) => console.log(Error),
-  });
+ 
   //     this.itens = itens;
   //     console.log(itens)
   // });
-  }
+ 
     // this.itemRestController.getAll().pipe(first()).subscribe((itenspessos) =>{
     //   this.itenspessos = itenspessos;
     // });
@@ -78,5 +133,5 @@ total:number | undefined;
     // });
 
 
-}
+
 

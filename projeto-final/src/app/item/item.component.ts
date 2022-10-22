@@ -15,6 +15,8 @@ import { ItemRestController } from '../Rest/itens.rest';
 })
 export class ItemComponent implements OnInit {
 
+
+
   itemForm: FormGroup = this.formBuilder.group({
     localizador: ['', Validators.required],
     status:  ['', Validators.required],
@@ -64,12 +66,5 @@ succes = false;
     });
   }
 
-  
-  getByLocalizador(localizador: string) {
-    if (localizador.length < 1) {
-      return null;
-    }
-    return this.http.get<Item[]>(`/item/`+localizador);
 
-  }
 }

@@ -42,6 +42,7 @@ export type Item = {
     status: string,
     nomeRecebedor: string,
     localEntrega: string,
+    pessoaItem:  Pessoa;
 }
 
 export type ItensPessoas = {
