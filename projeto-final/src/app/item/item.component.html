@@ -1,7 +1,7 @@
 
 
 <form class="d-flex" role="search" [formGroup]="itemForm" (ngSubmit)="AddItem()">
-
+</form>
 <!-- <p class="t1">Meus Itens</p> -->
 <h2>Meus Itens</h2>
 
@@ -37,9 +37,13 @@
             <input type="text" id="localEntrega"  placeholder="Local da entrega" formControlName="localEntrega"></td>
 
 
-            <td><label for="pessoaItem" class="label">Pessoa Item </label>
+            <td><label for="pessoaItem" class="label">Cpf do cliente </label>
             <input type="text" id="pessoaItem"  placeholder="CPF do cliente" formControlName="pessoaItem"></td>
-        <td >Editar e Deletar</td> 
+
+            <td><label for="funcionario" class="label">Cpf do funcionário </label>
+            <input type="text" id="funcionario"  placeholder="CPF do funcionário" formControlName="funcionario"></td>
+        
+                <!-- <td >Editar e Deletar</td>  -->
 
     </tbody>
   </table>

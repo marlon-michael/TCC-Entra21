@@ -6,3 +6,34 @@ h2 {
     color: rgb(0, 0, 0);
     font-size: 50px;
 }
+
+
+.d-flex {
+    width: 380px;
+    padding: 20px;
+    margin-left: 40%;
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+
+.btn.btn-outline-dark {
+    margin-right: 10px;
+margin-left: 14px;
+}
+
+.btn.btn-outline-secondary {
+    margin-left: 750px;
+}
+
+
+table.table-bordered {
+    margin-top: 10px;
+    margin-left: 50px;
+    width: 1500px;
+}
+
+.t1 {
+    font-size: 35px;
+    text-align: center;
+    
+}

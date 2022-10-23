@@ -39,7 +39,9 @@ succes = false;
 
   // itenspessos: itenspessos[] = [];
 
+  enteredSearchValue: string = '';
 
+    
   constructor(private itemRestController: ItemRestController,
     private http: HttpClient, 
     private formBuilder: FormBuilder,
@@ -68,11 +70,18 @@ succes = false;
         }
         console.log(this.formLocalizador.value);
     
-        this.http.get<any>(`/item/${this.formLocalizador.get("pessoaItem")?.value}`).subscribe(result => {
+        this.http.get<any>(`/item/pessoa${this.formLocalizador.get("pessoaItem")?.value}`).subscribe(result => {
           let item = this.formLocalizador.value;
           item['pessoaItem'] = {"cpf": result.cpf}
-          this.result = item;
-          console.log(result);
+          this.http.post<any>('/item/additem', item)
+          .subscribe({
+            next: (response) => {
+              console.log(response);
+              this.router.navigateByUrl('/itens');
+            },
+            error: (error) => console.log(error),
+          });
+
 
         });
       }

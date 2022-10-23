@@ -22,7 +22,8 @@ export class ItemComponent implements OnInit {
     status:  ['', Validators.required],
     nomeRecebedor:  ['', Validators.required],
     localEntrega:  ['', Validators.required],
-    pessoaItem: ['', Validators.required]
+    pessoaItem: ['', Validators.required],
+    funcionario: ['', Validators.required]
   });
   loading = false;
 submitted = false;
@@ -55,6 +56,11 @@ succes = false;
     this.http.get<any>(`/pessoa/${this.itemForm.get("pessoaItem")?.value}`).subscribe(result => {
       let item = this.itemForm.value;
       item['pessoaItem'] = {"cpf": result.cpf}
+
+      this.http.get<any>(`/${this.itemForm.get("funcionario")?.value}`).subscribe(result => {
+        let item = this.itemForm.value;
+        item['funcionario'] = {"cpf": result.cpf}
+
       this.http.post<any>('/item/additem', item)
       .subscribe({
         next: (response) => {
@@ -64,6 +70,7 @@ succes = false;
         error: (error) => console.log(error),
       });
     });
+  });
   }
 
 
