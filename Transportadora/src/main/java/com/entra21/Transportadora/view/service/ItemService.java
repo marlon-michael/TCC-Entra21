@@ -94,8 +94,8 @@ public class ItemService {
 //        }).collect(Collectors.toList());
 //    }
 //toDO PARA VER
-    public List<ItemDTO> findAllByPessoa_Cpf(Long IdUsuario){
-        return itemRepository.findAllByPessoa_Cpf(IdUsuario).stream()
+    public List<ItemDTO> findAllByPessoa_id(Long Id){
+        return itemRepository.findAllByPessoa_id(Id).stream()
                 .map(itemEntity -> {
 
                     ItemDTO itemDTO = new ItemDTO();

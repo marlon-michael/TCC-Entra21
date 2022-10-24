@@ -12,6 +12,6 @@ public interface ItemRepository extends JpaRepository<ItemEntity, Long> {
 //    public Optional<List<ItemEntity>> findAllByPessoa_Cpf(String cpf);
 
     //TODO
-   public List<ItemEntity> findAllByPessoa_Cpf(Long IdUsuario);
+   public List<ItemEntity> findAllByPessoa_id(Long Id);
     public Boolean existsByLocalizador(String localizador);
 }

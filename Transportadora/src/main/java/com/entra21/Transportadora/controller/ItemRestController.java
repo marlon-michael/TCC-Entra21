@@ -30,8 +30,8 @@ public class ItemRestController {
     }
 
     @GetMapping("/pessoa")
-    public List<ItemDTO> getItemByPessoa(@RequestParam(name = "IdUsuario") Long IdUsuario){
-        return itemService.findAllByPessoa_Cpf(IdUsuario);
+    public List<ItemDTO> getItemByPessoa(@RequestParam(name = "Id") Long Id){
+        return itemService.findAllByPessoa_id(Id);
     }
 
 //    @GetMapping("/pessoa/{cpf}")

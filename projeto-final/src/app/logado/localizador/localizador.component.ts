@@ -69,18 +69,21 @@ this.searchText = searchValue;
   //     this.item = itens;
   // });
 
-  // this.http.get<any>(`/pessoa/${this.formLocalizador.get("pessoaItem")?.value}`).subscribe(result => {
-  //     let item = this.formLocalizador.value;
-  //     item['pessoaItem'] = {"cpf": result.cpf}
-  //   });
+ 
   // };
-
-  // this.itemRestController.getBycpf().subscribe(item => {
-  //   this.item = item;
-  // });
   };
+
  
   onSearch() {
+    this.http.get<any>(`/pessoa/${this.formLocalizador.get("pessoaItem")?.value}`).subscribe(result => {
+      let item = this.formLocalizador.value;
+      item['pessoaItem'] = {"cpf": result.cpf}
+   
+  this.itemRestController.getBycpf().subscribe(item => {
+    this.item = item;
+  });
+  });
+  };
     // console.log(this.queryField.value);
     // this.results$ = this.http.get(this.SEARCH_URL + '?fields=localizador,nomeRecebedor,localEntrega,status&search=angular').pipe
     // (tap((res: any )=> this.total = res.total),
@@ -112,7 +115,7 @@ this.searchText = searchValue;
         // });
      // }
     }
-}
+
   
 
 
