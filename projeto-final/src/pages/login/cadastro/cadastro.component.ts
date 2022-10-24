@@ -55,7 +55,7 @@ cadastrar() {
     .subscribe({
       next: (response) => {
         console.log(response);
-        this.router.navigateByUrl('/home');
+        this.router.navigateByUrl('/login');
       },
       error: (error) => console.log(error),
     });

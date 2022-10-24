@@ -1,28 +1,51 @@
 
-<form class="d-flex" role="search">
-    <input class="form-control me-2" type="search" placeholder="Localizador" aria-label="Search">
+
+<form  role="search" [formGroup]="formLocalizador" >
+<!-- <app-search (searchTextChanged)="onSearchTextEntered($event)"></app-search> -->
+  <h1>Meus Itens</h1>
+  <!-- <h5>{{ informacao }}</h5> -->
+  <!-- <app-localizador [informacao]="itens"></app-localizador> -->
+<div class="abc">
+  <input class="form-control " type="search" placeholder="Localizador" aria-label="Search">
+    <!-- <input type="text" [(ngModel)]="enteredSearchValue" (input)="onSearchTextChanged()"> -->
     <button class="btn btn-outline-dark" type="submit" (click)="onSearch()">Buscar</button>
-  </form>
+  </div>
 
 <table class="table table-bordered">
     <thead>
       <tr>
-        <th scope="col">Pedido</th>
-        <th scope="col">Destinatario</th>
-        <th scope="col">Endereço</th>
-        <th scope="col">Status</th>
-        <th scope="col"></th>
+        <th scope="col" style="width: 380px;">Pedido</th>
+        <th scope="col" style="width: 200px;">Destinatario</th>
+        <th scope="col"style="width:200px;" >Endereço</th>
+        <th scope="col" style="width:200px;">Status</th>
+        <!-- <th scope="col" style="width:200px;">CPF</th> -->
       </tr>
     </thead>
     <tbody>
+
       <!-- <tr *ngFor="let itens of itens"> -->
-        <tr *ngFor="let itens of results$ | async ">
-        <td>{{itens.localizador}}</td>
-        <td>{{itens.nomeRecebedor}}</td>
-        <td>{{itens.localEntrega}}</td>
-        <td>{{itens.status}}</td>
-        <td >Editar e Deletar</td>
+        <tr *ngFor="let item of item ">
+        <!-- <div *ngIf="searchText === '' || item.pessoaItem.cpf.includes(searchText)">  -->
+        <td  style="width: 380px;">{{item.localizador}}</td>
+        <td style="width:200px;">{{item.nomeRecebedor}}</td>
+        <td style="width:200px;">{{item.localEntrega}}</td>
+        <td style="width:200px;">{{item.status}}</td>
+        <!-- <td>{{item.pessoaItem.cpf}}</td> -->
+        <!-- <td>{{item.funcionario.empresa.cnpj}}</td> -->
+     
+      <!-- </div> -->
+       
+     
+        <!-- <td [ngStyle]="{'visibility': (item.localizador != null) ? 'hidden' : 'visible'}" >
+          <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Editar Status
+          </button>
+        </td> -->
+
+
       </tr>
     </tbody>
   </table>
-  <button type="submit" class="btn btn-outline-dark">Adicionar</button>
+  <button type="submit" class="btn btn-outline-secondary" routerLink="/additem">Adicionar</button>
+</form>
+  <!-- Button trigger modal -->

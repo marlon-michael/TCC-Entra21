@@ -1,94 +1,86 @@
-<form  [formGroup]="form" >
+<form  [formGroup]="form"  (ngSubmit)="AddItem()" >
 <p class="texto1">Funcionários</p>
 
-
+<form class="d-flex" role="search">
+  <input class="form-control me-2" type="search" placeholder="Buscar Funcionários" aria-label="Search">
+  <button class="btn " type="submit" (click)="onSearch()" >Buscar</button>
+</form>
 <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
 
 <table class="table table-bordered">
   <thead>
     <tr>
-    <td>
-    <div class="head">Nome</div>
-    <div class="head">Sobrenome</div>
-    <div class="head">Cpf</div>
-    </td>
+    <th class="left" >Nome</th>
+    <th class="meio">Sobrenome</th>
+    <th class="meio">Cpf</th>
+    <th class="right">Telefone</th>
   </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let funcionarios of funcionarios">
+    <!-- <tr *ngFor="let funcionarios of funcionariobuscar" class="linhas"> -->
+  
        <!-- <div *ngIf="this.funcionarios | async as funcionarios; else loading"></div> Resolver -->
-      <td class="no">
-        <div class="campos" formControlName="nome">{{funcionarios.nome}}</div>  
-        <div class="campos" formControlName="sobrenome">{{funcionarios.sobrenome}}</div>
-        <div formControlName="cpf">{{funcionarios.cpf}}</div>
-      </td>
-      <td>
-         <!-- <input  class="btn btn-outline-danger" type="submit" value="Deletar" (click)="onDelete()"> 
-         <input  class="btn btn-outline-primary" type="submit" value="Editar" (edit)="onEdit()">  -->
-      </td>
-    </tr>
+      <!-- <th class="no"> -->
+        <!-- <td><div ngIf*="funcionario.supervisor !== null"> {{funcionarios.supervisor.nome}}</div></td> 
+        <td><div ngIf*="funcionario.supervisor !== null">{{funcionarios.supervisor.sobrenome}}</div></td>
+        <td><div ngIf*="funcionario.supervisor !== null">{{funcionarios.supervisor.cpf}}</div></td>
+        <td><div >{{funcionarios.supervisor.telefone}}</div>td>
+        <td>{{funcionarios.empresa.cnpj}}</td>
+        <td>{{funcionarios.empresa.razaoSocial}}</td>
+        <td>{{funcionarios.empresa.gerente.nome}}</td>
+      </tr> -->
+        <tr *ngFor="let funcionario of funcionarios" class="linhas">
+        <td>{{funcionario.nome}}</td>
+        <td>{{funcionario.sobrenome}}</td>
+        <td>{{funcionario.telefone}}</td>
+        <td>{{funcionario.cpf}}</td>
+
+       </tr>
+  
+  <!-- <button type="button" routerLink="cadastro" class="btn">Cadastrar</button> -->
   </tbody>
 </table> 
-
-
-
 </form>
-  <!-- <small (click)="onEdit()"
-  style="cursor: pointer;"
-  title="Editar">✏️</small>
-<small (click)="onDelete()"
-  style="cursor: pointer;"
-  title="Excluir">🗑️</small> -->
 
-  <!-- <div *ngFor="let funcionarios of funcionarios">
-    <app-funcionarios [funcionario]="funcionario" (funcionarioDelete)="remove($event)" (funcionarioEdit)="edit($event)"></app-funcionarios>
-<button type="button" (click)="inserirFuncionario()" *ngIf="!inserting">Nova pessoa</button>
-<app-funcionarios [funcionario]="funcionario" *ngIf="inserting" (insertChange)="inserting=$event" (Save)="save($event)"></app-funcionarios>
-</div> 
-   <input class="btn btn-outline-success" type="submit" value="Salvar" (click)="onSubmit()">
-<button type="button" class="btn btn-outline-danger" (click)="cancel()">Cancelar</button> 
- <input  class="btn btn-outline-dark" type="submit" value="Adicionar" (ngSubmit)="onAdd()" routerLink="cadastro">  -->
+  <!-- Button trigger modal -->
+  <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    Cadastrar
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="Nome" class="form-label" >Nome</label>
+            <input type="text" class="form-control" id="Nome" placeholder="Nome" formControlName="nome">
+          </div>
+          <div class="mb-3">
+            <label for="Sobrenome" class="form-label" >Sobrenome</label>
+            <input type="text" class="form-control" id="Sobrenome" placeholder="Sobrenome" formControlName="sobrenome">
+          </div>
+          <div class="mb-3">
+            <label for="Telefone" class="form-label" >Telefone</label>
+            <input type="text" class="form-control" id="Telefone"required placeholder="(xx) xxxxx-xxxx"  pattern="(\(?\d{2}\)?\d{4}\-?\d{4})" required minlength="10" maxlength="11" formControlName="telefone">
+          </div>
+          <div class="mb-3">
+            <label for="cpf" class="form-label" >cpf</label>
+            <input type="text" class="form-control" id="cpf"  pattern="(\d{3}\.?\d{3}\.?\d{3}-?\d{2})|(\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2})"
+            placeholder="xxx.xxx.xxx-xx" required minlength="11" maxlength="11" size="11" formControlName="cpf">
+          </div>
+          <!-- <div class="mb-3">
+            <label for="supervisor" class="form-label" >Supervisor</label>
+            <input type="text" class="form-control" id="supervisor" placeholder="Supervisor" formControlName="supervisor">
+          </div> -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <input type="submit" class="btn"  (ngSubmit)="AddItem()" value="Adicionar">
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
  
-<!-- 
-<form [formGroup]="form" (submit)="onSubmit()"
-style="display: flex; flex-direction: column; width: 25%; gap: 4px;">
-    <label for="heroName">Name: </label>
-    <input type="text" name="heroName" id="heroName" formControlName="nome" /> -->
-
-    <!-- <label for="secretIdentity">Secret Identity: </label>
-    <input type="text" name="secretIdentity"
-     id="secretIdentity" formControlName="secretIdentity" /> -->
-
-    <!-- <div>
-        <input type="checkbox" name="deceased"
-            id="deceased" formControlName="deceased">
-        <label for="deceased"> Deceased</label>
-    </div> -->
-    <!-- <label for="universe">Universe: </label> -->
-    <!-- <div>
-      <label for="heroNamen">sobrenome: </label>
-        <input type="text" name="universe" value="DC"
-            id="universe_DC" formControlName="universe"> DC -->
-        <!-- <input type="radio" name="universe" value="marvel"
-            id="universe_MARVEL" formControlName="universe"> Marvel -->
-    <!-- </div>
-    <button type="submit" [disabled]="!form.valid">{{ funcionarioEdit != null ? 'Atualizar' : 'Criar'}} </button>
-    <button type="button" (click)="cancel()">Cancelar</button>
-    <small (click)="onEdit()"
-     style="cursor: pointer;"
-     title="Editar">✏️</small>
-<small (click)="onDelete()"
-  style="cursor: pointer;"
-  title="Excluir">🗑️</small>
-
-  <div *ngFor="let funcionarios of funcionarios">
-    <app-funcionarios [funcionario]="funcionario" (funcionarioDelete)="remove($event)" (funcionarioEdit)="edit($event)"></app-funcionarios>
-<button type="button" (click)="inserirFuncionario()" *ngIf="!inserting">Nova pessoa</button>
-<app-funcionarios [funcionario]="funcionario" *ngIf="inserting" (insertChange)="inserting=$event" (Save)="save($event)"></app-funcionarios>
-</div> 
-   <input class="btn btn-outline-success" type="submit" value="Salvar" (click)="onSubmit()">
-<button type="button" class="btn btn-outline-danger" (click)="onCancel()">Cancelar</button> 
- <input  class="btn btn-outline-dark" type="submit" value="Adicionar" (ngSubmit)="onAdd()" routerLink="cadastro"> 
- </table> 
- -->
-

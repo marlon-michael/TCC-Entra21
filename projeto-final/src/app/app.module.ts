@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavComponent } from './nav/nav.component';
 import { AjudaComponent } from './ajuda/ajuda.component';
 import { LocalizadorComponent } from './logado/localizador/localizador.component';
 import { ConfiguracoesComponent } from 'src/app/logado/configuracoes/configuracoes.component';
@@ -19,6 +18,13 @@ import { CadastroComponent } from 'src/pages/login/cadastro/cadastro.component';
 import { FuncionariosComponent } from './funcionarios/funcionarios.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
+import { EntregasComponent } from './entregas/entregas.component';
+import { EntregasItemDetalhesComponent } from './entregas-item-detalhes/entregas-item-detalhes.component';
+import { ItemComponent } from './item/item.component';
+import { SearchComponent } from './search/search.component';
+import { AddFuncionarioComponent } from './add-funcionario/add-funcionario.component';
+
+
 
 @NgModule({
   declarations: [
@@ -32,9 +38,13 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     LocalizadorComponent,
     ConfiguracoesComponent,
     CadastroComponent,
-    NavComponent,
     AjudaComponent,
-    FuncionariosComponent
+    FuncionariosComponent,
+    EntregasComponent,
+    EntregasItemDetalhesComponent,
+    ItemComponent,
+    SearchComponent,
+    AddFuncionarioComponent
   ],
   imports: [
     BrowserModule,

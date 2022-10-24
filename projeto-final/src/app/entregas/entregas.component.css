@@ -1,0 +1,24 @@
+.btn.btn-outline-dark {
+    margin-right: 10px;
+margin-left: 30px;
+}
+
+.btn.btn-outline-secondary {
+    margin-left: 850px;
+}
+
+table.table-bordered {
+    margin-top: 10px;
+    margin-left: 140px;
+    width: 1500px;
+}
+
+.t1 {
+    font-size: 35px;
+    text-align: center;
+    
+}
+
+.t2 {
+    font-size: 22px;
+}

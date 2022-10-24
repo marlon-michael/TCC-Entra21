@@ -21,17 +21,24 @@ public class FuncionarioRestController {
       return funcionarioService.getAllFuncionario();
    }
 
+
+   //pega os funcionarios da empresa
    @GetMapping("/empresa/{cnpj}")
    public List<FuncionarioDTO> getAllByEmpresa(@PathVariable(name = "cnpj")String cnpj){
       return funcionarioService.getAllFuncionariByEmpresa(cnpj);
    }
-
+//pega a pessoa
    @GetMapping("/{cpf}")
    public FuncionarioDTO getByCPF(@PathVariable(name = "cpf")String cpf){
       return funcionarioService.findByCpf(cpf);
    }
 
-   @PostMapping
+//   @GetMapping("/{cpf}")
+//   public FuncionarioDTO getByCPF(@PathVariable(name = "cpf")String cpf){
+//      return funcionarioService.findByCpf(cpf);
+//   }
+
+   @PostMapping("/addfuncionario")
    public void addFuncionario(@RequestBody FuncionarioAddDTO funcionarioPayLoadDTO){
       funcionarioService.saveFuncionario(funcionarioPayLoadDTO);
    }

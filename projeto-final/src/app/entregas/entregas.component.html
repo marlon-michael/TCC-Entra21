@@ -1,0 +1,111 @@
+
+<p class="t1">Entregas</p>
+
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th class="t2" scope="col" style="width: 12%;">Pedido</th>
+        <th class="t2" scope="col" style="width: 20%;">Nome do entregador </th>
+        <!-- <th class="t2" scope="col" style="width: 20%;">Destinatario </th> -->
+        <th class="t2" scope="col" style="width: 15%;">Tipo de Entrega</th>
+        <!-- <th class="t2" scope="col">Endereço</th> -->
+         <th class="t2" scope="col">Status</th>
+        <th class="t2" scope="col">Saindo de</th>
+        <th class="t2" scope="col">Destino</th>
+        <!-- <th class="t2" scope="col">Status</th>
+        <th class="t2" scope="col" style="width: 14%;"></th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <!-- <tr *ngFor="let itens of itens"> -->
+        <tr>
+        <!-- <td>{{itens.localizador}}</td>
+        <td>{{itens.nomeRecebedor}}</td>
+        <td>{{itens.localEntrega}}</td>
+        <td>{{itens.status}}</td> -->
+
+
+       <!-- <tr *ngFor="let itens of entregas.itens" ></tr>
+        <td>{{entregas.itens.localizador}}</td>
+        <td>{{itens.status}}</td>
+
+        <tr *ngFor="let trecho of trecho" ></tr>
+        <td>{{trecho.localInicio}}</td>
+        <td>{{trecho.localFim}}</td>  -->
+        
+        
+        <tr *ngFor="let entrega of entregas" >
+        <td>{{entrega.entregador.nome}}</td>
+        <td>{{entrega.tipoEntrega}}</td>
+       
+       
+        
+        <td class="t2" scope="col">
+          <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Editar Status
+          </button>
+          
+        
+          <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <div class="mb-3">
+                    <label for="func" class="form-label" >Status</label>
+                    <input type="text" class="form-control" id="func" placeholder="Status antigo">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                  <button type="submit" class="btn btn-primary">Editar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+            <!-- trocar o eeeeee para '/entregas/{{item.localizador}}' -->
+            <!-- <button (click)="onDeleteEntrega()" class="btn btn-outline-danger">Deletar</button> -->
+        
+      </tr>
+    </tbody>
+  </table>
+  <!-- <button type="submit" class="btn btn-outline-dark">Adicionar</button> -->
+
+  <!-- Button trigger modal -->
+<button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Adicionar
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="func" class="form-label" >Pedido</label>
+          <input type="text" class="form-control" id="func" placeholder="Localizador">
+        </div>
+        <div class="mb-3">
+          <label for="func" class="form-label" >Nome do Entregador</label>
+          <input type="text" class="form-control" id="func" placeholder="Nome do Entregador">
+        </div>
+        <div class="mb-3">
+          <label for="func" class="form-label" >Tipo de Entrega</label>
+          <input type="text" class="form-control" id="func" placeholder="Tipo de Entrega">
+        </div>
+        <div class="mb-3">
+          <label for="func" class="form-label" >Endereço</label>
+          <input type="text" class="form-control" id="func" placeholder="Endereço">
+        </div>
+        <div class="mb-3">
+          <label for="func" class="form-label" >Status</label>
+          <input type="text" class="form-control" id="func" placeholder="Status">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Adicionar</button>
+      </div>
+    </div>
+  </div>
+</div>

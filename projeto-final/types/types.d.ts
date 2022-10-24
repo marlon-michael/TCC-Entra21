@@ -17,26 +17,33 @@ export type Cadastro = {
 }
 
 export type Funcionarios = {
-    // sort(): Funcionarios;
-    // find(arg0: (h: Funcionarios) => boolean): Funcionarios;
-    // push(funcionario: Funcionarios): Funcionarios;
-    // findIndex(arg0: (h: Funcionarios) => boolean): Funcionarios;
-    // map(arg0: (h: Funcionarios) => string):  Funcionarios;
-    // length: number;
-    // filter(arg0: (h: Funcionarios) => boolean): Funcionarios;
+    id: number;
     nome: string,
     sobrenome: string,
-    cpf: string
+    cpf: string,
+    telefone: string
 }
 
 export type Itens = {
+    id: number;
     localizador: string,
     status: string,
     nomeRecebedor: string,
-    localEntrega: string
+    localEntrega: string,
+    pessoaItem: Pessoa;
+    funcionario: Funcionario;
+  
+}
+export type Item = {
+    localizador: string,
+    status: string,
+    nomeRecebedor: string,
+    localEntrega: string,
+    pessoaItem:  Pessoa;
+    funcionario:  Funcionario;
 }
 
-export type ItensPessos = {
+export type ItensPessoas = {
 
 localizador: string;
 status:string;
@@ -46,6 +53,7 @@ pessoaItem:  Pessoa;
 }
 
 export type Pessoa = {
+    id: number;
      nome:string
      sobrenome: string;
      telefone: string;
@@ -54,8 +62,46 @@ export type Pessoa = {
      senha: string;
 }
 
-// export type Funcionario = {
-//  FuncionarioDTO supervisor:;
-//  List<EntregaDTO> entrega:;
-//  EmpresaDTO empresa:;
-// }
+export type Funcionario = {
+ supervisor: Pessoa;
+ entrega: Entrega[];
+  empresa: Empresa;
+}
+
+export type Entrega = {
+    id: number;
+     tipoEntrega: string;
+     entregador: Pessoa;
+     entregaTrecho: EntregaTrecho;
+     itens: Itens;
+}
+
+export type Empresa = {
+    id: number;
+     cnpj: string;
+     razaoSocial:string;
+    gerente: Pessoa;
+    carros: Carro[];
+     funcionarios: Pessoa[];
+}
+
+export type Carro = {
+    id: number;
+      tipoCarro: string;
+      placa: string;
+      empresaCarro: Empresa;
+}
+
+export type EntregaTrecho = {
+    id: number;
+     Completo: boolean;
+     carro: Carro;
+     entrega: Entrega;
+     trecho: Trecho;
+}
+
+export type Trecho = {
+    id: number;
+     localInicio: string;
+     localFim: string;
+}
