@@ -126,7 +126,9 @@ public class ItemService {
             PessoaEntity pessoaDTO = pessoaRepository.findByCpf(itemDTO.getPessoaItem().getCpf()).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cpf/Entregador não encontrado");});
             itemEntity.setPessoa(pessoaDTO);
         }
-        itemEntity.setStatus(itemDTO.getStatus());
+        if (itemDTO.getStatus() != null){
+            itemEntity.setStatus(itemDTO.getStatus());
+        }
         itemRepository.save(itemEntity);
     }
 
