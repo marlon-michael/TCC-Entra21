@@ -17,13 +17,7 @@ export type Cadastro = {
 }
 
 export type Funcionarios = {
-    // sort(): Funcionarios;
-    // find(arg0: (h: Funcionarios) => boolean): Funcionarios;
-    // push(funcionario: Funcionarios): Funcionarios;
-    // findIndex(arg0: (h: Funcionarios) => boolean): Funcionarios;
-    // map(arg0: (h: Funcionarios) => string):  Funcionarios;
-    // length: number;
-    // filter(arg0: (h: Funcionarios) => boolean): Funcionarios;
+    id: number;
     nome: string,
     sobrenome: string,
     cpf: string,
@@ -31,17 +25,22 @@ export type Funcionarios = {
 }
 
 export type Itens = {
+    id: number;
     localizador: string,
     status: string,
     nomeRecebedor: string,
     localEntrega: string,
-    pessoaItem:  Pessoa;
+    pessoaItem: Pessoa;
+    funcionario: Funcionario;
+  
 }
 export type Item = {
     localizador: string,
     status: string,
     nomeRecebedor: string,
     localEntrega: string,
+    pessoaItem:  Pessoa;
+    funcionario:  Funcionario;
 }
 
 export type ItensPessoas = {
@@ -54,6 +53,7 @@ pessoaItem:  Pessoa;
 }
 
 export type Pessoa = {
+    id: number;
      nome:string
      sobrenome: string;
      telefone: string;
@@ -69,27 +69,31 @@ export type Funcionario = {
 }
 
 export type Entrega = {
+    id: number;
      tipoEntrega: string;
      entregador: Pessoa;
-     entregaTrecho: EntregaTrecho[];
-     itens: Itens[];
+     entregaTrecho: EntregaTrecho;
+     itens: Itens;
 }
 
 export type Empresa = {
+    id: number;
      cnpj: string;
      razaoSocial:string;
     gerente: Pessoa;
-    carros: Carro[];
+    carros: Carro;
      funcionarios: Pessoa[];
 }
 
 export type Carro = {
+    id: number;
       tipoCarro: string;
       placa: string;
       empresaCarro: Empresa;
 }
 
 export type EntregaTrecho = {
+    id: number;
      Completo: boolean;
      carro: Carro;
      entrega: Entrega;
@@ -97,6 +101,7 @@ export type EntregaTrecho = {
 }
 
 export type Trecho = {
+    id: number;
      localInicio: string;
      localFim: string;
 }

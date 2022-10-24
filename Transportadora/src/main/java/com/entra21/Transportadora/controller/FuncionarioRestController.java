@@ -38,7 +38,7 @@ public class FuncionarioRestController {
 //      return funcionarioService.findByCpf(cpf);
 //   }
 
-   @PostMapping
+   @PostMapping("/addfuncionario")
    public void addFuncionario(@RequestBody FuncionarioAddDTO funcionarioPayLoadDTO){
       funcionarioService.saveFuncionario(funcionarioPayLoadDTO);
    }

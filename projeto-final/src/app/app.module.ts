@@ -21,6 +21,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { EntregasComponent } from './entregas/entregas.component';
 import { EntregasItemDetalhesComponent } from './entregas-item-detalhes/entregas-item-detalhes.component';
 import { ItemComponent } from './item/item.component';
+import { SearchComponent } from './search/search.component';
+import { AddFuncionarioComponent } from './add-funcionario/add-funcionario.component';
 
 
 
@@ -40,7 +42,9 @@ import { ItemComponent } from './item/item.component';
     FuncionariosComponent,
     EntregasComponent,
     EntregasItemDetalhesComponent,
-    ItemComponent
+    ItemComponent,
+    SearchComponent,
+    AddFuncionarioComponent
   ],
   imports: [
     BrowserModule,

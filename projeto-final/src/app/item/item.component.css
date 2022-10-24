@@ -1,3 +1,7 @@
+
+*{
+    /* background-color: azure; */
+}
 h2 {
     align-items: center;
     flex-direction: column;
@@ -5,4 +9,68 @@ h2 {
     display: block;
     color: rgb(0, 0, 0);
     font-size: 50px;
+    margin-left: 500px;
+    margin-top: 100px;
+    margin-bottom: 50px;
 }
+
+
+/* .d-flex {
+    width: 380px;
+    padding: 20px;
+    margin-left: 40%;
+    margin-bottom: 20px;
+    margin-top: 30px;
+} */
+
+.btn.btn-outline-dark {
+    margin-right: 10px;
+margin-left: 290px;
+border: 1px solid black;
+margin-bottom: 200px;
+}
+
+.btn.btn-outline-secondary {
+    margin-left: 750px;
+    background: black!important;
+}
+
+
+table.table-bordered {
+    margin-top: 10px;
+    margin-left: 290px;
+    width: 150px;
+    border: none;
+    text-decoration: none;
+    border-radius: 8px;
+     /* /* border: 1px solid black; */
+
+}
+
+.t1 {
+    font-size: 35px;
+    text-align: center;
+    
+}
+
+input{
+    border-style: none;
+    /* border: 1px solid black; */
+    border-radius: 8px;
+    border-bottom: none;
+}
+input:hover{
+background: rgb(220, 255, 255);
+border-radius: 8px;
+transition: 0.20s ease;
+color: black;
+}
+.label{
+
+    width: auto;
+}
+/* 
+.head{
+    margin-left: 20px;
+    width: 200px;
+} */

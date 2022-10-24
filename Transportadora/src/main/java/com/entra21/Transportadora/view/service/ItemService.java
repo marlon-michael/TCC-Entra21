@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -92,6 +93,29 @@ public class ItemService {
             return itemDTO;
         }).collect(Collectors.toList());
     }
+//toDO PARA VER
+//    public List<ItemDTO> findAllByPessoa_id(Long Id){
+//        return itemRepository.findAllByPessoa_id(Id).stream()
+//                .map(itemEntity -> {
+//
+//                    ItemDTO itemDTO = new ItemDTO();
+//                    PessoaDTO pessoaDTO = new PessoaDTO();
+//
+//                    pessoaDTO.setNome(itemEntity.getPessoa().getNome());
+//                    pessoaDTO.setSobrenome(itemEntity.getPessoa().getSobrenome());
+//                pessoaDTO.setTelefone(itemEntity.getPessoa().getTelefone());
+//                    pessoaDTO.setCpf(itemEntity.getPessoa().getCpf());
+//
+//
+//                    itemDTO.setLocalizador(itemEntity.getLocalizador());
+//                    itemDTO.setLocalEntrega(itemEntity.getLocalEntrega());
+//                    itemDTO.setNomeRecebedor(itemEntity.getNomeRecebedor());
+//                    itemDTO.setStatus(itemEntity.getStatus());
+//
+//                    return itemDTO;
+//                }).collect(Collectors.toList());
+//    }
+
 
     public void saveItem(ItemAddDTO itemDTO) {
         PessoaEntity pessoaEntity = null;

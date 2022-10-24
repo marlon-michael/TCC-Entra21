@@ -17,6 +17,7 @@ import { FuncionariosComponent } from './funcionarios/funcionarios.component';
 import { EntregasComponent } from './entregas/entregas.component';
 import { EntregasItemDetalhesComponent } from './entregas-item-detalhes/entregas-item-detalhes.component';
 import { ItemComponent } from './item/item.component';
+import { AddFuncionarioComponent } from './add-funcionario/add-funcionario.component';
 
 
 
@@ -34,7 +35,7 @@ const routes: Routes = [
 {path: 'edit', component: FuncionariosComponent},
 {path: 'entregas', component: EntregasComponent},
 {path: 'entregas/:localizador', component: EntregasItemDetalhesComponent},
-
+{path: 'addFuncionario', component: AddFuncionarioComponent},
 {path: '**', redirectTo: '/'},
 ];
 // , canActivate: [AuthGuard] se tiver logado

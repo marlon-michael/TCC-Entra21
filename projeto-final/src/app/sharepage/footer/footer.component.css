@@ -4,6 +4,9 @@
     padding: 40px 10px;
     position: sticky;
     top: 100%;
+    min-width: 1400px;
+    max-width: 1600px;
+    align-items: center;
    
     /* margin-top: 20%; */
 }
@@ -14,14 +17,26 @@
 }
 h1{
     color: white;
-    font-size: 20px;
+    font-size: 30px;
+    margin-left: 690px;
 }
+h6{
+    color:aliceblue;
+    margin-left: 595px;
+    text-align: center;
+    display: flex;
 
+}
 a{
-    color: white;
+    color:aliceblue;
+    margin-left: 685px;
+    text-align: center;
+    display: flex;
     text-decoration: none;
     padding: 0px 5px;
-    font-size: 18px;
+    font-size: 15px;
+  
+   
 }
 a:hover{
     color: rgb(125, 29, 216);
