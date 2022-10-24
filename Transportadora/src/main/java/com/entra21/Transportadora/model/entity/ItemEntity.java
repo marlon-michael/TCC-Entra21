@@ -1,4 +1,5 @@
 package com.entra21.Transportadora.model.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -27,6 +28,7 @@ public class ItemEntity {
 
     @ManyToOne
     @JoinColumn(name = "id_pessoa", referencedColumnName = "id")
+    @JsonIgnore
     private PessoaEntity pessoa;
     
 }

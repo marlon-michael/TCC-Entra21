@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first, map, Observable, tap } from 'rxjs';
@@ -16,16 +16,19 @@ import { Itens } from "types/types";
 })
 export class LocalizadorComponent implements OnInit {
 // results$: Observable<any> | undefined;
-
+// @Input() informacao: any;
+// @Output() 
+item: Itens[] = [];
 // total:number | undefined;
-  itens: Itens[] = [];
+  
 //   itens2: ItensPessoas[] = [];
 formLocalizador: FormGroup = this.formBuilder.group({
   localizador: ['', Validators.required],
   status:  ['', Validators.required],
   nomeRecebedor:  ['', Validators.required],
   localEntrega:  ['', Validators.required],
-  pessoaItem: ['', Validators.required]
+  pessoaItem: ['', Validators.required],
+  funcionario: ['', Validators.required]
 });
 loading = false;
 submitted = false;
@@ -39,7 +42,6 @@ succes = false;
 
   // itenspessos: itenspessos[] = [];
 
-  enteredSearchValue: string = '';
 
     
   constructor(private itemRestController: ItemRestController,
@@ -48,11 +50,35 @@ succes = false;
     private route: ActivatedRoute,
     private router: Router) { }
 
+
+    
+
+
+searchText: string = '';
+onSearchTextEntered(searchValue: string){
+this.searchText = searchValue;
+//console.log(this.searchText);
+}
+
   ngOnInit() {
+// this.itemRestController.getBycpf().subscribe(item => {
+//   this.item = item;
+// });
+
   //   this.itemRestController.getAll().pipe(first()).subscribe((itens: Itens[]) => {
-  //     this.itens = itens;
+  //     this.item = itens;
   // });
-  }
+
+  // this.http.get<any>(`/pessoa/${this.formLocalizador.get("pessoaItem")?.value}`).subscribe(result => {
+  //     let item = this.formLocalizador.value;
+  //     item['pessoaItem'] = {"cpf": result.cpf}
+  //   });
+  // };
+
+  // this.itemRestController.getBycpf().subscribe(item => {
+  //   this.item = item;
+  // });
+  };
  
   onSearch() {
     // console.log(this.queryField.value);
@@ -64,28 +90,29 @@ succes = false;
     //    }); 
 
 
-        this.submitted = true;
-        if (this.formLocalizador.invalid) {
-            return;
-        }
-        console.log(this.formLocalizador.value);
+        // this.submitted = true;
+        // if (this.formLocalizador.invalid) {
+        //     return;
+        // }
+        // console.log(this.formLocalizador.value);
     
-        this.http.get<any>(`/item/pessoa${this.formLocalizador.get("pessoaItem")?.value}`).subscribe(result => {
-          let item = this.formLocalizador.value;
-          item['pessoaItem'] = {"cpf": result.cpf}
-          this.http.post<any>('/item/additem', item)
-          .subscribe({
-            next: (response) => {
-              console.log(response);
-              this.router.navigateByUrl('/itens');
-            },
-            error: (error) => console.log(error),
-          });
+      
+        // this.http.get<any>(`/item/pessoa${this.formLocalizador.get("pessoaItem")?.value}`).subscribe(result => {
+        //   let item = this.formLocalizador.value;
+        //   item['pessoaItem'] = {"cpf": result.cpf}
 
-
-        });
-      }
+        //   this.http.post<any>('/item/additem', item)
+        //   .subscribe({
+        //     next: (response) => {
+        //       console.log(response);
+        //       this.router.navigateByUrl('/itens');
+        //     },
+        //     error: (error) => console.log(error),
+        //   });
+        // });
+     // }
     }
+}
   
 
 

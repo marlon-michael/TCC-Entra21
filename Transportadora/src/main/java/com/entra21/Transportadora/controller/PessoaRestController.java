@@ -50,6 +50,15 @@ public class PessoaRestController {
             }
             return null;
         }).collect(Collectors.toList());
+//=======
+//        PessoaDTO pessoaDTO = new PessoaDTO(pessoaService.buscarLogin(login));
+//
+//        empresaService.findAll().forEach(empresa -> {
+//            if(empresa.getGerente().getCpf().equals(pessoaDTO.getCpf())){
+//                pessoaDTO.setRole("GERENTE");
+//            }
+//        });
+//>>>>>>> 232ac0c95ef045565d17c521bff08a6d99e8d073
 
         if (pessoaDTO.getRole().equals("GERENTE")){
             return pessoaDTO;
@@ -59,10 +68,16 @@ public class PessoaRestController {
             return pessoaDTO;
         }
         else {
+
             pessoaDTO.setRole("USER");
             return pessoaDTO;
         }
 
+//=======
+//            pessoaDTO.setRole("PESSOA");
+//            return pessoaDTO;
+//        }
+//>>>>>>> 232ac0c95ef045565d17c521bff08a6d99e8d073
     }
 
 

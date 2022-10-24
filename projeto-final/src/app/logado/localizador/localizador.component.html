@@ -1,73 +1,46 @@
 
 
-<form class="d-flex" role="search" [formGroup]="formLocalizador">
-    <input class="form-control " type="search" placeholder="Localizador" aria-label="Search" >
+<form  role="search" [formGroup]="formLocalizador" >
+<!-- <app-search (searchTextChanged)="onSearchTextEntered($event)"></app-search> -->
+  <h1>Meus Itens</h1>
+  <!-- <h5>{{ informacao }}</h5> -->
+  <!-- <app-localizador [informacao]="itens"></app-localizador> -->
+<div class="abc">
+  <input class="form-control " type="search" placeholder="Localizador" aria-label="Search">
+    <!-- <input type="text" [(ngModel)]="enteredSearchValue" (input)="onSearchTextChanged()"> -->
     <button class="btn btn-outline-dark" type="submit" (click)="onSearch()">Buscar</button>
-
-
-<p class="t1">Meus Itens</p>
-
+  </div>
 
 <table class="table table-bordered">
     <thead>
       <tr>
-        <th scope="col" style="width: 8%;">Pedido</th>
-        <th scope="col" style="width: 15%;">Destinatario</th>
-        <th scope="col" >Endereço</th>
-        <th scope="col" style="width: 20%;">Status</th>
-        <th scope="col" style="width: 16%;">CPF</th>
-        <th scope="col" style="width: 14%;"></th>
+        <th scope="col" style="width: 380px;">Pedido</th>
+        <th scope="col" style="width: 200px;">Destinatario</th>
+        <th scope="col"style="width:200px;" >Endereço</th>
+        <th scope="col" style="width:200px;">Status</th>
+        <!-- <th scope="col" style="width:200px;">CPF</th> -->
       </tr>
     </thead>
     <tbody>
 
       <!-- <tr *ngFor="let itens of itens"> -->
-        <tr *ngFor="let item of itens ">
-        <td>{{item.localizador}}</td>
-        <td>{{item.nomeRecebedor}}</td>
-        <td>{{item.localEntrega}}</td>
-        <td>{{item.status}}</td>
-        <td>{{item.pessoaItem.cpf}}</td>
-        <td >Editar e Deletar</td>
-
-        <td [ngStyle]="{'visibility': (item.localizador != null) ? 'hidden' : 'visible'}" >
+        <tr *ngFor="let item of item ">
+        <!-- <div *ngIf="searchText === '' || item.pessoaItem.cpf.includes(searchText)">  -->
+        <td  style="width: 380px;">{{item.localizador}}</td>
+        <td style="width:200px;">{{item.nomeRecebedor}}</td>
+        <td style="width:200px;">{{item.localEntrega}}</td>
+        <td style="width:200px;">{{item.status}}</td>
+        <!-- <td>{{item.pessoaItem.cpf}}</td> -->
+        <!-- <td>{{item.funcionario.empresa.cnpj}}</td> -->
+     
+      <!-- </div> -->
+       
+     
+        <!-- <td [ngStyle]="{'visibility': (item.localizador != null) ? 'hidden' : 'visible'}" >
           <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            Editar
+            Editar Status
           </button>
-          
-          <!-- Modal -->
-          <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-body">
-                  <div class="mb-3">
-                    <label for="func" class="form-label" >Destinatario</label>
-                    <input type="text" class="form-control" id="func" placeholder="Destinatario antigo">
-                  </div>
-                  <div class="mb-3">
-                    <label for="func" class="form-label" >Endereço</label>
-                    <input type="text" class="form-control" id="func" placeholder="Endereço antigo">
-                  </div>
-                  <div class="mb-3">
-                    <label for="func" class="form-label" >Status</label>
-                    <input type="text" class="form-control" id="func" placeholder="Status antigo">
-                  </div>
-                  <div class="mb-3">
-                    <label for="func" class="form-label" >CPF</label>
-                    <input type="text" class="form-control"  minlength="11" maxlength="11" size="11" id="func" placeholder="CPF antigo">
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                  <button type="submit" class="btn btn-primary">Editar</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-            
-            <button  class="btn btn-outline-danger">Deletar</button>
-        </td>
+        </td> -->
 
 
       </tr>

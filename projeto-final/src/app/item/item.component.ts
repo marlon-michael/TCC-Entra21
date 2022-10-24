@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Item } from 'types/types';
+import { first } from 'rxjs';
+import {  Itens } from 'types/types';
 import { ItemRestController } from '../Rest/itens.rest';
 
 // import { ItemServiceComponent } from '../services/item-service/item-service.component';
@@ -30,7 +31,7 @@ submitted = false;
 returnUrl: string = this.route.snapshot.queryParams['returnUrl'];
 error = '';
 succes = false;
-
+itens: Itens[] = [];
   constructor(
 
     private itemRestController: ItemRestController,
@@ -40,6 +41,11 @@ succes = false;
     private router: Router) { }
 
   ngOnInit(): void {
+    this.loading = true;
+    this.itemRestController.getAll().pipe(first()).subscribe((itens: any) => {
+        this.loading = false;
+        this.itens = itens;
+    });
   }
 
   onFindItem(): void {
@@ -57,9 +63,11 @@ succes = false;
       let item = this.itemForm.value;
       item['pessoaItem'] = {"cpf": result.cpf}
 
-      this.http.get<any>(`/${this.itemForm.get("funcionario")?.value}`).subscribe(result => {
-        let item = this.itemForm.value;
-        item['funcionario'] = {"cpf": result.cpf}
+      // this.http.get<any>(`/${this.itemForm.get("funcionario")?.value}`)
+      //.subscribe(result => {
+      //   let item = this.itemForm.value;
+      //   item['funcionario'] = {"cpf": result.cpf}
+
 
       this.http.post<any>('/item/additem', item)
       .subscribe({
@@ -70,8 +78,11 @@ succes = false;
         error: (error) => console.log(error),
       });
     });
-  });
+
+  };
   }
 
 
-}
+
+  
+

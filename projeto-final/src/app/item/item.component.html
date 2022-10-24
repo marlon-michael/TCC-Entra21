@@ -2,18 +2,19 @@
 
 <form class="d-flex" role="search" [formGroup]="itemForm" (ngSubmit)="AddItem()">
 </form>
+
 <!-- <p class="t1">Meus Itens</p> -->
 <h2>Meus Itens</h2>
 
 
 <table class="table table-bordered">
-    <thead>
+    <thead >
 
      
-        <!-- <td scope="col">Pedido</td>
-        <td scope="col">Destinatario</td>
-        <td scope="col">Endereço</td>
-        <td scope="col">Status</td> -->
+        <!-- <td scope="col" class="head">Nome do cliente</td>
+        <td scope="col" class="head">Local de Entrega</td>
+        <td scope="col" class="head">Cpf do cliente</td> -->
+        <!-- <td scope="col">Status</td> -->
         
       
 
@@ -24,24 +25,24 @@
         <!-- <tr *ngFor="let item of item "> -->
 
         
-            <td><label for="localiz" class="label">Localizador </label>
+            <!-- <td><label for="localiz" class="label">Localizador </label>
             <input type="text" id="localiz"  placeholder="Localizador" formControlName="localizador"></td>
 
             <td> <label for="status" class="label">Status </label>
-            <input type="text" id="localiz"  placeholder="status" formControlName="status"></td>
+            <input type="text" id="localiz"  placeholder="status" formControlName="status"></td> -->
 
-            <td> <label for="nomeRecebedor" class="label">Nome do Recebedor </label>
+            <td> <label for="nomeRecebedor" class="label">Nome do cliente:</label>
             <input type="text" id="nomeRecebedor"  placeholder="Nome do cliente" formControlName="nomeRecebedor"></td>
 
-            <td> <label for="localEntrega" class="label">Local Entrega </label>
+            <td> <label for="localEntrega"  class="label">Endereço: </label>
             <input type="text" id="localEntrega"  placeholder="Local da entrega" formControlName="localEntrega"></td>
 
 
-            <td><label for="pessoaItem" class="label">Cpf do cliente </label>
+            <td><label for="pessoaItem"  class="label">CPF do cliente:</label>
             <input type="text" id="pessoaItem"  placeholder="CPF do cliente" formControlName="pessoaItem"></td>
 
-            <td><label for="funcionario" class="label">Cpf do funcionário </label>
-            <input type="text" id="funcionario"  placeholder="CPF do funcionário" formControlName="funcionario"></td>
+            <!-- <td><label for="funcionario"></label>
+            <input type="text" id="funcionario"  placeholder="CPF do funcionário" formControlName="funcionario"></td> -->
         
                 <!-- <td >Editar e Deletar</td>  -->
 

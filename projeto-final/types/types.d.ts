@@ -17,6 +17,7 @@ export type Cadastro = {
 }
 
 export type Funcionarios = {
+    id: number;
     nome: string,
     sobrenome: string,
     cpf: string,
@@ -24,12 +25,14 @@ export type Funcionarios = {
 }
 
 export type Itens = {
+    id: number;
     localizador: string,
     status: string,
     nomeRecebedor: string,
     localEntrega: string,
-    pessoaItem:  Pessoa;
-    funcionario:  Funcionario;
+    pessoaItem: Pessoa;
+    funcionario: Funcionario;
+  
 }
 export type Item = {
     localizador: string,
@@ -37,6 +40,7 @@ export type Item = {
     nomeRecebedor: string,
     localEntrega: string,
     pessoaItem:  Pessoa;
+    funcionario:  Funcionario;
 }
 
 export type ItensPessoas = {
@@ -49,6 +53,7 @@ pessoaItem:  Pessoa;
 }
 
 export type Pessoa = {
+    id: number;
      nome:string
      sobrenome: string;
      telefone: string;
@@ -64,13 +69,15 @@ export type Funcionario = {
 }
 
 export type Entrega = {
+    id: number;
      tipoEntrega: string;
      entregador: Pessoa;
-     entregaTrecho: EntregaTrecho[];
-     itens: Itens[];
+     entregaTrecho: EntregaTrecho;
+     itens: Itens;
 }
 
 export type Empresa = {
+    id: number;
      cnpj: string;
      razaoSocial:string;
     gerente: Pessoa;
@@ -79,12 +86,14 @@ export type Empresa = {
 }
 
 export type Carro = {
+    id: number;
       tipoCarro: string;
       placa: string;
       empresaCarro: Empresa;
 }
 
 export type EntregaTrecho = {
+    id: number;
      Completo: boolean;
      carro: Carro;
      entrega: Entrega;
@@ -92,6 +101,7 @@ export type EntregaTrecho = {
 }
 
 export type Trecho = {
+    id: number;
      localInicio: string;
      localFim: string;
 }
