@@ -3,10 +3,10 @@
 <form  role="search" [formGroup]="formLocalizador" >
 <!-- <app-search (searchTextChanged)="onSearchTextEntered($event)"></app-search> -->
   <h1>Meus Itens</h1>
-  <!-- <h5>{{ informacao }}</h5> -->
-  <!-- <app-localizador [informacao]="itens"></app-localizador> -->
+
 <div class="abc">
   <input class="form-control" type="search" placeholder="Localizador" aria-label="Search" formControlName="local">
+
     <!-- <input type="text" [(ngModel)]="enteredSearchValue" (input)="onSearchTextChanged()"> -->
     <button class="btn btn-outline-dark" type="submit" (click)="onSearch()">Buscar</button>
   </div>

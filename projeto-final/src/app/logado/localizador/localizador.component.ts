@@ -43,15 +43,42 @@ succes = false;
     private route: ActivatedRoute,
     private router: Router) { }
 
+
+
   ngOnInit() {
-// this.itemRestController.getBycpf().subscribe(item => {
+
+//     this.http.get<any>(`/pessoa/${this.formLocalizador.get("pessoaItem")?.value}`).subscribe(result => {
+//       let item = this.formLocalizador.value;
+//       item['pessoaItem'] = {"cpf": result.cpf}  
+//       this.itemRestController.getbycpf().subscribe(item => {
 //   this.item = item;
 // });
+ // });
+
+    // this.itemRestController.getAll().pipe(first()).subscribe((itens: Itens[]) => {
+    //   this.item = itens;
+    // });
+
+
+    //   this.http.get<Itens[]>(`/item/pessoa/${this.formLocalizador.get("pessoaItem")?.value}`, item)
+    //   .subscribe({
+    //     next: (response) => {
+    //       console.log(response);
+    //     },
+    //     error: (error) => console.log(error),
+    //   });
+    // });
+
+ 
+}
+
+
+
 //
     // this.itemRestController.getAll().pipe(first()).subscribe((itens: Itens[]) => {
     //   this.item = itens;
     // });
-  }
+  
  
   onSearch() {
     this.http.get<any>(`/item/pessoa/${this.formLocalizador.get("local")?.value}`).subscribe(result => {

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Pipe } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,7 +10,7 @@ import { ContactComponent } from '../pages/contact/contact.component';
 import { HomeComponent } from 'src/pages/home/home.component';
 import { AboutComponent } from 'src/pages/about/about.component';
 import { NavbarComponent } from './sharepage/navbar/navbar.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BasicAuthInterceptor } from './logado/helpers/basic-auth.interceptor';
 import { LoginComponent } from 'src/pages/login/login.component';
@@ -23,6 +23,7 @@ import { EntregasItemDetalhesComponent } from './entregas-item-detalhes/entregas
 import { ItemComponent } from './item/item.component';
 import { SearchComponent } from './search/search.component';
 import { AddFuncionarioComponent } from './add-funcionario/add-funcionario.component';
+import { FilterPipe } from './logado/localizador/filter.pipe';
 
 
 
@@ -44,13 +45,15 @@ import { AddFuncionarioComponent } from './add-funcionario/add-funcionario.compo
     EntregasItemDetalhesComponent,
     ItemComponent,
     SearchComponent,
-    AddFuncionarioComponent
+    AddFuncionarioComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, {provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true}],
   bootstrap: [AppComponent]

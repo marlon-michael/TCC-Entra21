@@ -55,8 +55,7 @@ export class EntregasComponent implements OnInit {
         })
       });
       console.log(this.entregas);
-      console.log("==========");
-      console.log(this.entrega2)
+      console.log(this.entrega2);
     });
   }
 
@@ -68,4 +67,28 @@ export class EntregasComponent implements OnInit {
     this.itemEdit.emit(this.item.localizador);
   }
 
+  AddItem() {
+    this.submitted = true;
+    if (this.itemForm.invalid) {
+        return;
+    }
+    console.log(this.itemForm.value);
+  // this.http.get<any>(`/${this.itemForm.get("funcionario")?.value}`)
+      //.subscribe(result => {
+      //   let item = this.itemForm.value;
+      //   item['funcionario'] = {"cpf": result.cpf}
+    this.http.get<any>(`/pessoa/${this.itemForm.get("pessoaItem")?.value}`).subscribe(result => {
+      let item = this.itemForm.value;
+      item['pessoaItem'] = {"cpf": result.cpf}
+      this.http.post<any>('/item/additem', item)
+      .subscribe({
+        next: (response) => {
+          console.log(response);
+          this.router.navigateByUrl('/itens');
+        },
+        error: (error) => console.log(error),
+      });
+    });
+
+  };
 }
