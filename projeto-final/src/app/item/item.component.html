@@ -1,51 +1,42 @@
 
 
-<form class="d-flex" role="search" [formGroup]="itemForm" (ngSubmit)="AddItem()">
-</form>
+<form  role="search" [formGroup]="itemForm" (ngSubmit)="AddItem()">
+
 
 <!-- <p class="t1">Meus Itens</p> -->
 <h2>Meus Itens</h2>
 
-
-<table class="table table-bordered">
-    <thead >
-
-     
-        <!-- <td scope="col" class="head">Nome do cliente</td>
-        <td scope="col" class="head">Local de Entrega</td>
-        <td scope="col" class="head">Cpf do cliente</td> -->
-        <!-- <td scope="col">Status</td> -->
-        
-      
-
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Localizador</th>
+        <th scope="col">Status</th>
+        <th scope="col">Nome do cliente:</th>
+        <th scope="col">Endereço:</th>
+        <th scope="col">CPF do cliente:</th>
+      </tr>
     </thead>
     <tbody>
-
-       <!-- <tr *ngFor="let itens of itens">  -->
-        <!-- <tr *ngFor="let item of item "> -->
-
+      <tr>
+        <th scope="row">1</th>
+        <td><label for="localiz" class="label">Localizador </label>
+            <input type="text" id="localiz"  placeholder="Localizador" formControlName="localizador">
+        </td>
+        <td> <label for="status" class="label">Status </label>
+            <input type="text" id="status"  placeholder="status" formControlName="status">
         
-            <!-- <td><label for="localiz" class="label">Localizador </label>
-            <input type="text" id="localiz"  placeholder="Localizador" formControlName="localizador"></td>
-
-            <td> <label for="status" class="label">Status </label>
-            <input type="text" id="localiz"  placeholder="status" formControlName="status"></td> -->
-
             <td> <label for="nomeRecebedor" class="label">Nome do cliente:</label>
-            <input type="text" id="nomeRecebedor"  placeholder="Nome do cliente" formControlName="nomeRecebedor"></td>
-
-            <td> <label for="localEntrega"  class="label">Endereço: </label>
-            <input type="text" id="localEntrega"  placeholder="Local da entrega" formControlName="localEntrega"></td>
-
-
-            <td><label for="pessoaItem"  class="label">CPF do cliente:</label>
-            <input type="text" id="pessoaItem"  placeholder="CPF do cliente" formControlName="pessoaItem"></td>
-
-            <!-- <td><label for="funcionario"></label>
-            <input type="text" id="funcionario"  placeholder="CPF do funcionário" formControlName="funcionario"></td> -->
-        
-                <!-- <td >Editar e Deletar</td>  -->
-
+                <input type="text" id="nomeRecebedor"  placeholder="Nome do cliente" formControlName="nomeRecebedor"></td>
+    
+                <td> <label for="localEntrega"  class="label">Endereço: </label>
+                <input type="text" id="localEntrega"  placeholder="Local da entrega" formControlName="localEntrega"></td>
+    
+    
+                <td><label for="pessoaItem"  class="label">CPF do cliente:</label>
+                <input type="text" id="pessoaItem"  placeholder="CPF do cliente" formControlName="pessoaItem" minlength="11" maxlength="11"></td>
+      </tr>
     </tbody>
   </table>
   <input type="submit" class="btn btn-outline-dark" value="Adicionar" >
+</form>

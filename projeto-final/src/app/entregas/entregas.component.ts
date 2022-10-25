@@ -17,6 +17,7 @@ export class EntregasComponent implements OnInit {
   @Output() itemDelete = new EventEmitter<Itens>();
   @Output() itemEdit = new EventEmitter<string>();
 
+  entrega2: any[][] = [];
  entregas: Entrega[] = [];
 // itens: Itens[] = [];
 // trecho: Trecho[] = [];
@@ -34,9 +35,28 @@ export class EntregasComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.EntregaRestController.getAll().pipe(first()).subscribe((funcionarios: any) => {
-        this.loading = false;
-        this.entregas = funcionarios;
+    this.EntregaRestController.getAll().pipe(first()).subscribe((entrega: any) => {
+      this.loading = false;
+      this.entregas = entrega;
+      this.entregas.forEach((entrega)=>{
+        entrega.entregaTrecho.forEach((Etrecho)=>{
+          let entregaResolved = []
+          entregaResolved.push(entrega.entregador.nome);
+          entregaResolved.push(entrega.entregador.cpf);
+          entregaResolved.push(entrega.tipoEntrega);
+          if (Etrecho.Completo){
+            entregaResolved.push("Entregue");
+          }else{
+            entregaResolved.push("Pendente");
+          }
+          entregaResolved.push(Etrecho.trecho.localInicio);
+          entregaResolved.push(Etrecho.trecho.localFim);
+          this.entrega2.push(entregaResolved)
+        })
+      });
+      console.log(this.entregas);
+      console.log("==========");
+      console.log(this.entrega2)
     });
   }
 

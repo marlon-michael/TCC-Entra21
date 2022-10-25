@@ -6,7 +6,7 @@
   <!-- <h5>{{ informacao }}</h5> -->
   <!-- <app-localizador [informacao]="itens"></app-localizador> -->
 <div class="abc">
-  <input class="form-control " type="search" placeholder="Localizador" aria-label="Search">
+  <input class="form-control" type="search" placeholder="Localizador" aria-label="Search" formControlName="local">
     <!-- <input type="text" [(ngModel)]="enteredSearchValue" (input)="onSearchTextChanged()"> -->
     <button class="btn btn-outline-dark" type="submit" (click)="onSearch()">Buscar</button>
   </div>
@@ -14,35 +14,26 @@
 <table class="table table-bordered">
     <thead>
       <tr>
-        <th scope="col" style="width: 380px;">Pedido</th>
+        <th scope="col" style="width: 400px;">localizador</th>
         <th scope="col" style="width: 200px;">Destinatario</th>
-        <th scope="col"style="width:200px;" >Endereço</th>
-        <th scope="col" style="width:200px;">Status</th>
-        <!-- <th scope="col" style="width:200px;">CPF</th> -->
+        <th scope="col" style="width: 300px;" >Endereço</th>
+        <th scope="col" style="width: 200px;">Status</th>
       </tr>
     </thead>
     <tbody>
 
       <!-- <tr *ngFor="let itens of itens"> -->
-        <tr *ngFor="let item of item ">
-        <!-- <div *ngIf="searchText === '' || item.pessoaItem.cpf.includes(searchText)">  -->
-        <td  style="width: 380px;">{{item.localizador}}</td>
-        <td style="width:200px;">{{item.nomeRecebedor}}</td>
-        <td style="width:200px;">{{item.localEntrega}}</td>
-        <td style="width:200px;">{{item.status}}</td>
-        <!-- <td>{{item.pessoaItem.cpf}}</td> -->
-        <!-- <td>{{item.funcionario.empresa.cnpj}}</td> -->
-     
-      <!-- </div> -->
-       
-     
+        <tr *ngFor="let item of itens">
+        <td style="width: 400px;">{{item.localizador}}</td>
+        <td style="width: 200px;">{{item.nomeRecebedor}}</td>
+        <td style="width: 300px;">{{item.localEntrega}}</td>
+        <td style="width: 200px;">{{item.status}}</td>
+        <!-- <td hidden>{{item.funcionario.empresa.cnpj}}</td> -->
         <!-- <td [ngStyle]="{'visibility': (item.localizador != null) ? 'hidden' : 'visible'}" >
           <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
             Editar Status
           </button>
         </td> -->
-
-
       </tr>
     </tbody>
   </table>

@@ -29,15 +29,15 @@ public class ItemRestController {
         return itemService.findByLocalizador(localizador);
     }
 
-    @GetMapping("/pessoa")
-    public List<ItemDTO> getItemByPessoa(@RequestParam(name = "Id") Long Id){
-        return itemService.findAllByPessoa_id(Id);
-    }
-
-//    @GetMapping("/pessoa/{cpf}")
-//    public List<ItemDTO> getItemByPessoa(@RequestParam(name = "IdItem") Long IdItem, @PathVariable(name = "cpf") String cpf){
-//        return itemService.findAllByPessoa_Cpf(IdItem, cpf);
+//    @GetMapping("/pessoa")
+//    public List<ItemDTO> getItemByPessoa(@RequestParam(name = "Id") Long Id){
+//        return itemService.findAllByPessoa_id(Id);
 //    }
+
+    @GetMapping("/pessoa/{cpf}")
+    public List<ItemDTO> getItemByPessoa(@PathVariable(name = "cpf") String cpf){
+        return itemService.findAllByPessoa_Cpf(cpf);
+    }
 //TODO TESTE
 //    @GetMapping("/ByPessoa")
 //    public List<ItemDTO> getItemByPessoa(@RequestParam(name = "IdItem") Long IdItem){

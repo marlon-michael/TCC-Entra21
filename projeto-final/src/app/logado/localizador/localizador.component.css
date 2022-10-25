@@ -1,14 +1,14 @@
 
-.d-flex {
-    /* width: 180px;
+/* .d-flex {
+    width: 180px;
     padding: 20px;
     margin-left: 100px;
     margin-bottom: 20px;
     margin-top: 30px;
     display: flex;
     align-items: center;
-    flex-direction:row; */
-}
+    flex-direction:row;
+} */
 
 .btn.btn-outline-dark {
     /* margin-right: 10px;
@@ -34,8 +34,8 @@ table.table-bordered {
 
      /* width: 980px; */
    
-    margin-left: 150px;
-
+    margin-left: 5%;
+    width: 90%;
     margin-bottom: 0px;
     margin-top: 30px;
     display: flex;

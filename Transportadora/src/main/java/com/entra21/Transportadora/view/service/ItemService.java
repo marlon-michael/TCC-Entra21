@@ -72,49 +72,49 @@ public class ItemService {
         return itemDTO;
     }
 
-//    public List<ItemDTO> findAllByPessoa_Cpf(String cpf){
-//        return itemRepository.findAllByPessoa_Cpf(cpf).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pessoa/Cpf não encontrado");}).stream().map(itemEntity -> {
-//            ItemDTO itemDTO = new ItemDTO();
-//            PessoaDTO pessoaDTO = new PessoaDTO();
-//
-//            if (itemEntity.getPessoa() != null){
-//                pessoaDTO.setNome(itemEntity.getPessoa().getNome());
-//                pessoaDTO.setSobrenome(itemEntity.getPessoa().getSobrenome());
-//                pessoaDTO.setTelefone(itemEntity.getPessoa().getTelefone());
-//                pessoaDTO.setCpf(itemEntity.getPessoa().getCpf());
-//            }
-//
-//            itemDTO.setPessoaItem(pessoaDTO);
-//            itemDTO.setLocalizador(itemEntity.getLocalizador());
-//            itemDTO.setLocalEntrega(itemEntity.getLocalEntrega());
-//            itemDTO.setNomeRecebedor(itemEntity.getNomeRecebedor());
-//            itemDTO.setStatus(itemEntity.getStatus());
-//
-//            return itemDTO;
-//        }).collect(Collectors.toList());
-//    }
-//toDO PARA VER
-    public List<ItemDTO> findAllByPessoa_id(Long Id){
-        return itemRepository.findAllByPessoa_id(Id).stream()
-                .map(itemEntity -> {
+    public List<ItemDTO> findAllByPessoa_Cpf(String cpf){
+        return itemRepository.findAllByPessoa_Cpf(cpf).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pessoa/Cpf não encontrado");}).stream().map(itemEntity -> {
+            ItemDTO itemDTO = new ItemDTO();
+            PessoaDTO pessoaDTO = new PessoaDTO();
 
-                    ItemDTO itemDTO = new ItemDTO();
-                    PessoaDTO pessoaDTO = new PessoaDTO();
-
-                    pessoaDTO.setNome(itemEntity.getPessoa().getNome());
-                    pessoaDTO.setSobrenome(itemEntity.getPessoa().getSobrenome());
+            if (itemEntity.getPessoa() != null){
+                pessoaDTO.setNome(itemEntity.getPessoa().getNome());
+                pessoaDTO.setSobrenome(itemEntity.getPessoa().getSobrenome());
                 pessoaDTO.setTelefone(itemEntity.getPessoa().getTelefone());
-                    pessoaDTO.setCpf(itemEntity.getPessoa().getCpf());
+                pessoaDTO.setCpf(itemEntity.getPessoa().getCpf());
+            }
 
+            itemDTO.setPessoaItem(pessoaDTO);
+            itemDTO.setLocalizador(itemEntity.getLocalizador());
+            itemDTO.setLocalEntrega(itemEntity.getLocalEntrega());
+            itemDTO.setNomeRecebedor(itemEntity.getNomeRecebedor());
+            itemDTO.setStatus(itemEntity.getStatus());
 
-                    itemDTO.setLocalizador(itemEntity.getLocalizador());
-                    itemDTO.setLocalEntrega(itemEntity.getLocalEntrega());
-                    itemDTO.setNomeRecebedor(itemEntity.getNomeRecebedor());
-                    itemDTO.setStatus(itemEntity.getStatus());
-
-                    return itemDTO;
-                }).collect(Collectors.toList());
+            return itemDTO;
+        }).collect(Collectors.toList());
     }
+//toDO PARA VER
+//    public List<ItemDTO> findAllByPessoa_id(Long Id){
+//        return itemRepository.findAllByPessoa_id(Id).stream()
+//                .map(itemEntity -> {
+//
+//                    ItemDTO itemDTO = new ItemDTO();
+//                    PessoaDTO pessoaDTO = new PessoaDTO();
+//
+//                    pessoaDTO.setNome(itemEntity.getPessoa().getNome());
+//                    pessoaDTO.setSobrenome(itemEntity.getPessoa().getSobrenome());
+//                pessoaDTO.setTelefone(itemEntity.getPessoa().getTelefone());
+//                    pessoaDTO.setCpf(itemEntity.getPessoa().getCpf());
+//
+//
+//                    itemDTO.setLocalizador(itemEntity.getLocalizador());
+//                    itemDTO.setLocalEntrega(itemEntity.getLocalEntrega());
+//                    itemDTO.setNomeRecebedor(itemEntity.getNomeRecebedor());
+//                    itemDTO.setStatus(itemEntity.getStatus());
+//
+//                    return itemDTO;
+//                }).collect(Collectors.toList());
+//    }
 
 
     public void saveItem(ItemAddDTO itemDTO) {

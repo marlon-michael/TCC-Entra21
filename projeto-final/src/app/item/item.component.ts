@@ -24,7 +24,7 @@ export class ItemComponent implements OnInit {
     nomeRecebedor:  ['', Validators.required],
     localEntrega:  ['', Validators.required],
     pessoaItem: ['', Validators.required],
-    funcionario: ['', Validators.required]
+    // funcionario: ['', Validators.required]
   });
   loading = false;
 submitted = false;
@@ -46,10 +46,7 @@ itens: Itens[] = [];
         this.loading = false;
         this.itens = itens;
     });
-  }
-
-  onFindItem(): void {
-    // itemService.getByLocalizador();
+   
   }
 
   AddItem() {
@@ -58,17 +55,13 @@ itens: Itens[] = [];
         return;
     }
     console.log(this.itemForm.value);
-
-    this.http.get<any>(`/pessoa/${this.itemForm.get("pessoaItem")?.value}`).subscribe(result => {
-      let item = this.itemForm.value;
-      item['pessoaItem'] = {"cpf": result.cpf}
-
-      // this.http.get<any>(`/${this.itemForm.get("funcionario")?.value}`)
+  // this.http.get<any>(`/${this.itemForm.get("funcionario")?.value}`)
       //.subscribe(result => {
       //   let item = this.itemForm.value;
       //   item['funcionario'] = {"cpf": result.cpf}
-
-
+    this.http.get<any>(`/pessoa/${this.itemForm.get("pessoaItem")?.value}`).subscribe(result => {
+      let item = this.itemForm.value;
+      item['pessoaItem'] = {"cpf": result.cpf}
       this.http.post<any>('/item/additem', item)
       .subscribe({
         next: (response) => {
