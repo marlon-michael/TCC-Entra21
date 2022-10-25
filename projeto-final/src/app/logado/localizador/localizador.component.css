@@ -1,30 +1,100 @@
 
-.d-flex {
-    width: 380px;
-    padding: 20px;
-    margin-left: 40%;
-    margin-bottom: 20px;
-    margin-top: 30px;
+
+.banner{
+    background-image: url(src\assets\img\Chato.jpg);
+    background-position: center!important;
+    background-size: cover;
+ max-width: 2560px;
+ margin-top: auto;
+ min-width: 420px;
+ height: 720px;
+ 
 }
 
+
+
 .btn.btn-outline-dark {
-    margin-right: 10px;
-margin-left: 14px;
+    /* margin-right: 10px;
+margin-left: 14px; */
+height: 40px;
+background-color: rgb(220, 224, 224);
+color: black;
+border-color: rgb(220, 224, 224);
+/* margin-left: 200px;
+margin-top: 30px; */
+}
+
+.btn.btn-outline-dark:hover {
+    background-color:black;
+    color: azure;
+    border-color:black;
 }
 
 .btn.btn-outline-secondary {
-    margin-left: 830px;
+    height: 40px;
+    margin-left: 700px;
+    margin-bottom: 10%;
+    margin-top: 20px;
+    background-color: rgb(220, 224, 224);
+    color: black;
+    border-color: rgb(220, 224, 224);
+}
+
+.btn.btn-outline-secondary:hover {
+    background-color:black;
+    color: azure;
+    border-color:black;
+    
 }
 
 
 table.table-bordered {
-    margin-top: 10px;
-    margin-left: 130px;
-    width: 1500px;
+    margin-top: 40px;
+    margin-left: 70px;
+    width: 1450px;
+    border-color: rgb(0, 0, 0);
+    background-color: rgb(220, 224, 224);
+    border-radius: 12px;
 }
-
-.t1 {
+th{
+   margin-left: 10px;
+}
+/* .t1 {
     font-size: 35px;
     text-align: center;
     
+} */
+
+.form-control {
+    width: 300px;
+    height: 40px;
+    margin-right: 10px;
+    text-decoration: none;
+    margin-left: 170px;
+    background-color: rgb(220, 224, 224);
+    /* margin-top: 30px;
+    margin-left: auto; */
 }
+.form-control:hover{
+    background: rgba(37, 36, 36, 0.144);
+    text-decoration-color: aliceblue;
+    border: 1px solid black;
+    background-color: rgb(220, 224, 224);
+   
+}
+.form-control::placeholder:hover{
+    color: rgb(255, 255, 255);
+    background: pink;
+}
+
+.abc {
+    margin-top: 30px;
+    margin-left: 450px; 
+    display: flex;
+    align-items: center;
+
+}
+    h1{
+        text-align: center;
+        color: azure;
+    }

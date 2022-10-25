@@ -21,7 +21,9 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { EntregasComponent } from './entregas/entregas.component';
 import { EntregasItemDetalhesComponent } from './entregas-item-detalhes/entregas-item-detalhes.component';
 import { ItemComponent } from './item/item.component';
-import { LocalizadorEditarComponent } from './localizador-editar/localizador-editar.component';
+import { SearchComponent } from './search/search.component';
+import { AddFuncionarioComponent } from './add-funcionario/add-funcionario.component';
+
 
 
 @NgModule({
@@ -41,9 +43,8 @@ import { LocalizadorEditarComponent } from './localizador-editar/localizador-edi
     EntregasComponent,
     EntregasItemDetalhesComponent,
     ItemComponent,
-    LocalizadorEditarComponent
-    // ListaComponent
-
+    SearchComponent,
+    AddFuncionarioComponent
   ],
   imports: [
     BrowserModule,

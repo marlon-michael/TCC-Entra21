@@ -1,16 +1,57 @@
+
+.banner{
+    background-image: url(src\assets\img\tabelaEntregas.jpg);
+    background-position: center!important;
+    background-size: cover;
+ max-width: 2560px;
+ margin: auto;
+ min-width: 320px;
+ height: 710px;
+ 
+}
+
+
 .btn.btn-outline-dark {
-    margin-right: 10px;
-margin-left: 30px;
+   margin-left: 5px;
 }
 
 .btn.btn-outline-secondary {
-    margin-left: 850px;
+    margin-left: 730px;
+    background-color: rgb(220, 224, 224);
+    color: #000;
+}
+
+.btn.btn-secondary {
+    width: 150px;
+    margin-right: 10px;
+    background-color: rgb(180, 6, 6);
+    border: 2px solid rgb(180, 6, 6);
+    
+}
+
+.btn.btn-secondary:hover {
+    border: 2px solid  black;
+    color: black;
+}
+
+.btn.btn-primary{
+    width: 150px;
+    margin-right: 10px;
+    background-color:#049b1de7;
+    border: 2px solid #049b1de7;
+}
+
+.btn.btn-primary:hover {
+    border: 2px solid  black;
+    color: black;
 }
 
 table.table-bordered {
     margin-top: 10px;
-    margin-left: 140px;
-    width: 1500px;
+    margin-left: 70px;
+    width: 1450px;
+    border-color: rgb(0, 0, 0);
+    background-color: rgb(220, 224, 224);
 }
 
 .t1 {

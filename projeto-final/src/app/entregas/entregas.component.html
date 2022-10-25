@@ -1,3 +1,4 @@
+<div class="banner">
 
 <p class="t1">Entregas</p>
 
@@ -5,11 +6,16 @@
     <thead>
       <tr>
         <th class="t2" scope="col" style="width: 12%;">Pedido</th>
-        <th class="t2" scope="col" style="width: 20%;">Destinatario </th>
-        <th class="t2" scope="col" style="width: 15%;">Tipo de Entrega</th>
-        <th class="t2" scope="col">Endereço</th>
-        <th class="t2" scope="col">Status</th>
-        <th class="t2" scope="col" style="width: 14%;"></th>
+        <th class="t2" scope="col" style="width: 20%;">Nome do entregador </th>
+        <!-- <th class="t2" scope="col" style="width: 20%;">Destinatario </th> -->
+        <th class="t2" scope="col" style="width: 14%;">Tipo de Entrega</th>
+        <!-- <th class="t2" scope="col">Endereço</th> -->
+         <th class="t2" scope="col">Status</th>
+        <th class="t2" scope="col" style="width: 15%;">Saindo de</th>
+        <th class="t2" scope="col" style="width: 15%;">Destino</th>
+        <th scope="col" style="width: 11%;"></th>
+        <!-- <th class="t2" scope="col">Status</th>
+        <th class="t2" scope="col" style="width: 14%;"></th> -->
       </tr>
     </thead>
     <tbody>
@@ -20,17 +26,37 @@
         <td>{{itens.localEntrega}}</td>
         <td>{{itens.status}}</td> -->
 
-        <td>eeeeee</td>
-        <td>eeeeee</td>
-        <td>eeeeee</td>
-        <td>eeeeee</td>
-        <td>eeeeee</td>
+
+       <!-- <tr *ngFor="let itens of entregas.itens" ></tr>
+        <td>{{entregas.itens.localizador}}</td>
+        <td>{{itens.status}}</td>
+
+        <tr *ngFor="let trecho of trecho" ></tr>
+        <td>{{trecho.localInicio}}</td>
+        <td>{{trecho.localFim}}</td>  -->
+        
+        
+        <tr *ngFor="let entrega of entregas" >
+          <!-- <div *ngIf="entrega.entregaTrecho !== null">  -->
+            <td></td>
+        <td>{{entrega.entregador.nome}}</td>
+        <td>{{entrega.tipoEntrega}}</td>
+        
+       <td></td>
+       <td></td>
+       <td></td>
+    
+       
+
+        <!-- <td>{{entrega.entregaTrecho.carro.placa}}</td> -->
+       
+      <!-- </div> -->
         
         <td class="t2" scope="col">
           <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
             Editar Status
           </button>
-          
+       
         
           <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -51,19 +77,19 @@
         </td>
             <!-- trocar o eeeeee para '/entregas/{{item.localizador}}' -->
             <!-- <button (click)="onDeleteEntrega()" class="btn btn-outline-danger">Deletar</button> -->
-        
+         
       </tr>
     </tbody>
   </table>
   <!-- <button type="submit" class="btn btn-outline-dark">Adicionar</button> -->
 
   <!-- Button trigger modal -->
-<button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+<button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrope">
   Adicionar
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="staticBackdrope" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
@@ -94,4 +120,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

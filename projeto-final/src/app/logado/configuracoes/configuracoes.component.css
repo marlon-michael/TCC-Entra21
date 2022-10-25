@@ -1,6 +1,21 @@
+
+
+.banner{
+    background-image: url(src\assets\img\Config.jpg    );
+    background-position: center!important;
+    background-size: cover;
+ max-width: 2560px;
+ margin: auto;
+ min-width: 320px;
+ height: 720px;
+ 
+}
+
+
 .texto2 {
     font-size: 40px;
     text-align: center;
+    color: azure;
 }
 
 

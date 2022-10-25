@@ -1,4 +1,4 @@
-<form  [formGroup]="form" >
+<form  [formGroup]="form"  (ngSubmit)="AddItem()" >
 <p class="texto1">Funcionários</p>
 
 <form class="d-flex" role="search">
@@ -17,17 +17,71 @@
   </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let funcionarios of funcionarios" class="linhas">
+    <!-- <tr *ngFor="let funcionarios of funcionariobuscar" class="linhas"> -->
+  
        <!-- <div *ngIf="this.funcionarios | async as funcionarios; else loading"></div> Resolver -->
       <!-- <th class="no"> -->
-        <td> {{funcionarios.nome}}</td> 
-        <td>{{funcionarios.sobrenome}}</td>
-        <td>{{funcionarios.cpf}}</td>
-        <td>{{funcionarios.telefone}}</td>
-    </tr>
-  <button type="button" routerLink="cadastro" class="btn">Cadastrar</button>
+        <!-- <td><div ngIf*="funcionario.supervisor !== null"> {{funcionarios.supervisor.nome}}</div></td> 
+        <td><div ngIf*="funcionario.supervisor !== null">{{funcionarios.supervisor.sobrenome}}</div></td>
+        <td><div ngIf*="funcionario.supervisor !== null">{{funcionarios.supervisor.cpf}}</div></td>
+        <td><div >{{funcionarios.supervisor.telefone}}</div>td>
+        <td>{{funcionarios.empresa.cnpj}}</td>
+        <td>{{funcionarios.empresa.razaoSocial}}</td>
+        <td>{{funcionarios.empresa.gerente.nome}}</td>
+      </tr> -->
+        <tr *ngFor="let funcionario of funcionarios" class="linhas">
+        <td>{{funcionario.nome}}</td>
+        <td>{{funcionario.sobrenome}}</td>
+        <td>{{funcionario.telefone}}</td>
+        <td>{{funcionario.cpf}}</td>
+
+       </tr>
+  
+  <!-- <button type="button" routerLink="cadastro" class="btn">Cadastrar</button> -->
   </tbody>
 </table> 
 </form>
+
+  <!-- Button trigger modal -->
+  <button type="button" id="cads" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    Cadastrar
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+         <h2 id="t1">Cadastrar</h2>
+          <div class="mb-3">
+            <label for="Nome" class="form-label" >Nome</label>
+            <input type="text" class="form-control" id="Nome" placeholder="Nome" formControlName="nome">
+          </div>
+          <div class="mb-3">
+            <label for="Sobrenome" class="form-label" >Sobrenome</label>
+            <input type="text" class="form-control" id="Sobrenome" placeholder="Sobrenome" formControlName="sobrenome">
+          </div>
+          <div class="mb-3">
+            <label for="Telefone" class="form-label" >Telefone</label>
+            <input type="text" class="form-control" id="Telefone"required placeholder="(xx) xxxxx-xxxx"  pattern="(\(?\d{2}\)?\d{4}\-?\d{4})" required minlength="10" maxlength="11" formControlName="telefone">
+          </div>
+          <div class="mb-3">
+            <label for="cpf" class="form-label" >cpf</label>
+            <input type="text" class="form-control" id="cpf"  pattern="(\d{3}\.?\d{3}\.?\d{3}-?\d{2})|(\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2})"
+            placeholder="xxx.xxx.xxx-xx" required minlength="11" maxlength="11" size="11" formControlName="cpf">
+          </div>
+          <!-- <div class="mb-3">
+            <label for="supervisor" class="form-label" >Supervisor</label>
+            <input type="text" class="form-control" id="supervisor" placeholder="Supervisor" formControlName="supervisor">
+          </div> -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <input type="submit" class="btn" id="extra" (ngSubmit)="AddItem()" value="Adicionar">
+        </div>
+      </div>
+    </div>
+  </div>
+  
 
  

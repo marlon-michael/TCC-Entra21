@@ -53,12 +53,12 @@ color: aliceblue;
 
 .contato-links .form-control{
 	border: none;
-	border-radius: 4px;
+	border-radius: 16px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	text-decoration: none;
-	background: #e1e0e4;
+	background:  #514869;
 	color: #020303de;
 	font-size: 10pt;
 	box-shadow: 0px 10px 40px #00000056;
@@ -111,4 +111,17 @@ color: aliceblue;
 .card-sobre{
 width: 90%;
  }
+}
+
+.btn.btn-secondary {
+	background-color:  #049b1de7;
+}
+
+.btn.btn-secondary:hover {
+	background-color:  #026e14e7;
+	color: black;
+}
+
+.btn.btn-primary {
+	margin-top: 15px;
 }

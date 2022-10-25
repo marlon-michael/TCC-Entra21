@@ -2,9 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Item } from 'types/types';
+import { first } from 'rxjs';
+import {  Itens } from 'types/types';
 import { ItemRestController } from '../Rest/itens.rest';
-import { ItemServiceComponent } from '../services/item-service/item-service.component';
+
+// import { ItemServiceComponent } from '../services/item-service/item-service.component';
+
 
 @Component({
   selector: 'app-item',
@@ -13,20 +16,24 @@ import { ItemServiceComponent } from '../services/item-service/item-service.comp
 })
 export class ItemComponent implements OnInit {
 
+
+
   itemForm: FormGroup = this.formBuilder.group({
     localizador: ['', Validators.required],
     status:  ['', Validators.required],
     nomeRecebedor:  ['', Validators.required],
     localEntrega:  ['', Validators.required],
-    pessoaItem: ['', Validators.required]
+    pessoaItem: ['', Validators.required],
+    // funcionario: ['', Validators.required]
   });
   loading = false;
 submitted = false;
 returnUrl: string = this.route.snapshot.queryParams['returnUrl'];
 error = '';
 succes = false;
+itens: Itens[] = [];
+  constructor(
 
-  constructor(private itemService: ItemServiceComponent,
     private itemRestController: ItemRestController,
     private http: HttpClient, 
     private formBuilder: FormBuilder,
@@ -34,10 +41,19 @@ succes = false;
     private router: Router) { }
 
   ngOnInit(): void {
+    this.loading = true;
+    this.itemRestController.getAll().pipe(first()).subscribe((itens: any) => {
+        this.loading = false;
+        this.itens = itens;
+    });
+   
   }
 
-  onFindItem(): void {
-    // itemService.getByLocalizador();
+  onSearch(): void {
+  //   this.itemRestController.getLocalizador().pipe(first()).subscribe((itens: any) => {
+  //     this.loading = false;
+  //     this.itens = itens;
+  // });
   }
 
   AddItem() {
@@ -46,7 +62,10 @@ succes = false;
         return;
     }
     console.log(this.itemForm.value);
-
+  // this.http.get<any>(`/${this.itemForm.get("funcionario")?.value}`)
+      //.subscribe(result => {
+      //   let item = this.itemForm.value;
+      //   item['funcionario'] = {"cpf": result.cpf}
     this.http.get<any>(`/pessoa/${this.itemForm.get("pessoaItem")?.value}`).subscribe(result => {
       let item = this.itemForm.value;
       item['pessoaItem'] = {"cpf": result.cpf}
@@ -59,6 +78,11 @@ succes = false;
         error: (error) => console.log(error),
       });
     });
+
+  };
   }
+
+
+
   
-}
+
