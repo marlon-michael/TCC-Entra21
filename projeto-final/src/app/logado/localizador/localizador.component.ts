@@ -60,7 +60,6 @@ succes = false;
       }else{
         this.itens = [result]
       }
-      
       console.log(result);
     });
   }

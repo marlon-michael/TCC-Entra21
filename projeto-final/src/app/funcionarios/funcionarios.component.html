@@ -2,7 +2,7 @@
 <p class="texto1">Funcionários</p>
 
 <form class="d-flex" role="search">
-  <input class="form-control me-2" type="search" placeholder="Buscar Funcionários" aria-label="Search">
+  <input class="form-control me-2" type="search" placeholder="Buscar Funcionários" aria-label="Search" formControlName="search">
   <button class="btn " type="submit" (click)="onSearch()" >Buscar</button>
 </form>
 <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
