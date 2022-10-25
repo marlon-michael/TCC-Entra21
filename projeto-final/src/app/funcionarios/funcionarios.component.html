@@ -1,10 +1,10 @@
 <form  [formGroup]="form"  (ngSubmit)="AddItem()" >
 <p class="texto1">Funcionários</p>
 
-<form class="d-flex" role="search">
+<!-- <form class="d-flex" role="search">
   <input class="form-control me-2" type="search" placeholder="Buscar Funcionários" aria-label="Search" formControlName="search">
   <button class="btn " type="submit" (click)="onSearch()" >Buscar</button>
-</form>
+</form> -->
 <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
 
 <table class="table table-bordered">
@@ -43,15 +43,20 @@
 </form>
 
   <!-- Button trigger modal -->
-  <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-    Cadastrar
-  </button>
+
+  <!-- <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop"> -->
+<!-- =======
+  <button type="button" id="cads" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+>>>>>>> 58aed518adb9a2c10483b68fe197d2b8f35ae4fb -->
+    <!-- Cadastrar
+  </button> -->
   
   <!-- Modal -->
   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-body">
+
           <div class="mb-3">
             <label for="Nome" class="form-label" >Nome</label>
             <input type="text" class="form-control" id="Nome" placeholder="Nome" formControlName="nome">
@@ -76,7 +81,9 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <input type="submit" class="btn"  (ngSubmit)="AddItem()" value="Adicionar">
+
+          <input type="submit" class="btn" id="extra" (ngSubmit)="AddItem()" value="Adicionar">
+
         </div>
       </div>
     </div>

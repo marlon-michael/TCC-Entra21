@@ -17,12 +17,15 @@ import { Itens } from "types/types";
 export class LocalizadorComponent implements OnInit {
 // results$: Observable<any> | undefined;
 // @Input() informacao: any;
+
 // @Output()
 itens: Itens[] = [];
+
 // total:number | undefined;
   
 //   itens2: ItensPessoas[] = [];
 formLocalizador: FormGroup = this.formBuilder.group({
+
   local: ['', Validators.required],
   status:  ['', Validators.required],
   nomeRecebedor:  ['', Validators.required],
@@ -37,11 +40,14 @@ error = '';
 succes = false;
   result: any;
 
+
+    
   constructor(private itemRestController: ItemRestController,
     private http: HttpClient, 
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router) { }
+
 
 
 
@@ -57,6 +63,7 @@ succes = false;
 
     // this.itemRestController.getAll().pipe(first()).subscribe((itens: Itens[]) => {
     //   this.item = itens;
+
     // });
 
 
@@ -69,8 +76,7 @@ succes = false;
     //   });
     // });
 
- 
-}
+  };
 
 
 

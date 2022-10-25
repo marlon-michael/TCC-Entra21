@@ -35,7 +35,7 @@ export class ItemRestController {
       return this.http.get<Itens[]>(`/item/localizador`);
     }
 
-   
+
     // getBycpf = () => {
     //   this.UserId = this.auth.userValue.id;
     //   let queryParams = new HttpParams();

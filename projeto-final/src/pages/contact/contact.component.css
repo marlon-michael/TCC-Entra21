@@ -24,47 +24,48 @@ align-items: center;
 }
 
 .card-sobre{
-width: 60%;
+width: 40%;
 height: 80vh;
 flex-direction: column;
 padding: 30px 35px;
-background: #2f2841;
+background:linear-gradient( to left,#392b5df9,  #21104bf9);
 border-radius: 20px;
 box-shadow: 0px 10px 40px #00000056;
 color: aliceblue;
 }
 .contato-links > .line {
 	border-bottom: 4px solid whitesmoke;
-	width: 50%;
+	width: 100%;
 }
 .contato-links > input{
-	width: 70%; 
+	width: 100%; 
 	border: none;
 	padding: 15px;
-	font-size: 10pt;
+	color: #eeeeeede;
+	font-size: 12pt;
 	outline: none;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	text-decoration: none;
-	background:  #514869;
+	background:  #a89bcb;
 	border-radius: 16px;
 }
 
 .contato-links .form-control{
 	border: none;
-	border-radius: 4px;
+	border-radius: 16px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	text-decoration: none;
-	background: #e1e0e4;
-	color: #020303de;
-	font-size: 10pt;
+	background:  #a89bcb;
+	color: #dde4e4de;
+	font-size: 12pt;
 	box-shadow: 0px 10px 40px #00000056;
 	outline: none;
 	box-sizing: border-box;
-	width: 70%;
+	width: 100%;
 	padding-bottom: 10px;
 	height: 120px;
 }
@@ -76,16 +77,16 @@ color: aliceblue;
 	align-items: center;
 	justify-content: center;
 	text-decoration: none;
-	color: #020303de;
-	font-size: 10pt;
+	color: #eeeeeede;
+	font-size: 12pt;
 	box-shadow: 0px 10px 40px #00000056;
 	outline: none;
 	box-sizing: border-box;
-	width: 70%;
+	width: 100%;
 	padding-bottom: 10px;
 	height: 50px;
 	text-decoration: none;
-	background:  #514869;
+	background:  #a89bcb;
 	padding: 15px;
 	
 }
@@ -111,4 +112,17 @@ color: aliceblue;
 .card-sobre{
 width: 90%;
  }
+}
+
+.btn.btn-secondary {
+	background-color:  #049b1de7;
+}
+
+.btn.btn-secondary:hover {
+	background-color:  #026e14e7;
+	color: black;
+}
+
+.btn.btn-primary {
+	margin-top: 15px;
 }

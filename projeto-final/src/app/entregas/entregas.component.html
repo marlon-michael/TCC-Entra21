@@ -1,5 +1,10 @@
-
+<form [formGroup]="entregaForm">
 <p class="t1">Entregas</p>
+
+<div class="abc">
+  <input class="form-control" type="search" placeholder="Buscar por CPF" aria-label="Search" formControlName="local" minlength="11" maxlength="11">
+    <button class="btn btn-outline-dark" type="submit" (click)="onSearch()">Buscar</button>
+  </div>
 
 <table class="table table-bordered">
     <thead>
@@ -16,6 +21,14 @@
         <tr *ngFor="let entrega of entrega2">
           <td *ngFor="let item of entrega">{{item}}</td>
         </tr>
+        <!-- <tr *ngFor="let item of entregas">
+       
+          <td style="width: 10%;">{{item.entregador.nome}}</td>
+          <td style="width: 10%;">{{item.entregador.cpf}}</td>
+          <td style="width: 10%;">{{item.tipoEntrega}}</td>
+          <td style="width: 10%;">{{item.itens.status}}</td>
+          <td style="width: 10%;">{{item.entregaTrecho.trecho.LocalInicio}}</td>
+          <td style="width: 10%;">{{item.entregaTrecho.trecho.LocalFim}}</td> -->
     </tbody>
   </table>
   <!-- <button type="submit" class="btn btn-outline-dark">Adicionar</button> -->
@@ -53,8 +66,9 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-primary">Adicionar</button>
+        <button type="submit" class="btn btn-primary"  (ngSubmit)="AddItem()">Adicionar</button>
       </div>
     </div>
   </div>
 </div>
+</form>

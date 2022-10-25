@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs';
 import { Entrega, Itens } from 'types/types';
@@ -19,8 +19,14 @@ export class EntregasComponent implements OnInit {
 
   entrega2: any[][] = [];
  entregas: Entrega[] = [];
-// itens: Itens[] = [];
-// trecho: Trecho[] = [];
+ 
+ entregaForm: FormGroup = this.formBuilder.group({
+  tipoEntrega:  ['', Validators.required],
+  entregador:  ['', Validators.required],
+  entregaTrecho:  ['', Validators.required],
+  itens: ['', Validators.required]
+   
+ });
  loading = false;
  submitted = false;
  returnUrl: string = this.route.snapshot.queryParams['returnUrl'];
@@ -59,28 +65,31 @@ export class EntregasComponent implements OnInit {
     });
   }
 
-  onDeleteEntrega = () => {
-    this.itemDelete.emit(this.item);
-  }
-
-  onEditEntrega = () => {
-    this.itemEdit.emit(this.item.localizador);
+  onSearch() {
+    this.http.get<any>(`/entrega/entregador/${this.entregaForm.get("local")?.value}`).subscribe(result => {
+      if (result.length > 1){
+        this.entregas = result
+      }else{
+        this.entregas = [result]
+      }
+      console.log(result);
+    });
   }
 
   AddItem() {
-    this.submitted = true;
-    if (this.itemForm.invalid) {
-        return;
-    }
-    console.log(this.itemForm.value);
+    // this.submitted = true;
+    // if (this.entregaForm.invalid) {
+    //     return;
+    // }
+    // console.log(this.entregaForm.value);
   // this.http.get<any>(`/${this.itemForm.get("funcionario")?.value}`)
       //.subscribe(result => {
       //   let item = this.itemForm.value;
       //   item['funcionario'] = {"cpf": result.cpf}
-    this.http.get<any>(`/pessoa/${this.itemForm.get("pessoaItem")?.value}`).subscribe(result => {
-      let item = this.itemForm.value;
+    this.http.get<any>(`/pessoa/${this.entregaForm.get("pessoaItem")?.value}`).subscribe(result => {
+      let item = this.entregaForm.value;
       item['pessoaItem'] = {"cpf": result.cpf}
-      this.http.post<any>('/item/additem', item)
+      this.http.post<any>('/item/addEntrega', item)
       .subscribe({
         next: (response) => {
           console.log(response);

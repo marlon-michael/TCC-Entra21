@@ -36,11 +36,14 @@ font-weight: bold;
 
 .navbar-nav .nav-link{
     border-radius: 10px;
+    padding: 5px;
 }
 
 .navbar-nav .nav-link-a:hover{
     border-radius: 10px;
-    transition: 0.25s ease;
+    /* padding: 5px; */
+
+    transition: 0.05s ease;
     background-color: rgba(199, 197, 206, 0.39);
     color:#110d1adc;
     font-weight: bold;

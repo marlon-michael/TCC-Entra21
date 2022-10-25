@@ -22,8 +22,8 @@ import { EntregasComponent } from './entregas/entregas.component';
 import { EntregasItemDetalhesComponent } from './entregas-item-detalhes/entregas-item-detalhes.component';
 import { ItemComponent } from './item/item.component';
 import { SearchComponent } from './search/search.component';
-import { AddFuncionarioComponent } from './add-funcionario/add-funcionario.component';
-import { FilterPipe } from './logado/localizador/filter.pipe';
+
+
 
 
 
@@ -45,8 +45,6 @@ import { FilterPipe } from './logado/localizador/filter.pipe';
     EntregasItemDetalhesComponent,
     ItemComponent,
     SearchComponent,
-    AddFuncionarioComponent,
-    FilterPipe
   ],
   imports: [
     BrowserModule,

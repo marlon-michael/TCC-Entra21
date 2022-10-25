@@ -17,7 +17,13 @@ export type Cadastro = {
 }
 
 export type Funcionarios = {
-    id: number;
+    // sort(): Funcionarios;
+    // find(arg0: (h: Funcionarios) => boolean): Funcionarios;
+    // push(funcionario: Funcionarios): Funcionarios;
+    // findIndex(arg0: (h: Funcionarios) => boolean): Funcionarios;
+    // map(arg0: (h: Funcionarios) => string):  Funcionarios;
+    // length: number;
+    // filter(arg0: (h: Funcionarios) => boolean): Funcionarios;
     nome: string,
     sobrenome: string,
     cpf: string,
@@ -25,13 +31,11 @@ export type Funcionarios = {
 }
 
 export type Itens = {
-    id: number;
     localizador: string,
     status: string,
     nomeRecebedor: string,
     localEntrega: string,
-    pessoaItem: Pessoa;
-    funcionario: Funcionario;
+    pessoaItem:  Pessoa;
 }
 
 export type Item = {
@@ -39,8 +43,6 @@ export type Item = {
     status: string,
     nomeRecebedor: string,
     localEntrega: string,
-    pessoaItem:  Pessoa;
-    funcionario:  Funcionario;
 }
 
 export type ItensPessoas = {
@@ -52,13 +54,12 @@ export type ItensPessoas = {
 }
 
 export type Pessoa = {
-    id: number;
-    nome:string
-    sobrenome: string;
-    telefone: string;
-    cpf: string;
-    login: string;
-    senha: string;
+     nome:string
+     sobrenome: string;
+     telefone: string;
+     cpf: string;
+     login: string;
+     senha: string;
 }
 
 export type Funcionario = {
@@ -68,39 +69,34 @@ export type Funcionario = {
 }
 
 export type Entrega = {
-    id: number;
-    tipoEntrega: string;
-    entregador: Pessoa;
-    entregaTrecho: EntregaTrecho[];
-    itens: Itens[];
+     tipoEntrega: string;
+     entregador: Pessoa;
+     entregaTrecho: EntregaTrecho[];
+     itens: Itens[];
 }
 
 export type Empresa = {
-    id: number;
-    cnpj: string;
-    razaoSocial:string;
+     cnpj: string;
+     razaoSocial:string;
     gerente: Pessoa;
-    carros: Carro;
-    funcionarios: Pessoa[];
+    carros: Carro[];
+     funcionarios: Pessoa[];
 }
 
 export type Carro = {
-    id: number;
-    tipoCarro: string;
-    placa: string;
-    empresaCarro: Empresa;
+      tipoCarro: string;
+      placa: string;
+      empresaCarro: Empresa;
 }
 
 export type EntregaTrecho = {
-    id: number;
-    Completo: boolean;
-    carro: Carro;
-    entrega: Entrega;
-    trecho: Trecho;
+     Completo: boolean;
+     carro: Carro;
+     entrega: Entrega;
+     trecho: Trecho;
 }
 
 export type Trecho = {
-    id: number;
      localInicio: string;
      localFim: string;
 }

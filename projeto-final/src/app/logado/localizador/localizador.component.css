@@ -1,38 +1,68 @@
 
-/* .d-flex {
-    width: 180px;
-    padding: 20px;
-    margin-left: 100px;
-    margin-bottom: 20px;
-    margin-top: 30px;
-    display: flex;
-    align-items: center;
-    flex-direction:row;
+
+/* 
+.banner{
+    background-image: url(/assets/img/meusItena.jpg)!important;
+    background-position: center!important;
+    background-size: cover;
+ max-width: 2560px;
+backface-visibility: 50% visible;
+ min-width: 420px;
+ height: 520px;
+ 
 } */
+*{
+    background: rgb(241, 236, 202);
+    
+}
+
 
 .btn.btn-outline-dark {
     /* margin-right: 10px;
 margin-left: 14px; */
-height: 60px;
+
+height: 40px;
+background-color: rgb(213, 201, 160);
+color: black;
+border-color: rgb(220, 224, 224);
 /* margin-left: 200px;
 margin-top: 30px; */
 }
 
+.btn.btn-outline-dark:hover {
+    background:  rgb(195, 184, 146);
+    color: azure;
+    border-color:black;
+
+}
+
 .btn.btn-outline-secondary {
     height: 40px;
-    margin-left: 445px;
+text-decoration: none;
+    margin-left: 250px;
     margin-bottom: 10%;
     margin-top: 20px;
+    background-color: rgb(213, 201, 160);
+    color: black;
+    border-color: rgb(220, 224, 224);
+}
 
+.btn.btn-outline-secondary:hover {
+    background:  rgb(195, 184, 146);
+    color: azure;
+    border-color:black;
+    
+    margin-left: 250px;
 }
 
 
 table.table-bordered {
+/* <<<<<<< HEAD
     /* margin-top: 10px;
     margin-left: 130px;
     width: 1500px; */
 
-     /* width: 980px; */
+     /* width: 980px; 
    
     margin-left: 5%;
     width: 90%;
@@ -43,9 +73,20 @@ table.table-bordered {
     flex-direction:column;
     border-radius: 8px;
     box-shadow: 8px skyblue ;
+======= */
+    margin-top: 40px;
+    margin-left: 250px;
+    width: 60%;
+    /* border-color: rgb(0, 0, 0); */
+    background-color: rgb(213, 201, 160);
+    box-sizing: border-box;
+    /* border-radius: 12px; */
+
 }
 th{
    margin-left: 10px;
+   background-color: rgb(213, 201, 160);
+
 }
 /* .t1 {
     font-size: 35px;
@@ -56,32 +97,45 @@ th{
 .form-control {
     width: 300px;
     height: 40px;
-    margin-right: 10px;
     text-decoration: none;
+margin-right: 10px;
+
+    background-color: rgb(213, 201, 160);
+
     /* margin-top: 30px;
     margin-left: auto; */
 }
 .form-control:hover{
-    background: rgba(37, 36, 36, 0.144);
+    background:  rgb(195, 184, 146);
     text-decoration-color: aliceblue;
-    border: 1px solid black;
+    border: 1px solid rgb(0, 0, 0);   
+    margin-right: 10px;
    
 }
-.form-control::placeholder:hover{
-    color: rgb(255, 255, 255);
-    background: pink;
-}
+
 
 .abc {
     margin-top: 30px;
-    margin-left: 450px; 
+    margin-left: 250px;
     display: flex;
     align-items: center;
 
 }
+
+tr:hover{
+    background-color: rgb(136, 127, 114);
+
+}
+td {
+    background-color: rgb(213, 201, 160);
+}
     h1{
+
         align-items: center;
-        margin-top:40px;
+       
         justify-content: center;
         margin-left: 550px;
+
+        color: rgb(49, 51, 51);
+
     }

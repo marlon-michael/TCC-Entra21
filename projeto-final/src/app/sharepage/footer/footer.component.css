@@ -4,7 +4,7 @@
     padding: 40px 10px;
     position: sticky;
     top: 100%;
-    min-width: 1400px;
+    min-width: 1200px;
     max-width: 1600px;
     align-items: center;
    
@@ -18,18 +18,18 @@
 h1{
     color: white;
     font-size: 30px;
-    margin-left: 690px;
+    margin-left: 550px;
 }
 h6{
     color:aliceblue;
-    margin-left: 595px;
+    margin-left: 458px;
     text-align: center;
     display: flex;
 
 }
 a{
     color:aliceblue;
-    margin-left: 685px;
+    margin-left: 540px;
     text-align: center;
     display: flex;
     text-decoration: none;

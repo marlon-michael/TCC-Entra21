@@ -28,7 +28,7 @@ public class EntregaRestController {
     }
 
     //TODO: TESTAR POST DE ENTREGA NOVAMENTE
-    @PostMapping
+    @PostMapping("addEntrega")
     public void addEntrega(@RequestBody EntregaAddDTO NewEntrega){
         entregaService.save(NewEntrega);
     }
