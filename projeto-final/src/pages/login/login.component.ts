@@ -20,6 +20,7 @@ export class LoginComponent {
   submitted = false;
   returnUrl: string = this.route.snapshot.queryParams['returnUrl'];
   error = '';
+  responsedata: any;
 
   constructor(
       private formBuilder: FormBuilder,
@@ -39,20 +40,24 @@ export class LoginComponent {
       this.submitted = true;
 
       // stop here if form is invalid
-      if (this.loginForm.invalid) {
-          return;
-      }
+      if (this.loginForm.valid) {
       this.loading = true;
       this.authenticationService.login(this.loginForm.get('username')?.value, this.loginForm.get('password')?.value)
           .pipe(first())
           .subscribe(
               data => {
-                  this.router.navigate([this.returnUrl ?? 'home']);
-              },
-              error => {
+                if(data != null){
+                    this.responsedata = data;
+                    localStorage.setItem('token', this.responsedata.jwtToken);
+                    this.router.navigate([this.returnUrl ?? 'home']);
+                                }
+                      });
+                    } else {
+          (error: string) => {
                   this.error = error;
                   this.loading = false;
-              });
+              }
   }
+}
 
 }

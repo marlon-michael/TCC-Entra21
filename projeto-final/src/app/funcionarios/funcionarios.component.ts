@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs';
-import { Funcionario, Funcionarios } from 'types/types';
+import {  Funcionarios } from 'types/types';
 import { FuncionarioRestController } from '../Rest/funcionarios.rest';
 
 @Component({
@@ -13,7 +13,14 @@ import { FuncionarioRestController } from '../Rest/funcionarios.rest';
 })
 export class FuncionariosComponent implements OnInit {
 
-  loading = false;
+    form = this.formBuilder.group({
+      nome: ['',Validators.required ],
+      sobrenome: ['',Validators.required] ,
+      cpf: ['',Validators.required ],
+      telefone: ['', Validators.required]
+    });
+
+  loading = true;
   funcionarios: Funcionarios[] = [];
 submitted = false;
 returnUrl: string = this.route.snapshot.queryParams['returnUrl'];
@@ -21,34 +28,29 @@ error = '';
 succes = false;
 inserting = false;
 
-funcionariobuscar: Funcionario[] = [];
+// funcionariobuscar: Funcionario[] = [];
 
-  form: FormGroup;
+
   constructor(private funcionarioRestController: FuncionarioRestController, 
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private http: HttpClient,) { 
-      this.form = this.formBuilder.group({
-        search: [''],
-        nome: ['',Validators.required ],
-        sobrenome: ['',Validators.required] ,
-        cpf: ['',Validators.required ],
-        telefone: ['', Validators.required],
-        empresa: ['', Validators.required],
-        entrega:['', Validators.required],
-        supervisor: ['', Validators.required]
-      });
-    }
+    private http: HttpClient,) { }
   // ngOnInit(): void {
   //   throw new Error('Method not implemented.');
   // }
   ngOnInit() {
-    this.loading = true;
+   
     this.funcionarioRestController.getAll().pipe(first()).subscribe((funcionarios: any) => {
- 
+      this.loading = false;
+      console.log(funcionarios);
         this.funcionarios = funcionarios;
     });
+
+     // this.itemRestController.getAll().pipe(first()).subscribe((itens: Itens[]) => {
+    //   this.item = itens;
+
+    // });
     // this.http.get<any>(`/empresa/${this.form.get("empresa")?.value}`).subscribe(result => {
     //   let funcio = this.form.value;
     //   this.loading = false;
@@ -61,28 +63,28 @@ funcionariobuscar: Funcionario[] = [];
   
      };
      
-     AddItem() {
-      this.submitted = true;
-      if (this.form.invalid) {
-          return;
-      }
-      console.log(this.form.value);
+    //  AddItem() {
+    //   this.submitted = true;
+    //   if (this.form.invalid) {
+    //       return;
+    //   }
+    //   console.log(this.form.value);
   
 
-      this.http.get<any>(`/empresa/${this.form.get("empresa")?.value}`).subscribe(result => {
-        let item = this.form.value;
-        item['empresa'] = {"cnpj": result.cnpj}
-        this.http.post<any>('funcionario/addfuncionario', item)
-        .subscribe({
-          next: (response) => {
-            console.log(response);
-            this.router.navigateByUrl('/funcionarios');
-          },
-          error: (error) => console.log(error),
-        });
-      });
+    //   this.http.get<any>(`/empresa/${this.form.get("empresa")?.value}`).subscribe(result => {
+    //     let item = this.form.value;
+    //     item['empresa'] = {"cnpj": result.cnpj}
+    //     this.http.post<any>('funcionario/addfuncionario', item)
+    //     .subscribe({
+    //       next: (response) => {
+    //         console.log(response);
+    //         this.router.navigateByUrl('/funcionarios');
+    //       },
+    //       error: (error) => console.log(error),
+    //     });
+    //   });
   
-    };
+    }
 
   // onSearch(){
 
@@ -129,4 +131,4 @@ funcionariobuscar: Funcionario[] = [];
 
 
 
-  }
+  

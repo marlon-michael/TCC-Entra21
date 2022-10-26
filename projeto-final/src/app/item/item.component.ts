@@ -19,8 +19,8 @@ export class ItemComponent implements OnInit {
 
 
   itemForm: FormGroup = this.formBuilder.group({
-    localizador: ['', Validators.required],
-    status:  ['', Validators.required],
+    localizador: [],
+    status:  [],
     nomeRecebedor:  ['', Validators.required],
     localEntrega:  ['', Validators.required],
     pessoaItem: ['', Validators.required],
@@ -46,9 +46,7 @@ itens: Itens[] = [];
         this.loading = false;
         this.itens = itens;
     });
-   
   }
-
 
   AddItem() {
     this.submitted = true;
@@ -56,10 +54,6 @@ itens: Itens[] = [];
         return;
     }
     console.log(this.itemForm.value);
-  // this.http.get<any>(`/${this.itemForm.get("funcionario")?.value}`)
-      //.subscribe(result => {
-      //   let item = this.itemForm.value;
-      //   item['funcionario'] = {"cpf": result.cpf}
     this.http.get<any>(`/pessoa/${this.itemForm.get("pessoaItem")?.value}`).subscribe(result => {
       let item = this.itemForm.value;
       item['pessoaItem'] = {"cpf": result.cpf}
@@ -75,8 +69,3 @@ itens: Itens[] = [];
 
   };
   }
-
-
-
-  
-

@@ -21,7 +21,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { EntregasComponent } from './entregas/entregas.component';
 import { EntregasItemDetalhesComponent } from './entregas-item-detalhes/entregas-item-detalhes.component';
 import { ItemComponent } from './item/item.component';
-import { SearchComponent } from './search/search.component';
+
 
 
 
@@ -44,7 +44,6 @@ import { SearchComponent } from './search/search.component';
     EntregasComponent,
     EntregasItemDetalhesComponent,
     ItemComponent,
-    SearchComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +52,7 @@ import { SearchComponent } from './search/search.component';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, {provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true}],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, {provide: HTTP_INTERCEPTORS, useClass:BasicAuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

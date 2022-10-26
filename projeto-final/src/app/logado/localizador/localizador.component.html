@@ -35,7 +35,7 @@
       <!-- <tr *ngFor="let itens of itens"> -->
 
         <tr *ngFor="let item of itens">
-       
+       <!-- <p *ngIf="this.user?.cpf === item.pessoaItem.cpf"></p> -->
         <td style="width: 10%;">{{item.localizador}}</td>
         <td style="width: 6%;">{{item.nomeRecebedor}}</td>
         <td style="width: 9%;">{{item.localEntrega}}</td>

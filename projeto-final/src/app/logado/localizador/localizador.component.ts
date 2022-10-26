@@ -39,7 +39,7 @@ returnUrl: string = this.route.snapshot.queryParams['returnUrl'];
 error = '';
 succes = false;
   result: any;
-
+user: any;
 
     
   constructor(private itemRestController: ItemRestController,
@@ -52,6 +52,7 @@ succes = false;
 
 
   ngOnInit() {
+  }
 
 //     this.http.get<any>(`/pessoa/${this.formLocalizador.get("pessoaItem")?.value}`).subscribe(result => {
 //       let item = this.formLocalizador.value;
@@ -76,7 +77,7 @@ succes = false;
     //   });
     // });
 
-  };
+
 
 
 
@@ -97,3 +98,4 @@ succes = false;
     });
   }
 }
+

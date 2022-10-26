@@ -35,6 +35,29 @@ export class AuthenticationService {
                 return user;
             }));
     }
+    TaLogado(){
+        return localStorage.getItem('token')!=null;
+    }
+    GetToken(){
+        return localStorage.getItem('token')||'';
+    }
+// HaveAccess(){
+//     var loggintoken= localStorage.getItem('token')||'';
+//     var _extractedtoken=loggintoken.split('.')[1];
+//     var _atobdata=atob(_extractedtoken);
+//     var _finaldata=JSON.parse(_atobdata);
+//         if(_finaldata.role =='admin'){
+//             return true;
+//         } 
+//         // alert('Você não tem acesso')
+//             return false;
+       
+//     // console.log(_finaldata);
+    
+// }
+
+
+
 
     logout() {
         // remove user from local storage to log user out

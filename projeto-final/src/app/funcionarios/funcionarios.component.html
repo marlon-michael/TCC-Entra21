@@ -1,13 +1,14 @@
-<form  [formGroup]="form"  (ngSubmit)="AddItem()" >
+<form  [formGroup]="form">
 <p class="texto1">Funcionários</p>
-
+<div *ngIf="loading" class="spinner-border spinner-border-sm" style="margin-left:650px;"></div>
 <!-- <form class="d-flex" role="search">
   <input class="form-control me-2" type="search" placeholder="Buscar Funcionários" aria-label="Search" formControlName="search">
   <button class="btn " type="submit" (click)="onSearch()" >Buscar</button>
 </form> -->
-<div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+
 
 <table class="table table-bordered">
+  
   <thead>
     <tr>
     <th class="left" >Nome</th>
@@ -17,24 +18,12 @@
   </tr>
   </thead>
   <tbody>
-    <!-- <tr *ngFor="let funcionarios of funcionariobuscar" class="linhas"> -->
-  
-       <!-- <div *ngIf="this.funcionarios | async as funcionarios; else loading"></div> Resolver -->
-      <!-- <th class="no"> -->
-        <!-- <td><div ngIf*="funcionario.supervisor !== null"> {{funcionarios.supervisor.nome}}</div></td> 
-        <td><div ngIf*="funcionario.supervisor !== null">{{funcionarios.supervisor.sobrenome}}</div></td>
-        <td><div ngIf*="funcionario.supervisor !== null">{{funcionarios.supervisor.cpf}}</div></td>
-        <td><div >{{funcionarios.supervisor.telefone}}</div>td>
-        <td>{{funcionarios.empresa.cnpj}}</td>
-        <td>{{funcionarios.empresa.razaoSocial}}</td>
-        <td>{{funcionarios.empresa.gerente.nome}}</td>
-      </tr> -->
-        <tr *ngFor="let funcionario of funcionarios" class="linhas">
+   
+        <tr *ngFor="let funcionario of funcionarios">
         <td>{{funcionario.nome}}</td>
         <td>{{funcionario.sobrenome}}</td>
         <td>{{funcionario.telefone}}</td>
         <td>{{funcionario.cpf}}</td>
-
        </tr>
   
   <!-- <button type="button" routerLink="cadastro" class="btn">Cadastrar</button> -->
@@ -52,7 +41,7 @@
   </button> -->
   
   <!-- Modal -->
-  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <!-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-body">
@@ -74,20 +63,20 @@
             <input type="text" class="form-control" id="cpf"  pattern="(\d{3}\.?\d{3}\.?\d{3}-?\d{2})|(\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2})"
             placeholder="xxx.xxx.xxx-xx" required minlength="11" maxlength="11" size="11" formControlName="cpf">
           </div>
-          <!-- <div class="mb-3">
+          <div class="mb-3">
             <label for="supervisor" class="form-label" >Supervisor</label>
             <input type="text" class="form-control" id="supervisor" placeholder="Supervisor" formControlName="supervisor">
-          </div> -->
+          </div> 
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
 
-          <input type="submit" class="btn" id="extra" (ngSubmit)="AddItem()" value="Adicionar">
+          <input type="submit" class="btn" id="extra" value="Adicionar">
 
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   
 
  

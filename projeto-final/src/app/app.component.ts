@@ -20,7 +20,7 @@ export class AppComponent implements OnInit{
         this.authenticationService.user.subscribe(x => this.user = x);
     }
   ngOnInit(): void {
-    console.log(this.user?.id);
+    console.log(this.user?.idPessoa);
   }
 
     logout() {

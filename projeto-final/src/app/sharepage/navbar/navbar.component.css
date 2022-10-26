@@ -52,6 +52,16 @@ font-weight: bold;
     .navbar-nav .nav-link-a{
         border-radius: 10px;
     }
+    .nomeUsuario{
+        margin-left: 10px;
+        display: inline;
+        color: white;
+        font-size: bolder;
+        display: block;
+        text-align: center;
+        font-size: 14pt;
+        flex-direction: row;
+    }
 
 .navbar-nav * {
     font-family: 'Poppins';
