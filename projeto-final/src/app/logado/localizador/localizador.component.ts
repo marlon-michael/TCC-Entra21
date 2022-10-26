@@ -6,6 +6,7 @@ import { first, map, Observable, tap } from 'rxjs';
 
 import { ItemRestController } from 'src/app/Rest/itens.rest';
 import { Itens, User } from "types/types";
+import { AuthenticationService } from '../helpers/auth.service';
 // import { Itenspessos } from 'types/types';
 
 
@@ -17,7 +18,7 @@ import { Itens, User } from "types/types";
 export class LocalizadorComponent implements OnInit {
 itens: Itens[] = [];
 
-
+role:any;
 user: User | null = null;
 //   itens2: ItensPessoas[] = [];
 formLocalizador: FormGroup = this.formBuilder.group({
@@ -39,15 +40,18 @@ succes = false;
 
     
   constructor(private itemRestController: ItemRestController,
-    private http: HttpClient, 
+    private http: HttpClient,
+    private auth:AuthenticationService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router) {
+    }
 
 
 
 
   ngOnInit() {
+    this.role = this.auth.userValue.role;
   }
 
 
