@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Entrega, EntregaTrecho, Itens, Pessoa} from 'types/types';
+import { Entrega} from 'types/types';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 
 
@@ -20,14 +20,14 @@ export class EntregaRestController {
         return this.http.get<Entrega[]>(`/entrega`);
     }
 
-    addentrega( tipoEntrega: string , entregador: Pessoa["cpf"] ,entregaTrecho: EntregaTrecho["trecho"] ,itens: Itens[]) {
-      return this.http.post<any>(`/entrega/addEntrega`, {tipoEntrega , entregador, entregaTrecho, itens})
-              .pipe(map((entrega: Entrega | null) => {
-                localStorage.setItem('user', JSON.stringify(entrega));
-                this.userSubject.next(entrega);
-                return entrega;
+    // addentrega( tipoEntrega: string , entregador: Pessoa["cpf"] ,entregaTrecho: EntregaTrecho["trecho"] ,itens: Itens[]) {
+    //   return this.http.post<any>(`/entrega/addEntrega`, {tipoEntrega , entregador, entregaTrecho, itens})
+    //           .pipe(map((entrega: Entrega | null) => {
+    //             localStorage.setItem('user', JSON.stringify(entrega));
+    //             this.userSubject.next(entrega);
+    //             return entrega;
   
-            }));
-          }
+    //         }));
+    //       }
 
 }

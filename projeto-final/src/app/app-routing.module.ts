@@ -18,20 +18,20 @@ import { EntregasComponent } from './entregas/entregas.component';
 import { EntregasItemDetalhesComponent } from './entregas-item-detalhes/entregas-item-detalhes.component';
 import { ItemComponent } from './item/item.component';
 import { AuthGuard } from './logado/helpers/auth.guard';
-import { RoleGuard } from './logado/helpers/role.guard';
+
 
 
 
 
 const routes: Routes = [
-{path: '', component:HomeComponent, canActivate:[AuthGuard]},
+{path: '', component:HomeComponent},
 {path: 'additem', component: ItemComponent},
 {path: 'login', component:LoginComponent},
 {path: 'about',component:AboutComponent},
 {path: 'contact',component:ContactComponent},
 { path: 'localizador', component: LocalizadorComponent},
 { path: 'config', component: ConfiguracoesComponent},
-{path: 'cadastro', component: CadastroComponent, canActivate: [RoleGuard]},
+{path: 'cadastro', component: CadastroComponent},
 {path: 'ajuda', component: AjudaComponent},
 {path: 'funcionarios', component: FuncionariosComponent},
 {path: 'edit', component: FuncionariosComponent},

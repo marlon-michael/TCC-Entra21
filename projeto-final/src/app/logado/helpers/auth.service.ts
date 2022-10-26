@@ -7,9 +7,6 @@ import { User } from 'types/types';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-    cadastro(value: string | null | undefined, value1: string | null | undefined, value2: string | null | undefined, value3: string | null | undefined, value4: string | null | undefined, value5: string | null | undefined) {
-      throw new Error('Method not implemented.');
-    }
     private userSubject: BehaviorSubject<User | null>;
     public user: Observable<User | null>;
 
@@ -32,32 +29,10 @@ export class AuthenticationService {
                 user.authdata = window.btoa(username + ':' + password);
                 localStorage.setItem('user', JSON.stringify(user));
                 this.userSubject.next(user);
+                console.log(user);
                 return user;
             }));
     }
-    TaLogado(){
-        return localStorage.getItem('token')!=null;
-    }
-    GetToken(){
-        return localStorage.getItem('token')||'';
-    }
-// HaveAccess(){
-//     var loggintoken= localStorage.getItem('token')||'';
-//     var _extractedtoken=loggintoken.split('.')[1];
-//     var _atobdata=atob(_extractedtoken);
-//     var _finaldata=JSON.parse(_atobdata);
-//         if(_finaldata.role =='admin'){
-//             return true;
-//         } 
-//         // alert('Você não tem acesso')
-//             return false;
-       
-//     // console.log(_finaldata);
-    
-// }
-
-
-
 
     logout() {
         // remove user from local storage to log user out

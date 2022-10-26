@@ -107,5 +107,4 @@ public class PessoaService implements UserDetailsService{
         }
         return null;
     }
-    //TODO: DESABILITAR USUARIO  /  DELETAR USUARIO SE NÃO ESTIVER SENDO USADO EM NENHUMA OUTRA TABELA
 }

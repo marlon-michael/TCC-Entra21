@@ -88,11 +88,11 @@ public class EntregaService {
             dtoentrega.getEntregador().getEmpresa().setRazaoSocial(entregaEntity.getEntregador().getEmpresa().getRazaoSocial());
             dtoentrega.getEntregador().getEmpresa().setCnpj(entregaEntity.getEntregador().getEmpresa().getCnpj());
 
-            dtoentrega.getEntregador().setSupervisor(new FuncionarioDTO());
-            dtoentrega.getEntregador().getSupervisor().setNome(entregaEntity.getEntregador().getSupervisor().getNome());
-            dtoentrega.getEntregador().getSupervisor().setSobrenome(entregaEntity.getEntregador().getSupervisor().getSobrenome());
-            dtoentrega.getEntregador().getSupervisor().setCpf(entregaEntity.getEntregador().getSupervisor().getCpf());
-            dtoentrega.getEntregador().getSupervisor().setTelefone(entregaEntity.getEntregador().getSupervisor().getTelefone());
+//            dtoentrega.getEntregador().setSupervisor(new FuncionarioDTO());
+//            dtoentrega.getEntregador().getSupervisor().setNome(entregaEntity.getEntregador().getSupervisor().getNome());
+//            dtoentrega.getEntregador().getSupervisor().setSobrenome(entregaEntity.getEntregador().getSupervisor().getSobrenome());
+//            dtoentrega.getEntregador().getSupervisor().setCpf(entregaEntity.getEntregador().getSupervisor().getCpf());
+//            dtoentrega.getEntregador().getSupervisor().setTelefone(entregaEntity.getEntregador().getSupervisor().getTelefone());
 
             dtoentrega.setEntregaTrecho(entregaEntity.getEntregaTrecho().stream().map(entregaTrecho -> {
                 EntregaTrechoDTO entregaTrechoDTO = new EntregaTrechoDTO();

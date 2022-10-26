@@ -48,11 +48,11 @@ export class LoginComponent {
               data => {
                 if(data != null){
                     this.responsedata = data;
-                    localStorage.setItem('token', this.responsedata.jwtToken);
+                    // localStorage.setItem('token', this.responsedata.jwtToken);
                     this.router.navigate([this.returnUrl ?? 'home']);
                                 }
                       });
-                    } else {
+                    // } else {
           (error: string) => {
                   this.error = error;
                   this.loading = false;

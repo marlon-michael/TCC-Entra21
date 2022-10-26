@@ -65,39 +65,5 @@ export class EntregasComponent implements OnInit {
     });
   }
 
-  onSearch() {
-    this.http.get<any>(`/entrega/entregador/${this.entregaForm.get("local")?.value}`).subscribe(result => {
-      if (result.length > 1){
-        this.entregas = result
-      }else{
-        this.entregas = [result]
-      }
-      console.log(result);
-    });
-  }
-
-  AddItem() {
-    // this.submitted = true;
-    // if (this.entregaForm.invalid) {
-    //     return;
-    // }
-    // console.log(this.entregaForm.value);
-  // this.http.get<any>(`/${this.itemForm.get("funcionario")?.value}`)
-      //.subscribe(result => {
-      //   let item = this.itemForm.value;
-      //   item['funcionario'] = {"cpf": result.cpf}
-    this.http.get<any>(`/pessoa/${this.entregaForm.get("pessoaItem")?.value}`).subscribe(result => {
-      let item = this.entregaForm.value;
-      item['pessoaItem'] = {"cpf": result.cpf}
-      this.http.post<any>('/item/addEntrega', item)
-      .subscribe({
-        next: (response) => {
-          console.log(response);
-          this.router.navigateByUrl('/itens');
-        },
-        error: (error) => console.log(error),
-      });
-    });
-
-  };
+ 
 }
