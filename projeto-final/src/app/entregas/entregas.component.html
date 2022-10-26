@@ -1,16 +1,11 @@
-<form [formGroup]="entregaForm">
+<div class="banner">
 <p class="t1">Entregas</p>
-
-<!-- <div class="abc">
-  <input class="form-control" type="search" placeholder="Buscar por CPF" aria-label="Search" formControlName="local" minlength="11" maxlength="11">
-    <button class="btn btn-outline-dark" type="submit" (click)="onSearch()">Buscar</button>
-  </div> -->
 
 <table class="table table-bordered">
     <thead>
       <tr>
         <th class="t2" scope="col" style="width: 5%;">Entregador</th>
-        <th class="t2" scope="col" style="width: 6%;">CPF entregador</th>
+        <th class="t2" scope="col" style="width: 5%;">CPF entreg</th>
         <th class="t2" scope="col" style="width: 10%;">Tipo de Entrega</th>
         <th class="t2" scope="col" style="width: 5%;">Status</th>
         <th class="t2" scope="col" style="width: 10%;">Saindo de</th>
@@ -18,19 +13,9 @@
       </tr>
     </thead>
     <tbody>
-        <!-- <tr *ngFor="let entrega of entrega2">
-          <td *ngFor="let item of entregas">{{item}}</td>
-        </tr> -->
-        <tr *ngFor="let item of entregas">
-       
-          <td style="width: 10%;">{{item.entregador.nome}}</td>
-          <td style="width: 10%;">{{item.entregador.cpf}}</td>
-          <td style="width: 10%;">{{item.tipoEntrega}}</td>
-          <td style="width: 10%;">{{item.itens}}</td>
-          <!-- <td style="width: 10%;">{{item.entregaTrecho}}</td>
-          <td style="width: 10%;">{{item.entregaTrecho.}}</td> -->
+        <tr *ngFor="let entrega of entrega2">
+          <td *ngFor="let item of entrega">{{item}}</td>
+        </tr>
     </tbody>
   </table>
-  <!-- <button type="submit" class="btn btn-outline-dark">Adicionar</button> -->
-</form>
-
+</div>

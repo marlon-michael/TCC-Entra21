@@ -9,6 +9,8 @@
     text-align: center;
     padding-top: 20px;
     padding-bottom: 25px;
+    color: white;
+    font-size: bold;
 }
 
 .table.table-bordered {
@@ -67,9 +69,12 @@ input {
     margin-right: 0;
 }
 
-.linhas:hover{
+td:hover{
 
  background:#79a899e7;
+}
+td{
+    color: white;
 }
 
 #extra {
@@ -111,3 +116,13 @@ input {
 #t1 {
     text-align: center;
 }
+
+.banner{
+    background: url(src/assets/img/mario-gogh-VBLHICVh-lI-unsplash.jpg);
+    background-position: center!important;
+    background-size: cover;
+   max-width: 2560px;
+   margin: auto;
+   min-width: 320px;
+   height: 720px;;
+   }

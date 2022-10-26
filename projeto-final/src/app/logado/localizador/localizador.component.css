@@ -11,12 +11,23 @@ backface-visibility: 50% visible;
  height: 520px;
  
 } */
-*{
-    background: rgb(241, 236, 202);
- 
-    
-}
 
+
+/* .banner{
+    height: 600px;
+    background: rgb(241, 236, 202);
+    background-size: cover;
+    background-repeat: no-repeat;
+} */
+.banner{
+ background: url(src/assets/img/mario-gogh-VBLHICVh-lI-unsplash.jpg);
+ background-position: center!important;
+ background-size: cover;
+max-width: 2560px;
+margin: auto;
+min-width: 320px;
+height: 720px;;
+}
 
 .btn.btn-outline-dark {
     /* margin-right: 10px;

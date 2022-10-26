@@ -1,6 +1,6 @@
 
 .banner{
-    background-image: url(src\assets\img\tabelaEntregas.jpg);
+    background-image: url(src/assets/img/tabelaEntregas.jpg);
     background-position: center!important;
     background-size: cover;
  max-width: 2560px;

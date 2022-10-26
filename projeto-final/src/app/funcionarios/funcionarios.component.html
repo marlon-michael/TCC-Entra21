@@ -1,3 +1,4 @@
+<div class="banner">
 <form  [formGroup]="form">
 <p class="texto1">Funcionários</p>
 <div *ngIf="loading" class="spinner-border spinner-border-sm" style="margin-left:650px;"></div>
@@ -26,57 +27,8 @@
         <td>{{funcionario.cpf}}</td>
        </tr>
   
-  <!-- <button type="button" routerLink="cadastro" class="btn">Cadastrar</button> -->
   </tbody>
 </table> 
 </form>
-
-  <!-- Button trigger modal -->
-
-  <!-- <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop"> -->
-<!-- =======
-  <button type="button" id="cads" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
->>>>>>> 58aed518adb9a2c10483b68fe197d2b8f35ae4fb -->
-    <!-- Cadastrar
-  </button> -->
+</div>
   
-  <!-- Modal -->
-  <!-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-body">
-
-          <div class="mb-3">
-            <label for="Nome" class="form-label" >Nome</label>
-            <input type="text" class="form-control" id="Nome" placeholder="Nome" formControlName="nome">
-          </div>
-          <div class="mb-3">
-            <label for="Sobrenome" class="form-label" >Sobrenome</label>
-            <input type="text" class="form-control" id="Sobrenome" placeholder="Sobrenome" formControlName="sobrenome">
-          </div>
-          <div class="mb-3">
-            <label for="Telefone" class="form-label" >Telefone</label>
-            <input type="text" class="form-control" id="Telefone"required placeholder="(xx) xxxxx-xxxx"  pattern="(\(?\d{2}\)?\d{4}\-?\d{4})" required minlength="10" maxlength="11" formControlName="telefone">
-          </div>
-          <div class="mb-3">
-            <label for="cpf" class="form-label" >cpf</label>
-            <input type="text" class="form-control" id="cpf"  pattern="(\d{3}\.?\d{3}\.?\d{3}-?\d{2})|(\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2})"
-            placeholder="xxx.xxx.xxx-xx" required minlength="11" maxlength="11" size="11" formControlName="cpf">
-          </div>
-          <div class="mb-3">
-            <label for="supervisor" class="form-label" >Supervisor</label>
-            <input type="text" class="form-control" id="supervisor" placeholder="Supervisor" formControlName="supervisor">
-          </div> 
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-
-          <input type="submit" class="btn" id="extra" value="Adicionar">
-
-        </div>
-      </div>
-    </div>
-  </div> -->
-  
-
- 

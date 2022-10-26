@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { first, map, Observable, tap } from 'rxjs';
 
 import { ItemRestController } from 'src/app/Rest/itens.rest';
-import { Itens } from "types/types";
+import { Itens, User } from "types/types";
 // import { Itenspessos } from 'types/types';
 
 
@@ -15,14 +15,10 @@ import { Itens } from "types/types";
   styleUrls: ['./localizador.component.css']
 })
 export class LocalizadorComponent implements OnInit {
-// results$: Observable<any> | undefined;
-// @Input() informacao: any;
-
-// @Output()
 itens: Itens[] = [];
 
-// total:number | undefined;
-  
+
+user: User | null = null;
 //   itens2: ItensPessoas[] = [];
 formLocalizador: FormGroup = this.formBuilder.group({
 
@@ -39,7 +35,7 @@ returnUrl: string = this.route.snapshot.queryParams['returnUrl'];
 error = '';
 succes = false;
   result: any;
-user: any;
+// user: any;
 
     
   constructor(private itemRestController: ItemRestController,
@@ -54,37 +50,7 @@ user: any;
   ngOnInit() {
   }
 
-//     this.http.get<any>(`/pessoa/${this.formLocalizador.get("pessoaItem")?.value}`).subscribe(result => {
-//       let item = this.formLocalizador.value;
-//       item['pessoaItem'] = {"cpf": result.cpf}  
-//       this.itemRestController.getbycpf().subscribe(item => {
-//   this.item = item;
-// });
- // });
 
-    // this.itemRestController.getAll().pipe(first()).subscribe((itens: Itens[]) => {
-    //   this.item = itens;
-
-    // });
-
-
-    //   this.http.get<Itens[]>(`/item/pessoa/${this.formLocalizador.get("pessoaItem")?.value}`, item)
-    //   .subscribe({
-    //     next: (response) => {
-    //       console.log(response);
-    //     },
-    //     error: (error) => console.log(error),
-    //   });
-    // });
-
-
-
-
-
-//
-    // this.itemRestController.getAll().pipe(first()).subscribe((itens: Itens[]) => {
-    //   this.item = itens;
-    // });
   
  
   onSearch() {
