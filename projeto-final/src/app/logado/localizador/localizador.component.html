@@ -21,13 +21,7 @@
         <th scope="col" style="width: 6%;">Destinatario</th>
         <th scope="col" style="width: 12%;" >Endereço</th>
         <th scope="col" style="width:4%">Status</th>
-<!-- =======
-        <th style="width: 200px;" scope="col" >Pedido</th>
-        <th style="width: 300px;" scope="col" >Destinatario</th>
-        <th style="width: 400px;" scope="col" >Endereço</th>
-        <th style="width: 300px;" scope="col">Status</th>
-        <th style="width: 200px;" scope="col">CPF</th>
->>>>>>> 58aed518adb9a2c10483b68fe197d2b8f35ae4fb -->
+
       </tr>
     </thead>
     <tbody >
@@ -42,17 +36,10 @@
         <td style="width: 9%;">{{item.localEntrega}}</td>
         <td style="width: 4%;">{{item.status}}</td>
         <!-- <td hidden>{{item.funcionario.empresa.cnpj}}</td> -->
-
-        <!-- <td [ngStyle]="{'visibility': (item.localizador != null) ? 'hidden' : 'visible'}" >
-          <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            Editar Status
-          </button>
-        </td> -->
-
     </tbody>
-  </table>
-  <button type="submit" class="btn btn-outline-secondary" routerLink="/additem">Adicionar</button>
-  <!-- *ngIf="user != null && (role == 'FUNCIONARIO' || role == 'GERENTE' || role == 'SUPERVISOR')" -->
+  </table> 
 </form>
-  <!-- Button trigger modal -->
+
+  <button type="submit" class="btn btn-outline-secondary" routerLink="/additem">Adicionar</button>
+
 </div>

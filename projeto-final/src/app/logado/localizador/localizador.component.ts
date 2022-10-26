@@ -37,6 +37,7 @@ error = '';
 succes = false;
   result: any;
 // user: any;
+permitido = false;
 
     
   constructor(private itemRestController: ItemRestController,
@@ -51,7 +52,10 @@ succes = false;
 
 
   ngOnInit() {
-    this.role = this.auth.userValue.role;
+    this.user = this.auth.userValue;
+    if(this.user != null && (this.user.role == 'PESSOA')){
+      this.permitido == false;
+  }
   }
 
 
