@@ -21,10 +21,10 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable().httpBasic().and().authorizeRequests((req) -> req
-                .antMatchers(HttpMethod.POST, "/pessoa").permitAll()
-                .antMatchers("/pessoa/login").permitAll()
-                .antMatchers("/pessoa/cadastro").permitAll()
-                .anyRequest().authenticated()
+            .antMatchers(HttpMethod.POST, "/pessoa").permitAll()
+            .antMatchers("/pessoa/login").permitAll()
+            .antMatchers("/pessoa/cadastro").permitAll()
+            .anyRequest().authenticated()
         );
         return http.build();
     }
