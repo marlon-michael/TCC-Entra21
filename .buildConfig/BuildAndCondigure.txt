@@ -1,0 +1,5 @@
+requirements: 
+    Node V18.12.0
+
+terminal commands:
+    npm install - g @angular/cli
