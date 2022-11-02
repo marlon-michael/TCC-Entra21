@@ -1,11 +1,13 @@
 package com.entra21.Transportadora.model.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Data
+@EqualsAndHashCode(callSuper=false)
 @Entity
 @Table(name = "funcionario")
 @PrimaryKeyJoinColumn(name = "id_pessoa")
