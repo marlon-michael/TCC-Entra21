@@ -1,8 +1,8 @@
 # TCC-Entra21
 
-Projeto final de conclusão de curso
-Java Entra21 2022
+_Projeto final de conclusão de curso
+Java Entra21 2022_
 
-Sistema para Transportadora
+Sistema para Transportadora: controle de item, rota, veículo, funcionário.
 
-- Colaboradores: Felipe, Maria, Marlon, Eder e Gabriela 
+___Colaboradores:___ Felipe, Maria, Marlon, Eder e Gabriela
