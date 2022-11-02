@@ -49,12 +49,12 @@ export type ItensPessoas = {
 }
 
 export type Pessoa = {
-     nome:string
-     sobrenome: string;
-     telefone: string;
-     cpf: string;
-     login: string;
-     senha: string;
+    nome:string
+    sobrenome: string;
+    telefone: string;
+    cpf: string;
+    login: string;
+    senha: string;
 }
 
 export type Funcionario = {
@@ -64,34 +64,34 @@ export type Funcionario = {
 }
 
 export type Entrega = {
-     tipoEntrega: string;
-     entregador: Pessoa;
-     entregaTrecho: EntregaTrecho[];
-     itens: Itens[];
+    tipoEntrega: string;
+    entregador: Pessoa;
+    entregaTrecho: EntregaTrecho[];
+    itens: Itens[];
 }
 
 export type Empresa = {
-     cnpj: string;
-     razaoSocial:string;
+    cnpj: string;
+    razaoSocial:string;
     gerente: Pessoa;
     carros: Carro[];
-     funcionarios: Pessoa[];
+    funcionarios: Pessoa[];
 }
 
 export type Carro = {
-      tipoCarro: string;
-      placa: string;
-      empresaCarro: Empresa;
+    tipoCarro: string;
+    placa: string;
+    empresaCarro: Empresa;
 }
 
 export type EntregaTrecho = {
-     Completo: boolean;
-     carro: Carro;
-     entrega: Entrega;
-     trecho: Trecho;
+    Completo: boolean;
+    carro: Carro;
+    entrega: Entrega;
+    trecho: Trecho;
 }
 
 export type Trecho = {
-     localInicio: string;
-     localFim: string;
+    localInicio: string;
+    localFim: string;
 }
