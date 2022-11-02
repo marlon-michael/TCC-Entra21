@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 public class CarroAddDTO {
-   private Long idCarro;
+    private Long idCarro;
     private String tipoCarro;
     private String placa;
     private EmpresaAddDTO empresaCarro;
