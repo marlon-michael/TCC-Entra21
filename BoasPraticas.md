@@ -8,7 +8,7 @@ __codigo__
 - não escreva codigo repetido, se precisar usar o mesmo codigo em dois lugares crie uma função e use-a
 - padronizar identação utilizando 4 espaços (1-tab)
 - padronizar nomeação de classes, variaveis e funções em camelCase
-    - ex: carName, printCarName, PersonClass
+    - ex: carName, printCarName, CarClass
     _padronização codigo escrito_
 - criar nomes de funções e variaveis com nomes claros
     - ex: se uma variavel armazena o nome de um carro ele deve se chamar "carName" (nomeCarro), e não batata
