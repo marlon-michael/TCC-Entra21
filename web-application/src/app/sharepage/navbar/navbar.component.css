@@ -31,16 +31,27 @@ nav{
 .navbar-nav .nav-link{
     border-radius: 10px;
     padding: 5px;
+    transition: 0.25s ease;
 }
 .navbar-nav .nav-link-a:hover{
     border-radius: 10px;
-    transition: 0.05s ease;
+    transition: 0.25s ease;
     background-color: rgba(199, 197, 206, 0.39);
     color:#110d1adc;
     font-weight: bold;
 }
-.navbar-nav .nav-link-a{
-    border-radius: 10px;
+.navbar-brand-image{
+    width: 90%;
+    position: relative;
+}
+.title, .offcanvas-title {
+    font-size: 25px;
+    font-weight: bold;
+}
+.offcanvas{
+    background-color: #27033e;
+    border-radius: 20px;
+    margin: 20px;
 }
 .nomeUsuario{
     margin-left: 5px;
@@ -56,20 +67,4 @@ nav{
 }
 @media screen and (max-width: 370px){
     .nomeUsuario{display: none;}
-}
-.navbar-brand-image{
-    width: 90%;
-    position: relative;
-}
-.offcanvas-title {
-    font-size: 25px;  
-}
-.title{
-    font-weight: bold;
-    font-size: 25px;
-}
-.offcanvas{
-    background-color: #27033e;
-    border-radius: 20px;
-    margin: 20px;
 }
