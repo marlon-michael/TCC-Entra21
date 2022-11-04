@@ -1,0 +1,25 @@
+
+.banner{
+    background-image: url(../../assets/img/fundo.jpeg);
+    background-position: center!important;
+    background-size: cover;
+    color: white;
+    text-align: right;
+    padding: 80px;
+    height: 720px;
+    width: 100%;
+    font-weight: bold;
+}
+h1{
+    font-weight: bold;
+    font-size: 70px;
+}
+h3{
+    font-size: 30px;
+}
+@media screen and (max-width: 600px){
+    .banner{
+        text-align: center;
+        padding: 20px;
+    }
+}

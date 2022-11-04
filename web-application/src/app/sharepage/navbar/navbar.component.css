@@ -1,0 +1,75 @@
+
+*{
+    color: white;
+    font-family: 'Poppins';
+}
+nav{
+    background-color: #2f1f3a;
+}
+.navbar-light .navbar-nav .nav-link.active-link {
+    color: var(--primeira-color);
+}
+.nav-item .nav-link-a{
+    text-decoration: none;
+    font-size: 25px;
+    margin-top: 55px;
+    align-items: center;
+    justify-content:center ;
+    display: flex;
+}
+.logo {
+    width: 100px;
+    text-align: center;
+}
+.navbar-nav .nav-link:hover{
+    border-radius: 10px;
+    transition: 0.25s ease;
+    background-color: rgba(199, 197, 206, 0.39);
+    color:#110d1adc;
+    font-weight: bold;
+}
+.navbar-nav .nav-link{
+    border-radius: 10px;
+    padding: 5px;
+}
+.navbar-nav .nav-link-a:hover{
+    border-radius: 10px;
+    transition: 0.05s ease;
+    background-color: rgba(199, 197, 206, 0.39);
+    color:#110d1adc;
+    font-weight: bold;
+}
+.navbar-nav .nav-link-a{
+    border-radius: 10px;
+}
+.nomeUsuario{
+    margin-left: 5px;
+    display: block;
+    text-align: center;
+    font-size: 25px;
+}
+@media screen and (max-width: 500px){
+    .nomeUsuario{font-size: 16px;}
+}
+@media screen and (max-width: 415px){
+    .nomeUsuario{font-size: 10px;}
+}
+@media screen and (max-width: 370px){
+    .nomeUsuario{display: none;}
+}
+.navbar-brand-image{
+    width: 90%;
+    position: relative;
+}
+.offcanvas-title {
+    font-size: 25px;  
+}
+.title{
+    font-weight: bold;
+    font-size: 25px;
+}
+.offcanvas{
+    background-color: #27033e;
+    border-radius: 20px;
+    margin: 20px;
+}
