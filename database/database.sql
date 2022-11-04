@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.29, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
 --
 -- Host: localhost    Database: tcc
 -- ------------------------------------------------------
--- Server version	8.0.29
+-- Server version	8.0.30
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -39,7 +39,7 @@ CREATE TABLE `carro` (
 
 LOCK TABLES `carro` WRITE;
 /*!40000 ALTER TABLE `carro` DISABLE KEYS */;
-INSERT INTO `carro` VALUES (1,'CAMINHAO','ABCD1234Z',1),(2,'VAN','ABCD1235Y',1),(3,'CAMINHAO','ABCD1236X',2);
+INSERT INTO `carro` VALUES (1,'CAMINHAO','ABCD1234Z',1),(2,'VAN','ABCD1235Y',1),(3,'MINI VAN','ABCD1236X',2);
 /*!40000 ALTER TABLE `carro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -68,7 +68,7 @@ CREATE TABLE `empresa` (
 
 LOCK TABLES `empresa` WRITE;
 /*!40000 ALTER TABLE `empresa` DISABLE KEYS */;
-INSERT INTO `empresa` VALUES (1,'98076059000168','#',2),(2,'00795919000119','#',3);
+INSERT INTO `empresa` VALUES (1,'98076059000168','Empresa X',2),(2,'00795919000119','Empresa Y',3);
 /*!40000 ALTER TABLE `empresa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -95,7 +95,7 @@ CREATE TABLE `entrega` (
 
 LOCK TABLES `entrega` WRITE;
 /*!40000 ALTER TABLE `entrega` DISABLE KEYS */;
-INSERT INTO `entrega` VALUES (1,6,'expressa'),(2,7,'economica'),(3,8,'economica');
+INSERT INTO `entrega` VALUES (1,6,'EXPRESSA'),(2,7,'ECONOMICA'),(3,8,'ECONOMICA');
 /*!40000 ALTER TABLE `entrega` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -203,7 +203,7 @@ DROP TABLE IF EXISTS `item`;
 CREATE TABLE `item` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `localizador` varchar(100) NOT NULL,
-  `status` varchar(50) DEFAULT (_utf8mb4'Em espera'),
+  `status` varchar(50) DEFAULT (_utf8mb4'Preparando envio'),
   `local_entrega` varchar(300) NOT NULL,
   `nome_recebedor` varchar(50) NOT NULL,
   `id_pessoa` bigint DEFAULT NULL,
@@ -220,7 +220,7 @@ CREATE TABLE `item` (
 
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
-INSERT INTO `item` VALUES (1,'ASD1234','saiu para entrega','SC-Blumenau-Rua Paris, 136','Feleipa',NULL),(2,'ASD123X','saiu para entrega','SC-Blumenau-Rua Paris, 300','Maira',NULL),(3,'ASD123Z','saiu para entrega','SC-Blumenau-Rua Paris, 300','Pedrionh',9);
+INSERT INTO `item` VALUES (1,'ASD1234','saiu para entrega','SC-Blumenau-Rua Paris, 136','Feleipa',9),(2,'ASD123X','saiu para entrega','SC-Blumenau-Rua Paris, 300','Maira',10),(3,'ASD123Z','entregue','SC-Blumenau-Rua Paris, 3280','Pedro',11);
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -241,7 +241,8 @@ CREATE TABLE `pessoa` (
   `senha` varchar(50) NOT NULL,
   `desabilitado` bit(1) NOT NULL DEFAULT (0),
   PRIMARY KEY (`id`),
-  UNIQUE KEY `cpf` (`cpf`,`login`)
+  UNIQUE KEY `cpf` (`cpf`),
+  UNIQUE KEY `login` (`login`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -251,7 +252,7 @@ CREATE TABLE `pessoa` (
 
 LOCK TABLES `pessoa` WRITE;
 /*!40000 ALTER TABLE `pessoa` DISABLE KEYS */;
-INSERT INTO `pessoa` VALUES (1,'Adimininastro','doZap','XXXXXXXXX','XXXXXXXXX','admin','admin',_binary '\0'),(2,'Gerente1','doZap','4799999999G','999999999G1','GerenteLogin','GerentePass',_binary '\0'),(3,'Gerente2','doZap','4799999999G','999999999G2','GerenteLogin2','GerentePass',_binary '\0'),(4,'Supervisor1','doZap','4799999999G','999999999S1','SuperL1','GerentePass',_binary '\0'),(5,'Supervisor2','doZap','4799999999G','999999999S2','SuperL2','GerentePass',_binary '\0'),(6,'Motorista1','doZap','4799999999G','999999999M1','Motora1','GerentePass',_binary '\0'),(7,'Motorista2','doZap','4799999999H','999999999M2','Motora2','GerentePass',_binary '\0'),(8,'Motorista3','doZap','4799999999I','999999999M3','Motora3','GerentePass',_binary '\0'),(9,'userName','lastName','47999999999','999999999C1','userLogin','userHardestPassword',_binary '\0'),(10,'userName2','lastName2','47999999998','999999999C2','userLogin2','userHardestPassword2',_binary '\0'),(11,'userName3','lastName3','47999999997','999999999C3','userLogin3','userHardestPassword3',_binary '\0');
+INSERT INTO `pessoa` VALUES (1,'Adimininastro','doZap','XXXXXXXXX','XXXXXXXXX','admin','admin',_binary '\0'),(2,'Gerente1','doZap','4799999999G','999999999G1','GerenteLogin','pass',_binary '\0'),(3,'Gerente2','doZap','4799999999G','999999999G2','GerenteLogin2','pass',_binary '\0'),(4,'Supervisor1','doZap','4799999999G','999999999S1','SuperL1','pass',_binary '\0'),(5,'Supervisor2','doZap','4799999999G','999999999S2','SuperL2','pass',_binary '\0'),(6,'Motorista1','doZap','4799999999G','999999999M1','Motora1','pass',_binary '\0'),(7,'Motorista2','doZap','4799999999H','999999999M2','Motora2','pass',_binary '\0'),(8,'Motorista3','doZap','4799999999I','999999999M3','Motora3','pass',_binary '\0'),(9,'userName1','lastName1','47999999999','999999999C1','userLogin1','pass',_binary '\0'),(10,'userName2','lastName2','47999999998','999999999C2','userLogin2','pass',_binary '\0'),(11,'userName3','lastName3','47999999997','999999999C3','userLogin3','pass',_binary '\0');
 /*!40000 ALTER TABLE `pessoa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -293,4 +294,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-10 18:34:49
+-- Dump completed on 2022-11-04 17:52:49

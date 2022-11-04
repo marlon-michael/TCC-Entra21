@@ -16,16 +16,16 @@ select * from entrega_item ei;
 insert into pessoa (nome, sobrenome, telefone, cpf, login, senha)
 values
 	('Adimininastro', 'doZap', 'XXXXXXXXX','XXXXXXXXX', 'admin', 'admin'),
-	('Gerente1', 'doZap', '4799999999G','999999999G1', 'GerenteLogin', 'GerentePass'),
-	('Gerente2', 'doZap', '4799999999G','999999999G2', 'GerenteLogin2', 'GerentePass'),
-	('Supervisor1', 'doZap', '4799999999G','999999999S1', 'SuperL1', 'GerentePass'),
-	('Supervisor2', 'doZap', '4799999999G','999999999S2', 'SuperL2', 'GerentePass'),
-	('Motorista1', 'doZap', '4799999999G','999999999M1', 'Motora1', 'GerentePass'),
-	('Motorista2', 'doZap', '4799999999H','999999999M2', 'Motora2', 'GerentePass'),
-	('Motorista3', 'doZap', '4799999999I','999999999M3', 'Motora3', 'GerentePass'),
-	('userName', 'lastName', '47999999999','999999999C1', 'userLogin', 'userHardestPassword'),
-	('userName2', 'lastName2', '47999999998','999999999C2', 'userLogin2', 'userHardestPassword2'),
-	('userName3', 'lastName3', '47999999997','999999999C3', 'userLogin3', 'userHardestPassword3');
+	('Gerente1', 'doZap', '4799999999G','999999999G1', 'GerenteLogin', 'pass'),
+	('Gerente2', 'doZap', '4799999999G','999999999G2', 'GerenteLogin2', 'pass'),
+	('Supervisor1', 'doZap', '4799999999G','999999999S1', 'SuperL1', 'pass'),
+	('Supervisor2', 'doZap', '4799999999G','999999999S2', 'SuperL2', 'pass'),
+	('Motorista1', 'doZap', '4799999999G','999999999M1', 'Motora1', 'pass'),
+	('Motorista2', 'doZap', '4799999999H','999999999M2', 'Motora2', 'pass'),
+	('Motorista3', 'doZap', '4799999999I','999999999M3', 'Motora3', 'pass'),
+	('userName1', 'lastName1', '47999999999','999999999C1', 'userLogin1', 'pass'),
+	('userName2', 'lastName2', '47999999998','999999999C2', 'userLogin2', 'pass'),
+	('userName3', 'lastName3', '47999999997','999999999C3', 'userLogin3', 'pass');
 
 insert into empresa (cnpj, razao_social, id_gerente)
 values
@@ -66,9 +66,9 @@ values
 
 insert into item (localizador, status, local_entrega, nome_recebedor, id_pessoa)
 values
-	('ASD1234', 'saiu para entrega', 'SC-Blumenau-Rua Paris, 136', 'Feleipa', null),
-	('ASD123X', 'saiu para entrega', 'SC-Blumenau-Rua Paris, 300', 'Maira', null),
-	('ASD123Z', 'saiu para entrega', 'SC-Blumenau-Rua Paris, 300', 'Pedrionh', 9);
+	('ASD1234', 'saiu para entrega', 'SC-Blumenau-Rua Paris, 136', 'Feleipa', 9),
+	('ASD123X', 'saiu para entrega', 'SC-Blumenau-Rua Paris, 300', 'Maira', 10),
+	('ASD123Z', 'entregue', 'SC-Blumenau-Rua Paris, 3280', 'Pedro', 11);
 
 insert into entrega_item (id_entrega, id_item)
 values
@@ -165,5 +165,4 @@ id_item bigint not null,
 foreign key (id_entrega) references entrega(id),
 foreign key (id_item) references item(id)
 );
-
 

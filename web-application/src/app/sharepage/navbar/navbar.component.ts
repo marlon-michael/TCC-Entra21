@@ -11,7 +11,7 @@ import { User } from 'types/types';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  title = 'PROJETO-FINAL';
+  title = 'web-application';
 
   user: User | null = null;
 
