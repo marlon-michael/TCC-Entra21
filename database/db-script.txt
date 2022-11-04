@@ -1,0 +1,170 @@
+
+
+
+-- TCC ENTRA21 BANCO DE DADOS
+drop database TCC;
+create database TCC;
+use TCC;
+
+create table pessoa(
+id bigint not null primary key auto_increment,
+nome varchar(50) not null,
+sobrenome varchar(50) not null,
+telefone varchar(50) not null,
+cpf char(11) not null,
+login varchar(100) not null,
+senha varchar(50) not null,
+desabilitado bit default(0) not null,
+unique(cpf),
+unique(login)
+);
+
+create table empresa(
+id bigint not null primary key auto_increment,
+cnpj varchar(14) not null,
+razao_social varchar(250),
+id_gerente bigint not null,
+unique(cnpj),
+foreign key (id_gerente) references pessoa(id)
+);
+
+create table funcionario(
+id_pessoa bigint not null primary key,
+id_supervisor bigint,
+id_empresa bigint not null,
+foreign key (id_pessoa) references pessoa(id),
+foreign key (id_empresa) references empresa(id)
+);
+alter table funcionario add foreign key (id_supervisor) references funcionario(id_pessoa);
+
+create table carro(
+id bigint not null primary key auto_increment,
+tipo varchar(45) not null,
+placa varchar(15) not null,
+id_empresa bigint not null,
+foreign key (id_empresa) references empresa(id)
+);
+
+create table trecho (
+id bigint not null primary key auto_increment,
+local_inicio varchar(250) not null,
+local_fim varchar(250) not null
+);
+
+create table entrega (
+id bigint not null primary key auto_increment,
+id_entregador bigint not null,
+tipo_entrega varchar(45) not null,
+foreign key (id_entregador) references funcionario(id_pessoa)
+);
+
+create table entrega_trecho (
+id bigint not null primary key auto_increment,
+id_entrega bigint not null,
+id_trecho bigint not null,
+id_carro bigint not null,
+completo bit(1) default(0),
+data_inicio datetime,
+data_fim datetime,
+foreign key (id_carro) references carro(id),
+foreign key (id_entrega) references entrega(id),
+foreign key (id_trecho) references trecho(id)
+);
+
+create table item(
+id bigint not null auto_increment primary key,
+localizador varchar(100) not null,
+status varchar(50) default('Preparando envio'),
+local_entrega varchar(300) not null,
+nome_recebedor varchar(50) not null,
+id_pessoa bigint,
+foreign key (id_pessoa) references pessoa(id),
+unique(localizador)
+);
+
+create table entrega_item(
+id bigint not null primary key auto_increment,
+id_entrega bigint not null,
+id_item bigint not null,
+foreign key (id_entrega) references entrega(id),
+foreign key (id_item) references item(id)
+);
+
+
+
+-- TEST INSERT
+insert into pessoa (nome, sobrenome, telefone, cpf, login, senha)
+values
+	('Adimininastro', 'doZap', 'XXXXXXXXX','XXXXXXXXX', 'admin', 'admin'),
+	('Gerente1', 'doZap', '4799999999G','999999999G1', 'GerenteLogin', 'pass'),
+	('Gerente2', 'doZap', '4799999999G','999999999G2', 'GerenteLogin2', 'pass'),
+	('Supervisor1', 'doZap', '4799999999G','999999999S1', 'SuperL1', 'pass'),
+	('Supervisor2', 'doZap', '4799999999G','999999999S2', 'SuperL2', 'pass'),
+	('Motorista1', 'doZap', '4799999999G','999999999M1', 'Motora1', 'pass'),
+	('Motorista2', 'doZap', '4799999999H','999999999M2', 'Motora2', 'pass'),
+	('Motorista3', 'doZap', '4799999999I','999999999M3', 'Motora3', 'pass'),
+	('userName1', 'lastName1', '47999999999','999999999C1', 'userLogin1', 'pass'),
+	('userName2', 'lastName2', '47999999998','999999999C2', 'userLogin2', 'pass'),
+	('userName3', 'lastName3', '47999999997','999999999C3', 'userLogin3', 'pass');
+
+insert into empresa (cnpj, razao_social, id_gerente)
+values
+	('98076059000168','Empresa X', 2),
+	('00795919000119','Empresa Y', 3);
+	
+insert into funcionario (id_pessoa, id_supervisor, id_empresa)
+values 
+	(4, null, 1),
+	(5, null, 2),
+	(6, 4, 1),
+	(7, 4, 1),
+	(8, 5, 2);
+
+insert into carro (tipo, placa, id_empresa)
+values
+	('CAMINHAO', 'ABCD1234Z', 1),
+	('VAN','ABCD1235Y', 1),
+	('MINI VAN','ABCD1236X', 2);
+
+insert into trecho (local_inicio, local_fim)
+values
+	('SC-Blumenau-Rua Bahia, 25', 'SC-Blumenau-Rua Paris, 136'),
+	('SC-Blumenau-Rua Bahia, 01', 'SC-Blumenau-Rua Paris, 300'),
+	('SC-Blumenau-Rua Bahia, 03', 'SC-Blumenau-Rua Paris, 300');
+
+insert into entrega (id_entregador, tipo_entrega)
+values
+	(6, 'EXPRESSA'),
+	(7, 'ECONOMICA'),
+	(8, 'ECONOMICA');
+
+insert into entrega_trecho (id_entrega, id_trecho, id_carro, completo, data_inicio, data_fim)
+values
+	(1, 1, 1, 0, '1998-01-23 12:45:56', null),
+	(2, 2, 1, 0, '1998-01-23 12:45:56', null),
+	(3, 3, 2, 1, '1998-01-23 12:45:56', '1998-01-23 12:45:57');
+
+insert into item (localizador, status, local_entrega, nome_recebedor, id_pessoa)
+values
+	('ASD1234', 'saiu para entrega', 'SC-Blumenau-Rua Paris, 136', 'Feleipa', 9),
+	('ASD123X', 'saiu para entrega', 'SC-Blumenau-Rua Paris, 300', 'Maira', 10),
+	('ASD123Z', 'entregue', 'SC-Blumenau-Rua Paris, 3280', 'Pedro', 11);
+
+insert into entrega_item (id_entrega, id_item)
+values
+	(1,1),
+	(2,2),
+	(3,3);
+
+
+-- TEST SELECT
+select * from pessoa p;
+select * from funcionario f ;
+select * from empresa e;
+select * from carro c;
+select * from trecho t;
+select * from entrega e;
+select * from entrega_trecho et;
+select * from item i;
+select * from entrega_item ei;
+
