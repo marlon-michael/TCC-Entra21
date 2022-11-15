@@ -2,8 +2,7 @@
 
 <nav class="navbar navbar-expand-md navbar-dark">
   <div class="logo">
-    <img class="navbar-brand-image"
-       src="https://uploaddeimagens.com.br/images/004/060/252/thumb/Meu_projeto.png?1665705449" alt="logo"/>
+    <img class="navbar-brand-image" src="../../../assets/img/logo.png" alt="logo"/>
   </div>
   <div class="title">
     TechMoves
@@ -23,13 +22,13 @@
         <a class="nav-link" routerLink="" routerLinkActive="active-link" >Início</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="login" routerLinkActive="active-link" *ngIf="user == null ">Login</a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" routerLink="about" routerLinkActive="active-link">Sobre nós</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="contact" routerLinkActive="active-link">Contato</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="login" routerLinkActive="active-link" *ngIf="user == null ">Login</a>
       </li>
     </ul>
     <button class="navbar-toggler-always" style="color: white;" *ngIf="user != null" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
@@ -38,33 +37,29 @@
   </div>
   </div>
 </nav>
-      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-        <div class="offcanvas-header">
-          <img class="navbar-brand" src="https://uploaddeimagens.com.br/images/004/060/252/thumb/Meu_projeto.png?1665705449"/>
-          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">TechMoves</h5>
-      
-          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-            <li class="nav-item">
-              <a id routerLink="localizador" routerLinkActive="active-link" class="nav-link-a" data-bs-dismiss="offcanvas" *ngIf="user != null ">Meus Itens</a>
-            </li>
-            <li class="nav-item">
-              <a id routerLink="entregas" routerLinkActive="active-link" class="nav-link-a" data-bs-dismiss="offcanvas" *ngIf="user != null && (user.role == 'FUNCIONARIO' || user.role == 'GERENTE'|| user.role == 'SUPERVISOR')">Entregas</a>
-            </li>
-            <li class="nav-item">
-              <a  class="nav-link" routerLink="config" routerLinkActive="active-link" class="nav-link-a" data-bs-dismiss="offcanvas" *ngIf="user != null ">Configurações</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="funcionarios" routerLinkActive="active-link" class="nav-link-a" data-bs-dismiss="offcanvas" *ngIf="user != null && (user.role == 'FUNCIONARIO' || user.role == 'GERENTE' || user.role == 'SUPERVISOR')">Funcionários</a>
-            </li>
-            <li class="nav-item">
-              <a   class="nav-link" routerLink="ajuda" routerLinkActive="active-link" class="nav-link-a" data-bs-dismiss="offcanvas" *ngIf="user != null">Ajuda</a>
-            </li>
-            <li class="nav-item" *ngIf="user != null">
-               <a class="nav-link-a" data-bs-dismiss="offcanvas" href="#" (click)="logout() " >Logout</a>
-            </li>
-          </ul>
-        </div>
-      </div>
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+  <div class="offcanvas-header">
+    <img class="navbar-brand" src="../../../assets/img/logo.png"/>
+    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">TechMoves</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+      <li class="nav-item">
+        <a id routerLink="localizador" routerLinkActive="active-link" class="nav-link-a" data-bs-dismiss="offcanvas" *ngIf="user != null ">Meus Itens</a>
+      </li>
+      <li class="nav-item">
+        <a id routerLink="entregas" routerLinkActive="active-link" class="nav-link-a" data-bs-dismiss="offcanvas" *ngIf="user != null && (user.role == 'FUNCIONARIO' || user.role == 'GERENTE'|| user.role == 'SUPERVISOR')">Entregas</a>
+      </li>
+      <li class="nav-item">
+        <a  class="nav-link" routerLink="config" routerLinkActive="active-link" class="nav-link-a" data-bs-dismiss="offcanvas" *ngIf="user != null ">Configurações</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="funcionarios" routerLinkActive="active-link" class="nav-link-a" data-bs-dismiss="offcanvas" *ngIf="user != null && (user.role == 'FUNCIONARIO' || user.role == 'GERENTE' || user.role == 'SUPERVISOR')">Funcionários</a>
+      </li>
+      <li class="nav-item" *ngIf="user != null">
+          <a class="nav-link-a" data-bs-dismiss="offcanvas" href="#" (click)="logout()">Logout</a>
+      </li>
+    </ul>
+  </div>
+</div>

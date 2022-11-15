@@ -5,9 +5,7 @@ import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioDTO;
 import com.entra21.Transportadora.view.service.FuncionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-
-        import java.util.List;
+import java.util.List;
 
 @RestController
 @RequestMapping("/funcionario")
@@ -21,22 +19,15 @@ public class FuncionarioRestController {
       return funcionarioService.getAllFuncionario();
    }
 
-
-   //pega os funcionarios da empresa
    @GetMapping("/empresa/{cnpj}")
    public List<FuncionarioDTO> getAllByEmpresa(@PathVariable(name = "cnpj")String cnpj){
       return funcionarioService.getAllFuncionariByEmpresa(cnpj);
    }
-//pega a pessoa
+
    @GetMapping("/{cpf}")
    public FuncionarioDTO getByCPF(@PathVariable(name = "cpf")String cpf){
       return funcionarioService.findByCpf(cpf);
    }
-
-//   @GetMapping("/{cpf}")
-//   public FuncionarioDTO getByCPF(@PathVariable(name = "cpf")String cpf){
-//      return funcionarioService.findByCpf(cpf);
-//   }
 
    @PostMapping("/addfuncionario")
    public void addFuncionario(@RequestBody FuncionarioAddDTO funcionarioPayLoadDTO){
@@ -47,5 +38,4 @@ public class FuncionarioRestController {
    public void deleteFuncionarioByCPF(@PathVariable(name = "cpf")String cpf){
       funcionarioService.deleteByFuncionario(cpf);
    }
-
 }

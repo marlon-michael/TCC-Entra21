@@ -27,10 +27,9 @@ export class LoginComponent {
       private route: ActivatedRoute,
       private router: Router,
       private authenticationService: AuthenticationService
-  ) { 
-      // redirect to home if already logged in
+  ) {
       if (this.authenticationService.userValue) { 
-          this.router.navigate(['/home']);
+        this.router.navigate(['/home']);
       }
   }
 
@@ -38,25 +37,21 @@ export class LoginComponent {
 
   onSubmit() {
       this.submitted = true;
-
-      // stop here if form is invalid
       if (this.loginForm.valid) {
       this.loading = true;
       this.authenticationService.login(this.loginForm.get('username')?.value, this.loginForm.get('password')?.value)
-          .pipe(first())
-          .subscribe(
-              data => {
-                if(data != null){
-                    this.responsedata = data;
-                    // localStorage.setItem('token', this.responsedata.jwtToken);
-                    this.router.navigate([this.returnUrl ?? 'home']);
-                                }
-                      });
-                    // } else {
-          (error: string) => {
-                  this.error = error;
-                  this.loading = false;
-              }
+        .pipe(first())
+        .subscribe(
+          data => {
+            if(data != null){
+              this.responsedata = data;
+              this.router.navigate([this.returnUrl ?? 'home']);
+            }
+          });
+      (error: string) => {
+        this.error = error;
+        this.loading = false;
+      }
   }
 }
 

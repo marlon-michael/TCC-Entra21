@@ -1,6 +1,5 @@
 .body {
 	margin: 0;
-
 }
 
 body *{
@@ -8,30 +7,28 @@ body *{
 }
 
 .main-sobre{
-	width: 100vw;
-	height: 100vh;
+	width: 100%;
+	min-height: 80vh;
 	background: #201b2c;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
-
 .right-sobre{
-display: flex;
-justify-content: center;
-align-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .card-sobre{
-width: 40%;
-height: 80vh;
-flex-direction: column;
-padding: 30px 35px;
-background:linear-gradient( to left,#392b5df9,  #21104bf9);
-border-radius: 20px;
-box-shadow: 0px 10px 40px #00000056;
-color: aliceblue;
+	width: 40%;
+	flex-direction: column;
+	padding: 30px 35px;
+	background:linear-gradient( to left,#392b5df9,  #21104bf9);
+	border-radius: 20px;
+	box-shadow: 0px 10px 40px #00000056;
+	color: aliceblue;
 }
 .contato-links > .line {
 	border-bottom: 4px solid whitesmoke;
@@ -70,27 +67,6 @@ color: aliceblue;
 	height: 120px;
 }
 
-.contato-links .assunto{
-	border: none;
-	border-radius: 16px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	text-decoration: none;
-	color: #eeeeeede;
-	font-size: 12pt;
-	box-shadow: 0px 10px 40px #00000056;
-	outline: none;
-	box-sizing: border-box;
-	width: 100%;
-	padding-bottom: 10px;
-	height: 50px;
-	text-decoration: none;
-	background:  #a89bcb;
-	padding: 15px;
-	
-}
-
 @media only screen and (max-width: 950px){
 	.card-sobre{
 		width: 85%;
@@ -98,20 +74,18 @@ color: aliceblue;
 }
 
 @media only screen and (max-width: 600px){
-.main-sobre{
-	flex-direction: column;
-}
+	.main-sobre{
+		flex-direction: column;
+	}
 
+	.right-sobre{
+		width: 100%;
+		height: 100vh;
+	}
 
-
-.right-sobre{
-	width: 100%;
-	height: 100vh;
-}
-
-.card-sobre{
-width: 90%;
- }
+	.card-sobre{
+		width: 90%;
+	}
 }
 
 .btn.btn-secondary {

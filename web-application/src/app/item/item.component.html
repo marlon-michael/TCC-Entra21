@@ -1,44 +1,33 @@
 
-<div class="foto">
+<div class="body">
+<h2>Adicionar itens</h2>
 <form  role="search" [formGroup]="itemForm" (ngSubmit)="AddItem()">
-
-
-<!-- <p class="t1">Meus Itens</p> -->
-<h2>Meus Itens</h2>
-
-
-    <table class="table">
+  <table class="table">
     <thead>
       <tr>
-        <!-- <th scope="col">#</th> -->
-        <th scope="col">Localizador</th>
-        <th scope="col">Status</th>
-        <th scope="col">Nome do cliente:</th>
-        <th scope="col">Endereço:</th>
-        <th scope="col" style="width: 5%;">CPF do cliente:</th>
+        <th style="width: 25%;">nome do destinátario</th>
+        <th style="width: 50%;">local da entrega</th>
+        <th style="width: 25%;">CPF do destinátario</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <!-- <th scope="row">1</th> -->
-        <td><label for="localiz" class="label"></label>
-            <input type="text" id="localiz"  placeholder="Localizador" formControlName="localizador">
+        <td>
+          <label for="nomeRecebedor" class="label">nome do destinátario</label>
+          <input type="text" id="nomeRecebedor"  placeholder="Nome do cliente" maxlength="100" formControlName="nomeRecebedor">
         </td>
-        <td> <label for="status" class="label"></label>
-            <input type="text" id="status"  placeholder="status" formControlName="status"></td>
-        
-            <td> <label for="nomeRecebedor" class="label"></label>
-                <input type="text" id="nomeRecebedor"  placeholder="Nome do cliente" formControlName="nomeRecebedor"></td>
-    
-                <td> <label for="localEntrega"  class="label"></label>
-                <input type="text" id="localEntrega"  placeholder="Local da entrega" formControlName="localEntrega"></td>
-    
-    
-                <td><label for="pessoaItem"  class="label"></label>
-                <input type="text" id="pessoaItem"  placeholder="CPF do cliente" formControlName="pessoaItem" minlength="11" maxlength="11"></td>
+        <td>
+          <label for="localEntrega"  class="label">local da entrega</label>
+          <input type="text" id="localEntrega"  placeholder="Rua,Casa,Cidade,Estado" maxlength="100" formControlName="localEntrega">
+        </td>
+        <td>
+          <label for="pessoaItem"  class="label">CPF do destinátario</label>
+          <input type="text" id="pessoaItem"  placeholder="00011122233" formControlName="pessoaItem" minlength="11" maxlength="11">
+        </td>
       </tr>
     </tbody>
+    <input type="submit" class="btn btn-outline-dark" value="Adicionar">
   </table>
-  <input type="submit" class="btn btn-outline-dark" value="Adicionar" >
+  <div class="error" *ngIf="this.error != ''">{{this.error}}</div>
 </form>
 </div>

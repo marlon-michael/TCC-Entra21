@@ -9,18 +9,10 @@ import { ConfiguracoesComponent } from 'src/app/logado/configuracoes/configuraco
 import { LocalizadorComponent } from './logado/localizador/localizador.component'; 
 import { LoginComponent } from 'src/pages/login/login.component';
 import { CadastroComponent } from 'src/pages/login/cadastro/cadastro.component';
-import { AjudaComponent } from './ajuda/ajuda.component';
 import { FuncionariosComponent } from './funcionarios/funcionarios.component';
-
-
-
-import { EntregasComponent } from './entregas/entregas.component';
 import { EntregasItemDetalhesComponent } from './entregas-item-detalhes/entregas-item-detalhes.component';
 import { ItemComponent } from './item/item.component';
 import { AuthGuard } from './logado/helpers/auth.guard';
-
-
-
 
 
 const routes: Routes = [
@@ -29,18 +21,15 @@ const routes: Routes = [
 {path: 'login', component:LoginComponent},
 {path: 'about',component:AboutComponent},
 {path: 'contact',component:ContactComponent},
-{ path: 'localizador', component: LocalizadorComponent},
-{ path: 'config', component: ConfiguracoesComponent},
+{path: 'localizador', component: LocalizadorComponent},
+{path: 'config', component: ConfiguracoesComponent},
 {path: 'cadastro', component: CadastroComponent},
-{path: 'ajuda', component: AjudaComponent},
 {path: 'funcionarios', component: FuncionariosComponent},
 {path: 'edit', component: FuncionariosComponent},
-{path: 'entregas', component: EntregasComponent},
 {path: 'entregas/:localizador', component: EntregasItemDetalhesComponent},
 
 {path: '**', redirectTo: '/'},
 ];
-// , canActivate: [AuthGuard] se tiver logado
 
 @NgModule({
   imports: [

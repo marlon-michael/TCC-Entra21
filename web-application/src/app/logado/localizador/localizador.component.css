@@ -1,153 +1,116 @@
 
+table{
+    padding: 0!important;
+}
 
-/* 
 .banner{
-    background-image: url(/assets/img/meusItena.jpg)!important;
-    background-position: center!important;
-    background-size: cover;
- max-width: 2560px;
-backface-visibility: 50% visible;
- min-width: 420px;
- height: 520px;
- 
-} */
+    font-size: 18px;
+    background-color: rgb(77, 54, 97);
+    min-height: 40vw;
+    padding-bottom: 100px;
+    width: 100%;
+}
 
-
-/* .banner{
-    height: 600px;
-    background: rgb(241, 236, 202);
-    background-size: cover;
-    background-repeat: no-repeat;
-} */
-.banner{
- background: url(src/assets/img/leone-venter-mTkXSSScrzw-unsplash.jpg);
- background-position: center!important;
- background-size: cover;
-max-width: 2560px;
-margin: auto;
-min-width: 320px;
-height: 720px;;
+.button-div{
+    width: 100%;
+    height: 100%;
+    justify-content: end;
+    display: flex;
 }
 
 .btn.btn-outline-dark {
-    /* margin-right: 10px;
-margin-left: 14px; */
-
-height: 40px;
-background-color: rgb(213, 201, 160);
-color: black;
-border-color: rgb(220, 224, 224);
-/* margin-left: 200px;
-margin-top: 30px; */
+    height: 40px;
+    background-color: #cbcbcb;
+    color: rgb(87, 87, 87);
+    border: none
 }
 
 .btn.btn-outline-dark:hover {
-    background:  rgb(195, 184, 146);
-    color: azure;
-    border-color:black;
-
+    background-color: #bcbcbc;
+    color: rgb(61, 61, 61);
 }
 
 .btn.btn-outline-secondary {
     height: 40px;
-text-decoration: none;
-    margin-left: 250px;
-    margin-bottom: 10%;
-    margin-top: 20px;
-    background-color: rgb(213, 201, 160);
-    color: black;
-    border-color: rgb(220, 224, 224);
+    text-decoration: none;
+    max-width: 150px;
+    width: 100%;
+    margin: 0 10%;
+    margin-top: 100px;
+    background-color: #dadada;
+    color: rgb(110, 110, 110);
 }
 
 .btn.btn-outline-secondary:hover {
-    background:  rgb(195, 184, 146);
-    color: azure;
-    border-color:black;
-    
-    margin-left: 250px;
+    background-color: #c3c3c3;
+    color: rgb(76, 76, 76);
+    margin-left: 10%;
 }
-
 
 table.table-bordered {
-/* <<<<<<< HEAD
-    /* margin-top: 10px;
-    margin-left: 130px;
-    width: 1500px; */
-
-     /* width: 980px; 
-   
-    margin-left: 5%;
-    width: 90%;
-    margin-bottom: 0px;
-    margin-top: 30px;
-    display: flex;
-    align-items: center;
-    flex-direction:column;
-    border-radius: 8px;
-    box-shadow: 8px skyblue ;
-======= */
     margin-top: 40px;
-    margin-left: 250px;
-    width: 60%;
-    /* border-color: rgb(0, 0, 0); */
-    background-color: rgb(213, 201, 160);
-    box-sizing: border-box;
-    /* border-radius: 12px; */
-
-}
-th{
-   margin-left: 10px;
-   background-color: rgb(213, 201, 160);
-
-}
-/* .t1 {
-    font-size: 35px;
-    text-align: center;
-    
-} */
-
-.form-control {
-    width: 300px;
-    height: 40px;
-    text-decoration: none;
-margin-right: 10px;
-
-    background-color: rgb(213, 201, 160);
-
-    /* margin-top: 30px;
-    margin-left: auto; */
-}
-.form-control:hover{
-    background:  rgb(195, 184, 146);
-    text-decoration-color: aliceblue;
-    border: 1px solid rgb(0, 0, 0);   
-    margin-right: 10px;
-   
+    margin-left: 10%;
+    width: 80%;
+    background-color: rgb(198, 198, 198);
 }
 
-
-.abc {
-    margin-top: 30px;
-    margin-left: 250px;
-    display: flex;
-    align-items: center;
-
+th,tr,td{
+    border-style: none;
+    margin-left: 10px;
+    color: rgb(63, 63, 63);
 }
 
 tr:hover{
-    background-color: rgb(136, 127, 114);
-
+    background-color: rgb(158, 158, 158)!important;
 }
-td {
-    background-color: rgb(213, 201, 160);
+
+h1{
+    font-size: 3vw;
+    padding: 30px;
+    align-items: center;
+    text-align: center;
+    color: rgb(230, 230, 230);
 }
-    h1{
 
-        align-items: center;
-       
-        justify-content: center;
-        margin-left: 550px;
+.form-control {
+    width: 20%;
+    height: 40px;
+    text-decoration: none;
+    margin-right: 10px;
+    background-color: rgb(210, 210, 210);
+}
 
-        color: rgb(49, 51, 51);
+.form-control:hover{
+    background:  rgb(206, 206, 206);
+    text-decoration-color: aliceblue;
+    border: 1px solid rgb(0, 0, 0);   
+    margin-right: 10px;
+}
 
+@media screen and (max-width: 600px){
+    .form-control {
+        width: 80%;
     }
+    table.table-bordered {
+        font-size: 2.8vw;
+    }
+    .banner{
+        width: 100%;
+    }
+    h1{
+        font-size: 6vw;
+    }
+}
+
+.abc {
+    display: flex;
+    margin-top: 30px;
+    margin-left: 10%;
+    width: 80%;
+    align-items: center;
+    justify-content: center;
+}
+.abc input {
+    max-width: 300px;
+    width: 80%;
+}

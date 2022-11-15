@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { cadastroService } from 'src/app/Rest/cadastro.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -19,9 +18,6 @@ cadastroForm: FormGroup = this.formBuilder.group({
   cpf: ['', Validators.required],
   login: ['', Validators.required],
   senha: ['', Validators.required]
-  // cliente: ['', Validators.required],
-  // funcionario: ['', Validators.required],
-  // empresa: ['', Validators.required],
 });
 loading = false;
 submitted = false;
@@ -34,13 +30,8 @@ constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private http: HttpClient,
-    private cadastroService: cadastroService
-){
-//   if (this.cadastroService) { 
-//     this.router.navigate(['/home']);
-// }
-}
+    private http: HttpClient
+){}
 get f() {
   return this.cadastroForm.controls;
 } 

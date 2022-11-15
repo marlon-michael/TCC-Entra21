@@ -2,7 +2,6 @@ import { NgModule, Pipe } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AjudaComponent } from './ajuda/ajuda.component';
 import { LocalizadorComponent } from './logado/localizador/localizador.component';
 import { ConfiguracoesComponent } from 'src/app/logado/configuracoes/configuracoes.component';
 import { FooterComponent } from 'src/app/sharepage/footer/footer.component';
@@ -17,14 +16,8 @@ import { LoginComponent } from 'src/pages/login/login.component';
 import { CadastroComponent } from 'src/pages/login/cadastro/cadastro.component';
 import { FuncionariosComponent } from './funcionarios/funcionarios.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-
-import { EntregasComponent } from './entregas/entregas.component';
 import { EntregasItemDetalhesComponent } from './entregas-item-detalhes/entregas-item-detalhes.component';
 import { ItemComponent } from './item/item.component';
-
-
-
-
 
 
 @NgModule({
@@ -39,9 +32,7 @@ import { ItemComponent } from './item/item.component';
     LocalizadorComponent,
     ConfiguracoesComponent,
     CadastroComponent,
-    AjudaComponent,
     FuncionariosComponent,
-    EntregasComponent,
     EntregasItemDetalhesComponent,
     ItemComponent,
   ],

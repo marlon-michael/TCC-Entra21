@@ -1,5 +1,6 @@
 export type User = {
     idPessoa: number;
+    cpf:string;
     nome: string;
     sobrenome: string;
     username: string;
