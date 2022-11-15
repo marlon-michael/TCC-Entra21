@@ -4,9 +4,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs';
 import {  Itens } from 'types/types';
-import { ItemRestController } from '../Rest/itens.rest';
-
-// import { ItemServiceComponent } from '../services/item-service/item-service.component';
 
 
 @Component({
@@ -14,58 +11,44 @@ import { ItemRestController } from '../Rest/itens.rest';
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.css']
 })
-export class ItemComponent implements OnInit {
-
-
-
+export class ItemComponent{
   itemForm: FormGroup = this.formBuilder.group({
-    localizador: [],
-    status:  [],
     nomeRecebedor:  ['', Validators.required],
     localEntrega:  ['', Validators.required],
-    pessoaItem: ['', Validators.required],
-    // funcionario: ['', Validators.required]
+    pessoaItem: ['']
   });
   loading = false;
-submitted = false;
-returnUrl: string = this.route.snapshot.queryParams['returnUrl'];
-error = '';
-succes = false;
-itens: Itens[] = [];
+  submitted = false;
+  returnUrl: string = this.route.snapshot.queryParams['returnUrl'];
+  error = '';
+  succes = false;
+  itens: Itens[] = [];
   constructor(
-
-    private itemRestController: ItemRestController,
     private http: HttpClient, 
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router) { }
 
-  ngOnInit(): void {
-    this.loading = true;
-    this.itemRestController.getAll().pipe(first()).subscribe((itens: any) => {
-        this.loading = false;
-        this.itens = itens;
-    });
-  }
-
   AddItem() {
-    this.submitted = true;
+    this.submitted = false;
     if (this.itemForm.invalid) {
-        return;
+      this.error = "Os campos não foram preenchidos corretamente";
+      return;
     }
-    console.log(this.itemForm.value);
+    this.error = "CPF não encontrado. Este cpf pode não estar cadastrado em nossos bancos";
     this.http.get<any>(`/pessoa/${this.itemForm.get("pessoaItem")?.value}`).subscribe(result => {
+      this.error = "";
       let item = this.itemForm.value;
       item['pessoaItem'] = {"cpf": result.cpf}
       this.http.post<any>('/item/additem', item)
       .subscribe({
         next: (response) => {
           console.log(response);
-          this.router.navigateByUrl('/itens');
+          // this.router.navigateByUrl('/localizador');
+          this.error = "Item adicionado com sucesso - localizador: " + response.localizador;
         },
         error: (error) => console.log(error),
       });
     });
-
   };
-  }
+}

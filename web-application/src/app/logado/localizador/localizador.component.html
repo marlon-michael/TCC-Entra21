@@ -1,45 +1,31 @@
 
 <div class="banner">
-
-<form  role="search" [formGroup]="formLocalizador" >
-<!-- <app-search (searchTextChanged)="onSearchTextEntered($event)"></app-search> -->
   <h1>Meus Itens</h1>
-
-<div class="abc">
-  <input class="form-control" type="search" placeholder="Buscar por CPF" aria-label="Search" formControlName="local" minlength="11" maxlength="11">
-
-
-    <!-- <input type="text" [(ngModel)]="enteredSearchValue" (input)="onSearchTextChanged()"> -->
-    <button class="btn btn-outline-dark" type="submit" (click)="onSearch()">Buscar</button>
-  </div>
-
-<table class="table table-bordered">
-    <thead>
-      <tr>
-        
-        <th scope="col" style="width: 10%;">localizador</th>
-        <th scope="col" style="width: 6%;">Destinatario</th>
-        <th scope="col" style="width: 12%;" >Endereço</th>
-        <th scope="col" style="width:4%">Status</th>
-
-      </tr>
-    </thead>
-    <tbody >
-<tr>
-      <!-- <tr *ngFor="let itens of itens"> -->
-
+  <form  role="search" [formGroup]="formLocalizador" >
+    <div class="abc">
+      <input class="form-control" type="search" placeholder="buscar localizador / CPF" aria-label="Search" formControlName="localizador" minlength="1" maxlength="100">
+      <button class="btn btn-outline-dark" type="submit" (click)="onSearch()">Buscar</button>
+    </div>
+    <table *ngIf="itens.length > 0" class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col" style="width: 10%;">localizador</th>
+          <th scope="col" style="width: 6%;">Destinatario</th>
+          <th scope="col" style="width: 12%;" >Endereço</th>
+          <th scope="col" style="width: 4%">Status</th>
+        </tr>
+      </thead>
+      <tbody>
         <tr *ngFor="let item of itens">
-      
-       <!-- <p *ngIf="this.user?.cpf === item.pessoaItem.cpf"></p> -->
-        <td style="width: 10%;">{{item.localizador}}</td>
-        <td style="width: 6%;">{{item.nomeRecebedor}}</td>
-        <td style="width: 9%;">{{item.localEntrega}}</td>
-        <td style="width: 4%;">{{item.status}}</td>
-        <!-- <td hidden>{{item.funcionario.empresa.cnpj}}</td> -->
-    </tbody>
-  </table> 
-</form>
-
-  <button type="submit" class="btn btn-outline-secondary" routerLink="/additem">Adicionar</button>
-
+          <td style="width: 10%;">{{item.localizador}}</td>
+          <td style="width: 6%;">{{item.nomeRecebedor}}</td>
+          <td style="width: 12%;">{{item.localEntrega}}</td>
+          <td style="width: 4%;">{{item.status}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+  <div class="button-div">
+    <button *ngIf="this.user?.role != 'PESSOA'" type="submit" class="btn btn-outline-secondary" routerLink="/additem">Adicionar</button>
+  </div>
 </div>

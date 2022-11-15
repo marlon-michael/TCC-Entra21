@@ -9,7 +9,8 @@ body {
 * {
     padding: 0;
     margin: 0;
-    font-family: 'Poppins'!important;
+    /* font-family: 'Poppins'!important; */
+    font-family: Arial;
 }
 .navbar-toggler-always {
     padding: var(--bs-navbar-toggler-padding-y) var(--bs-navbar-toggler-padding-x);

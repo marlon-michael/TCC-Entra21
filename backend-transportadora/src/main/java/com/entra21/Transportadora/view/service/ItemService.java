@@ -50,7 +50,7 @@ public class ItemService {
     }
 
     public ItemDTO findByLocalizador(String localizador){
-        ItemEntity itemEntity = itemRepository.findByLocalizador(localizador).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Item não foi encontrado!");});
+        ItemEntity itemEntity = itemRepository.findByLocalizador(localizador).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.OK, "Item não foi encontrado!");});
         ItemDTO itemDTO = new ItemDTO();
         PessoaDTO pessoaDTO = null;
 
@@ -92,31 +92,8 @@ public class ItemService {
             return itemDTO;
         }).collect(Collectors.toList());
     }
-//toDO PARA VER
-//    public List<ItemDTO> findAllByPessoa_id(Long Id){
-//        return itemRepository.findAllByPessoa_id(Id).stream()
-//                .map(itemEntity -> {
-//
-//                    ItemDTO itemDTO = new ItemDTO();
-//                    PessoaDTO pessoaDTO = new PessoaDTO();
-//
-//                    pessoaDTO.setNome(itemEntity.getPessoa().getNome());
-//                    pessoaDTO.setSobrenome(itemEntity.getPessoa().getSobrenome());
-//                pessoaDTO.setTelefone(itemEntity.getPessoa().getTelefone());
-//                    pessoaDTO.setCpf(itemEntity.getPessoa().getCpf());
-//
-//
-//                    itemDTO.setLocalizador(itemEntity.getLocalizador());
-//                    itemDTO.setLocalEntrega(itemEntity.getLocalEntrega());
-//                    itemDTO.setNomeRecebedor(itemEntity.getNomeRecebedor());
-//                    itemDTO.setStatus(itemEntity.getStatus());
-//
-//                    return itemDTO;
-//                }).collect(Collectors.toList());
-//    }
 
-
-    public void saveItem(ItemAddDTO itemDTO) {
+    public ItemAddDTO saveItem(ItemAddDTO itemDTO) {
         PessoaEntity pessoaEntity = null;
         ItemEntity itemEntity = new ItemEntity();
         String UUId; //generating UUID
@@ -132,8 +109,10 @@ public class ItemService {
             pessoaEntity = pessoaRepository.findByCpf(itemDTO.getPessoaItem().getCpf()).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cpf/Pessoa não encontrada");});
         }
         itemEntity.setPessoa(pessoaEntity);
-
         itemRepository.save(itemEntity);
+
+        itemDTO.setLocalizador(UUId);
+        return itemDTO;
     }
 
     //TODO: UM ITEM DEVE DER DELETADO ???

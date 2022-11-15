@@ -75,6 +75,23 @@ public class EmpresaService {
         return empresaDTO;
     }
 
+    public EmpresaDTO findByGerente_cpf(String cpf){
+        EmpresaEntity empresaEntity = empresaRepository.findByGerente_Cpf(cpf).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa/Gerente não encontrada");});
+        PessoaDTO pessoaDTO = new PessoaDTO();
+        EmpresaDTO empresaDTO = new EmpresaDTO();
+
+        pessoaDTO .setNome(empresaEntity.getGerente().getNome());
+        pessoaDTO .setCpf(empresaEntity.getGerente().getCpf());
+        pessoaDTO .setTelefone(empresaEntity.getGerente().getTelefone());
+        pessoaDTO .setSobrenome(empresaEntity.getGerente().getSobrenome());
+
+        empresaDTO.setGerente(pessoaDTO);
+        empresaDTO.setCnpj(empresaEntity.getCnpj());
+        empresaDTO.setRazaoSocial(empresaEntity.getRazaoSocial());
+
+        return empresaDTO;
+    }
+
 
     public void updateEmpresa (String cnpj, EmpresaUpDTO empresaDTO){
         EmpresaEntity empresaEntity = empresaRepository.findByCnpj(cnpj).orElseThrow(() -> new ResponseStatusException(HttpStatus.OK, "Empresa/CNPJ não encontrado!"));

@@ -10,10 +10,7 @@ import com.entra21.Transportadora.view.repository.FuncionarioRepository;
 import com.entra21.Transportadora.view.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-
-
 
 
 @RestController

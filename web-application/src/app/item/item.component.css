@@ -1,41 +1,51 @@
 
 *{
-    /* background-color: azure; */
-    color: white!important;
+    color: white;
 }
-.foto{
-    background-image: url(/assets/img/Chato.jpg);
-    background-position: center!important;
-    background-size: cover;
-height: 500px;
+
+.body{
+    background-color: rgb(77, 54, 97);
+    min-height: 35vw;
+    padding: 0 0 100px 0;
+    width: 100%;
 }
 
 h2 {
     align-items: center;
     flex-direction: column;
-    justify-content: center;
+    text-align: center;
     display: block;
     color: rgb(255, 255, 255);
     font-size: 50px;
-    margin-left: 500px;
-   
-    margin-bottom: 50px;
+    padding: 50px 0;
     text-size-adjust: bold;
 }
+
 th{
-    color: rgb(8, 7, 7);
-    font-size: bold;
+    font-size: 2vw;
+    font-weight: 10;
 }
 
+td label{
+    display: none;
+}
+
+@media screen and (max-width: 700px){
+    th{
+        display: none;
+    }
+    td{
+        display: block;
+    }
+    td label{
+        display: block;
+    }
+}
 
 .btn.btn-outline-dark {
-    margin-right: 10px;
-margin-left: 980px;
-/* border: 1px solid black; */
-margin-bottom: 200px;
-width: 200px;
-
-color: black;
+    margin: 20px;
+    width: 200px;
+    color: black;
 }
 
 .btn.btn-outline-secondary {
@@ -43,60 +53,43 @@ color: black;
     background: black!important;
 }
 
-
-table.table-bordered {
-    margin-top: 10px;
-    margin-left: 290px;
-    width: 150px;
-    border: none;
-    text-decoration: none;
-    border-radius: 8px;
-     /* /* border: 1px solid black; */
-     background: rgba(245, 222, 179, 0.308);
-
-}
-
-
 input{
     border-style: none;
-    /* border: 1px solid black; */
     border-radius: 8px;
     border-bottom: none;
-    background: rgba(255, 234, 140, 0.705);
-border-radius: 8px;
-padding: 5px;
-color: black;
-text-decoration: black;
+    background: rgba(212, 212, 212, 0.705);
+    border-radius: 8px;
+    padding: 5px;
+    color: black;
+    text-decoration: black;
+    width: 100%;
 }
-/* input:hover{
 
-} */
 input:hover{
-    background: rgba(153, 133, 69, 0.89);
+    background: rgba(220, 220, 220, 0.89);
     border-radius: 8px;
     padding: 5px;
     transition: 0.20s ease;
-    color: rgb(1, 2, 2);
+    color: rgb(0, 0, 0);
     text-decoration: black;
 }
+
 .input::placeholder:hover{
     color: black;
 }
 
-.label{
-color: black;
-    width: auto;
+.error{
+    padding: .5%;
+    border-radius: 8px;
+    border-bottom: none;
+    background: rgba(212, 212, 212, 0.705);
+    border-radius: 8px;
+    color: rgb(52, 52, 52);
+    text-decoration: black;
+    width: 99%;
 }
-.td {
-    color: black;
-}
-/* 
-.head{
-    margin-left: 20px;
-    width: 200px;
-} */
 
-.table{
-    width: 30%;
-    margin-left: 70px;
+.table, .error{
+    width: 90%;
+    margin-left: 5%;
 }

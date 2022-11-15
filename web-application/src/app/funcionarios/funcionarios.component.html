@@ -1,34 +1,25 @@
 <div class="banner">
+<h1>Funcionários</h1>
+<div *ngIf="loading" class="spinner-border spinner-border-md" style="margin-left:47%;"></div>
 <form  [formGroup]="form">
-<p class="texto1">Funcionários</p>
-<div *ngIf="loading" class="spinner-border spinner-border-sm" style="margin-left:650px;"></div>
-<!-- <form class="d-flex" role="search">
-  <input class="form-control me-2" type="search" placeholder="Buscar Funcionários" aria-label="Search" formControlName="search">
-  <button class="btn " type="submit" (click)="onSearch()" >Buscar</button>
-</form> -->
-
-
-<table class="table table-bordered">
-  
-  <thead>
-    <tr>
-    <th class="left" >Nome</th>
-    <th class="meio">Sobrenome</th>
-    <th class="meio">Telefone</th>
-    <th class="right">Cpf</th>
-  </tr>
-  </thead>
-  <tbody>
-   
-        <tr *ngFor="let funcionario of funcionarios">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Sobrenome</th>
+        <th>Telefone</th>
+        <th>Cpf</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let funcionario of funcionarios">
         <td>{{funcionario.nome}}</td>
         <td>{{funcionario.sobrenome}}</td>
         <td>{{funcionario.telefone}}</td>
         <td>{{funcionario.cpf}}</td>
-       </tr>
-  
-  </tbody>
-</table> 
+      </tr>
+    </tbody>
+  </table> 
 </form>
 </div>
   

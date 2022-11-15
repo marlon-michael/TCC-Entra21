@@ -26,6 +26,11 @@ public class EmpresaRestController {
         return empresaService.findByCnpj(cnpj);
     }
 
+    @GetMapping("gerente/{cpf}")
+    public EmpresaDTO findByGerente_cpf(@PathVariable(name = "cpf")String cpf){
+        return empresaService.findByGerente_cpf(cpf);
+    }
+
     @PostMapping
     public void addEmpresa(@RequestBody EmpresaAddDTO empresaDTO){
         empresaService.saveEmpresas(empresaDTO);
