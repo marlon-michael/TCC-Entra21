@@ -9,21 +9,15 @@ import { AuthenticationService } from './logado/helpers/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-
-
   user: User | null = null;
-
-    constructor(
-        private router: Router,
-        private authenticationService: AuthenticationService
-    ) {
-        this.authenticationService.user.subscribe(x => this.user = x);
-    }
-  ngOnInit(): void {
-    console.log(this.user?.idPessoa);
+  constructor(
+      private router: Router,
+      private authenticationService: AuthenticationService
+  ) {
+      this.authenticationService.user.subscribe(x => this.user = x);
   }
-
-    logout() {
-        this.authenticationService.logout();
-    }
+  ngOnInit(): void {}
+  logout() {
+      this.authenticationService.logout();
+  }
 }

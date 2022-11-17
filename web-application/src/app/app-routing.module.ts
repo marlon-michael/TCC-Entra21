@@ -16,19 +16,18 @@ import { AuthGuard } from './logado/helpers/auth.guard';
 
 
 const routes: Routes = [
-{path: '', component:HomeComponent},
-{path: 'additem', component: ItemComponent},
-{path: 'login', component:LoginComponent},
-{path: 'about',component:AboutComponent},
-{path: 'contact',component:ContactComponent},
-{path: 'localizador', component: LocalizadorComponent},
-{path: 'config', component: ConfiguracoesComponent},
-{path: 'cadastro', component: CadastroComponent},
-{path: 'funcionarios', component: FuncionariosComponent},
-{path: 'edit', component: FuncionariosComponent},
-{path: 'entregas/:localizador', component: EntregasItemDetalhesComponent},
-
-{path: '**', redirectTo: '/'},
+  {path: '', component:HomeComponent},
+  {path: 'additem', component: ItemComponent},
+  {path: 'login', component:LoginComponent},
+  {path: 'about',component:AboutComponent},
+  {path: 'contact',component:ContactComponent},
+  {path: 'localizador', component: LocalizadorComponent},
+  {path: 'config', component: ConfiguracoesComponent},
+  {path: 'cadastro', component: CadastroComponent},
+  {path: 'funcionarios', component: FuncionariosComponent},
+  {path: 'edit', component: FuncionariosComponent},
+  {path: 'entregas', component: EntregasItemDetalhesComponent},
+  {path: '**', redirectTo: '/'},
 ];
 
 @NgModule({

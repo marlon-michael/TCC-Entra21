@@ -1,6 +1,16 @@
-.texto2 {
+
+.containeri{
+    padding: 50px 0;
+    width: 100%;
+    min-height: 60vh;
+    background-color: rgb(84, 50, 115);
+}
+
+.titulo {
+    padding-bottom: 50px;
     font-size: 40px;
     text-align: center;
+    color: aliceblue;
 }
 
 .mb-3 {
@@ -17,5 +27,17 @@
     width: 400px;
     margin-left: auto;
     margin-right: auto;
-    border-radius: 10px;
+    border-radius: 15px;
+}
+
+.error{
+    padding: .5%;
+    margin-left: 10%;
+    border-radius: 8px;
+    border-bottom: none;
+    background: rgba(212, 212, 212, 0.705);
+    border-radius: 8px;
+    color: rgb(52, 52, 52);
+    text-decoration: black;
+    width: 80%;
 }
