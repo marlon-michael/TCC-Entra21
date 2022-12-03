@@ -1,21 +1,13 @@
+
 export type User = {
     idPessoa: number;
     cpf:string;
+    telefone:string;
     nome: string;
     sobrenome: string;
     username: string;
     password: string;
     role: string;
-    authdata?: string;
-}
-
-export type Cadastro = {
-    nome : string | null | undefined,
-    sobrenome : string | null| undefined,
-    telefone: string | null| undefined,
-    cpf : string | null| undefined,
-    login : string | null| undefined,
-    senha : string | null| undefined,
     authdata?: string;
 }
 
@@ -34,14 +26,6 @@ export type Item = {
     pessoaItem:  Pessoa;
 }
 
-export type ItensPessoas = {
-    localizador: string;
-    status:string;
-    localEntrega:string;
-    nomeRecebedor:string;
-    pessoaItem:  Pessoa;
-}
-
 export type Pessoa = {
     nome:string
     sobrenome: string;
@@ -49,12 +33,6 @@ export type Pessoa = {
     cpf: string;
     login: string;
     senha: string;
-}
-
-export type Funcionario = {
-    supervisor: Pessoa;
-    entrega: Entrega[];
-    empresa: Empresa;
 }
 
 export type Entrega = {
@@ -67,7 +45,7 @@ export type Entrega = {
 
 export type EntregaSingleLine = {
     id: number;
-    entregador: Pessoa | null;
+    entregador: Pessoa;
     tipoEntrega: string;
     entregaTrecho: EntregaTrecho;
 }
