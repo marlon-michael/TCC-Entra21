@@ -38,6 +38,8 @@ export class EntregasItemDetalhesComponent{
     });
   }
 
+  //TODO: ADD ENTREGA
+
   ngOnInit(): void {
     this.user = this.auth.userValue;
     if (this.user?.role == "FUNCIONARIO"){
