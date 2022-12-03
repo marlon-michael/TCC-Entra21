@@ -7,9 +7,10 @@ body *{
 }
 
 .main-sobre{
+	padding: 50px 0;
 	width: 100%;
 	min-height: 80vh;
-	background: #201b2c;
+	background-color: #330f4a;
 	display: flex;
 	justify-content: center;
 	align-items: center;

@@ -9,34 +9,39 @@ h1 {
     color: white;
     font-size: bold;
 }
+table{
+    margin-left: 5%;
+    width: 90%;
+    color: rgb(63, 63, 63);
+    background-color: rgb(198, 198, 198);
+}
 thead{
     border-style: none;
-    background-color: #bababa;
-    color: rgb(68, 68, 68);
-}
-tr{
-    background-color: #bdbdbd;
 }
 tbody tr:hover{
-    background:#979797;
-    color: black;
+    background-color: rgb(158, 158, 158);
 }
 .body{
     background-color: #461e5f;
     min-height: 30vw;
-    padding: 50px 0 250px 0;
-}
-.table.table-bordered {
-    margin-left: 10%;
-    width: 80%;
+    padding: 50px 0 50px 0;
 }
 .form{
+    max-width: 500px;
+    width: 80%;
     margin: auto;
-    width: 20%;
-    background-color: #0a0a0a;
+    margin-top: 100px;
+    background-color: rgb(198, 198, 198)!important;
+}
+.form input{
+    background-color: #cdcdcd!important;
 }
 @media screen and (max-width: 750px){
     .body{
-        font-size: 3vw;
+        font-size: 2.3vw;
+    }
+    table{
+        margin-left: 0;
+        width: 100%;
     }
 }

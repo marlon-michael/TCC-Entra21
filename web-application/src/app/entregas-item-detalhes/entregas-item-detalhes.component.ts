@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Empresa, Entrega, EntregaSingleLine, User } from 'types/types';
+import { Empresa, Entrega, EntregaSingleLine, Item, User } from 'types/types';
 import { AuthenticationService } from '../logado/helpers/auth.service';
 
 @Component({
@@ -11,15 +11,19 @@ import { AuthenticationService } from '../logado/helpers/auth.service';
 })
 export class EntregasItemDetalhesComponent{
  
+  formEdit: any;
   itemForm: FormGroup = this.formBuilder.group({
     localizador:  ['', Validators.required],
     entregador:  [''],
     status: ['']
   });
   error = "";
-  formEdit: any;
   user: User | null = null;
-  entregas: EntregaSingleLine[] | null = [];
+  entregas: EntregaSingleLine[] = [];
+  itens: {
+    id: number
+    item: Item
+  }[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,7 +33,8 @@ export class EntregasItemDetalhesComponent{
     this.formEdit = this.formBuilder.group({
       id: ['', Validators.required],
       entregador: [''],
-      status: ['']
+      status: [''],
+      localizador: ['']
     });
   }
 
@@ -64,7 +69,7 @@ export class EntregasItemDetalhesComponent{
         });
       });
     }
-    if (this.user?.role == "SUPERVISOR"){
+    if (this.user?.role == "SUPERVISOR" || this.user?.role == "FUNCIONARIO"){
       this.http.get<Empresa>(`/empresa/funcionario/${this.user?.cpf}`).subscribe(empresaRes => {
         this.http.get<Entrega[]>(`/entrega/empresa/${empresaRes?.cnpj}`).subscribe(entregasResult => {
           this.edit(entregasResult)
@@ -74,25 +79,35 @@ export class EntregasItemDetalhesComponent{
   }
 
   edit(entregas: Entrega[]):void{
-    var id = this.formEdit.get("id")?.value;
-    var cpf = this.formEdit.get("cpf")?.value
-    var status = this.formEdit.get("status")?.value;
-
+    var _id = this.formEdit.get("id")?.value;
+    var _cpf = this.formEdit.get("entregador")?.value;
+    var _status: string = this.formEdit.get("status")?.value;
+    var _localizador: string = this.formEdit.get("localizador")?.value
     entregas.forEach(entrega=>{
-      if (id == entrega.idEntrega){
-        if (cpf != ""){
-          this.http.put(`/entrega/${id}`, {
-            entregador:{
-              cpf: cpf
-            }
-          }).subscribe(res => console.log(res))
-        }
-        if (status != ""){
-          entrega.itens.forEach(item => {
-            this.http.put(`/item/${item.localizador}`, {
-              status: status
+      if (_id == entrega.idEntrega){
+        if (_cpf.trim() != "" && _cpf.trim().length == 11 && this.user?.role == "GERENTE" || this.user?.role == 'SUPERVISOR'){
+          if (entrega.entregador.cpf = _cpf){
+            console.log("1.1")
+            this.http.put(`/entrega/${_id}`, {
+              entregador:{
+                cpf: _cpf
+              }
             })
-          })
+          }
+        }
+        if (_status.trim() != "" && this.user?.role == "FUNCIONARIO"){
+          if (_localizador.trim() != ""){
+            this.http.put(`/item/${_localizador}`, {
+              status: _status.toUpperCase()
+            })
+          }
+          else{
+            entrega.itens.forEach(item => {
+              this.http.put(`/item/${item.localizador}`, {
+                status: _status.toUpperCase()
+              })
+            })
+          }
         }
       }
     })
@@ -106,6 +121,12 @@ export class EntregasItemDetalhesComponent{
           entregador: entrega.entregador,
           tipoEntrega: entrega.tipoEntrega,
           entregaTrecho: trecho
+        })
+      })
+      entrega.itens.forEach(item => {
+        this.itens.push({
+          id: entrega.idEntrega,
+          item: item
         })
       })
     });

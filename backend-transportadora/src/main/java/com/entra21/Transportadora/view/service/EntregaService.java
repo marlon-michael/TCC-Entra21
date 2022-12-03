@@ -238,8 +238,8 @@ public class EntregaService {
 
 
     //TODO: ENCONTRAR UM JEITO DO USUARIO ENCONTRAR A ENTREGA/ENTREGA_TRECHO (LOCALIZADOR DE ENTREGA???)
-    public EntregaUpDTO updateEntrega(Long idEntregaNv, EntregaUpDTO entregaDTO) {
-        entregaRepository.findById(idEntregaNv).ifPresentOrElse((entregaEntity) -> {
+    public EntregaUpDTO updateEntrega(Long idEntrega, EntregaUpDTO entregaDTO) {
+        entregaRepository.findById(idEntrega).ifPresentOrElse((entregaEntity) -> {
             entregaEntity.setEntregador(
                 funcionarioRepository.findByCpf(entregaDTO.getEntregador().getCpf()).orElseThrow(() -> {
                     throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Funcionario não foi encontrado!");

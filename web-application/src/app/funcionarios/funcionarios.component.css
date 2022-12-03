@@ -12,17 +12,13 @@ h1 {
     margin-left: 10%;
     width: 80%;
 }
-thead{
+table{
+    color: rgb(63, 63, 63);
+    background-color: rgb(198, 198, 198);
     border-style: none;
-    background-color: #bababa;
-    color: rgb(68, 68, 68);
-}
-tr{
-    background-color: #bdbdbd;
 }
 tbody tr:hover{
-    background:#979797;
-    color: black;
+    background-color: rgb(158, 158, 158);
 }
 .banner{
     background-color: #461e5f;

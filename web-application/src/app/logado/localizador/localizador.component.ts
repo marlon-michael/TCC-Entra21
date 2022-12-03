@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Itens, User } from "types/types";
+import { Item, User } from "types/types";
 import { AuthenticationService } from '../helpers/auth.service';
 
 
@@ -19,7 +19,7 @@ export class LocalizadorComponent implements OnInit {
   succes = false;
   result: any;
   permitido = false;
-  itens: Itens[] = [];
+  itens: Item[] = [];
   role: any;
   user: User | null = null;
   formLocalizador: FormGroup = this.formBuilder.group({
@@ -49,7 +49,7 @@ export class LocalizadorComponent implements OnInit {
       }
     });
     this.http.get<any>(`/item/pessoa/${this.formLocalizador.get("localizador")?.value}`).subscribe(result => {
-      result.forEach((item: Itens) => {
+      result.forEach((item: Item) => {
         this.itens.push(item)
       });
     });

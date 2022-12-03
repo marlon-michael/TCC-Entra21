@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/entrega")
@@ -21,11 +22,15 @@ public class EntregaRestController {
     @Autowired
     private EntregaRepository entregaRervice;
 
-    
 
     @GetMapping
     public List<EntregaDTO> getEntrega(){
         return entregaService.getAllEntrega();
+    }
+
+    @GetMapping("/{id}")
+    public Optional<EntregaEntity> getById(@PathVariable(name = "id") Long id){
+        return entregaRervice.findById(id);
     }
 
     @GetMapping("/entregador/{cpf}")

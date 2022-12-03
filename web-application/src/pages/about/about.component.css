@@ -9,7 +9,7 @@ body *{
 
 .main-sobre{
 	height: 100vh;
-	background: #201b2c;
+	background-color: #330f4a;
 	display: flex;
 	justify-content: center;
 	align-items: center;

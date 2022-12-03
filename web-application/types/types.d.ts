@@ -26,19 +26,12 @@ export type Funcionarios = {
     telefone: string
 }
 
-export type Itens = {
-    localizador: string,
-    status: string,
-    nomeRecebedor: string,
-    localEntrega: string,
-    pessoaItem:  Pessoa;
-}
-
 export type Item = {
     localizador: string,
     status: string,
     nomeRecebedor: string,
     localEntrega: string,
+    pessoaItem:  Pessoa;
 }
 
 export type ItensPessoas = {
@@ -69,7 +62,7 @@ export type Entrega = {
     tipoEntrega: string;
     entregador: Pessoa;
     entregaTrecho: EntregaTrecho[];
-    itens: Itens[];
+    itens: Item[];
 }
 
 export type EntregaSingleLine = {

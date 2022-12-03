@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Itens } from 'types/types';
+import { Item } from 'types/types';
 
 
 @Component({
@@ -21,7 +21,7 @@ export class ItemComponent{
   returnUrl: string = this.route.snapshot.queryParams['returnUrl'];
   error = '';
   succes = false;
-  itens: Itens[] = [];
+  itens: Item[] = [];
   constructor(
     private http: HttpClient, 
     private formBuilder: FormBuilder,

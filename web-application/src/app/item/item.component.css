@@ -4,7 +4,7 @@
 }
 
 .body{
-    background-color: rgb(77, 54, 97);
+    background-color: #461e5f;
     min-height: 35vw;
     padding: 0 0 100px 0;
     width: 100%;
@@ -57,7 +57,7 @@ input{
     border-style: none;
     border-radius: 8px;
     border-bottom: none;
-    background: rgba(212, 212, 212, 0.705);
+    background: rgb(212, 212, 212);
     border-radius: 8px;
     padding: 5px;
     color: black;
