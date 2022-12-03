@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { first } from 'rxjs';
-import {  Itens } from 'types/types';
+import { ActivatedRoute } from '@angular/router';
+import { Itens } from 'types/types';
 
 
 @Component({
@@ -26,8 +25,8 @@ export class ItemComponent{
   constructor(
     private http: HttpClient, 
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router) { }
+    private route: ActivatedRoute
+  ) { }
 
   AddItem() {
     this.submitted = false;
@@ -43,7 +42,6 @@ export class ItemComponent{
       this.http.post<any>('/item/additem', item)
       .subscribe({
         next: (response) => {
-          console.log(response);
           // this.router.navigateByUrl('/localizador');
           this.error = "Item adicionado com sucesso - localizador: " + response.localizador;
         },

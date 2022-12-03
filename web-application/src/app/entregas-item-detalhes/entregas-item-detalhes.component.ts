@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Empresa, Entrega, EntregaSingleLine, User } from 'types/types';
 import { AuthenticationService } from '../logado/helpers/auth.service';
 
@@ -9,8 +9,14 @@ import { AuthenticationService } from '../logado/helpers/auth.service';
   templateUrl: './entregas-item-detalhes.component.html',
   styleUrls: ['./entregas-item-detalhes.component.css']
 })
-export class EntregasItemDetalhesComponent implements OnInit {
-
+export class EntregasItemDetalhesComponent{
+ 
+  itemForm: FormGroup = this.formBuilder.group({
+    localizador:  ['', Validators.required],
+    entregador:  [''],
+    status: ['']
+  });
+  error = "";
   formEdit: any;
   user: User | null = null;
   entregas: EntregaSingleLine[] | null = [];
@@ -104,5 +110,4 @@ export class EntregasItemDetalhesComponent implements OnInit {
       })
     });
   }
-
 }
