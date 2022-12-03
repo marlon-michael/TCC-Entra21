@@ -3,6 +3,8 @@ package com.entra21.Transportadora.controller;
 import com.entra21.Transportadora.model.dto.Empresa.EmpresaAddDTO;
 import com.entra21.Transportadora.model.dto.Empresa.EmpresaDTO;
 import com.entra21.Transportadora.model.dto.Empresa.EmpresaUpDTO;
+import com.entra21.Transportadora.model.entity.EmpresaEntity;
+import com.entra21.Transportadora.view.repository.EmpresaRepository;
 import com.entra21.Transportadora.view.service.EmpresaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +18,9 @@ public class EmpresaRestController {
     @Autowired
     private EmpresaService empresaService;
 
+    @Autowired
+    private EmpresaRepository empresaRepo;
+
     @GetMapping
     public List<EmpresaDTO> getEmpresa(){
         return empresaService.getAllEmpresas();
@@ -26,9 +31,15 @@ public class EmpresaRestController {
         return empresaService.findByCnpj(cnpj);
     }
 
-    @GetMapping("gerente/{cpf}")
+    @GetMapping("/gerente/{cpf}")
     public EmpresaDTO findByGerente_cpf(@PathVariable(name = "cpf")String cpf){
         return empresaService.findByGerente_cpf(cpf);
+    }
+
+    //TODO: fazer retornar DTO
+    @GetMapping("/funcionario/{cpf}")
+    public EmpresaEntity findByFuncionario_cpf(@PathVariable(name = "cpf")String cpf){
+        return empresaRepo.findByFuncionarios_Cpf(cpf);
     }
 
     @PostMapping

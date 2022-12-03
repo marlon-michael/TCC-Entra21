@@ -12,7 +12,6 @@ import { CadastroComponent } from 'src/pages/login/cadastro/cadastro.component';
 import { FuncionariosComponent } from './funcionarios/funcionarios.component';
 import { EntregasItemDetalhesComponent } from './entregas-item-detalhes/entregas-item-detalhes.component';
 import { ItemComponent } from './item/item.component';
-import { AuthGuard } from './logado/helpers/auth.guard';
 
 
 const routes: Routes = [
@@ -26,7 +25,7 @@ const routes: Routes = [
 {path: 'cadastro', component: CadastroComponent},
 {path: 'funcionarios', component: FuncionariosComponent},
 {path: 'edit', component: FuncionariosComponent},
-{path: 'entregas/:localizador', component: EntregasItemDetalhesComponent},
+{path: 'entregas', component: EntregasItemDetalhesComponent},
 
 {path: '**', redirectTo: '/'},
 ];

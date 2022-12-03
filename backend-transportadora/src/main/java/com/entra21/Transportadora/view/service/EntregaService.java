@@ -126,6 +126,7 @@ public class EntregaService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "CPF/Entregador/Entrega não encontrado");
         }).stream().map(entregaEntity -> {
             EntregaDTO dtoentrega = new EntregaDTO();
+            dtoentrega.setIdEntrega(entregaEntity.getIdEntrega());
             dtoentrega.setTipoEntrega(entregaEntity.getTipoEntrega());
             dtoentrega.setItens(
                 entregaEntity.getItens().stream().map(itemEntity -> {
@@ -240,9 +241,9 @@ public class EntregaService {
     public EntregaUpDTO updateEntrega(Long idEntregaNv, EntregaUpDTO entregaDTO) {
         entregaRepository.findById(idEntregaNv).ifPresentOrElse((entregaEntity) -> {
             entregaEntity.setEntregador(
-                    funcionarioRepository.findByCpf(entregaDTO.getEntregador().getCpf()).orElseThrow(() -> {
-                        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Funcionario não foi encontrado!");
-                    })
+                funcionarioRepository.findByCpf(entregaDTO.getEntregador().getCpf()).orElseThrow(() -> {
+                    throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Funcionario não foi encontrado!");
+                })
             );
             entregaRepository.save(entregaEntity);
         }, () -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Entrega não foi encontrada!");});

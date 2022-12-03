@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Itens, User } from "types/types";
 import { AuthenticationService } from '../helpers/auth.service';
 
@@ -12,26 +12,25 @@ import { AuthenticationService } from '../helpers/auth.service';
   styleUrls: ['./localizador.component.css']
 })
 export class LocalizadorComponent implements OnInit {
-itens: Itens[] = [];
-role:any;
-user: User | null = null;
-formLocalizador: FormGroup = this.formBuilder.group({
-  localizador: ['', Validators.required]
-});
-loading = false;
-submitted = false;
-returnUrl: string = this.route.snapshot.queryParams['returnUrl'];
-error = '';
-succes = false;
-result: any;
-permitido = false;
+  loading = false;
+  submitted = false;
+  returnUrl: string = this.route.snapshot.queryParams['returnUrl'];
+  error = '';
+  succes = false;
+  result: any;
+  permitido = false;
+  itens: Itens[] = [];
+  role: any;
+  user: User | null = null;
+  formLocalizador: FormGroup = this.formBuilder.group({
+    localizador: ['', Validators.required]
+  });
 
   constructor(
     private http: HttpClient,
     private auth:AuthenticationService,
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router) {
+    private route: ActivatedRoute) {
     }
 
   ngOnInit() {

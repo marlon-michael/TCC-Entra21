@@ -1,24 +1,45 @@
-<p class="texto2">Alterar Entrega</p>
 
-<div class="shadow p-3 mb-5 bg-body rounded">
-  <form class="form1">
+<div class="body">
+  <h1>Entregas</h1>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <!-- MOSTRAR LOCALIZADOR E COMPLETO -->
+        <th>ID</th>
+        <th *ngIf="user?.role == 'SUPERVISOR' || user?.role == 'GERENTE'">motorista</th>
+        <th>tipo</th>
+        <th>carro</th>
+        <th>inicio</th>
+        <th>fim</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let entrega of entregas">
+        <td>{{entrega.id}}</td>
+        <th *ngIf="user?.role == 'SUPERVISOR' || user?.role == 'GERENTE'">{{entrega.entregador?.nome}}</th>
+        <td>{{entrega.tipoEntrega}}</td>
+        <td>{{entrega.entregaTrecho.carro.placa}}</td>
+        <td>{{entrega.entregaTrecho.trecho.localInicio}}</td>
+        <td>{{entrega.entregaTrecho.trecho.localFim}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <form *ngIf="user?.role == 'SUPERVISOR' || user?.role == 'GERENTE'" class="form shadow p-3 mb-5 bg-body rounded"  [formGroup]="formEdit">
     <div class="mb-3">
-      <label for="funcionarios" class="form-label">Nome do Entregador</label>
-      <input type="text" class="form-control" id="funcionarios" placeholder="Nome do Entregador antigo">
+      <label for="id" class="form-label">id da entrega</label>
+      <input type="text" class="form-control" id="id" placeholder="id" formControlName="id" maxlength="100">
     </div>
     <div class="mb-3">
-      <label for="funcionarios" class="form-label">Tipo de Entrega</label>
-      <input type="text" class="form-control" id="funcionarios" placeholder="Tipo de Entrega antigo">
+      <label for="cpf" class="form-label">Entregador (cpf)</label>
+      <input type="text" class="form-control" id="cpf" placeholder="00011122233" formControlName="entregador" maxlength="11">
     </div>
     <div class="mb-3">
-      <label for="funcionarios" class="form-label">Endereço</label>
-      <input type="text" class="form-control" id="funcionarios" placeholder="Endereço antigo">
+      <label for="status" class="form-label">Status</label>
+      <input type="text" class="form-control" id="satus" placeholder="entregue" formControlName="status" maxlength="50">
     </div>
-    <div class="mb-3">
-      <label for="funcionarios" class="form-label">Status</label>
-      <input type="text" class="form-control" id="funcionarios" placeholder="Status antigo">
-    </div>
-    <button type="submit" class="btn btn-outline-dark">Salvar</button>
+    <button type="submit" class="btn btn-outline-dark" (click)="onEdit()">Salvar</button>
   </form>
+
 </div>
 

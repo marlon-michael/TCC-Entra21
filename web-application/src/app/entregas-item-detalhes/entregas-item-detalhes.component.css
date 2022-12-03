@@ -1,21 +1,42 @@
-.texto2 {
+
+* {
+    border-style: none;
+}
+h1 {
     font-size: 40px;
     text-align: center;
+    padding: 20px 0;
+    color: white;
+    font-size: bold;
 }
-
-.mb-3 {
-    width: 400px;
+thead{
+    border-style: none;
+    background-color: #bababa;
+    color: rgb(68, 68, 68);
 }
-
-.shadow.p-3.mb-5.bg-body.rounded {
-    width: 430px;
-    margin-left: auto;
-    margin-right: auto;
+tr{
+    background-color: #bdbdbd;
 }
-
-.btn.btn-outline-dark{
-    width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 10px;
+tbody tr:hover{
+    background:#979797;
+    color: black;
+}
+.body{
+    background-color: #461e5f;
+    min-height: 30vw;
+    padding: 50px 0 250px 0;
+}
+.table.table-bordered {
+    margin-left: 10%;
+    width: 80%;
+}
+.form{
+    margin: auto;
+    width: 20%;
+    background-color: #0a0a0a;
+}
+@media screen and (max-width: 750px){
+    .body{
+        font-size: 3vw;
+    }
 }

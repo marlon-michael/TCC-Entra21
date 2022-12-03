@@ -65,10 +65,18 @@ export type Funcionario = {
 }
 
 export type Entrega = {
+    idEntrega: number;
     tipoEntrega: string;
     entregador: Pessoa;
     entregaTrecho: EntregaTrecho[];
     itens: Itens[];
+}
+
+export type EntregaSingleLine = {
+    id: number;
+    entregador: Pessoa | null;
+    tipoEntrega: string;
+    entregaTrecho: EntregaTrecho;
 }
 
 export type Empresa = {
@@ -86,10 +94,12 @@ export type Carro = {
 }
 
 export type EntregaTrecho = {
-    Completo: boolean;
+    completo: boolean;
     carro: Carro;
     entrega: Entrega;
     trecho: Trecho;
+    dataInicio: string;
+    dataFim: string;
 }
 
 export type Trecho = {

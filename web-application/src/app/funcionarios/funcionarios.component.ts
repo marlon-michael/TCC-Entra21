@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges} from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { first } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Funcionarios, User } from 'types/types';
 import { AuthenticationService } from '../logado/helpers/auth.service';
 
@@ -32,7 +31,6 @@ export class FuncionariosComponent implements OnInit {
     private auth:AuthenticationService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private router: Router,
     private http: HttpClient,) { }
     
   ngOnInit() {

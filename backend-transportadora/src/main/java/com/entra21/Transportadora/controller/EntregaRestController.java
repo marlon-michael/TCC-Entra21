@@ -3,6 +3,8 @@ package com.entra21.Transportadora.controller;
 import com.entra21.Transportadora.model.dto.Entrega.EntregaAddDTO;
 import com.entra21.Transportadora.model.dto.Entrega.EntregaDTO;
 import com.entra21.Transportadora.model.dto.Entrega.EntregaUpDTO;
+import com.entra21.Transportadora.model.entity.EntregaEntity;
+import com.entra21.Transportadora.view.repository.EntregaRepository;
 import com.entra21.Transportadora.view.service.EntregaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,19 +18,28 @@ public class EntregaRestController {
     @Autowired
     private EntregaService entregaService;
 
+    @Autowired
+    private EntregaRepository entregaRervice;
+
+    
+
     @GetMapping
     public List<EntregaDTO> getEntrega(){
         return entregaService.getAllEntrega();
     }
 
-    //tabela da gabi entrergas do entregador
     @GetMapping("/entregador/{cpf}")
     public List<EntregaDTO> getAllByEntregador(@PathVariable(name = "cpf") String cpf){
         return entregaService.getAllEntragaByEntregador(cpf);
     }
 
-    //TODO: TESTAR POST DE ENTREGA NOVAMENTE
-    @PostMapping("addEntrega")
+    //TODO: fazer retornar DTO
+    @GetMapping("/empresa/{cnpj}")
+    public List<EntregaEntity> getAllByEmpresa(@PathVariable(name = "cnpj") String cnpj){
+        return entregaRervice.findAllByEntregador_Empresa_Cnpj(cnpj);
+    }
+
+    @PostMapping("/addEntrega")
     public void addEntrega(@RequestBody EntregaAddDTO NewEntrega){
         entregaService.save(NewEntrega);
     }
