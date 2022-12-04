@@ -44,18 +44,23 @@ export class EntregaAddComponent {
       })
     }
     localizadores.forEach(_localizador => {
-      itens.push({
-        localizador: _localizador.trim()
-      })
+      if (_localizador.trim() != ""){
+        itens.push({
+          localizador: _localizador.trim()
+        })
+      }
     })
 
-    this.error = "Os dados informados podem estar incorretos ou não estarem presentes em nossos bancos";
     this.http.post<any>(`/entrega`, {
       tipoEntrega: this.entregaForm.get("tipo")?.value.toUpperCase(),
       entregador: {cpf: this.entregaForm.get("motoristaCPF")?.value},
       entregaTrecho: entregaTrechos,
       itens: itens
-    }).subscribe(res => this.error = "")
+    }).subscribe(res => {
+      this.error = ""
+    }, error => {
+      this.error = "Os dados informados podem estar incorretos ou não estarem presentes em nossos bancos. Verifique e tente novamente";
+    })
   };
 }
 
