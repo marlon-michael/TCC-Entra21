@@ -87,7 +87,9 @@ export class EntregasItemDetalhesComponent{
       if (_id != entrega.idEntrega) return;
       if (_status.trim() != "" && this.user?.role == "FUNCIONARIO"){
         if (_localizador.trim() != "") this.http.put(`/item/${_localizador}`, {status: _status.toUpperCase()})
-        else entrega.itens.forEach(item => {this.http.put(`/item/${item.localizador}`, {status: _status.toUpperCase()})})
+        else entrega.itens.forEach(item => {
+          this.http.put(`/item/${item.localizador}`, {status: _status.toUpperCase()})
+        })
       }
       if (_cpf.trim() == "" || _cpf.trim().length != 11 || this.user?.role != "GERENTE" && this.user?.role != 'SUPERVISOR') return
       if (entrega.entregador.cpf = _cpf){
