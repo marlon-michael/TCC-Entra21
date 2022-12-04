@@ -28,6 +28,6 @@
     </tbody>
     <input type="submit" class="btn btn-outline-dark" value="Adicionar">
   </table>
-  <div class="error" *ngIf="this.error != ''">{{this.error}}</div>
+  <div class="error" *ngIf="this.error != ''" (click)="this.error = ''">{{this.error}}</div>
 </form>
 </div>
