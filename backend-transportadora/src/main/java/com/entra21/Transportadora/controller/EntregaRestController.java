@@ -45,8 +45,8 @@ public class EntregaRestController {
     }
 
     @PostMapping("/addEntrega")
-    public void addEntrega(@RequestBody EntregaAddDTO NewEntrega){
-        entregaService.save(NewEntrega);
+    public String addEntrega(@RequestBody EntregaAddDTO NewEntrega){
+        return entregaService.save(NewEntrega);
     }
 
     @PutMapping("/{id}")

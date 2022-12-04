@@ -178,57 +178,50 @@ public class EntregaService {
         }).collect(Collectors.toList());
     }
 
-    public void save(EntregaAddDTO entregaDTO) {
+    public String save(EntregaAddDTO entregaDTO) {
+        String msg = "";
         EntregaEntity entregaEntity = new EntregaEntity();
-
         entregaEntity.setTipoEntrega(entregaDTO.getTipoEntrega());
-
         List<ItemEntity> itemEntities = new ArrayList<>();
         itemEntities = entregaDTO.getItens().stream().map(itemDTO -> {
             return itemRepository.findByLocalizador(itemDTO.getLocalizador()).orElseThrow(() -> {
+                msg = itemDTO.getLocalizador();
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Item não foi encontrado!");
             });
         }).collect(Collectors.toList());
         if (itemEntities == null || itemEntities.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Itens a entregar não pode estar vazio!");
         entregaEntity.setItens(itemEntities);
-
         FuncionarioEntity funcionarioEntity = funcionarioRepository.findByCpf(entregaDTO.getEntregador().getCpf()).orElseThrow(() -> {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Funcionario não foi encontrado!");
         });
         if (funcionarioEntity.getCpf() == null) entregaEntity.setEntregador(null);
         else entregaEntity.setEntregador(funcionarioEntity);
-
         List<EntregaTrechoEntity> entregaTrechoEntities = entregaDTO.getEntregaTrecho().stream().map(entregaTrecho -> {
             EntregaTrechoEntity entregaTrechoEntity = new EntregaTrechoEntity();
             entregaTrechoEntity.setIdEntregaTrecho(entregaTrechoEntity.getIdEntregaTrecho());
             entregaTrechoEntity.setCompleto(false);
-
             TrechoEntity trechoEntity = new TrechoEntity();
             trechoEntity.setLocalInicio(entregaTrecho.getTrecho().getLocalInicio());
             trechoEntity.setLocalFim(entregaTrecho.getTrecho().getLocalFim());
             trechoRepository.save(trechoEntity);
             entregaTrechoEntity.setTrecho(trechoEntity);
-
             CarroEntity carroEntity = carroRepository.findByPlaca(entregaTrecho.getCarro().getPlaca()).orElseThrow(
                     ()->{throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Funcionario não foi encontrado!");});
             entregaTrechoEntity.setCarro(carroEntity);
-
             entregaTrechoEntity.setEntrega(entregaRepository.findById(1L).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Entrega não encontrado!")));
-
             entregaTrechoRepository.save(entregaTrechoEntity);
             return entregaTrechoEntity;
         }).collect(Collectors.toList());
-
         entregaEntity.setEntregaTrecho(entregaTrechoEntities);
         entregaRepository.save(entregaEntity);
-
         entregaEntity.setEntregaTrecho(entregaTrechoEntities);
         entregaTrechoEntities.stream().map(entregaTrechoEntity -> {
             entregaTrechoEntity.setIdEntregaTrecho(entregaEntity.getIdEntrega());
             entregaTrechoRepository.save(entregaTrechoEntity);
             return null;
         });
+        return msg;
     }
 
     //TODO: NÃO DEVE SER POSSIVEL DELETAR ENTREGAS
