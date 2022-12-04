@@ -56,11 +56,10 @@ export class EntregaAddComponent {
       entregador: {cpf: this.entregaForm.get("motoristaCPF")?.value},
       entregaTrecho: entregaTrechos,
       itens: itens
-    }).subscribe(res => {
-      this.error = ""
-    }, error => {
-      this.error = "Os dados informados podem estar incorretos ou não estarem presentes em nossos bancos. Verifique e tente novamente";
-    })
+    }).subscribe(
+      res => this.error = "", 
+      error => this.error = "Os dados informados podem estar incorretos ou não estarem presentes em nossos bancos. Verifique e tente novamente"
+    )
   };
 }
 
