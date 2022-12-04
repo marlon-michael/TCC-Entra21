@@ -1,0 +1,52 @@
+
+<div class="body">
+    <h2>Criar entrega</h2>
+    <form  role="search" [formGroup]="entregaForm" (ngSubmit)="addEntrega()">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>motorista (CPF)</th>
+            <th>tipo</th>
+            <th style="width: 50%">localizadores (itens)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <label for="motoristaCPF" class="label">entregador</label>
+              <input type="text" id="motoristaCPF"  placeholder="00011122233" minlength="11" maxlength="11" formControlName="motoristaCPF">
+            </td>
+            <td>
+              <label for="tipo"  class="label">tipo</label>
+              <input type="text" id="tipo"  placeholder="expressa" minlength="2" maxlength="50" formControlName="tipo">
+            </td>
+            <td>
+              <label for="localizadores"  class="label">localizadores</label>
+              <input type="text" id="localizadores"  placeholder="ASD3X; PWTQ8" formControlName="localizadores" minlength="1" maxlength="512">
+            </td>
+          </tr>
+        </tbody>
+        <thead>
+            <tr>
+              <th>carro (placa)</th>
+              <th>trechos</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                <label for="placaCarro"  class="label">placaCarro</label>
+                <input type="text" id="placaCarro"  placeholder="ASDF1234" formControlName="placaCarro" minlength="1" maxlength="15">
+            </td>
+            <td colspan="2">
+                <label for="trechos"  class="label">trechos</label>
+                <input type="text" id="trechos"  placeholder="Rua xxx, Bairro xxx, Cidade SP; Rua yyy, Bairro yyy, Cidade SP" formControlName="trechos" minlength="5" maxlength="2048">
+            </td>
+        </tr>
+        </tbody>
+        <input type="submit" class="btn btn-outline-dark" value="Adicionar">
+      </table>
+      <div class="msg">Separador de atributos:  ponto e virgula ( ; )</div>
+      <div class="msg" *ngIf="this.error != ''">{{this.error}}</div>
+    </form>
+    </div>
