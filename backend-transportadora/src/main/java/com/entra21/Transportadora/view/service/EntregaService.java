@@ -123,7 +123,7 @@ public class EntregaService {
 
     public List<EntregaDTO> getAllEntragaByEntregador(String cpf){
         return entregaRepository.findAllByEntregador_Cpf(cpf).orElseThrow(() -> {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "CPF/Entregador/Entrega não encontrado");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "CPF/Entregador/Entrega não encontrado");
         }).stream().map(entregaEntity -> {
             EntregaDTO dtoentrega = new EntregaDTO();
             dtoentrega.setIdEntrega(entregaEntity.getIdEntrega());
@@ -178,21 +178,19 @@ public class EntregaService {
         }).collect(Collectors.toList());
     }
 
-    public String save(EntregaAddDTO entregaDTO) {
-        String msg = "";
+    public void save(EntregaAddDTO entregaDTO) {
         EntregaEntity entregaEntity = new EntregaEntity();
         entregaEntity.setTipoEntrega(entregaDTO.getTipoEntrega());
         List<ItemEntity> itemEntities = new ArrayList<>();
         itemEntities = entregaDTO.getItens().stream().map(itemDTO -> {
             return itemRepository.findByLocalizador(itemDTO.getLocalizador()).orElseThrow(() -> {
-                msg = itemDTO.getLocalizador();
-                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Item não foi encontrado!");
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Item não foi encontrado!");
             });
         }).collect(Collectors.toList());
-        if (itemEntities == null || itemEntities.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Itens a entregar não pode estar vazio!");
+        if (itemEntities == null || itemEntities.isEmpty()) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Itens a entregar não pode estar vazio!");
         entregaEntity.setItens(itemEntities);
         FuncionarioEntity funcionarioEntity = funcionarioRepository.findByCpf(entregaDTO.getEntregador().getCpf()).orElseThrow(() -> {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Funcionario não foi encontrado!");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Funcionario não foi encontrado!");
         });
         if (funcionarioEntity.getCpf() == null) entregaEntity.setEntregador(null);
         else entregaEntity.setEntregador(funcionarioEntity);
@@ -206,10 +204,10 @@ public class EntregaService {
             trechoRepository.save(trechoEntity);
             entregaTrechoEntity.setTrecho(trechoEntity);
             CarroEntity carroEntity = carroRepository.findByPlaca(entregaTrecho.getCarro().getPlaca()).orElseThrow(
-                    ()->{throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Funcionario não foi encontrado!");});
+                    ()->{throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Funcionario não foi encontrado!");});
             entregaTrechoEntity.setCarro(carroEntity);
             entregaTrechoEntity.setEntrega(entregaRepository.findById(1L).orElseThrow(
-                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Entrega não encontrado!")));
+                () -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Entrega não encontrado!")));
             entregaTrechoRepository.save(entregaTrechoEntity);
             return entregaTrechoEntity;
         }).collect(Collectors.toList());
@@ -221,7 +219,6 @@ public class EntregaService {
             entregaTrechoRepository.save(entregaTrechoEntity);
             return null;
         });
-        return msg;
     }
 
     //TODO: NÃO DEVE SER POSSIVEL DELETAR ENTREGAS
@@ -235,11 +232,11 @@ public class EntregaService {
         entregaRepository.findById(idEntrega).ifPresentOrElse((entregaEntity) -> {
             entregaEntity.setEntregador(
                 funcionarioRepository.findByCpf(entregaDTO.getEntregador().getCpf()).orElseThrow(() -> {
-                    throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Funcionario não foi encontrado!");
+                    throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Funcionario não foi encontrado!");
                 })
             );
             entregaRepository.save(entregaEntity);
-        }, () -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Entrega não foi encontrada!");});
+        }, () -> {throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Entrega não foi encontrada!");});
 
         return entregaDTO;
     }
