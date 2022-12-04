@@ -11,13 +11,6 @@ export type User = {
     authdata?: string;
 }
 
-export type Funcionarios = {
-    nome: string,
-    sobrenome: string,
-    cpf: string,
-    telefone: string
-}
-
 export type Item = {
     localizador: string,
     status: string,
