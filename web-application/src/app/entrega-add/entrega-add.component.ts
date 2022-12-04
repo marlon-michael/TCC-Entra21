@@ -32,29 +32,30 @@ export class EntregaAddComponent {
       this.error = "Os campos não foram preenchidos corretamente";
       return;
     }
-    this.error = "CPF não encontrado. Este cpf pode não estar cadastrado em nossos bancos";
+    var itens: any[] = []
     var entregaTrechos: any[] = []
-    for (var i = 1; i < trechos.length; i++){
+    for (var i = 1; i < trechos.length-1; i++){
       entregaTrechos.push({
         carro: {placa: placaCarro},
         trecho: {
-          localInicio: trechos[i],
-          localFim: trechos[i-1],
+          localInicio: trechos[i-1].trim(),
+          localFim: trechos[i].trim(),
         }
       })
     }
     localizadores.forEach(_localizador => {
-      entregaTrechos.push({
-        localizador: _localizador
+      itens.push({
+        localizador: _localizador.trim()
       })
     })
 
-    this.http.post<any>(`/entrega/addEntrega`, {
-      tipoEntrega: this.entregaForm.get("tipo")?.value,
+    this.error = "Os dados informados podem estar incorretos ou não estarem presentes em nossos bancos";
+    this.http.post<any>(`/entrega`, {
+      tipoEntrega: this.entregaForm.get("tipo")?.value.toUpperCase(),
       entregador: {cpf: this.entregaForm.get("motoristaCPF")?.value},
       entregaTrecho: entregaTrechos,
-      itens: 
-    })
+      itens: itens
+    }).subscribe(res => this.error = "")
   };
 }
 

@@ -47,6 +47,6 @@
         <input type="submit" class="btn btn-outline-dark" value="Adicionar">
       </table>
       <div class="msg">Separador de atributos:  ponto e virgula ( ; )</div>
-      <div class="msg" *ngIf="this.error != ''">{{this.error}}</div>
+      <div class="msg" *ngIf="this.error.length > 0" (click)="this.error = ''">{{this.error}}</div>
     </form>
     </div>
