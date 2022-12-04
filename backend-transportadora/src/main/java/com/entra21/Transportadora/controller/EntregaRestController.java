@@ -44,7 +44,7 @@ public class EntregaRestController {
         return entregaRervice.findAllByEntregador_Empresa_Cnpj(cnpj);
     }
 
-    @PostMapping("/addEntrega")
+    @PostMapping
     public void addEntrega(@RequestBody EntregaAddDTO NewEntrega){
         entregaService.save(NewEntrega);
     }

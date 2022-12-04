@@ -38,8 +38,6 @@ export class EntregasItemDetalhesComponent{
     });
   }
 
-  //TODO: ADD ENTREGA
-
   ngOnInit(): void {
     this.user = this.auth.userValue;
     if (this.user?.role == "FUNCIONARIO"){
@@ -86,31 +84,16 @@ export class EntregasItemDetalhesComponent{
     var _status: string = this.formEdit.get("status")?.value;
     var _localizador: string = this.formEdit.get("localizador")?.value
     entregas.forEach(entrega=>{
-      if (_id == entrega.idEntrega){
-        if (_cpf.trim() != "" && _cpf.trim().length == 11 && this.user?.role == "GERENTE" || this.user?.role == 'SUPERVISOR'){
-          if (entrega.entregador.cpf = _cpf){
-            console.log("1.1")
-            this.http.put(`/entrega/${_id}`, {
-              entregador:{
-                cpf: _cpf
-              }
-            })
-          }
-        }
-        if (_status.trim() != "" && this.user?.role == "FUNCIONARIO"){
-          if (_localizador.trim() != ""){
-            this.http.put(`/item/${_localizador}`, {
-              status: _status.toUpperCase()
-            })
-          }
-          else{
-            entrega.itens.forEach(item => {
-              this.http.put(`/item/${item.localizador}`, {
-                status: _status.toUpperCase()
-              })
-            })
-          }
-        }
+      if (_id != entrega.idEntrega) return;
+      if (_status.trim() != "" && this.user?.role == "FUNCIONARIO"){
+        if (_localizador.trim() != "") this.http.put(`/item/${_localizador}`, {status: _status.toUpperCase()})
+        else entrega.itens.forEach(item => {
+          this.http.put(`/item/${item.localizador}`, {status: _status.toUpperCase()})
+        })
+      }
+      if (_cpf.trim() == "" || _cpf.trim().length != 11 || this.user?.role != "GERENTE" && this.user?.role != 'SUPERVISOR') return
+      if (entrega.entregador.cpf = _cpf){
+        this.http.put(`/entrega/${_id}`, {entregador:{cpf: _cpf}})
       }
     })
   }

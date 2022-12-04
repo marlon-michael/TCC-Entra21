@@ -45,7 +45,7 @@ export class ItemComponent{
           // this.router.navigateByUrl('/localizador');
           this.error = "Item adicionado com sucesso - localizador: " + response.localizador;
         },
-        error: (error) => console.log(error),
+        error: (error) => this.error = "Os dados informados podem estar incorretos ou não estarem presentes em nossos bancos. Verifique e tente novamente",
       });
     });
   };

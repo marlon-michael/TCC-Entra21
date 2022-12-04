@@ -12,6 +12,7 @@ import { CadastroComponent } from 'src/pages/login/cadastro/cadastro.component';
 import { FuncionariosComponent } from './funcionarios/funcionarios.component';
 import { EntregasItemDetalhesComponent } from './entregas-item-detalhes/entregas-item-detalhes.component';
 import { ItemComponent } from './item/item.component';
+import { EntregaAddComponent } from './entrega-add/entrega-add.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path: 'funcionarios', component: FuncionariosComponent},
   {path: 'edit', component: FuncionariosComponent},
   {path: 'entregas', component: EntregasItemDetalhesComponent},
+  {path: 'addentrega', component: EntregaAddComponent},
   {path: '**', redirectTo: '/'},
 ];
 

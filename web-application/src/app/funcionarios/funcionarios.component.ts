@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Funcionarios, User } from 'types/types';
+import { Pessoa, User } from 'types/types';
 import { AuthenticationService } from '../logado/helpers/auth.service';
 
 @Component({
@@ -19,7 +19,7 @@ export class FuncionariosComponent implements OnInit {
   });
 
   loading = true;
-  funcionarios: Funcionarios[] = [];
+  funcionarios: Pessoa[] = [];
   submitted = false;
   returnUrl: string = this.route.snapshot.queryParams['returnUrl'];
   error = '';

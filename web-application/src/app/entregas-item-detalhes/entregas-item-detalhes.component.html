@@ -1,6 +1,9 @@
 
 <div class="body">
   <h1>Entregas</h1>
+  <div class="button-div">
+    <button *ngIf="this.user?.role != 'PESSOA'" type="submit" class="btn btn-outline-secondary" routerLink="/addentrega">Adicionar</button>
+  </div>
   <table class="table">
     <thead>
       <tr>
@@ -15,7 +18,7 @@
     <tbody>
       <tr *ngFor="let entrega of entregas">
         <td>{{entrega.id}}</td>
-        <td *ngIf="user?.role == 'SUPERVISOR' || user?.role == 'GERENTE'">{{entrega.entregador?.cpf}}</td>
+        <td *ngIf="user?.role == 'SUPERVISOR' || user?.role == 'GERENTE'">{{entrega.entregador.cpf}}</td>
         <td>{{entrega.tipoEntrega}}</td>
         <td>{{entrega.entregaTrecho.carro.placa}}</td>
         <td>{{entrega.entregaTrecho.trecho.localInicio}}</td>

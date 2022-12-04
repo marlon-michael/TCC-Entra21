@@ -1,6 +1,8 @@
+
 export type User = {
     idPessoa: number;
     cpf:string;
+    telefone:string;
     nome: string;
     sobrenome: string;
     username: string;
@@ -9,36 +11,11 @@ export type User = {
     authdata?: string;
 }
 
-export type Cadastro = {
-    nome : string | null | undefined,
-    sobrenome : string | null| undefined,
-    telefone: string | null| undefined,
-    cpf : string | null| undefined,
-    login : string | null| undefined,
-    senha : string | null| undefined,
-    authdata?: string;
-}
-
-export type Funcionarios = {
-    nome: string,
-    sobrenome: string,
-    cpf: string,
-    telefone: string
-}
-
 export type Item = {
     localizador: string,
     status: string,
     nomeRecebedor: string,
     localEntrega: string,
-    pessoaItem:  Pessoa;
-}
-
-export type ItensPessoas = {
-    localizador: string;
-    status:string;
-    localEntrega:string;
-    nomeRecebedor:string;
     pessoaItem:  Pessoa;
 }
 
@@ -51,12 +28,6 @@ export type Pessoa = {
     senha: string;
 }
 
-export type Funcionario = {
-    supervisor: Pessoa;
-    entrega: Entrega[];
-    empresa: Empresa;
-}
-
 export type Entrega = {
     idEntrega: number;
     tipoEntrega: string;
@@ -67,7 +38,7 @@ export type Entrega = {
 
 export type EntregaSingleLine = {
     id: number;
-    entregador: Pessoa | null;
+    entregador: Pessoa;
     tipoEntrega: string;
     entregaTrecho: EntregaTrecho;
 }

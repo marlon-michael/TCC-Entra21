@@ -36,6 +36,27 @@ tbody tr:hover{
 .form input{
     background-color: #cdcdcd!important;
 }
+.button-div{
+    width: 100%;
+    height: 100%;
+    justify-content: end;
+    display: flex;
+}
+.btn.btn-outline-secondary {
+    height: 40px;
+    text-decoration: none;
+    max-width: 150px;
+    width: 100%;
+    margin: 10px 5%;
+    background-color: #dadada;
+    color: rgb(110, 110, 110);
+}
+
+.btn.btn-outline-secondary:hover {
+    background-color: #c3c3c3;
+    color: rgb(63, 63, 63);
+    margin-left: 10%;
+}
 @media screen and (max-width: 750px){
     .body{
         font-size: 2.3vw;

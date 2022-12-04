@@ -9,9 +9,9 @@ import java.util.List;
 
 @Data
 public class EntregaAddDTO {
-        private Long idEntrega;
-        private String tipoEntrega;
-        private FuncionarioAddDTO entregador;
-        private List<EntregaTrechoDTO> entregaTrecho;
-        private List<ItemDTO> itens;
-    }
+    private Long idEntrega;
+    private String tipoEntrega;
+    private FuncionarioAddDTO entregador;
+    private List<EntregaTrechoDTO> entregaTrecho;
+    private List<ItemDTO> itens;
+}
