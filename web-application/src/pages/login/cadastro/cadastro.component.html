@@ -1,23 +1,18 @@
 <div class="cadastro">
     <form [formGroup]="cadastroForm" (ngSubmit)="cadastrar()">
-  <!-- <div class="container-fluid"> -->
     <div class="login-html">
         <div class="main-login">
             <div class="sing-in-htm">
                 <div class="right-login">
                     <div class="card-login">
-                       <h1>Sing up <br></h1>
+                        <h1>Cadastrar</h1>
                         <div class="textfield">
                             <label for="usuario" class="label">Nome: </label>
                             <input id="usuario" type="text" class="input"  placeholder="Nome" formControlName="nome">
                             <div *ngIf="submitted && f['nome'].errors" class="invalid-feedback"  minlength="3">
-
                                 <div *ngIf="f['nome'].errors['required']">nome is required</div>
                             </div>
-                        </div>
-                        <!-- <div *ngIf="submitted && f.nome.errors" class="invalid-feedback">
-                        <div *ngIf="f.nome.errors">Nome em branco!</div> -->
-                
+                        </div>                
                         <div class="textfield">
                             <label for="users" class="label">Sobrenome: </label>
                             <input id="users" type="text" class="input" placeholder="Sobrenome" formControlName="sobrenome">
@@ -27,7 +22,7 @@
                             <input type="tel" id="telefone" class="input" required placeholder="(xx) xxxxx-xxxx" minlength="10" maxlength="11" formControlName="telefone">
                         </div>
                         <div class="textfield">
-                            <label for="cpf" class="label">CPF/CNPJ: </label>
+                            <label for="cpf" class="label">CPF: </label>
                             <input type="text" name="cpf" id="cpf" pattern="(\d{3}\.?\d{3}\.?\d{3}-?\d{2})|(\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2})"
                             placeholder="xxx.xxx.xxx-xx" required minlength="11" maxlength="11" size="11" class="input" formControlName="cpf">
                         </div>
@@ -39,32 +34,16 @@
                             <label for="pass" class="label">Senha: </label>
                             <input id="pass" type="password" class="input" data-type="password" placeholder="Senha"  minlength="6" formControlName="senha">
                             <div *ngIf="submitted && f['senha'].errors" class="invalid-feedback">
-                            <div *ngIf="f['senha'].errors['required']">Senha is required</div>
+                                <div *ngIf="f['senha'].errors['required']">Senha is required</div>
                             </div>
                         </div>
-                        <!-- <div class="cliente">
-                            <label for="check" class="label">Cliente </label>
-                            <input type="checkbox" name="Cliente" id="check" class="input">
-                        </div>  -->
-                        <div class="supervisor">
-                            <label for="funcionario" class="label">Funcionário</label>
-                            <input type="checkbox" name="funcionario" id="funcionario" class="input">
-                         </div>
-                         <!--
-                        <div class="empresa">
-                            <label for="empresa" class="label">Empresa </label>
-                            <input type="checkbox" name="Empresa" id="empresa" class="input">
-                        </div> --> 
-                        <!-- routerLink="nav" -->
                         <div id="liveAlertPlaceholder"></div>
-                        <input type="submit" [disabled]="loading" class="btn-login"  value="Sing up"  [disabled]="!cadastroForm.valid">
+                        <input type="submit" [disabled]="loading" class="btn-login"  value="Cadastrar"  [disabled]="!cadastroForm.valid">
                         <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-                            <!-- <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div> -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
-  <!-- </div> -->
 </form>
 </div>
