@@ -12,13 +12,8 @@ import { AuthenticationService } from '../helpers/auth.service';
   styleUrls: ['./localizador.component.css']
 })
 export class LocalizadorComponent implements OnInit {
-  loading = false;
-  submitted = false;
-  returnUrl: string = this.route.snapshot.queryParams['returnUrl'];
   error = '';
-  succes = false;
   result: any;
-  permitido = false;
   itens: Item[] = [];
   role: any;
   user: User | null = null;
@@ -29,15 +24,11 @@ export class LocalizadorComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private auth:AuthenticationService,
-    private formBuilder: FormBuilder,
-    private route: ActivatedRoute) {
-    }
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit() {
     this.user = this.auth.userValue;
-    if(this.user != null && (this.user.role == 'PESSOA')){
-      this.permitido == false;
-    }
   }
 
   onSearch() {

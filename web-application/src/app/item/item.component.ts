@@ -10,18 +10,15 @@ import { Item } from 'types/types';
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.css']
 })
+
 export class ItemComponent{
   itemForm: FormGroup = this.formBuilder.group({
     nomeRecebedor:  ['', Validators.required],
     localEntrega:  ['', Validators.required],
     pessoaItem: ['']
   });
-  loading = false;
-  submitted = false;
-  returnUrl: string = this.route.snapshot.queryParams['returnUrl'];
-  error = '';
-  succes = false;
   itens: Item[] = [];
+  error = '';
   constructor(
     private http: HttpClient, 
     private formBuilder: FormBuilder,
@@ -29,7 +26,6 @@ export class ItemComponent{
   ) { }
 
   AddItem() {
-    this.submitted = false;
     if (this.itemForm.invalid) {
       this.error = "Os campos não foram preenchidos corretamente";
       return;

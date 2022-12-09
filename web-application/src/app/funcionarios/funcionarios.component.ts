@@ -10,26 +10,16 @@ import { AuthenticationService } from '../logado/helpers/auth.service';
   templateUrl: './funcionarios.component.html',
   styleUrls: ['./funcionarios.component.css']
 })
-export class FuncionariosComponent implements OnInit {
-  form = this.formBuilder.group({
-    nome: ['',Validators.required ],
-    sobrenome: ['',Validators.required] ,
-    cpf: ['',Validators.required ],
-    telefone: ['', Validators.required]
-  });
 
+export class FuncionariosComponent implements OnInit {
   loading = true;
   funcionarios: Pessoa[] = [];
-  submitted = false;
   returnUrl: string = this.route.snapshot.queryParams['returnUrl'];
-  error = '';
-  succes = false;
-  inserting = false;
   user: User | null = null;
+  error = '';
 
   constructor(
     private auth:AuthenticationService,
-    private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private http: HttpClient,) { }
     
