@@ -52,10 +52,13 @@
         <a id routerLink="entregas" routerLinkActive="active-link" class="nav-link-a" data-bs-dismiss="offcanvas" *ngIf="user != null && (user.role == 'FUNCIONARIO' || user.role == 'GERENTE'|| user.role == 'SUPERVISOR')">Entregas</a>
       </li>
       <li class="nav-item">
+        <a  class="nav-link" routerLink="empresa" routerLinkActive="active-link" class="nav-link-a" data-bs-dismiss="offcanvas" *ngIf="user != null && user.role == 'GERENTE'">Empresa</a>
+      </li>
+      <li class="nav-item">
         <a  class="nav-link" routerLink="config" routerLinkActive="active-link" class="nav-link-a" data-bs-dismiss="offcanvas" *ngIf="user != null ">Configurações</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="funcionarios" routerLinkActive="active-link" class="nav-link-a" data-bs-dismiss="offcanvas" *ngIf="user != null && (user.role == 'FUNCIONARIO' || user.role == 'GERENTE' || user.role == 'SUPERVISOR')">Funcionários</a>
+        <a class="nav-link" routerLink="funcionarios" routerLinkActive="active-link" class="nav-link-a" data-bs-dismiss="offcanvas" *ngIf="user != null && (user.role == 'GERENTE' || user.role == 'SUPERVISOR')">Funcionários</a>
       </li>
       <li class="nav-item" *ngIf="user != null">
           <a class="nav-link-a" data-bs-dismiss="offcanvas" href="#" (click)="logout()">Logout</a>
