@@ -24,6 +24,7 @@ public class SecurityConfig {
             .antMatchers(HttpMethod.POST, "/pessoa").permitAll()
             .antMatchers("/pessoa/login").permitAll()
             .antMatchers("/pessoa/cadastro").permitAll()
+            .antMatchers("/funcionario/cadastro").permitAll()
             .anyRequest().authenticated()
         );
         return http.build();
