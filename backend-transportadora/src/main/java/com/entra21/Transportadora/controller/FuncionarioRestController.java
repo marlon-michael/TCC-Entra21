@@ -29,7 +29,7 @@ public class FuncionarioRestController {
       return funcionarioService.findByCpf(cpf);
    }
 
-   @PostMapping("/addfuncionario")
+   @PostMapping("/cadastro")
    public void addFuncionario(@RequestBody FuncionarioAddDTO funcionarioPayLoadDTO){
       funcionarioService.saveFuncionario(funcionarioPayLoadDTO);
    }
