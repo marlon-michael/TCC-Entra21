@@ -5,6 +5,7 @@ import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioAddDTO;
 import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioDTO;
 import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
 import com.entra21.Transportadora.model.entity.FuncionarioEntity;
+import com.entra21.Transportadora.model.entity.PessoaEntity;
 import com.entra21.Transportadora.view.repository.EmpresaRepository;
 import com.entra21.Transportadora.view.repository.FuncionarioRepository;
 import com.entra21.Transportadora.view.repository.PessoaRepository;
@@ -131,17 +132,26 @@ public class FuncionarioService {
     public void saveFuncionario(FuncionarioAddDTO input) {
         Query q = em.createNativeQuery("INSERT INTO funcionario(id_pessoa, id_empresa, id_supervisor) VALUES(:idPessoa, :idEmpresa, :idSupervisor)");
         
-        q.setParameter("idPessoa",
-            pessoaRepository.findByCpf(input.getCpf()).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "CPF NOT FOUND");}).getIdPessoa()
-        );
-        q.setParameter("idEmpresa",
-            empresaRepository.findByCnpj(input.getEmpresa().getCnpj()).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "CNPJ NOT FOUND");}).getIdEmpresa()
-        );
-        q.setParameter("idSupervisor",
-            funcionarioRepository.findByCpf(input.getSupervisor().getCpf()).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "CPF NOT FOUND");}).getIdPessoa()
-        );
-
-        q.executeUpdate();  
+        PessoaEntity pessoaEntity = pessoaRepository.findByCpf(input.getCpf()).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "CPF NOT FOUND");});
+        if (pessoaEntity.getNome().toLowerCase().strip().equals(input.getNome().toLowerCase().strip()) &&
+            pessoaEntity.getSobrenome().toLowerCase().strip().equals(input.getSobrenome().toLowerCase().strip()) &&
+            pessoaEntity.getTelefone().strip().equals(input.getTelefone().strip() ) 
+        ){
+            q.setParameter("idPessoa",pessoaEntity.getIdPessoa());
+            q.setParameter("idEmpresa",
+                empresaRepository.findByCnpj(input.getEmpresa().getCnpj()).orElseThrow(() -> 
+                {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "CNPJ NOT FOUND");}).getIdEmpresa());
+            if (input.getSupervisor() != null){
+                q.setParameter("idSupervisor",
+                funcionarioRepository.findByCpf(input.getSupervisor().getCpf()).orElseThrow(() -> 
+                {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "CPF NOT FOUND");}).getIdPessoa());
+            }
+            else q.setParameter("idSupervisor",null);
+            q.executeUpdate();  
+        }
+        else{
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "DATA NOT MATCH");
+        }
     }
 
     public void deleteByFuncionario(String cpf){
