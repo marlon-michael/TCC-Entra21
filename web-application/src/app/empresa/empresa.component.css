@@ -1,0 +1,49 @@
+
+
+.banner{
+    padding: 50px;
+    background-color: #461e5f;
+    margin: auto;
+    min-width: 320px;
+    height: 90vh;
+}
+
+.texto2 {
+    font-size: 40px;
+    text-align: center;
+    color: azure;
+}
+
+.mb-3 {
+    width: 100%;
+}
+
+.shadow.p-3.mb-5.bg-body.rounded {
+    width: 100%;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn.btn-outline-dark{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+}
+
+.msg{
+    padding: .5%;
+    border-radius: 8px;
+    border-bottom: none;
+    background: rgba(212, 212, 212, 0.705);
+    border-radius: 8px;
+    color: rgb(52, 52, 52);
+    text-decoration: black;
+    width: 99%;
+}
+
+.msg{
+    width: 90%;
+    margin-left: 5%;
+}

@@ -1,0 +1,47 @@
+<div class="banner">
+    <div *ngIf="this.user?.role != 'GERENTE'">
+        <p class="texto2">Cadastrar Empresa</p>
+        <div class="shadow p-3 mb-5 bg-body rounded" style="opacity: 0.9;">
+            <form class="form1" [formGroup]="createForm" (ngSubmit)="onCreate()">
+                <div class="mb-3">
+                    <label for="user" class="form-label">CNPJ</label>
+                    <input formControlName="cnpj" type="text" class="form-control" minlength="14" maxlength="14"placeholder="00011122233344">
+                </div>
+                <div class="mb-3">
+                    <label for="user" class="form-label">Razão social</label>
+                    <input formControlName="razaoSocial" type="text" class="form-control" minlength="3" placeholder="empresa X">
+                </div>
+                <button type="submit" class="btn btn-outline-dark">Salvar</button>
+            </form>
+        </div>
+    </div>
+    <div *ngIf="this.user?.role == 'GERENTE'">
+        <p class="texto2">Contratar Funcionarios</p>
+        <div class="shadow p-3 mb-5 bg-body rounded" style="opacity: 0.9;">
+            <form class="form1" [formGroup]="contractForm" (ngSubmit)="onContract()">
+                <div class="mb-3">
+                    <label for="user" class="form-label">Nome</label>
+                    <input formControlName="nome" type="text" class="form-control" minlength="2" placeholder="Fulano">
+                </div>
+                <div class="mb-3">
+                    <label for="user" class="form-label">Sobrenome</label>
+                    <input formControlName="sobrenome" type="text" class="form-control" minlength="2"placeholder="de Tal">
+                </div>
+                <div class="mb-3">
+                    <label for="user" class="form-label">cpf</label>
+                    <input formControlName="cpf" type="text" class="form-control" minlength="11" maxlength="11"placeholder="00011100011">
+                </div>
+                <div class="mb-3">
+                    <label for="user" class="form-label">telefone</label>
+                    <input formControlName="telefone" type="text" class="form-control" minlength="10" maxlength="11" placeholder="47 911223344">
+                </div>
+                <div class="mb-3">
+                    <label for="user" class="form-label">Supervisor (cpf)</label>
+                    <input formControlName="supervisor" type="text" class="form-control" minlength="11" maxlength="11"placeholder="00011100022">
+                </div>
+                <button type="submit" class="btn btn-outline-dark">Salvar</button>
+            </form>
+        </div>
+        <div class="msg" *ngIf="this.error.length > 0" (click)="this.error = ''">{{this.error}}</div>
+    </div>
+</div>
