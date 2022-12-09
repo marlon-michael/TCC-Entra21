@@ -15,7 +15,6 @@ public class PessoaAddDTO {
     private String cpf;
     private String login;
     private String senha;
-//    private Boolean desabilitado;
 
     public PessoaAddDTO(PessoaEntity e) {
         this.idPessoa = e.getIdPessoa();
