@@ -30,7 +30,6 @@ public class EmpresaService {
         empresaEntity.setGerente(pessoaRepository.findByCpf(inputEmpresa.getGerente().getCpf()).orElseThrow(()->{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pessoa/CPF não foi encontrado!");
         }));
-
         empresaRepository.save(empresaEntity);
     }
 
