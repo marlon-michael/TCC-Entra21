@@ -90,13 +90,13 @@ public class PessoaService implements UserDetailsService{
 
     public void updatePessoa(String cpf, PessoaUpDTO pessoaPayLoadDTO) {
         PessoaEntity pessoa = pessoaRepository.findByCpf(cpf).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Pessoa não encontrada!"));
-        if (pessoaPayLoadDTO.getNome() != null) pessoa.setNome(pessoaPayLoadDTO.getNome());
-        if (pessoaPayLoadDTO.getSobrenome() != null) pessoa.setSobrenome(pessoaPayLoadDTO.getSobrenome());
-        if (pessoaPayLoadDTO.getTelefone() != null) pessoa.setTelefone(pessoaPayLoadDTO.getTelefone());
-        if (pessoaPayLoadDTO.getCpf() != null) pessoa.setCpf(pessoaPayLoadDTO.getCpf());
-        if (pessoaPayLoadDTO.getLogin() != null) pessoa.setLogin(pessoaPayLoadDTO.getLogin());
-        if (pessoaPayLoadDTO.getSenha() != null) pessoa.setSenha(pessoaPayLoadDTO.getSenha());
-        if (pessoaPayLoadDTO.getDesabilitado() != null) pessoa.setDesabilitado(pessoaPayLoadDTO.getDesabilitado());
+        if (pessoaPayLoadDTO.getNome() != null && pessoaPayLoadDTO.getNome() != "") pessoa.setNome(pessoaPayLoadDTO.getNome());
+        if (pessoaPayLoadDTO.getSobrenome() != null && pessoaPayLoadDTO.getSobrenome() != "") pessoa.setSobrenome(pessoaPayLoadDTO.getSobrenome());
+        if (pessoaPayLoadDTO.getTelefone() != null && pessoaPayLoadDTO.getTelefone() != "") pessoa.setTelefone(pessoaPayLoadDTO.getTelefone());
+        if (pessoaPayLoadDTO.getCpf() != null && pessoaPayLoadDTO.getCpf() != "") pessoa.setCpf(pessoaPayLoadDTO.getCpf());
+        if (pessoaPayLoadDTO.getLogin() != null && pessoaPayLoadDTO.getLogin() != "") pessoa.setLogin(pessoaPayLoadDTO.getLogin());
+        if (pessoaPayLoadDTO.getSenha() != null && pessoaPayLoadDTO.getSenha() != "") pessoa.setSenha(pessoaPayLoadDTO.getSenha());
+        if (pessoaPayLoadDTO.getDesabilitado() != null && pessoaPayLoadDTO.getNome() != "") pessoa.setDesabilitado(pessoaPayLoadDTO.getDesabilitado());
         pessoaRepository.save(pessoa);
     }
 
