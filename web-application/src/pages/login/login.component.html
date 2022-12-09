@@ -23,11 +23,12 @@
 								</div>
 								<input type="submit" class="btn-login" value="Sing in">
 								<span *ngIf="loading" class="spinner-border spinner-border-sm-light mr-1"></span>
-							<div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+								<div *ngIf="error" class="alert alert-danger mt-3 mb-0" (click)="this.error = ''">{{error}}</div>
 								<a class="cadastrar" routerLink="/cadastro" >Cadastrar-se</a>
 							</div>
 						</div>
-					</div>	
+						<div class="msg" *ngIf="this.error.length > 0" (click)="this.error = ''">{{this.error}}</div>
+					</div>
 				</div>	
 			</div>	
 		</div>	

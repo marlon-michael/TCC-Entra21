@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -36,23 +35,19 @@ export class LoginComponent {
   get f() { return this.loginForm.controls; }
 
   onSubmit() {
-      this.submitted = true;
-      if (this.loginForm.valid) {
+    this.submitted = true;
+    if (this.loginForm.valid) {
       this.loading = true;
-      this.authenticationService.login(this.loginForm.get('username')?.value, this.loginForm.get('password')?.value)
-        .pipe(first())
-        .subscribe(
-          data => {
-            if(data != null){
-              this.responsedata = data;
-              this.router.navigate([this.returnUrl ?? 'home']);
-            }
-          });
-      (error: string) => {
-        this.error = error;
-        this.loading = false;
-      }
+      this.authenticationService.login(this.loginForm.get('username')?.value, this.loginForm.get('password')?.value).pipe(first()).subscribe(
+        data => {
+          if(data != null){
+            this.responsedata = data;
+            this.router.navigate([this.returnUrl ?? 'home']);
+          }
+        }, error => this.error = "Falha ao realizar o login, Verifique os campos e tente novamente"
+      );
+      this.loading = false;
+    }
   }
-}
 
 }
