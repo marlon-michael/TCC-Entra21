@@ -1,8 +1,6 @@
 package com.entra21.Transportadora.controller;
 
-import com.entra21.Transportadora.model.dto.Carro.CarroAddDTO;
-import com.entra21.Transportadora.model.dto.Carro.CarroDTO;
-import com.entra21.Transportadora.model.dto.Carro.CarroUpDTO;
+import com.entra21.Transportadora.model.dto.CarroDTO;
 import com.entra21.Transportadora.view.service.CarroService;
 import com.entra21.Transportadora.view.service.EmpresaService;
 import org.springframework.beans.factory.annotation.Autowired;
