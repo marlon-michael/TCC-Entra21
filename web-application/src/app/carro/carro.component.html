@@ -1,1 +1,10 @@
-<p>carro works!</p>
+<div class="page">
+    <h1 class="titulo">adicionar frota</h1>
+    <form [formGroup]="carroForm" (action)="addCarro()">
+        <div class="mb-3">
+            <label for="user" class="form-label">Razão social</label>
+            <input formControlName="razaoSocial" type="text" class="form-control" minlength="3" placeholder="empresa X">
+        </div>
+        <button type="submit" class="btn btn-outline-dark">adicionar</button>
+    </form>
+</div>
