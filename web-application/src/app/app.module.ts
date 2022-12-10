@@ -20,6 +20,7 @@ import { EntregasItemDetalhesComponent } from './entregas-item-detalhes/entregas
 import { ItemComponent } from './item/item.component';
 import { EntregaAddComponent } from './entrega-add/entrega-add.component';
 import { EmpresaComponent } from './empresa/empresa.component';
+import { CarroComponent } from './carro/carro.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { EmpresaComponent } from './empresa/empresa.component';
     ItemComponent,
     EntregaAddComponent,
     EmpresaComponent,
+    CarroComponent,
   ],
   imports: [
     BrowserModule,
