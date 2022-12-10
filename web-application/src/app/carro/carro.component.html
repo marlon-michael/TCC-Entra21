@@ -1,10 +1,41 @@
 <div class="page">
-    <h1 class="titulo">adicionar frota</h1>
-    <form [formGroup]="carroForm" (action)="addCarro()">
-        <div class="mb-3">
-            <label for="user" class="form-label">Razão social</label>
-            <input formControlName="razaoSocial" type="text" class="form-control" minlength="3" placeholder="empresa X">
+    <div class="button-div">
+        <button (click)="page_state = 'CREATE'" class="btn btn-outline-secondary">Adicionar a frota</button>
+        <button (click)="page_state = 'SELECT'" type="submit" class="btn btn-outline-secondary">Visualizar frota</button>
+    </div>
+    <div *ngIf="page_state == 'SELECT'" class="section">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Placa</th>
+                    <th>Identificação</th>
+                    <th>Empresa</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let carro of carros">
+                    <td>{{carro.placa}}</td>
+                    <td>{{carro.tipoCarro}}</td>
+                    <td>{{carro.empresa.cnpj}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="page_state == 'CREATE'" class="section">
+        <h1 class="titulo">Adicionar frota</h1>
+        <div class="form-container shadow p-3 mb-5 bg-body rounded" style="opacity: 0.9;">
+            <form class="form" [formGroup]="carroForm" (ngSubmit)="addCarro()">
+                <div class="mb-3">
+                    <label for="placa" class="form-label">Placa</label>
+                    <input formControlName="placa" type="text" class="form-control" minlength="3" maxlength="15" placeholder="ABCD1234">
+                </div>
+                <div class="mb-3">
+                    <label for="tipo" class="form-label">Identeificação</label>
+                    <input formControlName="tipo" type="text" class="form-control" minlength="2" maxlength="50" placeholder="MINI-VAN">
+                </div>
+                <button type="submit" class="btn btn-outline-dark">adicionar</button>
+            </form>
         </div>
-        <button type="submit" class="btn btn-outline-dark">adicionar</button>
-    </form>
+        <div class="msg" *ngIf="this.error.length > 0" (click)="this.error = ''">{{this.error}}</div>
+    </div>
 </div>
