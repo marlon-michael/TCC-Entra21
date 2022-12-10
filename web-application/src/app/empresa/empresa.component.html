@@ -1,5 +1,5 @@
 <div class="banner">
-    <div *ngIf="this.user?.role != 'GERENTE'">
+    <div *ngIf="this.user?.cargo != 'GERENTE'">
         <p class="texto2">Cadastrar Empresa</p>
         <div class="shadow p-3 mb-5 bg-body rounded" style="opacity: 0.9;">
             <form class="form1" [formGroup]="createForm" (ngSubmit)="onCreate()">
@@ -15,7 +15,7 @@
             </form>
         </div>
     </div>
-    <div *ngIf="this.user?.role == 'GERENTE'">
+    <div *ngIf="this.user?.cargo == 'GERENTE'">
         <p class="texto2">Contratar Funcionarios</p>
         <div class="shadow p-3 mb-5 bg-body rounded" style="opacity: 0.9;">
             <form class="form1" [formGroup]="contractForm" (ngSubmit)="onContract()">

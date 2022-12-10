@@ -7,7 +7,7 @@ export type User = {
     sobrenome: string;
     username: string;
     password: string;
-    role: string;
+    cargo: string;
     authdata?: string;
 }
 

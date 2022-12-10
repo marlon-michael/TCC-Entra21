@@ -40,19 +40,19 @@ export class EntregasItemDetalhesComponent{
 
   ngOnInit(): void {
     this.user = this.auth.userValue;
-    if (this.user?.role == "FUNCIONARIO"){
+    if (this.user?.cargo == "FUNCIONARIO"){
       this.http.get<Entrega[]>(`/entrega/entregador/${this.user?.cpf}`).subscribe(entregasResult => {
         this.mapEntrega(entregasResult)
       });
     }
-    if (this.user?.role == "SUPERVISOR"){
+    if (this.user?.cargo == "SUPERVISOR"){
       this.http.get<Empresa>(`/empresa/funcionario/${this.user?.cpf}`).subscribe(empresaRes => {
         this.http.get<Entrega[]>(`/entrega/empresa/${empresaRes?.cnpj}`).subscribe(entregasResult => {
           this.mapEntrega(entregasResult)
         });
       });
     }
-    if (this.user?.role == "GERENTE"){
+    if (this.user?.cargo == "GERENTE"){
       this.http.get<Empresa>(`/empresa/gerente/${this.user?.cpf}`).subscribe(empresaRes => {
         this.http.get<Entrega[]>(`/entrega/empresa/${empresaRes?.cnpj}`).subscribe(entregasResult => {
           this.mapEntrega(entregasResult)
@@ -62,14 +62,14 @@ export class EntregasItemDetalhesComponent{
   }
 
   onEdit():void{
-    if (this.user?.role == "GERENTE"){
+    if (this.user?.cargo == "GERENTE"){
       this.http.get<Empresa>(`/empresa/gerente/${this.user?.cpf}`).subscribe(empresaRes => {
         this.http.get<Entrega[]>(`/entrega/empresa/${empresaRes?.cnpj}`).subscribe(entregasResult => {
           this.edit(entregasResult)
         });
       });
     }
-    if (this.user?.role == "SUPERVISOR" || this.user?.role == "FUNCIONARIO"){
+    if (this.user?.cargo == "SUPERVISOR" || this.user?.cargo == "FUNCIONARIO"){
       this.http.get<Empresa>(`/empresa/funcionario/${this.user?.cpf}`).subscribe(empresaRes => {
         this.http.get<Entrega[]>(`/entrega/empresa/${empresaRes?.cnpj}`).subscribe(entregasResult => {
           this.edit(entregasResult)
@@ -85,13 +85,13 @@ export class EntregasItemDetalhesComponent{
     var _localizador: string = this.formEdit.get("localizador")?.value
     entregas.forEach(entrega=>{
       if (_id != entrega.idEntrega) return;
-      if (_status.trim() != "" && this.user?.role == "FUNCIONARIO"){
+      if (_status.trim() != "" && this.user?.cargo == "FUNCIONARIO"){
         if (_localizador.trim() != "") this.http.put(`/item/${_localizador}`, {status: _status.toUpperCase()})
         else entrega.itens.forEach(item => {
           this.http.put(`/item/${item.localizador}`, {status: _status.toUpperCase()})
         })
       }
-      if (_cpf.trim() == "" || _cpf.trim().length != 11 || this.user?.role != "GERENTE" && this.user?.role != 'SUPERVISOR') return
+      if (_cpf.trim() == "" || _cpf.trim().length != 11 || this.user?.cargo != "GERENTE" && this.user?.cargo != 'SUPERVISOR') return
       if (entrega.entregador.cpf = _cpf){
         this.http.put(`/entrega/${_id}`, {entregador:{cpf: _cpf}})
       }
