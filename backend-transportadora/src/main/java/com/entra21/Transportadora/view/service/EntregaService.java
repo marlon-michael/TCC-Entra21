@@ -105,9 +105,9 @@ public class EntregaService {
                 CarroDTO carroDTO = new CarroDTO();
                 carroDTO.setPlaca(entregaTrecho.getCarro().getPlaca());
                 carroDTO.setTipoCarro(entregaTrecho.getCarro().getTipoCarro());
-                carroDTO.setEmpresaCarro(new EmpresaDTO());
-                carroDTO.getEmpresaCarro().setRazaoSocial(entregaTrecho.getCarro().getEmpresa().getRazaoSocial());
-                carroDTO.getEmpresaCarro().setCnpj(entregaTrecho.getCarro().getEmpresa().getCnpj());
+                carroDTO.setEmpresa(new EmpresaDTO());
+                carroDTO.getEmpresa().setRazaoSocial(entregaTrecho.getCarro().getEmpresa().getRazaoSocial());
+                carroDTO.getEmpresa().setCnpj(entregaTrecho.getCarro().getEmpresa().getCnpj());
                 entregaTrechoDTO.setCarro(carroDTO);
 
                 entregaTrechoDTO.setCompleto(entregaTrecho.getCompleto());
@@ -162,9 +162,9 @@ public class EntregaService {
                 CarroDTO carroDTO = new CarroDTO();
                 carroDTO.setPlaca(entregaTrecho.getCarro().getPlaca());
                 carroDTO.setTipoCarro(entregaTrecho.getCarro().getTipoCarro());
-                carroDTO.setEmpresaCarro(new EmpresaDTO());
-                carroDTO.getEmpresaCarro().setRazaoSocial(entregaTrecho.getCarro().getEmpresa().getRazaoSocial());
-                carroDTO.getEmpresaCarro().setCnpj(entregaTrecho.getCarro().getEmpresa().getCnpj());
+                carroDTO.setEmpresa(new EmpresaDTO());
+                carroDTO.getEmpresa().setRazaoSocial(entregaTrecho.getCarro().getEmpresa().getRazaoSocial());
+                carroDTO.getEmpresa().setCnpj(entregaTrecho.getCarro().getEmpresa().getCnpj());
 
                 entregaTrechoDTO.setCarro(carroDTO);
                 entregaTrechoDTO.setCompleto(entregaTrecho.getCompleto());

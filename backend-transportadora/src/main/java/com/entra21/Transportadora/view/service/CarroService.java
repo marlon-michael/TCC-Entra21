@@ -42,7 +42,7 @@ public class CarroService {
         empresaDTO.setRazaoSocial(carroEntity.getEmpresa().getRazaoSocial());
         empresaDTO.setCnpj(carroEntity.getEmpresa().getCnpj());
 
-        carroDTO.setEmpresaCarro(empresaDTO);
+        carroDTO.setEmpresa(empresaDTO);
         carroDTO.setTipoCarro(carroEntity.getTipoCarro());
         carroDTO.setPlaca(carroEntity.getPlaca());
 
@@ -64,7 +64,7 @@ public class CarroService {
             empresaDTO.setRazaoSocial(carroEntity.getEmpresa().getRazaoSocial());
             empresaDTO.setCnpj(carroEntity.getEmpresa().getCnpj());
 
-            dtocarro.setEmpresaCarro(empresaDTO);
+            dtocarro.setEmpresa(empresaDTO);
             dtocarro.setTipoCarro(carroEntity.getTipoCarro());
             dtocarro.setPlaca(carroEntity.getPlaca());
 
@@ -89,9 +89,9 @@ public class CarroService {
             empresaDTO.setCnpj(carroEntity1.getEmpresa().getCnpj());
             empresaDTO.setRazaoSocial(carroEntity1.getEmpresa().getRazaoSocial());
 
-            carroDTO.setEmpresaCarro(empresaDTO);
+            carroDTO.setEmpresa(empresaDTO);
             carroDTO.setPlaca(carroEntity1.getPlaca());
-            carroDTO.setEmpresaCarro(empresaDTO);
+            carroDTO.setTipoCarro(carroEntity1.getTipoCarro());
 
             return carroDTO;
         }).collect(Collectors.toList());
