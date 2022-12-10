@@ -12,10 +12,7 @@ import { AuthenticationService } from '../helpers/auth.service';
   styleUrls: ['./localizador.component.css']
 })
 export class LocalizadorComponent implements OnInit {
-  error = '';
-  result: any;
   itens: Item[] = [];
-  role: any;
   user: User | null = null;
   formLocalizador: FormGroup = this.formBuilder.group({
     localizador: ['', Validators.required]

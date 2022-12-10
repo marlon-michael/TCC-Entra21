@@ -43,8 +43,8 @@ export class CadastroComponent {
     }
     console.log(this.cadastroForm.value);
     this.http.post<any>(`/pessoa/cadastro`, this.cadastroForm.value).subscribe({
-      next: (response) => this.router.navigateByUrl('/login'),
-      error: error => this.error = "Erro ao cadastrar usuario. Verifique se os campos foram preenchidos corretamente e tente novamente"        
+      next: () => this.router.navigateByUrl('/login'),
+      error: () => this.error = "Erro ao cadastrar usuario. Verifique se os campos foram preenchidos corretamente e tente novamente"        
     });
   }
 }

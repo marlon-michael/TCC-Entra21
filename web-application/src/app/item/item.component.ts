@@ -21,8 +21,7 @@ export class ItemComponent{
   error = '';
   constructor(
     private http: HttpClient, 
-    private formBuilder: FormBuilder,
-    private route: ActivatedRoute
+    private formBuilder: FormBuilder
   ) { }
 
   AddItem() {
@@ -37,11 +36,8 @@ export class ItemComponent{
       item['pessoaItem'] = {"cpf": result.cpf}
       this.http.post<any>('/item/additem', item)
       .subscribe({
-        next: (response) => {
-          // this.router.navigateByUrl('/localizador');
-          this.error = "Item adicionado com sucesso - localizador: " + response.localizador;
-        },
-        error: (error) => this.error = "Os dados informados podem estar incorretos ou não estarem presentes em nossos bancos. Verifique e tente novamente",
+        next: response => this.error = "Item adicionado com sucesso - localizador: " + response.localizador,
+        error: () => this.error = "Os dados informados podem estar incorretos ou não estarem presentes em nossos bancos. Verifique e tente novamente",
       });
     });
   };

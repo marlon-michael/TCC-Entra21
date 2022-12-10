@@ -38,14 +38,16 @@ export class LoginComponent {
     this.submitted = true;
     if (this.loginForm.valid) {
       this.loading = true;
-      this.authenticationService.login(this.loginForm.get('username')?.value, this.loginForm.get('password')?.value).pipe(first()).subscribe(
-        data => {
+      this.authenticationService.login(this.loginForm.get('username')?.value, this.loginForm.get('password')?.value).pipe(first()).subscribe({
+        next: data => {
           if(data != null){
             this.responsedata = data;
             this.router.navigate([this.returnUrl ?? 'home']);
+            // this.router.navigateByUrl('/');
           }
-        }, error => this.error = "Falha ao realizar o login, Verifique os campos e tente novamente"
-      );
+        },
+        error: () => this.error = "Falha ao realizar o login, Verifique os campos e tente novamente"
+      });
       this.loading = false;
     }
   }

@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 import { AuthenticationService } from 'src/app/logado/helpers/auth.service';
 import { User } from 'types/types';
 
@@ -11,14 +10,10 @@ import { User } from 'types/types';
 })
 export class NavbarComponent{
   title = 'web-application';
-
   user: User | null = null;
 
-  constructor(
-    private router: Router,
-    private authenticationService: AuthenticationService
-  ) {
-    this.authenticationService.user.subscribe(x => this.user = x);
+  constructor(private authenticationService: AuthenticationService) {
+    this.authenticationService.user.subscribe(user => this.user = user)
   }
 
   logout() {

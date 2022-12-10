@@ -9,6 +9,7 @@ import { AuthenticationService } from '../helpers/auth.service';
   templateUrl: './configuracoes.component.html',
   styleUrls: ['./configuracoes.component.css']
 })
+
 export class ConfiguracoesComponent{
   dataForm = this.formBuilder.group({
     nome: [''],
@@ -27,10 +28,10 @@ export class ConfiguracoesComponent{
 
   onUpdate(): void {
     this.user = this.auth.userValue;
-    this.http.put(`/pessoa/${this.user.cpf}`, this.dataForm.value).subscribe(
-      res => this.error = "feito!",
-      error => this.error = "Não foi possível atualizar as informações. Tente novamente mais tarde"
-    )
+    this.http.put(`/pessoa/${this.user.cpf}`, this.dataForm.value).subscribe({
+      next: () => this.error = "feito!",
+      error: () => this.error = "Não foi possível atualizar as informações. Tente novamente mais tarde"
+    })
   }
 
 }

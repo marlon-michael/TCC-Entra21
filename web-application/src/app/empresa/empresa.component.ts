@@ -63,8 +63,8 @@ export class EmpresaComponent implements OnInit{
       cnpj: this.createForm.get("cnpj")?.value,
       razaoSocial: this.createForm.get("razaoSocial")?.value
     }).subscribe({
-      next: res => this.error = "empresa criada",
-      error: error => this.error = "Erro ao cadastrar empresa. Verifique se os campos foram preenchidos corretamente e tente novamente"
+      next: () => this.error = "empresa criada",
+      error: () => this.error = "Erro ao cadastrar empresa. Verifique se os campos foram preenchidos corretamente e tente novamente"
     })
   }
 
