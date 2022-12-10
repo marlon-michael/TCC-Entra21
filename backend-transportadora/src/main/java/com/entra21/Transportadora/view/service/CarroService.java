@@ -1,10 +1,8 @@
 package com.entra21.Transportadora.view.service;
 
-import com.entra21.Transportadora.model.dto.Carro.CarroAddDTO;
-import com.entra21.Transportadora.model.dto.Carro.CarroDTO;
-import com.entra21.Transportadora.model.dto.Carro.CarroUpDTO;
-import com.entra21.Transportadora.model.dto.Empresa.EmpresaDTO;
-import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
+import com.entra21.Transportadora.model.dto.CarroDTO;
+import com.entra21.Transportadora.model.dto.EmpresaDTO;
+import com.entra21.Transportadora.model.dto.PessoaDTO;
 import com.entra21.Transportadora.model.entity.CarroEntity;
 import com.entra21.Transportadora.model.entity.EmpresaEntity;
 import com.entra21.Transportadora.view.repository.CarroRepository;
@@ -97,9 +95,9 @@ public class CarroService {
         }).collect(Collectors.toList());
     }
 
-    public void saveCarros(CarroAddDTO input) {
+    public void saveCarros(CarroDTO input) {
         CarroEntity newCarro = new CarroEntity();
-        EmpresaEntity empresaEntity = empresaRepository.findByCnpj(input.getEmpresaCarro().getCnpj()).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa/CNPJ/Carro não encontrado");});
+        EmpresaEntity empresaEntity = empresaRepository.findByCnpj(input.getEmpresa().getCnpj()).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa/CNPJ/Carro não encontrado");});
         newCarro.setEmpresa(empresaEntity);
         newCarro.setTipoCarro(input.getTipoCarro());
         newCarro.setPlaca(input.getPlaca());
@@ -116,8 +114,8 @@ public class CarroService {
         );
     }
 
-    public void updateCarro(String placa, CarroUpDTO carroDTO) {
-        EmpresaEntity empresaEntity = empresaRepository.findByCnpj(carroDTO.getEmpresaCarro().getCnpj()).orElseThrow(() -> {{throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa/CNPJ não encontrado");}});
+    public void updateCarro(String placa, CarroDTO carroDTO) {
+        EmpresaEntity empresaEntity = empresaRepository.findByCnpj(carroDTO.getEmpresa().getCnpj()).orElseThrow(() -> {{throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Empresa/CNPJ não encontrado");}});
         CarroEntity carroEntity = carroRepository.findByPlaca(placa).orElseThrow(()->{throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Carro/Placa não encontrada!");});
         empresaEntity.setIdEmpresa(empresaEntity.getIdEmpresa());
         carroEntity.setEmpresa(empresaEntity);

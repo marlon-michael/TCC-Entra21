@@ -1,10 +1,7 @@
 package com.entra21.Transportadora.controller;
 
 
-import com.entra21.Transportadora.model.dto.Pessoa.LoginDTO;
-import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
-import com.entra21.Transportadora.model.dto.Pessoa.PessoaAddDTO;
-import com.entra21.Transportadora.model.dto.Pessoa.PessoaUpDTO;
+import com.entra21.Transportadora.model.dto.PessoaDTO;
 import com.entra21.Transportadora.view.repository.EmpresaRepository;
 import com.entra21.Transportadora.view.repository.FuncionarioRepository;
 import com.entra21.Transportadora.view.service.PessoaService;
@@ -33,28 +30,27 @@ public class PessoaRestController {
     }
 
     @PostMapping("/login")
-    public PessoaDTO getLogin(@RequestBody LoginDTO login) {
+    public PessoaDTO getLogin(@RequestBody PessoaDTO login) {
         PessoaDTO pessoaDTO = new PessoaDTO(pessoaService.buscarLogin(login));
 
         if (empresaService.findByGerente_Cpf(pessoaDTO.getCpf()).isPresent()){
-            pessoaDTO.setRole("GERENTE");
+            pessoaDTO.setCargo("GERENTE");
             return pessoaDTO;
         }
         else if(funcionarioService.findByCpf(pessoaDTO.getCpf()).isPresent()){
-            pessoaDTO.setRole("FUNCIONARIO");
+            pessoaDTO.setCargo("FUNCIONARIO");
             if(funcionarioService.findBySupervisor_Cpf(pessoaDTO.getCpf()).isPresent()){
                 if (!funcionarioService.findBySupervisor_Cpf(pessoaDTO.getCpf()).get().isEmpty()){
-                    pessoaDTO.setRole("SUPERVISOR");
+                    pessoaDTO.setCargo("SUPERVISOR");
                 }
             }
             return pessoaDTO;
         }
         else {
-            pessoaDTO.setRole("PESSOA");
+            pessoaDTO.setCargo("PESSOA");
             return pessoaDTO;
         }
     }
-
 
     @GetMapping("/{cpf}")
     public PessoaDTO getAllByCpf(@PathVariable(name = "cpf") String cpf) {
@@ -62,12 +58,12 @@ public class PessoaRestController {
     }
 
     @PostMapping("/cadastro")
-    public void addPessoa(@RequestBody PessoaAddDTO newPessoa) {
+    public void addPessoa(@RequestBody PessoaDTO newPessoa) {
         pessoaService.save(newPessoa);
     }
 
     @PutMapping("/{cpf}")
-    public void updatePessoa(@PathVariable(name = "cpf") String cpf, @RequestBody PessoaUpDTO pessoaPayLoadDTO) {
+    public void updatePessoa(@PathVariable(name = "cpf") String cpf, @RequestBody PessoaDTO pessoaPayLoadDTO) {
         pessoaService.updatePessoa(cpf, pessoaPayLoadDTO);
     }
 

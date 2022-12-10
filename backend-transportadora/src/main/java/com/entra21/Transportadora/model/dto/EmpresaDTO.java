@@ -6,7 +6,7 @@ import java.util.List;
 
 @Data
 public class EmpresaDTO {
-    private Long id;
+    private Long idEmpresa;
     private String cnpj;
     private String razaoSocial;
     private PessoaDTO gerente;

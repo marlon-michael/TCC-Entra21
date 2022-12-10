@@ -1,9 +1,6 @@
 package com.entra21.Transportadora.controller;
 
-import com.entra21.Transportadora.model.dto.Item.ItemAddDTO;
-import com.entra21.Transportadora.model.dto.Item.ItemDTO;
-import com.entra21.Transportadora.model.dto.Item.ItemUpDTO;
-import com.entra21.Transportadora.view.repository.ItemRepository;
+import com.entra21.Transportadora.model.dto.ItemDTO;
 import com.entra21.Transportadora.view.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +10,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/item")
 public class ItemRestController {
-    @Autowired
-    ItemRepository itemRepository;
-
     @Autowired
     ItemService itemService;
 
@@ -35,7 +29,7 @@ public class ItemRestController {
     }
 
     @PostMapping("/additem")
-    public ItemAddDTO addItem(@RequestBody ItemAddDTO ItemDTO){
+    public ItemDTO addItem(@RequestBody ItemDTO ItemDTO){
         return itemService.saveItem(ItemDTO);
     }
 
@@ -45,7 +39,7 @@ public class ItemRestController {
     }
 
     @PutMapping("/{localizador}")
-    public void updateItem(@PathVariable(name = "localizador") String localizador, @RequestBody ItemUpDTO itemDTO) {
+    public void updateItem(@PathVariable(name = "localizador") String localizador, @RequestBody ItemDTO itemDTO) {
         itemService.itemUpDTO(localizador, itemDTO);
     }
 }

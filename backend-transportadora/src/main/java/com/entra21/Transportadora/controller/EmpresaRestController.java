@@ -1,10 +1,6 @@
 package com.entra21.Transportadora.controller;
 
-import com.entra21.Transportadora.model.dto.Empresa.EmpresaAddDTO;
-import com.entra21.Transportadora.model.dto.Empresa.EmpresaDTO;
-import com.entra21.Transportadora.model.dto.Empresa.EmpresaUpDTO;
-import com.entra21.Transportadora.model.entity.EmpresaEntity;
-import com.entra21.Transportadora.view.repository.EmpresaRepository;
+import com.entra21.Transportadora.model.dto.EmpresaDTO;
 import com.entra21.Transportadora.view.service.EmpresaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +14,6 @@ public class EmpresaRestController {
     @Autowired
     private EmpresaService empresaService;
 
-    @Autowired
-    private EmpresaRepository empresaRepo;
 
     @GetMapping
     public List<EmpresaDTO> getEmpresa(){
@@ -38,12 +32,12 @@ public class EmpresaRestController {
 
     //TODO: fazer retornar DTO
     @GetMapping("/funcionario/{cpf}")
-    public EmpresaEntity findByFuncionario_cpf(@PathVariable(name = "cpf")String cpf){
-        return empresaRepo.findByFuncionarios_Cpf(cpf);
+    public EmpresaDTO findByFuncionario_cpf(@PathVariable(name = "cpf")String cpf){
+        return empresaService.findByFuncionarios_Cpf(cpf);
     }
 
     @PostMapping
-    public void addEmpresa(@RequestBody EmpresaAddDTO empresaDTO){
+    public void addEmpresa(@RequestBody EmpresaDTO empresaDTO){
         empresaService.saveEmpresas(empresaDTO);
     }
 
@@ -53,7 +47,7 @@ public class EmpresaRestController {
     }
 
     @PutMapping("/{cnpj}")
-    public void updateEmpresa(@PathVariable(name = "cnpj") String cnpj, @RequestBody EmpresaUpDTO empresaDTO) {
+    public void updateEmpresa(@PathVariable(name = "cnpj") String cnpj, @RequestBody EmpresaDTO empresaDTO) {
         empresaService.updateEmpresa(cnpj, empresaDTO);
     }
 }

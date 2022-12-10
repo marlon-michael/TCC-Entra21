@@ -11,18 +11,6 @@ import java.util.List;
 @NoArgsConstructor
 public class FuncionarioDTO extends PessoaDTO {
     private FuncionarioDTO supervisor;
-    private List<EntregaDTO> entrega;
+    private List<EntregaDTO> entregas;
     private EmpresaDTO empresa;
-
-//    public FuncionarioDTO(FuncionarioEntity e) {
-//        this.setEntrega(e.setEntrega(this.entrega..getTipoEntrega()));
-//        this.nome = e.getNome();
-//        this.sobrenome = e.getSobrenome();
-//        this.telefone = e.getTelefone();
-//        this.cpf = e.getCpf();
-//        this.login = e.getLogin();
-//        this.senha = e.getSenha();
-//        this.desabilitado = e.getDesabilitado();
-//        this.role = "GERENTE";
-//    }
 }

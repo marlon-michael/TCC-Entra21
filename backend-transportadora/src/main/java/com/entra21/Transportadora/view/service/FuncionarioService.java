@@ -1,9 +1,8 @@
 package com.entra21.Transportadora.view.service;
 
-import com.entra21.Transportadora.model.dto.Empresa.EmpresaDTO;
-import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioAddDTO;
-import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioDTO;
-import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
+import com.entra21.Transportadora.model.dto.EmpresaDTO;
+import com.entra21.Transportadora.model.dto.FuncionarioDTO;
+import com.entra21.Transportadora.model.dto.PessoaDTO;
 import com.entra21.Transportadora.model.entity.FuncionarioEntity;
 import com.entra21.Transportadora.model.entity.PessoaEntity;
 import com.entra21.Transportadora.view.repository.EmpresaRepository;
@@ -129,7 +128,7 @@ public class FuncionarioService {
     }
 
     @Transactional
-    public void saveFuncionario(FuncionarioAddDTO input) {
+    public void saveFuncionario(FuncionarioDTO input) {
         Query q = em.createNativeQuery("INSERT INTO funcionario(id_pessoa, id_empresa, id_supervisor) VALUES(:idPessoa, :idEmpresa, :idSupervisor)");
         
         PessoaEntity pessoaEntity = pessoaRepository.findByCpf(input.getCpf()).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "CPF NOT FOUND");});

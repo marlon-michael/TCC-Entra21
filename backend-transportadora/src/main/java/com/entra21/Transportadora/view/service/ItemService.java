@@ -1,9 +1,7 @@
 package com.entra21.Transportadora.view.service;
 
-import com.entra21.Transportadora.model.dto.Item.ItemAddDTO;
-import com.entra21.Transportadora.model.dto.Item.ItemDTO;
-import com.entra21.Transportadora.model.dto.Item.ItemUpDTO;
-import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
+import com.entra21.Transportadora.model.dto.ItemDTO;
+import com.entra21.Transportadora.model.dto.PessoaDTO;
 import com.entra21.Transportadora.model.entity.ItemEntity;
 import com.entra21.Transportadora.model.entity.PessoaEntity;
 import com.entra21.Transportadora.view.repository.ItemRepository;
@@ -39,7 +37,7 @@ public class ItemService {
                 pessoaDTO.setCpf(itemEntity.getPessoa().getCpf());
             }
 
-            itemDTO.setPessoaItem(pessoaDTO);
+            itemDTO.setRecebedor(pessoaDTO);
             itemDTO.setLocalizador(itemEntity.getLocalizador());
             itemDTO.setLocalEntrega(itemEntity.getLocalEntrega());
             itemDTO.setNomeRecebedor(itemEntity.getNomeRecebedor());
@@ -62,7 +60,7 @@ public class ItemService {
             pessoaDTO.setCpf(itemEntity.getPessoa().getCpf());
         }
 
-        itemDTO.setPessoaItem(pessoaDTO);
+        itemDTO.setRecebedor(pessoaDTO);
         itemDTO.setLocalizador(itemEntity.getLocalizador());
         itemDTO.setLocalEntrega(itemEntity.getLocalEntrega());
         itemDTO.setNomeRecebedor(itemEntity.getNomeRecebedor());
@@ -83,7 +81,7 @@ public class ItemService {
                 pessoaDTO.setCpf(itemEntity.getPessoa().getCpf());
             }
 
-            itemDTO.setPessoaItem(pessoaDTO);
+            itemDTO.setRecebedor(pessoaDTO);
             itemDTO.setLocalizador(itemEntity.getLocalizador());
             itemDTO.setLocalEntrega(itemEntity.getLocalEntrega());
             itemDTO.setNomeRecebedor(itemEntity.getNomeRecebedor());
@@ -93,7 +91,7 @@ public class ItemService {
         }).collect(Collectors.toList());
     }
 
-    public ItemAddDTO saveItem(ItemAddDTO itemDTO) {
+    public ItemDTO saveItem(ItemDTO itemDTO) {
         PessoaEntity pessoaEntity = null;
         ItemEntity itemEntity = new ItemEntity();
         String UUId; //generating UUID
@@ -105,8 +103,8 @@ public class ItemService {
         itemEntity.setStatus("Preparando pedido");
         itemEntity.setNomeRecebedor(itemDTO.getNomeRecebedor());
 
-        if (itemDTO.getPessoaItem() != null && itemDTO.getPessoaItem().getCpf() != null){
-            pessoaEntity = pessoaRepository.findByCpf(itemDTO.getPessoaItem().getCpf()).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cpf/Pessoa não encontrada");});
+        if (itemDTO.getRecebedor() != null && itemDTO.getRecebedor().getCpf() != null){
+            pessoaEntity = pessoaRepository.findByCpf(itemDTO.getRecebedor().getCpf()).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cpf/Pessoa não encontrada");});
         }
         itemEntity.setPessoa(pessoaEntity);
         itemRepository.save(itemEntity);
@@ -115,17 +113,16 @@ public class ItemService {
         return itemDTO;
     }
 
-    //TODO: UM ITEM DEVE DER DELETADO ???
     public void deleteItem(String localizador) {
         itemRepository.deleteById(
-                itemRepository.findByLocalizador(localizador).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Item/Localizador não encontrado")).getIdItem()
+            itemRepository.findByLocalizador(localizador).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Item/Localizador não encontrado")).getIdItem()
         );
     }
 
-    public void itemUpDTO(String localizador, ItemUpDTO itemDTO) {
+    public void itemUpDTO(String localizador, ItemDTO itemDTO) {
         ItemEntity itemEntity = itemRepository.findByLocalizador(localizador).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Item não encontrado!"));
-        if (itemDTO.getPessoaItem() != null){
-            PessoaEntity pessoaDTO = pessoaRepository.findByCpf(itemDTO.getPessoaItem().getCpf()).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cpf/Entregador não encontrado");});
+        if (itemDTO.getRecebedor() != null){
+            PessoaEntity pessoaDTO = pessoaRepository.findByCpf(itemDTO.getRecebedor().getCpf()).orElseThrow(() -> {throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cpf/Entregador não encontrado");});
             itemEntity.setPessoa(pessoaDTO);
         }
         if (itemDTO.getStatus() != null){
