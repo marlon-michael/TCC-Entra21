@@ -18,15 +18,15 @@ public class PessoaDTO {
     private String cargo;
     // private EmpresaRepository empresaRepositorypessoa;
 
-    public PessoaDTO(PessoaEntity e) {
-        this.idPessoa = e.getIdPessoa();
-        this.nome = e.getNome();
-        this.sobrenome = e.getSobrenome();
-        this.telefone = e.getTelefone();
-        this.cpf = e.getCpf();
-        this.login = e.getLogin();
-        this.senha = e.getSenha();
-        this.desabilitado = e.getDesabilitado();
+    public PessoaDTO(PessoaEntity pessoa) {
+        this.idPessoa = pessoa.getIdPessoa();
+        this.nome = pessoa.getNome();
+        this.sobrenome = pessoa.getSobrenome();
+        this.telefone = pessoa.getTelefone();
+        this.cpf = pessoa.getCpf();
+        this.login = pessoa.getLogin();
+        this.senha = pessoa.getSenha();
+        this.desabilitado = pessoa.getDesabilitado();
         this.cargo = "PESSOA";
     }
 
