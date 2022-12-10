@@ -1,8 +1,5 @@
-package com.entra21.Transportadora.model.dto.Empresa;
+package com.entra21.Transportadora.model.dto;
 
-import com.entra21.Transportadora.model.dto.Carro.CarroDTO;
-import com.entra21.Transportadora.model.dto.Funcionario.FuncionarioDTO;
-import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
 import lombok.Data;
 
 import java.util.List;

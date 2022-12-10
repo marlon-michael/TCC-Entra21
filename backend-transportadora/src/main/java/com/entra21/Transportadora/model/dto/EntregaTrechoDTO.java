@@ -1,7 +1,4 @@
-package com.entra21.Transportadora.model.dto.EntregaTrecho;
-import com.entra21.Transportadora.model.dto.Carro.CarroDTO;
-import com.entra21.Transportadora.model.dto.Entrega.EntregaDTO;
-import com.entra21.Transportadora.model.dto.Trecho.TrechoDTO;
+package com.entra21.Transportadora.model.dto;
 import lombok.Data;
 
 import java.time.LocalDateTime;

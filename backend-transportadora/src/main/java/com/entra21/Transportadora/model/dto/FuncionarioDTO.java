@@ -1,8 +1,5 @@
-package com.entra21.Transportadora.model.dto.Funcionario;
+package com.entra21.Transportadora.model.dto;
 
-import com.entra21.Transportadora.model.dto.Empresa.EmpresaDTO;
-import com.entra21.Transportadora.model.dto.Entrega.EntregaDTO;
-import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;

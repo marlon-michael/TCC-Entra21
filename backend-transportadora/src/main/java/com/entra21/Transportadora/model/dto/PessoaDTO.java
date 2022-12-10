@@ -1,4 +1,4 @@
-package com.entra21.Transportadora.model.dto.Pessoa;
+package com.entra21.Transportadora.model.dto;
 
 import com.entra21.Transportadora.model.entity.PessoaEntity;
 
@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class PessoaDTO {
-    private Long idPessoa;
+    private Long id;
     private String nome;
     private String sobrenome;
     private String telefone;
@@ -19,7 +19,7 @@ public class PessoaDTO {
     private String senha;
     private Boolean desabilitado;
     private String role;
-    private EmpresaRepository  empresaRepositorypessoa;
+    private EmpresaRepository empresaRepositorypessoa;
 
     public PessoaDTO(PessoaEntity e) {
         this.idPessoa = e.getIdPessoa();
