@@ -1,10 +1,6 @@
 package com.entra21.Transportadora.controller;
 
-import com.entra21.Transportadora.model.dto.Entrega.EntregaAddDTO;
-import com.entra21.Transportadora.model.dto.Entrega.EntregaDTO;
-import com.entra21.Transportadora.model.dto.Entrega.EntregaUpDTO;
-import com.entra21.Transportadora.model.entity.EntregaEntity;
-import com.entra21.Transportadora.view.repository.EntregaRepository;
+import com.entra21.Transportadora.model.dto.EntregaDTO;
 import com.entra21.Transportadora.view.service.EntregaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,9 +15,6 @@ public class EntregaRestController {
     @Autowired
     private EntregaService entregaService;
 
-    @Autowired
-    private EntregaRepository entregaRervice;
-
 
     @GetMapping
     public List<EntregaDTO> getEntrega(){
@@ -29,8 +22,8 @@ public class EntregaRestController {
     }
 
     @GetMapping("/{id}")
-    public Optional<EntregaEntity> getById(@PathVariable(name = "id") Long id){
-        return entregaRervice.findById(id);
+    public Optional<EntregaDTO> getById(@PathVariable(name = "id") Long id){
+        return entregaService.findById(id);
     }
 
     @GetMapping("/entregador/{cpf}")
@@ -38,19 +31,18 @@ public class EntregaRestController {
         return entregaService.getAllEntragaByEntregador(cpf);
     }
 
-    //TODO: fazer retornar DTO
     @GetMapping("/empresa/{cnpj}")
-    public List<EntregaEntity> getAllByEmpresa(@PathVariable(name = "cnpj") String cnpj){
-        return entregaRervice.findAllByEntregador_Empresa_Cnpj(cnpj);
+    public List<EntregaDTO> getAllByEmpresa(@PathVariable(name = "cnpj") String cnpj){
+        return entregaService.findAllByEntregador_Empresa_Cnpj(cnpj);
     }
 
     @PostMapping
-    public void addEntrega(@RequestBody EntregaAddDTO NewEntrega){
+    public void addEntrega(@RequestBody EntregaDTO NewEntrega){
         entregaService.save(NewEntrega);
     }
 
     @PutMapping("/{id}")
-    public EntregaUpDTO updateEntrega(@PathVariable(name = "id") Long idEntrega, @RequestBody EntregaUpDTO entrega){
+    public EntregaDTO updateEntrega(@PathVariable(name = "id") Long idEntrega, @RequestBody EntregaDTO entrega){
         return entregaService.updateEntrega(idEntrega, entrega);
     }
 

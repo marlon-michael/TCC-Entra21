@@ -19,6 +19,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { EntregasItemDetalhesComponent } from './entregas-item-detalhes/entregas-item-detalhes.component';
 import { ItemComponent } from './item/item.component';
 import { EntregaAddComponent } from './entrega-add/entrega-add.component';
+import { EmpresaComponent } from './empresa/empresa.component';
+import { CarroComponent } from './carro/carro.component';
 
 
 @NgModule({
@@ -37,6 +39,8 @@ import { EntregaAddComponent } from './entrega-add/entrega-add.component';
     EntregasItemDetalhesComponent,
     ItemComponent,
     EntregaAddComponent,
+    EmpresaComponent,
+    CarroComponent,
   ],
   imports: [
     BrowserModule,

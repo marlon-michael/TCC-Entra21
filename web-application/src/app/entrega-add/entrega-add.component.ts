@@ -24,7 +24,7 @@ export class EntregaAddComponent {
   ) { }
 
   addEntrega() {
-    this.submitted = false;
+    this.submitted = true;
     var placaCarro: string = this.entregaForm.get("placaCarro")?.value
     var localizadores: string[] = this.entregaForm.get("localizadores")?.value.split(";")
     var trechos: string[] = this.entregaForm.get("trechos")?.value.split(";")
@@ -56,10 +56,11 @@ export class EntregaAddComponent {
       entregador: {cpf: this.entregaForm.get("motoristaCPF")?.value},
       entregaTrecho: entregaTrechos,
       itens: itens
-    }).subscribe(
-      res => this.error = "", 
-      error => this.error = "Os dados informados podem estar incorretos ou não estarem presentes em nossos bancos. Verifique e tente novamente"
-    )
+    }).subscribe({
+      next: () => this.error = "entrega criada", 
+      error: () => this.error = "Os dados informados podem estar incorretos ou não estarem presentes em nossos bancos. Verifique e tente novamente"
+    })
+    this.submitted = false;
   };
 }
 

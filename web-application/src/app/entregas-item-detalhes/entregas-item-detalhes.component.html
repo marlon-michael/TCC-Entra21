@@ -2,13 +2,13 @@
 <div class="body">
   <h1>Entregas</h1>
   <div class="button-div">
-    <button *ngIf="this.user?.role != 'PESSOA'" type="submit" class="btn btn-outline-secondary" routerLink="/addentrega">Adicionar</button>
+    <button *ngIf="this.user?.cargo != 'PESSOA'" type="submit" class="btn btn-outline-secondary" routerLink="/addentrega">Adicionar</button>
   </div>
   <table class="table">
     <thead>
       <tr>
         <th>ID</th>
-        <th *ngIf="user?.role == 'SUPERVISOR' || user?.role == 'GERENTE'">motorista</th>
+        <th *ngIf="user?.cargo == 'SUPERVISOR' || user?.cargo == 'GERENTE'">motorista</th>
         <th>tipo</th>
         <th>carro</th>
         <th>inicio</th>
@@ -18,7 +18,7 @@
     <tbody>
       <tr *ngFor="let entrega of entregas">
         <td>{{entrega.id}}</td>
-        <td *ngIf="user?.role == 'SUPERVISOR' || user?.role == 'GERENTE'">{{entrega.entregador.cpf}}</td>
+        <td *ngIf="user?.cargo == 'SUPERVISOR' || user?.cargo == 'GERENTE'">{{entrega.entregador.cpf}}</td>
         <td>{{entrega.tipoEntrega}}</td>
         <td>{{entrega.entregaTrecho.carro.placa}}</td>
         <td>{{entrega.entregaTrecho.trecho.localInicio}}</td>
@@ -48,20 +48,20 @@
     </tbody>
   </table>
 
-  <form *ngIf="user?.role == 'SUPERVISOR' || user?.role == 'GERENTE' || user?.role == 'FUNCIONARIO'" class="form shadow p-3 mb-5 bg-body rounded"  [formGroup]="formEdit">
+  <form *ngIf="user?.cargo == 'SUPERVISOR' || user?.cargo == 'GERENTE' || user?.cargo == 'FUNCIONARIO'" class="form shadow p-3 mb-5 bg-body rounded"  [formGroup]="formEdit">
     <div class="mb-3">
       <label for="id" class="form-label">ID da entrega</label>
       <input type="text" class="form-control" id="id" placeholder="id" formControlName="id" maxlength="100">
     </div>
-    <div class="mb-3" *ngIf="user?.role == 'SUPERVISOR' || user?.role == 'GERENTE'">
+    <div class="mb-3" *ngIf="user?.cargo == 'SUPERVISOR' || user?.cargo == 'GERENTE'">
       <label for="cpf" class="form-label">Entregador (cpf)</label>
       <input type="text" class="form-control" id="cpf" placeholder="00011122233" formControlName="entregador" maxlength="11">
     </div>
-    <div class="mb-3" *ngIf="user?.role == 'FUNCIONARIO'">
+    <div class="mb-3" *ngIf="user?.cargo == 'FUNCIONARIO'">
       <label for="status" class="form-label">Status</label>
       <input type="text" class="form-control" id="status" placeholder="entregue" formControlName="status" maxlength="50">
     </div>
-    <div class="mb-3" *ngIf="user?.role == 'FUNCIONARIO'">
+    <div class="mb-3" *ngIf="user?.cargo == 'FUNCIONARIO'">
       <label for="localizador" class="form-label">localizador(opcional)</label>
       <input type="text" class="form-control" id="localizador" placeholder="ASD123Z" formControlName="localizador" maxlength="100">
     </div>

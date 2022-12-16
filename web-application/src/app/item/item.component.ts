@@ -10,26 +10,21 @@ import { Item } from 'types/types';
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.css']
 })
+
 export class ItemComponent{
   itemForm: FormGroup = this.formBuilder.group({
     nomeRecebedor:  ['', Validators.required],
     localEntrega:  ['', Validators.required],
     pessoaItem: ['']
   });
-  loading = false;
-  submitted = false;
-  returnUrl: string = this.route.snapshot.queryParams['returnUrl'];
-  error = '';
-  succes = false;
   itens: Item[] = [];
+  error = '';
   constructor(
     private http: HttpClient, 
-    private formBuilder: FormBuilder,
-    private route: ActivatedRoute
+    private formBuilder: FormBuilder
   ) { }
 
   AddItem() {
-    this.submitted = false;
     if (this.itemForm.invalid) {
       this.error = "Os campos não foram preenchidos corretamente";
       return;
@@ -41,11 +36,8 @@ export class ItemComponent{
       item['pessoaItem'] = {"cpf": result.cpf}
       this.http.post<any>('/item/additem', item)
       .subscribe({
-        next: (response) => {
-          // this.router.navigateByUrl('/localizador');
-          this.error = "Item adicionado com sucesso - localizador: " + response.localizador;
-        },
-        error: (error) => this.error = "Os dados informados podem estar incorretos ou não estarem presentes em nossos bancos. Verifique e tente novamente",
+        next: response => this.error = "Item adicionado com sucesso - localizador: " + response.localizador,
+        error: () => this.error = "Os dados informados podem estar incorretos ou não estarem presentes em nossos bancos. Verifique e tente novamente",
       });
     });
   };

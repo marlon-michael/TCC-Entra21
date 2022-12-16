@@ -1,10 +1,7 @@
 package com.entra21.Transportadora.controller;
 
-import com.entra21.Transportadora.model.dto.Carro.CarroAddDTO;
-import com.entra21.Transportadora.model.dto.Carro.CarroDTO;
-import com.entra21.Transportadora.model.dto.Carro.CarroUpDTO;
+import com.entra21.Transportadora.model.dto.CarroDTO;
 import com.entra21.Transportadora.view.service.CarroService;
-import com.entra21.Transportadora.view.service.EmpresaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,9 +13,6 @@ public class CarroRestController {
 
     @Autowired
     private CarroService carroService;
-
-    @Autowired
-    EmpresaService empresaService;
 
     @GetMapping
     public List<CarroDTO> getCarro(){
@@ -36,7 +30,7 @@ public class CarroRestController {
     }
 
     @PostMapping
-    public void addCarro(@RequestBody CarroAddDTO Newcarro){
+    public void addCarro(@RequestBody CarroDTO Newcarro){
         carroService.saveCarros(Newcarro);
     }
 
@@ -45,9 +39,8 @@ public class CarroRestController {
         carroService.deleteCarros(placa);
     }
 
-    //TODO: FAZER RETORNAR VOID
     @PutMapping("/{placa}")
-    public void updateCarro(@PathVariable(name = "placa") String placa, @RequestBody CarroUpDTO carroUpDTO) {
+    public void updateCarro(@PathVariable(name = "placa") String placa, @RequestBody CarroDTO carroUpDTO) {
         carroService.updateCarro(placa,carroUpDTO);
     }
 

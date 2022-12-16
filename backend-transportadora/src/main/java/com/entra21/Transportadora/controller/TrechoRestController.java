@@ -1,13 +1,17 @@
 package com.entra21.Transportadora.controller;
 
-import com.entra21.Transportadora.model.dto.Trecho.TrechoAddDTO;
-import com.entra21.Transportadora.model.dto.Trecho.TrechoDTO;
-import com.entra21.Transportadora.model.dto.Trecho.TrechoUpDTO;
-import com.entra21.Transportadora.view.service.TrechoService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import com.entra21.Transportadora.model.dto.TrechoDTO;
+import com.entra21.Transportadora.view.service.TrechoService;
 
 @RestController
 @RequestMapping("/trecho")
@@ -21,7 +25,7 @@ public class TrechoRestController {
         return trechoService.getAllTrecho();
     }
     @PostMapping
-    public void addTrecho(@RequestBody TrechoAddDTO carroDTO){
+    public void addTrecho(@RequestBody TrechoDTO carroDTO){
         trechoService.saveTrecho(carroDTO);
     }
 
@@ -30,10 +34,8 @@ public class TrechoRestController {
         trechoService.deleteTrecho(id);
     }
 
-    //TODO: ENCONTRAR UM JEITO DO USUARIO TRECHO A ENTREGA (LOCALIZADOR DE ENTREGA???)
     @PutMapping("/{id}")
-    public TrechoUpDTO upTrecho(@PathVariable(name = "id")Long id,
-                                @RequestBody TrechoUpDTO trechoDTO) {
+    public TrechoDTO upTrecho(@PathVariable(name = "id")Long id, @RequestBody TrechoDTO trechoDTO) {
         return trechoService.updateTrecho(id,trechoDTO);
     }
 

@@ -13,6 +13,8 @@ import { FuncionariosComponent } from './funcionarios/funcionarios.component';
 import { EntregasItemDetalhesComponent } from './entregas-item-detalhes/entregas-item-detalhes.component';
 import { ItemComponent } from './item/item.component';
 import { EntregaAddComponent } from './entrega-add/entrega-add.component';
+import { EmpresaComponent } from './empresa/empresa.component';
+import { CarroComponent } from './carro/carro.component';
 
 
 const routes: Routes = [
@@ -28,6 +30,8 @@ const routes: Routes = [
   {path: 'edit', component: FuncionariosComponent},
   {path: 'entregas', component: EntregasItemDetalhesComponent},
   {path: 'addentrega', component: EntregaAddComponent},
+  {path: 'empresa', component: EmpresaComponent},
+  {path: 'carro', component: CarroComponent},
   {path: '**', redirectTo: '/'},
 ];
 

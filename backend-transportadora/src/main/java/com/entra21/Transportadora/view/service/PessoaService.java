@@ -1,9 +1,6 @@
 package com.entra21.Transportadora.view.service;
 
-import com.entra21.Transportadora.model.dto.Pessoa.LoginDTO;
-import com.entra21.Transportadora.model.dto.Pessoa.PessoaDTO;
-import com.entra21.Transportadora.model.dto.Pessoa.PessoaAddDTO;
-import com.entra21.Transportadora.model.dto.Pessoa.PessoaUpDTO;
+import com.entra21.Transportadora.model.dto.PessoaDTO;
 import com.entra21.Transportadora.model.entity.PessoaEntity;
 import com.entra21.Transportadora.view.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,7 +73,7 @@ public class PessoaService implements UserDetailsService{
         }).collect(Collectors.toList());
     }
 
-    public void save(PessoaAddDTO input) {
+    public void save(PessoaDTO input) {
         PessoaEntity pessoaEntity = new PessoaEntity();
         pessoaEntity.setNome(input.getNome());
         pessoaEntity.setSobrenome(input.getSobrenome());
@@ -88,22 +85,22 @@ public class PessoaService implements UserDetailsService{
         pessoaRepository.save(pessoaEntity);
     }
 
-    public void updatePessoa(String cpf, PessoaUpDTO pessoaPayLoadDTO) {
+    public void updatePessoa(String cpf, PessoaDTO pessoaPayLoadDTO) {
         PessoaEntity pessoa = pessoaRepository.findByCpf(cpf).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Pessoa não encontrada!"));
-        if (pessoaPayLoadDTO.getNome() != null) pessoa.setNome(pessoaPayLoadDTO.getNome());
-        if (pessoaPayLoadDTO.getSobrenome() != null) pessoa.setSobrenome(pessoaPayLoadDTO.getSobrenome());
-        if (pessoaPayLoadDTO.getTelefone() != null) pessoa.setTelefone(pessoaPayLoadDTO.getTelefone());
-        if (pessoaPayLoadDTO.getCpf() != null) pessoa.setCpf(pessoaPayLoadDTO.getCpf());
-        if (pessoaPayLoadDTO.getLogin() != null) pessoa.setLogin(pessoaPayLoadDTO.getLogin());
-        if (pessoaPayLoadDTO.getSenha() != null) pessoa.setSenha(pessoaPayLoadDTO.getSenha());
-        if (pessoaPayLoadDTO.getDesabilitado() != null) pessoa.setDesabilitado(pessoaPayLoadDTO.getDesabilitado());
+        if (pessoaPayLoadDTO.getNome() != null && pessoaPayLoadDTO.getNome() != "") pessoa.setNome(pessoaPayLoadDTO.getNome());
+        if (pessoaPayLoadDTO.getSobrenome() != null && pessoaPayLoadDTO.getSobrenome() != "") pessoa.setSobrenome(pessoaPayLoadDTO.getSobrenome());
+        if (pessoaPayLoadDTO.getTelefone() != null && pessoaPayLoadDTO.getTelefone() != "") pessoa.setTelefone(pessoaPayLoadDTO.getTelefone());
+        if (pessoaPayLoadDTO.getCpf() != null && pessoaPayLoadDTO.getCpf() != "") pessoa.setCpf(pessoaPayLoadDTO.getCpf());
+        if (pessoaPayLoadDTO.getLogin() != null && pessoaPayLoadDTO.getLogin() != "") pessoa.setLogin(pessoaPayLoadDTO.getLogin());
+        if (pessoaPayLoadDTO.getSenha() != null && pessoaPayLoadDTO.getSenha() != "") pessoa.setSenha(pessoaPayLoadDTO.getSenha());
+        if (pessoaPayLoadDTO.getDesabilitado() != null && pessoaPayLoadDTO.getNome() != "") pessoa.setDesabilitado(pessoaPayLoadDTO.getDesabilitado());
         pessoaRepository.save(pessoa);
     }
 
-    public PessoaEntity buscarLogin(LoginDTO login) {
-        PessoaEntity e = pessoaRepository.findByLogin(login.getUsername());
-        if (e != null && e.getSenha().equals(login.getPassword())) {
-            return e;
+    public PessoaEntity buscarLogin(PessoaDTO login) {
+        PessoaEntity pessoaEntity = pessoaRepository.findByLogin(login.getUsername());
+        if (pessoaEntity != null && pessoaEntity.getSenha().equals(login.getPassword())) {
+            return pessoaEntity;
         }
         return null;
     }

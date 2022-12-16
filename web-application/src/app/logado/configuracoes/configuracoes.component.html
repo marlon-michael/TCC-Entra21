@@ -1,42 +1,29 @@
 <div class="banner">
-
 <p class="texto2">Alterar Perfil</p>
-
 <div class="shadow p-3 mb-5 bg-body rounded" style="opacity: 0.9;">
-
-<form class="form1">
-    <div class="mb-3">
-      <label for="user" class="form-label">Nome</label>
-      <input  type="text" class="form-control" id="user" placeholder="Nome antigo">
-    </div>
-    <div class="mb-3">
-      <label for="users" class="form-label" >Sobrenome</label>
-      <input type="text" class="form-control" id="users" placeholder="Sobrenome antigo">
-    </div>
-    <div class="mb-3">
-      <label for="telefone" class="form-label" >Telefone</label>
-      <input type="tel" class="form-control" id="telefone" required placeholder="(xx) xxxxx-xxxx" minlength="10" maxlength="11">
-    </div>
-    <div class="mb-3">
-      <label for="cpf" class="form-label" >CPF</label>
-      <input type="text" class="form-control" name="cpf" id="cpf" pattern="(\d{3}\.?\d{3}\.?\d{3}-?\d{2})|(\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2})"
-      placeholder="xxx.xxx.xxx-xx" required
-      minlength="11" maxlength="11" size="11">
-    </div>
-    <div class="mb-3">
-      <label for="email" class="form-label" >Email</label>
-      <input type="email" class="form-control" id="email" placeholder="Email antigo">
-    </div>
-    <div class="mb-3">
-        <label for="pass" class="form-label" >Senha</label>
-        <input type="password" class="form-control" data-type="password" id="pass" placeholder="Senha antiga">
-      </div>
-      <!-- <div class="mb-3">
-        <label for="pass" class="form-label" >Repetir Senha</label>
-        <input type="password" class="form-control" data-type="password" id="pass" placeholder="Senha antiga">
-      </div> -->
-    <button type="submit" class="btn btn-outline-dark">Salvar</button>
-  </form>
-
+<form class="form1" [formGroup]="dataForm" (ngSubmit)="onUpdate()">
+  <div class="mb-3">
+    <label for="user" class="form-label">Nome</label>
+    <input formControlName="nome" type="text" class="form-control" minlength="2" id="user" placeholder="fulano">
+  </div>
+  <div class="mb-3">
+    <label for="users" class="form-label" >Sobrenome</label>
+    <input formControlName="sobrenome" type="text" class="form-control" minlength="2" id="users" placeholder="de tal">
+  </div>
+  <div class="mb-3">
+    <label for="telefone" class="form-label" >Telefone</label>
+    <input formControlName="telefone" type="tel" class="form-control" id="telefone" required placeholder="(xx) xxxxx-xxxx" minlength="10" maxlength="11">
+  </div>
+  <div class="mb-3">
+    <label for="email" class="form-label" >Email</label>
+    <input formControlName="login" type="email" class="form-control" minlength="7" id="email" placeholder="fulano@email.com">
+  </div>
+  <div class="mb-3">
+    <label for="pass" class="form-label" >Senha</label>
+    <input formControlName="senha" type="password" class="form-control" minlength="6" data-type="password" id="pass" placeholder="senhaDificil123">
+  </div>
+  <button type="submit" class="btn btn-outline-dark">Salvar</button>
+</form>
+<div class="msg" *ngIf="this.error.length > 0" (click)="this.error = ''">{{this.error}}</div>
 </div>
 </div>
