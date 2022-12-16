@@ -8,6 +8,7 @@ import { User } from 'types/types';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
+
 export class NavbarComponent{
   title = 'web-application';
   user: User | null = null;
